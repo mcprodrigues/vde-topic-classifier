@@ -1,0 +1,58 @@
+{
+  "domain_auc": 0.5574583333333334,
+  "effective_n_after_weighting": 53.355613291055874,
+  "mean_confidence": {
+    "dev_oof": 0.6655041731632099,
+    "bank_unlabeled": 0.5820826171526139,
+    "new_import": 0.6313823844520013
+  },
+  "feature_means": {
+    "dev_oof": {
+      "agreement": 0.6216354166666667,
+      "top_cosine": 0.4609359666705132,
+      "segment_dispersion": 0.44020833333333337
+    },
+    "new_import": {
+      "agreement": 0.616111111111111,
+      "top_cosine": 0.4759286833057801,
+      "segment_dispersion": 0.37161111111111117
+    }
+  },
+  "description": {
+    "bank": {
+      "n": 359,
+      "median_length": 830.0,
+      "share_true_false": 0.1615598885793872,
+      "share_assertions": 0.06963788300835655,
+      "share_empty_subject": 0.05013927576601671,
+      "origin_discipline": {
+        "Processo Penal": 131,
+        "Direito Penal": 129,
+        "Direito Penal - Legislação Especial": 32,
+        "Criminologia": 31,
+        "Penal": 27,
+        "Direito Constitucional": 2,
+        "Direito Civil - Legislação Especial": 2,
+        "Disciplina Unificada": 1,
+        "(vazio)": 1,
+        "Direito Tributário": 1,
+        "Direito Processual Penal": 1,
+        "Direito Ambiental": 1
+      }
+    },
+    "new_import": {
+      "n": 300,
+      "median_length": 661.5,
+      "share_true_false": 0.2,
+      "share_assertions": 0.06333333333333334,
+      "share_empty_subject": 0.0033333333333333335,
+      "origin_discipline": {
+        "Direito Penal": 150,
+        "Processo Penal": 115,
+        "Criminologia": 25,
+        "Direito Penal Militar": 5,
+        "Direito Processual Penal Militar": 5
+      }
+    }
+  }
+}
