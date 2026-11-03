@@ -17,7 +17,7 @@ group_thresholds = false
 min_group_size = 15
 
 [channels]
-enabled = ["law_article", "lexical", "prototypes", "knn", "subject", "duplicates"]
+enabled = ["special_law", "code_article", "lexical", "prototypes", "knn", "subject", "duplicates"]
 
 [knn]
 k = 7
