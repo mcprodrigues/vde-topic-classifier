@@ -1,0 +1,589 @@
+{
+  "cv": {
+    "questions": 80,
+    "hit_rate": 0.655,
+    "branch_hit_rate": 0.6675,
+    "auc": 0.7338979007633587,
+    "aurc": 0.1867140311357406,
+    "precision_at_coverage": {
+      "0.10": 1.0,
+      "0.20": 0.9375,
+      "0.30": 0.875,
+      "0.50": 0.85
+    },
+    "threshold": {
+      "tau": 1.01,
+      "published": 0,
+      "hits": 0.0,
+      "point_precision": 1.0,
+      "posterior": 0.0,
+      "coverage": 0.0,
+      "effective_n": 0.0
+    },
+    "ltt_threshold": 1.01,
+    "threshold_cv": {
+      "published": 0,
+      "hits": 0.0,
+      "coverage": 0.0,
+      "precision": null,
+      "cp_lower_90": 0.0
+    },
+    "ece": 0.07171514520966446,
+    "brier": 0.1879769095562697,
+    "level2_share": 0.14875,
+    "seconds": 0.0
+  },
+  "calibration": {
+    "raw": {
+      "ece": 0.07171514520966446,
+      "brier": 0.1879769095562697,
+      "reliability": [
+        {
+          "n": 16,
+          "mean_conf": 0.30671618391244,
+          "hit_rate": 0.375
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.5453614606588896,
+          "hit_rate": 0.4375
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.7200469170399022,
+          "hit_rate": 0.8125
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.8289368352732962,
+          "hit_rate": 0.75
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.9264594689315213,
+          "hit_rate": 0.9375
+        }
+      ]
+    },
+    "platt": {
+      "ece": 0.04894489940880135,
+      "brier": 0.1952117741638257,
+      "reliability": [
+        {
+          "n": 16,
+          "mean_conf": 0.3425920248366931,
+          "hit_rate": 0.375
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.5548095461016742,
+          "hit_rate": 0.5625
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.6969678079511593,
+          "hit_rate": 0.75
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.8070500282164549,
+          "hit_rate": 0.6875
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.9054561522829215,
+          "hit_rate": 0.9375
+        }
+      ]
+    },
+    "isotonic": {
+      "ece": 0.17092013543780266,
+      "brier": 0.2052341268919183,
+      "reliability": [
+        {
+          "n": 16,
+          "mean_conf": 0.2895833333333333,
+          "hit_rate": 0.5
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.48952371065849487,
+          "hit_rate": 0.3125
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.7128833159493286,
+          "hit_rate": 0.9375
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.8519186158131804,
+          "hit_rate": 0.6875
+        },
+        {
+          "n": 16,
+          "mean_conf": 0.953125,
+          "hit_rate": 0.875
+        }
+      ]
+    }
+  },
+  "shift": {
+    "domain_auc": 0.5574583333333334,
+    "effective_n_after_weighting": 53.355613291055874,
+    "mean_confidence": {
+      "dev_oof": 0.6655041731632099,
+      "bank_unlabeled": 0.5820826171526139,
+      "new_import": 0.6313823844520013
+    },
+    "feature_means": {
+      "dev_oof": {
+        "agreement": 0.6216354166666667,
+        "top_cosine": 0.4609359666705132,
+        "segment_dispersion": 0.44020833333333337
+      },
+      "new_import": {
+        "agreement": 0.616111111111111,
+        "top_cosine": 0.4759286833057801,
+        "segment_dispersion": 0.37161111111111117
+      }
+    },
+    "description": {
+      "bank": {
+        "n": 359,
+        "median_length": 830.0,
+        "share_true_false": 0.1615598885793872,
+        "share_assertions": 0.06963788300835655,
+        "share_empty_subject": 0.05013927576601671,
+        "origin_discipline": {
+          "Processo Penal": 131,
+          "Direito Penal": 129,
+          "Direito Penal - Legislação Especial": 32,
+          "Criminologia": 31,
+          "Penal": 27,
+          "Direito Constitucional": 2,
+          "Direito Civil - Legislação Especial": 2,
+          "Disciplina Unificada": 1,
+          "(vazio)": 1,
+          "Direito Tributário": 1,
+          "Direito Processual Penal": 1,
+          "Direito Ambiental": 1
+        }
+      },
+      "new_import": {
+        "n": 300,
+        "median_length": 661.5,
+        "share_true_false": 0.2,
+        "share_assertions": 0.06333333333333334,
+        "share_empty_subject": 0.0033333333333333335,
+        "origin_discipline": {
+          "Direito Penal": 150,
+          "Processo Penal": 115,
+          "Criminologia": 25,
+          "Direito Penal Militar": 5,
+          "Direito Processual Penal Militar": 5
+        }
+      }
+    }
+  },
+  "forecast": {
+    "evaluated": 559,
+    "published": 0,
+    "published_by_source": {
+      "bank": 0,
+      "new_import": 0
+    },
+    "coverage": 0.0,
+    "coverage_interval": [
+      0.0,
+      0.0
+    ],
+    "precision": null,
+    "precision_interval": [
+      null,
+      null
+    ],
+    "precision_from_calibrated_confidence": null,
+    "dev_published_at_tau": 0,
+    "dev_hits_at_tau": 0.0,
+    "effective_counts": {
+      "bank": {
+        "hits": 0.0,
+        "n": 0.0
+      },
+      "new_import": {
+        "hits": 0.0,
+        "n": 0.0
+      }
+    }
+  },
+  "threshold": 1.01,
+  "model_threshold_detail": {
+    "tau": 1.01,
+    "published": 0,
+    "hits": 0.0,
+    "point_precision": 1.0,
+    "posterior": 0.0,
+    "coverage": 0.0,
+    "effective_n": 0.0
+  },
+  "lockbox": {
+    "n": 20,
+    "hit_rate": 0.8,
+    "published": 0,
+    "published_hits": 0,
+    "rows": [
+      {
+        "qid": "Q0034",
+        "conf": 0.35338545782807707,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0057",
+        "conf": 0.9645832251723172,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0058",
+        "conf": 0.3017183060303553,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0067",
+        "conf": 0.9038280651672507,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0079",
+        "conf": 0.9278741384360062,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0138",
+        "conf": 0.93402416496575,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0139",
+        "conf": 0.7747340180832545,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0179",
+        "conf": 0.810714848065211,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0201",
+        "conf": 0.8238444813721914,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0230",
+        "conf": 0.5113478866659852,
+        "hit": false,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0246",
+        "conf": 0.6736832223804536,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0252",
+        "conf": 0.7093818807750392,
+        "hit": false,
+        "published": false,
+        "is_out": true
+      },
+      {
+        "qid": "Q0275",
+        "conf": 0.6894329827196635,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0290",
+        "conf": 0.8380377277383092,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0303",
+        "conf": 0.5406849616259042,
+        "hit": false,
+        "published": false,
+        "is_out": true
+      },
+      {
+        "qid": "Q0311",
+        "conf": 0.7131584561884097,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0313",
+        "conf": 0.6105866297227278,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0315",
+        "conf": 0.4929715877437412,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0338",
+        "conf": 0.8662115101052268,
+        "hit": false,
+        "published": false,
+        "is_out": false
+      },
+      {
+        "qid": "Q0345",
+        "conf": 0.3596113691012031,
+        "hit": true,
+        "published": false,
+        "is_out": false
+      }
+    ]
+  },
+  "ablations": [
+    {
+      "experiment": "E0_titles_only",
+      "channels": "lexical_titles",
+      "hit_rate": 0.475,
+      "branch_hit_rate": 0.475,
+      "auc": 0.7365636313004733,
+      "aurc": 0.3278970553700512,
+      "prec_at_20": 0.8125,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.0875,
+      "seconds": 9.3
+    },
+    {
+      "experiment": "E1_bm25_knn",
+      "channels": "lexical+knn",
+      "hit_rate": 0.6125,
+      "branch_hit_rate": 0.625,
+      "auc": 0.7025089605734768,
+      "aurc": 0.2320203946224575,
+      "prec_at_20": 0.8125,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1083333333333333,
+      "seconds": 15.1
+    },
+    {
+      "experiment": "E1_bm25_knn_proto",
+      "channels": "lexical+knn+prototypes",
+      "hit_rate": 0.6458333333333334,
+      "branch_hit_rate": 0.6583333333333333,
+      "auc": 0.716888045540797,
+      "aurc": 0.2013308759303282,
+      "prec_at_20": 0.8125,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1625,
+      "seconds": 21.0
+    },
+    {
+      "experiment": "full",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.6541666666666667,
+      "branch_hit_rate": 0.6666666666666666,
+      "auc": 0.7179802010590132,
+      "aurc": 0.1957237855690977,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1375,
+      "seconds": 30.8
+    },
+    {
+      "experiment": "full_minus_special_law",
+      "channels": "code_article+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.65,
+      "branch_hit_rate": 0.6625,
+      "auc": 0.7293956043956044,
+      "aurc": 0.1957901527166769,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1458333333333333,
+      "seconds": 28.0
+    },
+    {
+      "experiment": "full_minus_code_article",
+      "channels": "special_law+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.65,
+      "branch_hit_rate": 0.6625,
+      "auc": 0.728937728937729,
+      "aurc": 0.1898121462123945,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1416666666666666,
+      "seconds": 28.3
+    },
+    {
+      "experiment": "full_minus_knn",
+      "channels": "special_law+code_article+lexical+prototypes+subject+duplicates",
+      "hit_rate": 0.6375,
+      "branch_hit_rate": 0.65,
+      "auc": 0.708136128014424,
+      "aurc": 0.1982847361373431,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1791666666666666,
+      "seconds": 28.3
+    },
+    {
+      "experiment": "full_minus_subject",
+      "channels": "special_law+code_article+lexical+prototypes+knn+duplicates",
+      "hit_rate": 0.6458333333333334,
+      "branch_hit_rate": 0.6583333333333333,
+      "auc": 0.7243263757115751,
+      "aurc": 0.1965700356041906,
+      "prec_at_20": 0.8125,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1583333333333333,
+      "seconds": 27.1
+    },
+    {
+      "experiment": "full_minus_prototypes",
+      "channels": "special_law+code_article+lexical+knn+subject+duplicates",
+      "hit_rate": 0.6583333333333333,
+      "branch_hit_rate": 0.6708333333333333,
+      "auc": 0.7447514665020067,
+      "aurc": 0.1760975875046546,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1208333333333333,
+      "seconds": 26.7
+    },
+    {
+      "experiment": "full_minus_lexical",
+      "channels": "special_law+code_article+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.6458333333333334,
+      "branch_hit_rate": 0.6583333333333333,
+      "auc": 0.7063377609108159,
+      "aurc": 0.2004720122214568,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1625,
+      "seconds": 25.6
+    },
+    {
+      "experiment": "full_minus_duplicates",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject",
+      "hit_rate": 0.6541666666666667,
+      "branch_hit_rate": 0.6666666666666666,
+      "auc": 0.7179802010590132,
+      "aurc": 0.1957237855690977,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1375,
+      "seconds": 30.0
+    },
+    {
+      "experiment": "full_plus_segments",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates+segments",
+      "hit_rate": 0.65,
+      "branch_hit_rate": 0.6625,
+      "auc": 0.7472527472527473,
+      "aurc": 0.1740744834292384,
+      "prec_at_20": 1.0,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1291666666666666,
+      "seconds": 34.2
+    },
+    {
+      "experiment": "full_plus_bin_prior",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates+bin_prior",
+      "hit_rate": 0.6541666666666667,
+      "branch_hit_rate": 0.6666666666666666,
+      "auc": 0.7179802010590132,
+      "aurc": 0.1957237855690977,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.1375,
+      "seconds": 31.1
+    },
+    {
+      "experiment": "full_plus_subject_confusion",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.6666666666666666,
+      "branch_hit_rate": 0.6791666666666667,
+      "auc": 0.7038281249999999,
+      "aurc": 0.2013982552279714,
+      "prec_at_20": 0.875,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.125,
+      "seconds": 30.7
+    },
+    {
+      "experiment": "E3_leaf_top1",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.6208333333333333,
+      "branch_hit_rate": 0.65,
+      "auc": 0.7207021166752711,
+      "aurc": 0.222238537303494,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.4291666666666666,
+      "seconds": 30.1
+    },
+    {
+      "experiment": "E3_always_level1",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.6666666666666666,
+      "branch_hit_rate": 0.6666666666666666,
+      "auc": 0.7522656249999999,
+      "aurc": 0.169343952711023,
+      "prec_at_20": 0.9375,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.0,
+      "seconds": 29.9
+    },
+    {
+      "experiment": "linear_transform",
+      "channels": "special_law+code_article+lexical+prototypes+knn+subject+duplicates",
+      "hit_rate": 0.6458333333333334,
+      "branch_hit_rate": 0.6583333333333333,
+      "auc": 0.7396584440227705,
+      "aurc": 0.1885515814648113,
+      "prec_at_20": 0.875,
+      "coverage_at_tau": 0.0,
+      "level2_share": 0.225,
+      "seconds": 26.1
+    }
+  ],
+  "repeat_spread": {
+    "repeats": 20,
+    "mean": 0.655,
+    "std": 0.00942421293656315
+  }
+}

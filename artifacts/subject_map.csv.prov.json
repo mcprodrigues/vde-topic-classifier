@@ -1,0 +1,11 @@
+{
+  "artifact": "subject_map.csv",
+  "sha256": "cae2a4313141532a547497e682c19098bb07f5cb31ac54c2c455edfc09113dc0",
+  "written_at": "2026-11-03T19:07:42+00:00",
+  "code_commit": "a5d9e11",
+  "produced_by": "token overlap between subject and topic titles plus law_index",
+  "llm_used": false,
+  "used_labels": false,
+  "subjects": 225,
+  "mapped": 146
+}

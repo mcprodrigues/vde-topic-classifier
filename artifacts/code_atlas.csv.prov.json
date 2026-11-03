@@ -1,0 +1,11 @@
+{
+  "artifact": "code_atlas.csv",
+  "sha256": "565f08d0ebac44e63d02ff2fd31d5ac124f73617ee623693ec22d2c07977cc8a",
+  "written_at": "2026-11-03T19:07:42+00:00",
+  "code_commit": "a5d9e11",
+  "produced_by": "proposed by an LLM from the codes structure and the topic tree",
+  "llm_used": true,
+  "proposer": "claude-opus-5-5 (authoring session)",
+  "llm_saw_questions": false,
+  "human_review": "pending: see manual_decisions.csv"
+}

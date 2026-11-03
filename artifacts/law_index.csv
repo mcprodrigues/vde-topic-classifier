@@ -1,0 +1,61 @@
+law_key,kind,number,year,tema_id,scope,aliases,note
+CP,code,2848,1940,,code,codigo penal;cp,Penal code: articles resolved by code_atlas.csv
+CPP,code,3689,1941,,code,codigo de processo penal;cpp,Criminal procedure code: articles resolved by code_atlas.csv
+CF,code,,1988,,code,constituicao federal;constituicao da republica;cf/88;cf,Constitution: articles are not mapped to topics
+CPM,code,1001,1969,,out,codigo penal militar;cpm,Military penal law has no node in the tree
+CPPM,code,1002,1969,,out,codigo de processo penal militar;cppm,Military procedure has no node in the tree
+LEI_13869,lei,13869,2019,4684,in,lei de abuso de autoridade;nova lei de abuso de autoridade,
+LEI_4898,lei,4898,1965,4684,in,,Former abuse of authority law
+LEI_11105,lei,11105,2005,4685,in,lei de biosseguranca,
+DL_3688,decreto-lei,3688,1941,4686,in,lei das contravencoes penais;lcp,
+LEI_4737,lei,4737,1965,4692,in,codigo eleitoral,
+LEI_9504,lei,9504,1997,4692,in,lei das eleicoes,
+LEI_8072,lei,8072,1990,4693,in,lei dos crimes hediondos;lei de crimes hediondos,
+LEI_8137,lei,8137,1990,4695,in,,Articles 4 to 7 (economic order) are out: see code_atlas.csv
+LEI_1521,lei,1521,1951,4687,in,lei de economia popular,
+LEI_7492,lei,7492,1986,4689,in,lei do colarinho branco;lei dos crimes contra o sistema financeiro,
+LEI_9605,lei,9605,1998,4688,in,lei de crimes ambientais;lei dos crimes ambientais,
+LEI_7716,lei,7716,1989,4690,in,lei do racismo;lei de racismo,
+LEI_14532,lei,14532,2023,4690,in,,Racial insult moved into the racism law
+LEI_9503,lei,9503,1997,4691,in,codigo de transito brasileiro;ctb,
+LEI_8078,lei,8078,1990,4694,in,codigo de defesa do consumidor;cdc,
+LEI_10741,lei,10741,2003,4696,in,estatuto do idoso;estatuto da pessoa idosa,
+LEI_10826,lei,10826,2003,4697,in,estatuto do desarmamento,
+LEI_9437,lei,9437,1997,4697,in,,Former firearms law
+LEI_2889,lei,2889,1956,4698,in,lei do genocidio,
+LEI_12037,lei,12037,2009,4699,in,lei de identificacao criminal,
+LEI_9296,lei,9296,1996,4700,in,lei de interceptacao telefonica;lei das interceptacoes,
+LEI_9099,lei,9099,1995,4701,in,lei dos juizados especiais;lei dos juizados,
+LEI_10259,lei,10259,2001,4701,in,juizados especiais federais,
+LEI_9613,lei,9613,1998,4702,in,lei de lavagem de dinheiro;lei de lavagem,
+LEI_11340,lei,11340,2006,4704,in,lei maria da penha,
+LEI_7210,lei,7210,1984,4703,in,lei de execucao penal;lep,
+LEI_12850,lei,12850,2013,4705,in,lei das organizacoes criminosas;lei de organizacoes criminosas,Some articles go to procedure topics: see code_atlas.csv
+LEI_9034,lei,9034,1995,4705,in,,Former organized crime law
+LEI_13260,lei,13260,2016,4706,in,lei antiterrorismo;lei de terrorismo,
+LEI_9455,lei,9455,1997,4707,in,lei de tortura;lei da tortura,
+LEI_11343,lei,11343,2006,4708,in,lei de drogas;lei antidrogas,
+LEI_6368,lei,6368,1976,4708,in,,Former drugs law
+LEI_8069,lei,8069,1990,4709,in,estatuto da crianca e do adolescente;eca,
+LEI_13431,lei,13431,2017,4709,in,lei da escuta protegida,
+LEI_14344,lei,14344,2022,4709,in,lei henry borel,
+LEI_7960,lei,7960,1989,5520,in,lei da prisao temporaria,
+LEI_12403,lei,12403,2011,5584,in,,Reform of precautionary measures and prisons
+LEI_13104,lei,13104,2015,5151,in,lei do feminicidio,
+LEI_14994,lei,14994,2024,5151,in,pacote antifeminicidio,
+LEI_12015,lei,12015,2009,5102,in,,Reform of sexual crimes
+LEI_13718,lei,13718,2018,5102,in,,Reform of sexual crimes
+LEI_14132,lei,14132,2021,5130,in,,Stalking
+LEI_14188,lei,14188,2021,5131,in,,Psychological violence against women
+LEI_14811,lei,14811,2024,5129,in,,Bullying
+LEI_14197,lei,14197,2021,5155,in,lei de defesa do estado democratico de direito,
+LEI_10028,lei,10028,2000,5147,in,lei de crimes fiscais,
+LEI_11689,lei,11689,2008,5524,in,,Jury reform
+LEI_11690,lei,11690,2008,5590,in,,Evidence reform
+LEI_11719,lei,11719,2008,5530,in,,Procedure reform
+LEI_12737,lei,12737,2012,5133,in,lei carolina dieckmann,
+LEI_9714,lei,9714,1998,5205,in,lei das penas alternativas,
+LEI_12234,lei,12234,2010,5185,in,,Statute of limitations reform
+LEI_8176,lei,8176,1991,,out,,Crimes against the economic order: the topic is inactive
+LEI_12529,lei,12529,2011,,out,lei antitruste;lei de defesa da concorrencia,Antitrust: the topic is inactive
+PROC_CRIMES_FUNCIONAIS,procedure,,1941,,out,crimes de responsabilidade dos funcionarios publicos;crimes de responsabilidade de funcionarios publicos,Special procedure of CPP articles 513 to 518: no topic in the tree (see MD07)
