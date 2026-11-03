@@ -34,7 +34,7 @@ class LawEntry:
 class LawIndex:
     def __init__(self, entries: list[LawEntry]):
         self.entries = entries
-        self.by_number = {e.number: e for e in entries}
+        self.by_number = {e.number: e for e in entries if e.number}
         self.by_key = {e.law_key: e for e in entries}
         self.aliases = sorted(((a, e) for e in entries for a in e.aliases), key=lambda x: -len(x[0]))
 

@@ -1,6 +1,7 @@
 law_key,kind,number,year,tema_id,scope,aliases,note
 CP,code,2848,1940,,code,codigo penal;cp,Penal code: articles resolved by code_atlas.csv
 CPP,code,3689,1941,,code,codigo de processo penal;cpp,Criminal procedure code: articles resolved by code_atlas.csv
+CF,code,,1988,,code,constituicao federal;constituicao da republica;cf/88;cf,Constitution: articles are not mapped to topics
 CPM,code,1001,1969,,out,codigo penal militar;cpm,Military penal law has no node in the tree
 CPPM,code,1002,1969,,out,codigo de processo penal militar;cppm,Military procedure has no node in the tree
 LEI_13869,lei,13869,2019,4684,in,lei de abuso de autoridade;nova lei de abuso de autoridade,
