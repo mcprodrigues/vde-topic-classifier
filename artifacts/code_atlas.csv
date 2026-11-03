@@ -1,0 +1,262 @@
+code,art_from,art_to,tema_id,scope,note
+CP,1,1,5172,in,Legality and anteriority
+CP,2,3,5181,in,Law in time
+CP,4,4,5181,in,Time of the crime
+CP,5,9,5182,in,Law in space
+CP,10,12,5180,in,Counting of time and special legislation
+CP,13,13,5226,in,Causal link
+CP,14,14,5177,in,Attempt
+CP,15,16,5178,in,Voluntary withdrawal and repentance
+CP,17,17,5179,in,Impossible crime
+CP,18,19,5222,in,Intent and negligence
+CP,20,20,5224,in,Mistake of fact
+CP,21,21,5214,in,Mistake of law
+CP,22,22,5211,in,Duress and hierarchical obedience
+CP,23,23,5228,in,Justification causes
+CP,24,24,5230,in,Necessity
+CP,25,25,5231,in,Self defense
+CP,26,28,5213,in,Insanity and intoxication
+CP,29,29,5072,in,Persons in the crime
+CP,30,30,5076,in,Communicability
+CP,31,31,5071,in,Persons in the crime
+CP,32,32,5200,in,Types of penalty
+CP,33,42,5201,in,Imprisonment and regimes
+CP,43,48,5205,in,Alternative penalties
+CP,49,52,5206,in,Fines
+CP,53,58,5199,in,Penalty ranges
+CP,59,59,5202,in,First phase of sentencing
+CP,60,60,5206,in,Fine criteria
+CP,61,67,5203,in,Aggravating and mitigating circumstances
+CP,68,68,5199,in,Sentencing method
+CP,69,69,5067,in,Material concurrence
+CP,70,70,5068,in,Formal concurrence
+CP,71,71,5069,in,Continued crime
+CP,72,72,5070,in,Fines in concurrence
+CP,73,74,5066,in,Error in execution
+CP,75,75,5201,in,Maximum time served
+CP,76,76,5066,in,Concurrence of offenses
+CP,77,82,5207,in,Suspended sentence
+CP,83,90,5208,in,Parole
+CP,91,92,5209,in,Effects of conviction
+CP,93,95,5210,in,Rehabilitation
+CP,96,99,5184,in,Security measures
+CP,100,106,5063,in,Criminal action in the penal code
+CP,107,108,5191,in,Extinction of punishability
+CP,109,109,5188,in,Limitation before final judgment
+CP,110,110,5189,in,Limitation after final judgment
+CP,111,111,5187,in,Starting point of limitation
+CP,112,113,5189,in,Limitation of execution
+CP,114,114,5190,in,Limitation of fines
+CP,115,115,5186,in,Age reduction of limitation
+CP,116,117,5187,in,Suspension and interruption
+CP,118,119,5186,in,General limitation rules
+CP,120,120,5197,in,Judicial pardon
+CP,121,121,5150,in,Homicide
+CP,121-A,121-A,5151,in,Femicide
+CP,122,122,5152,in,Suicide instigation
+CP,123,123,5153,in,Infanticide
+CP,124,128,5154,in,Abortion
+CP,129,129,5077,in,Bodily harm
+CP,130,131,5139,in,Contagion danger
+CP,132,132,5140,in,Danger to life
+CP,133,134,5141,in,Abandonment
+CP,135,135-A,5142,in,Omission of assistance
+CP,136,136,5143,in,Mistreatment
+CP,137,137,5138,in,Brawl
+CP,138,138,5122,in,Calumny
+CP,139,139,5123,in,Defamation
+CP,140,140,5124,in,Insult
+CP,141,145,5121,in,Honor crimes general rules
+CP,146,146,5128,in,Unlawful constraint
+CP,146-A,146-A,5129,in,Bullying
+CP,147,147-A,5130,in,Threat and stalking
+CP,147-B,147-B,5131,in,Psychological violence against women
+CP,148,149-A,5132,in,Kidnapping and slavery
+CP,150,154-B,5133,in,Domicile and secrets
+CP,155,156,5159,in,Theft
+CP,157,157,5160,in,Robbery
+CP,158,160,5161,in,Extortion
+CP,161,161,5163,in,Usurpation
+CP,162,162,5163,in,Usurpation
+CP,163,167,5164,in,Damage
+CP,168,170,5165,in,Misappropriation
+CP,171,172,5166,in,Fraud
+CP,173,173,5167,in,Abuse of incapable persons
+CP,174,178,5166,in,Fraud
+CP,179,179,5168,in,Fraud against execution
+CP,180,180-A,5169,in,Receiving stolen goods
+CP,181,183,5158,in,Patrimonial immunities
+CP,184,186,5136,in,Immaterial property
+CP,197,207,5135,in,Labor organization
+CP,208,212,5137,in,Religious feeling and the dead
+CP,213,213,5103,in,Rape
+CP,215,215,5104,in,Sexual violation by fraud
+CP,215-A,215-A,5105,in,Sexual harassment in public
+CP,216-A,216-A,5106,in,Sexual harassment
+CP,216-B,216-B,5107,in,Unauthorized intimate record
+CP,217-A,217-A,5103,in,Rape of vulnerable person
+CP,218,218,5108,in,Corruption of minors
+CP,218-A,218-C,5109,in,Other sexual crimes
+CP,225,226,5110,in,Sexual crimes general rules
+CP,227,232-A,5109,in,Sexual exploitation
+CP,233,234-C,5109,in,Obscene acts
+CP,235,240,5112,in,Crimes against marriage
+CP,241,243,5113,in,Crimes against filiation
+CP,244,247,5114,in,Family assistance
+CP,248,249,5115,in,Family power
+CP,250,259,5126,in,Common danger
+CP,260,266,5127,in,Transport and public services
+CP,267,285,5145,in,Public health
+CP,286,288-A,5146,in,Public peace
+CP,289,295,5117,in,Counterfeit money
+CP,296,305,5118,in,Document forgery
+CP,306,311-A,5119,in,Other forgeries
+CP,312,313-B,5089,in,Embezzlement
+CP,314,315,5090,in,Irregular use of public funds
+CP,316,316,5091,in,Extortion by official
+CP,317,317,5092,in,Passive corruption
+CP,318,318,5094,in,Facilitation of smuggling
+CP,319,319-A,5095,in,Prevarication
+CP,320,320,5096,in,Criminal condescension
+CP,321,321,5097,in,Administrative advocacy
+CP,322,322,5098,in,Arbitrary violence
+CP,323,326,5087,in,Public administration crimes
+CP,327,327,5088,in,Public official concept
+CP,328,328,5099,in,Usurpation of public function
+CP,329,331,5100,in,Resistance and contempt
+CP,332,332,5101,in,Influence peddling
+CP,333,333,5093,in,Active corruption
+CP,334,334-A,5094,in,Smuggling
+CP,335,337-P,5087,in,Public administration crimes by private parties
+CP,338,338,5079,in,Administration of justice
+CP,339,341,5080,in,False accusation
+CP,342,343,5081,in,False testimony
+CP,344,344,5086,in,Coercion during proceedings
+CP,345,346,5082,in,Arbitrary exercise of own reasons
+CP,347,347,5083,in,Procedural fraud
+CP,348,349-A,5084,in,Favoring
+CP,350,350,5085,in,Abuse of power
+CP,351,359,5086,in,Other crimes against justice
+CP,359-A,359-H,5147,in,Public finances
+CP,359-I,359-U,5155,in,Democratic rule of law
+CPP,1,1,5506,in,Procedural law in space
+CPP,2,2,5507,in,Procedural law in time
+CPP,3,3,5508,in,Interpretation
+CPP,3-A,3-A,5581,in,Accusatory system
+CPP,3-B,3-F,5503,in,Judge of guarantees
+CPP,4,9,5500,in,Police inquiry procedure
+CPP,10,10,5501,in,Inquiry deadlines and conclusion
+CPP,11,16,5500,in,Police inquiry procedure
+CPP,17,18,5501,in,Archiving
+CPP,19,23,5500,in,Police inquiry procedure
+CPP,24,25,5471,in,Conditional public action
+CPP,26,27,5470,in,Public action
+CPP,28,28,5501,in,Archiving
+CPP,28-A,28-A,5502,in,Non prosecution agreement
+CPP,29,29,5472,in,Subsidiary private action
+CPP,30,40,5472,in,Private action
+CPP,41,41,5473,in,Indictment requirements
+CPP,42,43,5466,in,Criminal action
+CPP,44,44,5474,in,Private complaint
+CPP,45,47,5473,in,Indictment
+CPP,48,62,5472,in,Waiver pardon and peremption
+CPP,63,68,5475,in,Civil action ex delicto
+CPP,69,69,5481,in,Competence criteria
+CPP,70,73,5483,in,Territorial competence
+CPP,74,74,5482,in,Subject matter competence
+CPP,75,75,5485,in,Distribution
+CPP,76,82,5486,in,Connection and continence
+CPP,83,83,5485,in,Prevention
+CPP,84,87,5484,in,Prerogative forum
+CPP,88,91,5483,in,Territorial competence special cases
+CPP,92,94,5491,in,Prejudicial questions
+CPP,95,95,5490,in,Exceptions
+CPP,96,107,5492,in,Suspicion
+CPP,108,109,5493,in,Incompetence exception
+CPP,110,111,5494,in,Lis pendens and res judicata
+CPP,112,112,5492,in,Impediment
+CPP,113,117,5480,in,Conflict of jurisdiction
+CPP,118,124-A,5495,in,Return of seized goods
+CPP,125,144-A,5496,in,Protective measures over assets
+CPP,145,148,5497,in,Falsity incident
+CPP,149,154,5497,in,Insanity incident
+CPP,155,155,5592,in,Evidence evaluation
+CPP,156,156,5591,in,Burden of proof
+CPP,157,157,5594,in,Illicit evidence
+CPP,158,158,5545,in,Corpus delicti exam
+CPP,158-A,158-F,5544,in,Chain of custody
+CPP,159,160,5546,in,Expert evidence
+CPP,161,169,5545,in,Corpus delicti exam
+CPP,170,184,5546,in,Expert evidence
+CPP,185,196,5547,in,Interrogation
+CPP,197,200,5548,in,Confession
+CPP,201,201,5549,in,Victim statements
+CPP,202,225,5550,in,Witnesses
+CPP,226,228,5551,in,Identification of persons
+CPP,229,230,5552,in,Confrontation
+CPP,231,238,5553,in,Documentary evidence
+CPP,239,239,5543,in,Circumstantial evidence
+CPP,240,250,5554,in,Search and seizure
+CPP,251,281,5583,in,Parties of the proceeding
+CPP,282,282,5584,in,General rules on precautionary measures
+CPP,283,288,5585,in,Prison concepts and warrants
+CPP,289,290,5587,in,Rights of the arrested
+CPP,291,294,5585,in,Prison warrants
+CPP,295,296,5586,in,Special prison
+CPP,297,300,5587,in,Rights of the arrested
+CPP,301,309,5518,in,Arrest in flagrante
+CPP,310,310,5589,in,Custody hearing
+CPP,311,316,5519,in,Preventive detention
+CPP,317,318-B,5521,in,House arrest
+CPP,319,320,5522,in,Alternative precautionary measures
+CPP,321,350,5523,in,Provisional release and bail
+CPP,351,369,5488,in,Citation
+CPP,370,372,5489,in,Notification
+CPP,381,381,5572,in,Sentence requirements
+CPP,382,382,5565,in,Clarification requests
+CPP,383,384,5579,in,Emendatio and mutatio libelli
+CPP,385,385,5578,in,Correlation principle
+CPP,386,386,5574,in,Acquittal
+CPP,387,387,5575,in,Conviction
+CPP,388,393,5577,in,Effects of the sentence
+CPP,394,394,5532,in,Procedure classification
+CPP,395,396,5531,in,Receiving the indictment
+CPP,396-A,396-A,5533,in,Defense answer
+CPP,397,397,5534,in,Summary acquittal
+CPP,398,402,5535,in,Instruction hearing
+CPP,403,403,5536,in,Final oral arguments
+CPP,404,405,5535,in,Instruction hearing
+CPP,406,412,5526,in,Jury first phase
+CPP,413,421,5527,in,Pronouncement and summary acquittal in jury
+CPP,422,424,5526,in,Jury preparation
+CPP,425,491,5528,in,Jury organization and session
+CPP,492,493,5529,in,Jury sentence
+CPP,494,497,5528,in,Presiding judge duties
+CPP,513,518,,out,Procedure for crimes of public officials has no node in the tree
+CPP,531,540,5538,in,Summary procedure
+CPP,563,563,5510,in,Prejudice principle
+CPP,564,564,5511,in,Nullities in kind
+CPP,565,573,5510,in,Nullity rules
+CPP,574,574,5516,in,Classification of appeals
+CPP,575,578,5514,in,Admissibility
+CPP,579,579,5513,in,Fungibility
+CPP,580,580,5515,in,Extensive effect
+CPP,581,592,5561,in,Strict sense appeal
+CPP,593,603,5562,in,Appeal
+CPP,607,608,5563,in,Protest for new jury
+CPP,609,609,5564,in,Infringing motions
+CPP,619,620,5565,in,Clarification requests
+CPP,621,631,5478,in,Criminal review
+CPP,632,638,5560,in,Appeals to superior courts
+CPP,639,646,5567,in,Testimonial letter
+CPP,647,667,5477,in,Habeas corpus
+CPP,668,779,4703,in,Criminal execution in the procedure code
+CPP,780,790,5506,in,Relations with foreign authorities
+LEI_12850,1,2,4705,in,Organized crime definition and offense
+LEI_12850,3,3,4705,in,Investigation means
+LEI_12850,4,7,5557,in,Plea bargain
+LEI_12850,8,9,5558,in,Controlled action
+LEI_12850,10,14,5559,in,Undercover agents
+LEI_12850,15,26,4705,in,Organized crime other rules
+LEI_9296,8-A,8-A,5556,in,Environmental capture
+LEI_8137,4,7,,out,Crimes against the economic order: the topic is inactive

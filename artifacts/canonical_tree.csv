@@ -1,0 +1,376 @@
+tema_id,parent_id,discipline,level,title,path,source_count,has_description,canonical_id,is_shadow,is_bin
+4365,,Criminologia,0,Criminologia,Criminologia,399,True,4365,False,False
+4366,4365,Criminologia,1,Classificação das Vítimas,Criminologia > Classificação das Vítimas,1,True,4366,False,False
+4367,4365,Criminologia,1,Classificação dos Criminosos,Criminologia > Classificação dos Criminosos,4,True,4367,False,False
+4368,4365,Criminologia,1,Criminologia no Estado Democrático de Direito,Criminologia > Criminologia no Estado Democrático de Direito,44,True,4368,False,False
+4370,4368,Criminologia,2,Modelos de Reação ao Delito,Criminologia > Criminologia no Estado Democrático de Direito > Modelos de Reação ao Delito,29,True,4370,False,False
+4369,4368,Criminologia,2,Sistemas de Prevenção,Criminologia > Criminologia no Estado Democrático de Direito > Sistemas de Prevenção,15,True,4369,False,False
+4371,4365,Criminologia,1,Etapas Evolutivas e Escolas Criminológicas,Criminologia > Etapas Evolutivas e Escolas Criminológicas,45,True,4371,False,False
+4373,4371,Criminologia,2,Escolas Crimonológicas,Criminologia > Etapas Evolutivas e Escolas Criminológicas > Escolas Crimonológicas,42,True,4373,False,False
+4372,4371,Criminologia,2,"Etapas Evolutivas da Criminologia (Antiguidade, Idade Média e Idade Moderna)","Criminologia > Etapas Evolutivas e Escolas Criminológicas > Etapas Evolutivas da Criminologia (Antiguidade, Idade Média e Idade Moderna)",3,True,4372,False,False
+4374,4365,Criminologia,1,Política Criminal,Criminologia > Política Criminal,58,True,4374,False,False
+4375,4374,Criminologia,2,Correntes da Política Criminal,Criminologia > Política Criminal > Correntes da Política Criminal,44,True,4375,False,False
+4376,4374,Criminologia,2,Direito Penal do Inimigo,Criminologia > Política Criminal > Direito Penal do Inimigo,14,True,4376,False,False
+4377,4365,Criminologia,1,Processos de Criminalização e Cifras Criminais,Criminologia > Processos de Criminalização e Cifras Criminais,21,True,4377,False,False
+4379,4377,Criminologia,2,Cifras Criminais,Criminologia > Processos de Criminalização e Cifras Criminais > Cifras Criminais,4,True,4379,False,False
+4378,4377,Criminologia,2,Criminalização Primária e Secundária,Criminologia > Processos de Criminalização e Cifras Criminais > Criminalização Primária e Secundária,17,True,4378,False,False
+4380,4365,Criminologia,1,Teoria Geral da Criminologia,Criminologia > Teoria Geral da Criminologia,51,True,4380,False,False
+4381,4380,Criminologia,2,Conceito e objeto da Criminologia,Criminologia > Teoria Geral da Criminologia > Conceito e objeto da Criminologia,42,True,4381,False,False
+4382,4380,Criminologia,2,Métodos e funções da Criminologia,Criminologia > Teoria Geral da Criminologia > Métodos e funções da Criminologia,9,True,4382,False,False
+4384,4365,Criminologia,1,Teorias Legitimidoras da Pena,Criminologia > Teorias Legitimidoras da Pena,39,True,4384,False,False
+4385,4365,Criminologia,1,Teorias Sociológicas Explicativas da Criminalidade,Criminologia > Teorias Sociológicas Explicativas da Criminalidade,101,True,4385,False,False
+4388,4385,Criminologia,2,Teorias Criminológicas em Espécie,Criminologia > Teorias Sociológicas Explicativas da Criminalidade > Teorias Criminológicas em Espécie,15,True,4388,False,False
+4386,4385,Criminologia,2,Teorias de Nível Individual,Criminologia > Teorias Sociológicas Explicativas da Criminalidade > Teorias de Nível Individual,2,True,4386,False,False
+4387,4385,Criminologia,2,Teorias de Nível Sociológico,Criminologia > Teorias Sociológicas Explicativas da Criminalidade > Teorias de Nível Sociológico,84,True,4387,False,False
+4383,4365,Criminologia,1,Teorias e Síndromes com Enfoque nas Vítimas,Criminologia > Teorias e Síndromes com Enfoque nas Vítimas,13,True,4383,False,False
+4389,4365,Criminologia,1,Vitimologia,Criminologia > Vitimologia,22,True,4389,False,False
+4390,4389,Criminologia,2,Processo de Vitimização,Criminologia > Vitimologia > Processo de Vitimização,22,True,4390,False,False
+4683,,Direito Penal - Legislação Especial,0,Direito Penal - Legislação Especial,Direito Penal - Legislação Especial,817,True,4683,False,False
+4684,4683,Direito Penal - Legislação Especial,1,Abuso de Autoridade,Direito Penal - Legislação Especial > Abuso de Autoridade,34,True,4684,False,False
+4685,4683,Direito Penal - Legislação Especial,1,Biossegurança,Direito Penal - Legislação Especial > Biossegurança,2,True,4685,False,False
+4686,4683,Direito Penal - Legislação Especial,1,Contravenções Penais,Direito Penal - Legislação Especial > Contravenções Penais,27,True,4686,False,False
+4692,4683,Direito Penal - Legislação Especial,1,Crimes Eleitorais,Direito Penal - Legislação Especial > Crimes Eleitorais,10,True,4692,False,False
+4693,4683,Direito Penal - Legislação Especial,1,Crimes Hediondos,Direito Penal - Legislação Especial > Crimes Hediondos,61,True,4693,False,False
+4695,4683,Direito Penal - Legislação Especial,1,Crimes Tributários,Direito Penal - Legislação Especial > Crimes Tributários,56,True,4695,False,False
+4687,4683,Direito Penal - Legislação Especial,1,Crimes contra a Economia Popular,Direito Penal - Legislação Especial > Crimes contra a Economia Popular,6,True,4687,False,False
+4689,4683,Direito Penal - Legislação Especial,1,Crimes contra o Sistema Financeiro,Direito Penal - Legislação Especial > Crimes contra o Sistema Financeiro,6,True,4689,False,False
+4688,4683,Direito Penal - Legislação Especial,1,Crimes contra o meio ambiente,Direito Penal - Legislação Especial > Crimes contra o meio ambiente,7,True,4688,False,False
+4690,4683,Direito Penal - Legislação Especial,1,Crimes de Racismo,Direito Penal - Legislação Especial > Crimes de Racismo,22,True,4690,False,False
+4691,4683,Direito Penal - Legislação Especial,1,Crimes de Trânsito,Direito Penal - Legislação Especial > Crimes de Trânsito,3,True,4691,False,False
+4694,4683,Direito Penal - Legislação Especial,1,Crimes previstos no CDC,Direito Penal - Legislação Especial > Crimes previstos no CDC,22,True,4694,False,False
+4696,4683,Direito Penal - Legislação Especial,1,Estaturo de Idoso - Crimes,Direito Penal - Legislação Especial > Estaturo de Idoso - Crimes,1,True,4696,False,False
+4697,4683,Direito Penal - Legislação Especial,1,Estatuto do Desarmamento,Direito Penal - Legislação Especial > Estatuto do Desarmamento,45,True,4697,False,False
+4698,4683,Direito Penal - Legislação Especial,1,Genocídio,Direito Penal - Legislação Especial > Genocídio,10,True,4698,False,False
+4699,4683,Direito Penal - Legislação Especial,1,Identificação Criminal,Direito Penal - Legislação Especial > Identificação Criminal,1,True,4699,False,False
+4700,4683,Direito Penal - Legislação Especial,1,Interceptação Telefônica,Direito Penal - Legislação Especial > Interceptação Telefônica,9,True,4700,False,False
+4701,4683,Direito Penal - Legislação Especial,1,Juizado Especial Criminal,Direito Penal - Legislação Especial > Juizado Especial Criminal,9,True,4701,False,False
+4702,4683,Direito Penal - Legislação Especial,1,Lavagem de Dinheiro,Direito Penal - Legislação Especial > Lavagem de Dinheiro,46,True,4702,False,False
+4704,4683,Direito Penal - Legislação Especial,1,Lei Maria da Penha,Direito Penal - Legislação Especial > Lei Maria da Penha,18,True,4704,False,False
+4703,4683,Direito Penal - Legislação Especial,1,Lei de Execução Penal,Direito Penal - Legislação Especial > Lei de Execução Penal,230,True,4703,False,False
+4705,4683,Direito Penal - Legislação Especial,1,Organizações Criminosas,Direito Penal - Legislação Especial > Organizações Criminosas,18,True,4705,False,False
+4706,4683,Direito Penal - Legislação Especial,1,Terrorismo,Direito Penal - Legislação Especial > Terrorismo,34,True,4706,False,False
+4707,4683,Direito Penal - Legislação Especial,1,Tortura,Direito Penal - Legislação Especial > Tortura,17,True,4707,False,False
+4708,4683,Direito Penal - Legislação Especial,1,Tráfico de Drogas,Direito Penal - Legislação Especial > Tráfico de Drogas,116,True,4708,False,False
+4709,4683,Direito Penal - Legislação Especial,1,Violência contra Criança e Adolescente,Direito Penal - Legislação Especial > Violência contra Criança e Adolescente,6,True,4709,False,False
+5062,,Penal,0,Penal,Penal,4483,True,5062,False,False
+6716,5062,Penal,1,Abuso de Autoridade,Penal > Abuso de Autoridade,0,False,4684,True,False
+5063,5062,Penal,1,Ação Penal,Penal > Ação Penal,0,True,5063,False,False
+5065,5063,Penal,2,Ação Penal Privada,Penal > Ação Penal > Ação Penal Privada,26,True,5065,False,False
+5064,5063,Penal,2,Ação Penal Pública,Penal > Ação Penal > Ação Penal Pública,82,True,5064,False,False
+5066,5062,Penal,1,Concurso de Crimes,Penal > Concurso de Crimes,107,True,5066,False,False
+5068,5066,Penal,2,Concurso Formal,Penal > Concurso de Crimes > Concurso Formal,43,True,5068,False,False
+5067,5066,Penal,2,Concurso Material,Penal > Concurso de Crimes > Concurso Material,31,True,5067,False,False
+5069,5066,Penal,2,Crime Continuado,Penal > Concurso de Crimes > Crime Continuado,24,True,5069,False,False
+5070,5066,Penal,2,Pena de Multa no Concurso de Crimes,Penal > Concurso de Crimes > Pena de Multa no Concurso de Crimes,9,True,5070,False,False
+5071,5062,Penal,1,Concurso de Pessoas,Penal > Concurso de Pessoas,159,True,5071,False,False
+5072,5071,Penal,2,Autores e Partícipes,Penal > Concurso de Pessoas > Autores e Partícipes,79,True,5072,False,False
+5073,5071,Penal,2,"Autoria Mediata, Colateral e Coautoria","Penal > Concurso de Pessoas > Autoria Mediata, Colateral e Coautoria",33,True,5073,False,False
+5076,5071,Penal,2,"Comunicabilidade de Circunstâncias, Condições e Elementares","Penal > Concurso de Pessoas > Comunicabilidade de Circunstâncias, Condições e Elementares",5,True,5076,False,False
+5075,5071,Penal,2,Cooperação Dolosamente Distinta,Penal > Concurso de Pessoas > Cooperação Dolosamente Distinta,14,True,5075,False,False
+5074,5071,Penal,2,Participação,Penal > Concurso de Pessoas > Participação,28,True,5074,False,False
+6717,5062,Penal,1,Crimes contra o meio ambiente,Penal > Crimes contra o meio ambiente,0,False,4688,True,False
+5077,5062,Penal,1,Das Lesões Corporais,Penal > Das Lesões Corporais,51,True,5077,False,False
+5079,5062,Penal,1,Dos Crimes Contra a Administração Judicial,Penal > Dos Crimes Contra a Administração Judicial,35,True,5079,False,False
+5080,5079,Penal,2,"Denunciação Caluniosa, Comunicação Falsa de Crime ou Contravenção e Autoacusação Falsa","Penal > Dos Crimes Contra a Administração Judicial > Denunciação Caluniosa, Comunicação Falsa de Crime ou Contravenção e Autoacusação Falsa",15,True,5080,False,False
+5082,5079,Penal,2,Exercício Arbitrário das Próprias Razões,Penal > Dos Crimes Contra a Administração Judicial > Exercício Arbitrário das Próprias Razões,3,True,5082,False,False
+5085,5079,Penal,2,Exercício Arbitrário ou Abuso de Poder,Penal > Dos Crimes Contra a Administração Judicial > Exercício Arbitrário ou Abuso de Poder,1,True,5085,False,False
+5081,5079,Penal,2,Falso Testemunha ou Falsa Perícia e Corrupção Ativa de Testemunha ou Perito,Penal > Dos Crimes Contra a Administração Judicial > Falso Testemunha ou Falsa Perícia e Corrupção Ativa de Testemunha ou Perito,2,True,5081,False,False
+5084,5079,Penal,2,Favorecimento Pessoal e Real,Penal > Dos Crimes Contra a Administração Judicial > Favorecimento Pessoal e Real,1,True,5084,False,False
+5083,5079,Penal,2,Fraude Processual,Penal > Dos Crimes Contra a Administração Judicial > Fraude Processual,3,True,5083,False,False
+5086,5079,Penal,2,Outros crimes contra a Administração Judicial,Penal > Dos Crimes Contra a Administração Judicial > Outros crimes contra a Administração Judicial,10,True,5086,False,False
+5087,5062,Penal,1,Dos Crimes Contra a Administração Pública,Penal > Dos Crimes Contra a Administração Pública,368,True,5087,False,True
+6718,5062,Penal,1,Dos Crimes Contra a Administração Pública (Parte 1),Penal > Dos Crimes Contra a Administração Pública (Parte 1),0,False,5087,True,False
+5097,5087,Penal,2,Advocacia Administrativa,Penal > Dos Crimes Contra a Administração Pública > Advocacia Administrativa,9,True,5097,False,False
+5091,5087,Penal,2,Concussão e Excesso de Exação,Penal > Dos Crimes Contra a Administração Pública > Concussão e Excesso de Exação,32,True,5091,False,False
+5096,5087,Penal,2,Condescendência Criminosa,Penal > Dos Crimes Contra a Administração Pública > Condescendência Criminosa,2,True,5096,False,False
+5094,5087,Penal,2,Contrabando ou Descaminho,Penal > Dos Crimes Contra a Administração Pública > Contrabando ou Descaminho,11,True,5094,False,False
+5093,5087,Penal,2,Corrupção Ativa,Penal > Dos Crimes Contra a Administração Pública > Corrupção Ativa,13,True,5093,False,False
+5092,5087,Penal,2,Corrupção Passiva,Penal > Dos Crimes Contra a Administração Pública > Corrupção Passiva,51,True,5092,False,False
+5090,5087,Penal,2,Emprego Irregular de Verbas ou Rendas Públicas,Penal > Dos Crimes Contra a Administração Pública > Emprego Irregular de Verbas ou Rendas Públicas,0,True,5090,False,False
+5088,5087,Penal,2,Noções gerais dos crimes praticados contra a administração pública,Penal > Dos Crimes Contra a Administração Pública > Noções gerais dos crimes praticados contra a administração pública,100,True,5088,False,False
+5089,5087,Penal,2,Peculato e Peculato Mediante Erro de Outrem,Penal > Dos Crimes Contra a Administração Pública > Peculato e Peculato Mediante Erro de Outrem,72,True,5089,False,False
+5095,5087,Penal,2,Prevaricação,Penal > Dos Crimes Contra a Administração Pública > Prevaricação,31,True,5095,False,False
+5100,5087,Penal,2,"Resistência, Desobediência e Desacato","Penal > Dos Crimes Contra a Administração Pública > Resistência, Desobediência e Desacato",10,True,5100,False,False
+5101,5087,Penal,2,Tráfico de Influência,Penal > Dos Crimes Contra a Administração Pública > Tráfico de Influência,16,True,5101,False,False
+5099,5087,Penal,2,Usurpação de Função Pública,Penal > Dos Crimes Contra a Administração Pública > Usurpação de Função Pública,6,True,5099,False,False
+5098,5087,Penal,2,Violência Arbitrária,Penal > Dos Crimes Contra a Administração Pública > Violência Arbitrária,15,True,5098,False,False
+5102,5062,Penal,1,Dos Crimes Contra a Dignidade Sexual,Penal > Dos Crimes Contra a Dignidade Sexual,130,True,5102,False,False
+5106,5102,Penal,2,Assédio Sexual,Penal > Dos Crimes Contra a Dignidade Sexual > Assédio Sexual,6,True,5106,False,False
+5108,5102,Penal,2,Corrupção de Menores,Penal > Dos Crimes Contra a Dignidade Sexual > Corrupção de Menores,13,True,5108,False,False
+5110,5102,Penal,2,Disposições Gerais dos Crimes Contra a Dignidade Sexual,Penal > Dos Crimes Contra a Dignidade Sexual > Disposições Gerais dos Crimes Contra a Dignidade Sexual,14,True,5110,False,False
+5103,5102,Penal,2,Estupro e Estupro de Vulnerável,Penal > Dos Crimes Contra a Dignidade Sexual > Estupro e Estupro de Vulnerável,56,True,5103,False,False
+5105,5102,Penal,2,Importunação Sexual,Penal > Dos Crimes Contra a Dignidade Sexual > Importunação Sexual,8,True,5105,False,False
+5109,5102,Penal,2,Outros Crimes Contra a Dignidade Sexual,Penal > Dos Crimes Contra a Dignidade Sexual > Outros Crimes Contra a Dignidade Sexual,15,True,5109,False,False
+5107,5102,Penal,2,Registro Não Autorizado da Intimidade Sexual,Penal > Dos Crimes Contra a Dignidade Sexual > Registro Não Autorizado da Intimidade Sexual,2,True,5107,False,False
+5104,5102,Penal,2,Violação Sexual Mediante Fraude,Penal > Dos Crimes Contra a Dignidade Sexual > Violação Sexual Mediante Fraude,16,True,5104,False,False
+5116,5062,Penal,1,Dos Crimes Contra a Fé Pública e de Falsidade Documental,Penal > Dos Crimes Contra a Fé Pública e de Falsidade Documental,178,True,5116,False,False
+5118,5116,Penal,2,Da Falsidade Documental,Penal > Dos Crimes Contra a Fé Pública e de Falsidade Documental > Da Falsidade Documental,74,True,5118,False,False
+5119,5116,Penal,2,De outras falsidades,Penal > Dos Crimes Contra a Fé Pública e de Falsidade Documental > De outras falsidades,1,True,5119,False,False
+5117,5116,Penal,2,Dos Crimes contra a Fé Pública,Penal > Dos Crimes Contra a Fé Pública e de Falsidade Documental > Dos Crimes contra a Fé Pública,103,True,5117,False,False
+5120,5062,Penal,1,Dos Crimes Contra a Honra,Penal > Dos Crimes Contra a Honra,77,True,5120,False,False
+5122,5120,Penal,2,Calúnia,Penal > Dos Crimes Contra a Honra > Calúnia,24,True,5122,False,False
+5123,5120,Penal,2,Difamação,Penal > Dos Crimes Contra a Honra > Difamação,6,True,5123,False,False
+5121,5120,Penal,2,Disposições Gerais e Comuns aos Crimes Contra a Honra,Penal > Dos Crimes Contra a Honra > Disposições Gerais e Comuns aos Crimes Contra a Honra,32,True,5121,False,False
+5124,5120,Penal,2,Injúria,Penal > Dos Crimes Contra a Honra > Injúria,15,True,5124,False,False
+5125,5062,Penal,1,Dos Crimes Contra a Incolumidade Pública,Penal > Dos Crimes Contra a Incolumidade Pública,53,True,5125,False,False
+5127,5125,Penal,2,Dos Crimes Contra a Segurança dos Meios de Comunicação e Transporte e Outros Serviços Públicos,Penal > Dos Crimes Contra a Incolumidade Pública > Dos Crimes Contra a Segurança dos Meios de Comunicação e Transporte e Outros Serviços Públicos,7,True,5127,False,False
+5126,5125,Penal,2,Dos Crimes de Perigo Comum,Penal > Dos Crimes Contra a Incolumidade Pública > Dos Crimes de Perigo Comum,46,True,5126,False,False
+5128,5062,Penal,1,Dos Crimes Contra a Liberdade Pessoal,Penal > Dos Crimes Contra a Liberdade Pessoal,85,True,5128,False,False
+5130,5128,Penal,2,Ameaça e Perseguição,Penal > Dos Crimes Contra a Liberdade Pessoal > Ameaça e Perseguição,17,True,5130,False,False
+5133,5128,Penal,2,"Dos Crimes contra a Inviolabilidade do Domicílio, Contra a Inviolabilidade da Correspondência e Contra a Inviolabilidade dos Segredos","Penal > Dos Crimes Contra a Liberdade Pessoal > Dos Crimes contra a Inviolabilidade do Domicílio, Contra a Inviolabilidade da Correspondência e Contra a Inviolabilidade dos Segredos",7,True,5133,False,False
+5129,5128,Penal,2,Intimidação Sistemática (Bullying),Penal > Dos Crimes Contra a Liberdade Pessoal > Intimidação Sistemática (Bullying),9,True,5129,False,False
+5132,5128,Penal,2,"Sequestro, Cárcere Privado, Redução à Condição Análoga à de Escravo e Tráfico de Pessoas","Penal > Dos Crimes Contra a Liberdade Pessoal > Sequestro, Cárcere Privado, Redução à Condição Análoga à de Escravo e Tráfico de Pessoas",48,True,5132,False,False
+5131,5128,Penal,2,Violência Psicológica contra a Mulher,Penal > Dos Crimes Contra a Liberdade Pessoal > Violência Psicológica contra a Mulher,3,True,5131,False,False
+5138,5062,Penal,1,Dos Crimes Contra a Periclitação da Vida e da Saúde,Penal > Dos Crimes Contra a Periclitação da Vida e da Saúde,26,True,5138,False,False
+5141,5138,Penal,2,Abandono de Incapaz e Exposição ou Abandono de Recém-Nascido,Penal > Dos Crimes Contra a Periclitação da Vida e da Saúde > Abandono de Incapaz e Exposição ou Abandono de Recém-Nascido,2,True,5141,False,False
+5143,5138,Penal,2,Maus-Tratos,Penal > Dos Crimes Contra a Periclitação da Vida e da Saúde > Maus-Tratos,1,True,5143,False,False
+5142,5138,Penal,2,Omissão de Socorro,Penal > Dos Crimes Contra a Periclitação da Vida e da Saúde > Omissão de Socorro,2,True,5142,False,False
+5139,5138,Penal,2,Perigo de Contágio Venéreo e de Moléstia Grave,Penal > Dos Crimes Contra a Periclitação da Vida e da Saúde > Perigo de Contágio Venéreo e de Moléstia Grave,0,True,5139,False,False
+5140,5138,Penal,2,Perigo para a Vida ou a Saúde de Outrem,Penal > Dos Crimes Contra a Periclitação da Vida e da Saúde > Perigo para a Vida ou a Saúde de Outrem,21,True,5140,False,False
+5144,5062,Penal,1,Dos Crimes Contra a Saúde Pública e Dos Crimes Contra à Paz Pública,Penal > Dos Crimes Contra a Saúde Pública e Dos Crimes Contra à Paz Pública,58,True,5144,False,False
+5146,5144,Penal,2,Crimes Contra à Paz Pública,Penal > Dos Crimes Contra a Saúde Pública e Dos Crimes Contra à Paz Pública > Crimes Contra à Paz Pública,11,True,5146,False,False
+5145,5144,Penal,2,Dos Crimes Contra a Saúde Pública,Penal > Dos Crimes Contra a Saúde Pública e Dos Crimes Contra à Paz Pública > Dos Crimes Contra a Saúde Pública,47,True,5145,False,False
+5149,5062,Penal,1,Dos Crimes Contra a Vida,Penal > Dos Crimes Contra a Vida,281,True,5149,False,True
+5154,5149,Penal,2,Aborto,Penal > Dos Crimes Contra a Vida > Aborto,18,True,5154,False,False
+5151,5149,Penal,2,Feminicídio,Penal > Dos Crimes Contra a Vida > Feminicídio,15,True,5151,False,False
+5150,5149,Penal,2,Homicídio,Penal > Dos Crimes Contra a Vida > Homicídio,222,True,5150,False,False
+5152,5149,Penal,2,"Induzimento, Instigação ou Auxílio ao Suicídio","Penal > Dos Crimes Contra a Vida > Induzimento, Instigação ou Auxílio ao Suicídio",14,True,5152,False,False
+5153,5149,Penal,2,Infanticídio,Penal > Dos Crimes Contra a Vida > Infanticídio,10,True,5153,False,False
+5157,5062,Penal,1,Dos Crimes Contra o Patrimônio,Penal > Dos Crimes Contra o Patrimônio,325,True,5157,False,True
+6720,5062,Penal,1,Dos Crimes Contra o Patrimônio (Parte 1),Penal > Dos Crimes Contra o Patrimônio (Parte 1),0,False,5157,True,False
+5158,5157,Penal,2,12 Disposições Gerais dos Crimes Contra o Patrimônio,Penal > Dos Crimes Contra o Patrimônio > 12 Disposições Gerais dos Crimes Contra o Patrimônio,53,True,5158,False,False
+5167,5157,Penal,2,Abuso de Incapazes,Penal > Dos Crimes Contra o Patrimônio > Abuso de Incapazes,3,True,5167,False,False
+5165,5157,Penal,2,Apropriação indébita,Penal > Dos Crimes Contra o Patrimônio > Apropriação indébita,27,True,5165,False,False
+5164,5157,Penal,2,Dano,Penal > Dos Crimes Contra o Patrimônio > Dano,10,True,5164,False,False
+5162,5157,Penal,2,Esbulho Possessório,Penal > Dos Crimes Contra o Patrimônio > Esbulho Possessório,4,True,5162,False,False
+5166,5157,Penal,2,Estelionato,Penal > Dos Crimes Contra o Patrimônio > Estelionato,21,True,5166,False,False
+5161,5157,Penal,2,Extorsão,Penal > Dos Crimes Contra o Patrimônio > Extorsão,6,True,5161,False,False
+5168,5157,Penal,2,Fraude à Execução,Penal > Dos Crimes Contra o Patrimônio > Fraude à Execução,1,True,5168,False,False
+5159,5157,Penal,2,Furto,Penal > Dos Crimes Contra o Patrimônio > Furto,114,True,5159,False,False
+5169,5157,Penal,2,Receptação,Penal > Dos Crimes Contra o Patrimônio > Receptação,19,True,5169,False,False
+5160,5157,Penal,2,Roubo,Penal > Dos Crimes Contra o Patrimônio > Roubo,67,True,5160,False,False
+5163,5157,Penal,2,Usurpação,Penal > Dos Crimes Contra o Patrimônio > Usurpação,0,True,5163,False,False
+6719,5062,Penal,1,Dos Crimes contra a Administração Pública (Parte 2),Penal > Dos Crimes contra a Administração Pública (Parte 2),0,False,5087,True,False
+5111,5062,Penal,1,Dos Crimes contra a Família,Penal > Dos Crimes contra a Família,39,True,5111,False,False
+5114,5111,Penal,2,Dos Crimes Contra a Assistência Familiar,Penal > Dos Crimes contra a Família > Dos Crimes Contra a Assistência Familiar,9,True,5114,False,False
+5112,5111,Penal,2,Dos Crimes Contra o Casamento,Penal > Dos Crimes contra a Família > Dos Crimes Contra o Casamento,25,True,5112,False,False
+5113,5111,Penal,2,Dos Crimes Contra o Estado de Filiação,Penal > Dos Crimes contra a Família > Dos Crimes Contra o Estado de Filiação,4,True,5113,False,False
+5115,5111,Penal,2,"Dos Crimes Contra o Pátrio Poder, a Tutela e a Curatela","Penal > Dos Crimes contra a Família > Dos Crimes Contra o Pátrio Poder, a Tutela e a Curatela",1,True,5115,False,False
+5134,5062,Penal,1,"Dos Crimes contra a Organização do Trabalho, a Propriedade Imaterial e ao Sentimento Religioso","Penal > Dos Crimes contra a Organização do Trabalho, a Propriedade Imaterial e ao Sentimento Religioso",63,True,5134,False,False
+5135,5134,Penal,2,Dos Crimes Contra a Organização do Trabalho,"Penal > Dos Crimes contra a Organização do Trabalho, a Propriedade Imaterial e ao Sentimento Religioso > Dos Crimes Contra a Organização do Trabalho",42,True,5135,False,False
+5137,5134,Penal,2,Dos Crimes Contra o Sentimento Religioso e Respeito aos Mortos,"Penal > Dos Crimes contra a Organização do Trabalho, a Propriedade Imaterial e ao Sentimento Religioso > Dos Crimes Contra o Sentimento Religioso e Respeito aos Mortos",8,True,5137,False,False
+5136,5134,Penal,2,Dos Crimescontra a Propriedade Imaterial,"Penal > Dos Crimes contra a Organização do Trabalho, a Propriedade Imaterial e ao Sentimento Religioso > Dos Crimescontra a Propriedade Imaterial",13,True,5136,False,False
+5147,5062,Penal,1,Dos Crimes contra as Finanças Públicas,Penal > Dos Crimes contra as Finanças Públicas,93,True,5147,False,False
+5148,5062,Penal,1,Dos Crimes contra as Instituições Democráticas,Penal > Dos Crimes contra as Instituições Democráticas,3,True,5148,False,False
+5155,5062,Penal,1,Dos Crimes contra o Estado Democrático de Direito,Penal > Dos Crimes contra o Estado Democrático de Direito,21,True,5155,False,False
+5156,5062,Penal,1,Dos Crimes contra o Funcionamento dos Serviços Essenciais,Penal > Dos Crimes contra o Funcionamento dos Serviços Essenciais,5,True,5156,False,False
+6721,5062,Penal,1,Dos Crimes contra o Patrimônio (Parte 2),Penal > Dos Crimes contra o Patrimônio (Parte 2),0,False,5157,True,False
+6722,5062,Penal,1,Estatuto do Idoso - Crimes,Penal > Estatuto do Idoso - Crimes,0,False,4696,True,False
+5170,5062,Penal,1,Introdução ao Estudo do Direito Penal,Penal > Introdução ao Estudo do Direito Penal,424,True,5170,False,True
+5174,5170,Penal,2,Classificações dos Crimes,Penal > Introdução ao Estudo do Direito Penal > Classificações dos Crimes,38,True,5174,False,False
+5171,5170,Penal,2,Conceito e Fontes do Direito Penal,Penal > Introdução ao Estudo do Direito Penal > Conceito e Fontes do Direito Penal,310,True,5171,False,False
+5173,5170,Penal,2,Interpretação da Norma Penal,Penal > Introdução ao Estudo do Direito Penal > Interpretação da Norma Penal,7,True,5173,False,False
+5172,5170,Penal,2,Princípios do Direito Penal,Penal > Introdução ao Estudo do Direito Penal > Princípios do Direito Penal,65,True,5172,False,False
+5175,5062,Penal,1,Iter Criminis,Penal > Iter Criminis,66,True,5175,False,False
+5177,5175,Penal,2,Crime Consumado e Tentado,Penal > Iter Criminis > Crime Consumado e Tentado,32,True,5177,False,False
+5179,5175,Penal,2,Crime Impossível,Penal > Iter Criminis > Crime Impossível,1,True,5179,False,False
+5178,5175,Penal,2,"Desistência Voluntária, Arrependimento Eficaz e Arrependimento posterior","Penal > Iter Criminis > Desistência Voluntária, Arrependimento Eficaz e Arrependimento posterior",16,True,5178,False,False
+5176,5175,Penal,2,Fases do Iter Criminis,Penal > Iter Criminis > Fases do Iter Criminis,17,True,5176,False,False
+6723,5062,Penal,1,Lavagem de Dinheiro,Penal > Lavagem de Dinheiro,0,False,4702,True,False
+6724,5062,Penal,1,Lei Maria da Penha,Penal > Lei Maria da Penha,0,False,4704,True,False
+5180,5062,Penal,1,Lei Penal no Tempo e no Espaço,Penal > Lei Penal no Tempo e no Espaço,283,True,5180,False,True
+5183,5180,Penal,2,Conflito Aparente de Normas,Penal > Lei Penal no Tempo e no Espaço > Conflito Aparente de Normas,16,True,5183,False,False
+5182,5180,Penal,2,Lei penal no Espaço,Penal > Lei Penal no Tempo e no Espaço > Lei penal no Espaço,40,True,5182,False,False
+5181,5180,Penal,2,Lei penal no Tempo,Penal > Lei Penal no Tempo e no Espaço > Lei penal no Tempo,227,True,5181,False,False
+5184,5062,Penal,1,Medida de Segurança,Penal > Medida de Segurança,45,True,5184,False,False
+6725,5062,Penal,1,Organizações Criminosas,Penal > Organizações Criminosas,0,False,4705,True,False
+5185,5062,Penal,1,Prescrição,Penal > Prescrição,0,True,5185,False,False
+5186,5185,Penal,2,"Conceito, Regras Gerais e Fundamentos da Prescrição","Penal > Prescrição > Conceito, Regras Gerais e Fundamentos da Prescrição",25,True,5186,False,False
+5187,5185,Penal,2,Contagem dos Prazos e Causas Suspensivas e Interruptivas da Prescrição,Penal > Prescrição > Contagem dos Prazos e Causas Suspensivas e Interruptivas da Prescrição,36,True,5187,False,False
+5190,5185,Penal,2,Outras Prescrições,Penal > Prescrição > Outras Prescrições,0,True,5190,False,False
+5189,5185,Penal,2,Prescrição da Pretensão Executória,Penal > Prescrição > Prescrição da Pretensão Executória,17,True,5189,False,False
+5188,5185,Penal,2,Prescrição da Pretensão Punitiva,Penal > Prescrição > Prescrição da Pretensão Punitiva,56,True,5188,False,False
+5191,5062,Penal,1,Punibilidade,Penal > Punibilidade,139,True,5191,False,False
+5194,5191,Penal,2,Abolitio Criminis,Penal > Punibilidade > Abolitio Criminis,7,True,5194,False,False
+5193,5191,Penal,2,"Anistia, Graça e Indulto","Penal > Punibilidade > Anistia, Graça e Indulto",59,True,5193,False,False
+5198,5191,Penal,2,Decadência,Penal > Punibilidade > Decadência,0,True,5198,False,False
+5192,5191,Penal,2,Morte do agente,Penal > Punibilidade > Morte do agente,21,True,5192,False,False
+5197,5191,Penal,2,Perdão Judicial,Penal > Punibilidade > Perdão Judicial,11,True,5197,False,False
+5195,5191,Penal,2,Perempção,Penal > Punibilidade > Perempção,13,True,5195,False,False
+5196,5191,Penal,2,"Renúncia, Perdão do Ofendido e Retratação","Penal > Punibilidade > Renúncia, Perdão do Ofendido e Retratação",26,True,5196,False,False
+5199,5062,Penal,1,Teoria da Pena,Penal > Teoria da Pena,453,True,5199,False,True
+6726,5062,Penal,1,Teoria da Pena (Parte 1),Penal > Teoria da Pena (Parte 1),0,False,5199,True,False
+6727,5062,Penal,1,Teoria da Pena (Parte 2),Penal > Teoria da Pena (Parte 2),0,False,5199,True,False
+5209,5199,Penal,2,Efeitos da Condenação Penais e Extrapenais,Penal > Teoria da Pena > Efeitos da Condenação Penais e Extrapenais,29,True,5209,False,False
+5208,5199,Penal,2,Livramento Condicional,Penal > Teoria da Pena > Livramento Condicional,30,True,5208,False,False
+5206,5199,Penal,2,Pena de Multa,Penal > Teoria da Pena > Pena de Multa,24,True,5206,False,False
+5201,5199,Penal,2,Penas Privativas de Liberdade,Penal > Teoria da Pena > Penas Privativas de Liberdade,74,True,5201,False,False
+5205,5199,Penal,2,Penas Restritivas de Direitos,Penal > Teoria da Pena > Penas Restritivas de Direitos,56,True,5205,False,False
+5202,5199,Penal,2,Primeira Fase da Dosimetria: Circunstâncias Judiciais,Penal > Teoria da Pena > Primeira Fase da Dosimetria: Circunstâncias Judiciais,51,True,5202,False,False
+5210,5199,Penal,2,Reabilitação Criminal,Penal > Teoria da Pena > Reabilitação Criminal,5,True,5210,False,False
+5200,5199,Penal,2,"Sanção Penal: Conceito, Finalidade e Modalidades","Penal > Teoria da Pena > Sanção Penal: Conceito, Finalidade e Modalidades",107,True,5200,False,False
+5203,5199,Penal,2,Segunda Fase da Dosimetria: Agravantes e Atenuantes,Penal > Teoria da Pena > Segunda Fase da Dosimetria: Agravantes e Atenuantes,40,True,5203,False,False
+5207,5199,Penal,2,Suspensão Condicional da Pena,Penal > Teoria da Pena > Suspensão Condicional da Pena,20,True,5207,False,False
+5204,5199,Penal,2,Terceira fase da Dosimetria: Causas de Aumento e de Diminuição,Penal > Teoria da Pena > Terceira fase da Dosimetria: Causas de Aumento e de Diminuição,17,True,5204,False,False
+5211,5062,Penal,1,Teoria do Crime: Culpabilidade,Penal > Teoria do Crime: Culpabilidade,237,True,5211,False,False
+5217,5211,Penal,2,Causas Supralegais de Exclusão da Culpabilidade,Penal > Teoria do Crime: Culpabilidade > Causas Supralegais de Exclusão da Culpabilidade,10,True,5217,False,False
+5215,5211,Penal,2,Coação Moral Irresistível,Penal > Teoria do Crime: Culpabilidade > Coação Moral Irresistível,10,True,5215,False,False
+5212,5211,Penal,2,Conceito e Elementos da Culpabilidade,Penal > Teoria do Crime: Culpabilidade > Conceito e Elementos da Culpabilidade,100,True,5212,False,False
+5214,5211,Penal,2,Erro de Proibição,Penal > Teoria do Crime: Culpabilidade > Erro de Proibição,49,True,5214,False,False
+5213,5211,Penal,2,Inimputabilidade,Penal > Teoria do Crime: Culpabilidade > Inimputabilidade,56,True,5213,False,False
+5216,5211,Penal,2,Obediência Hierárquica,Penal > Teoria do Crime: Culpabilidade > Obediência Hierárquica,12,True,5216,False,False
+5218,5062,Penal,1,Teoria do Crime: Fato Típico,Penal > Teoria do Crime: Fato Típico,264,True,5218,False,True
+5219,5218,Penal,2,"Conceito, Sujeito e Objeto do Crime","Penal > Teoria do Crime: Fato Típico > Conceito, Sujeito e Objeto do Crime",38,True,5219,False,False
+5221,5218,Penal,2,Conduta,Penal > Teoria do Crime: Fato Típico > Conduta,13,True,5221,False,False
+5222,5218,Penal,2,Crime Doloso e Culposo,Penal > Teoria do Crime: Fato Típico > Crime Doloso e Culposo,39,True,5222,False,False
+5223,5218,Penal,2,Crimes Omissivos e Comissivos,Penal > Teoria do Crime: Fato Típico > Crimes Omissivos e Comissivos,19,True,5223,False,False
+5224,5218,Penal,2,Erro de Tipo,Penal > Teoria do Crime: Fato Típico > Erro de Tipo,36,True,5224,False,False
+5220,5218,Penal,2,Fato Típico,Penal > Teoria do Crime: Fato Típico > Fato Típico,32,True,5220,False,False
+5226,5218,Penal,2,Nexo Causal e Imputação Objetiva,Penal > Teoria do Crime: Fato Típico > Nexo Causal e Imputação Objetiva,31,True,5226,False,False
+5225,5218,Penal,2,Resultado,Penal > Teoria do Crime: Fato Típico > Resultado,9,True,5225,False,False
+5227,5218,Penal,2,Tipicidade,Penal > Teoria do Crime: Fato Típico > Tipicidade,46,True,5227,False,False
+5228,5062,Penal,1,Teoria do Crime: Ilicitude,Penal > Teoria do Crime: Ilicitude,145,True,5228,False,False
+5233,5228,Penal,2,Causas Supralegais de Exclusão da Ilicitude,Penal > Teoria do Crime: Ilicitude > Causas Supralegais de Exclusão da Ilicitude,17,True,5233,False,False
+5229,5228,Penal,2,Conceito e Elementos da Ilicitude,Penal > Teoria do Crime: Ilicitude > Conceito e Elementos da Ilicitude,46,True,5229,False,False
+5230,5228,Penal,2,Estado de Necessidade,Penal > Teoria do Crime: Ilicitude > Estado de Necessidade,38,True,5230,False,False
+5232,5228,Penal,2,Estrito Cumprimento do Dever Legal,Penal > Teoria do Crime: Ilicitude > Estrito Cumprimento do Dever Legal,9,True,5232,False,False
+5231,5228,Penal,2,Legítima Defesa,Penal > Teoria do Crime: Ilicitude > Legítima Defesa,35,True,5231,False,False
+6728,5062,Penal,1,Tráfico de Drogas,Penal > Tráfico de Drogas,0,False,4708,True,False
+5465,,Processo Penal,0,Processo Penal,Processo Penal,4112,True,5465,False,False
+5466,5465,Processo Penal,1,Ação Penal,Processo Penal > Ação Penal,0,True,5466,False,False
+5475,5466,Processo Penal,2,Ação Civil Ex Delicto,Processo Penal > Ação Penal > Ação Civil Ex Delicto,39,True,5475,False,False
+5471,5466,Processo Penal,2,Ação Penal Pública Condicionada,Processo Penal > Ação Penal > Ação Penal Pública Condicionada,38,True,5471,False,False
+5470,5466,Processo Penal,2,Ação Penal Pública Incondicionada,Processo Penal > Ação Penal > Ação Penal Pública Incondicionada,139,True,5470,False,False
+5472,5466,Processo Penal,2,Ação Penal de Iniciativa Privada,Processo Penal > Ação Penal > Ação Penal de Iniciativa Privada,53,True,5472,False,False
+5467,5466,Processo Penal,2,Características e Condições da Ação Penal,Processo Penal > Ação Penal > Características e Condições da Ação Penal,212,True,5467,False,False
+5468,5466,Processo Penal,2,Classificação da Ação Penal,Processo Penal > Ação Penal > Classificação da Ação Penal,23,True,5468,False,False
+5473,5466,Processo Penal,2,Denúncia,Processo Penal > Ação Penal > Denúncia,51,True,5473,False,False
+5469,5466,Processo Penal,2,Princípios da Ação Penal,Processo Penal > Ação Penal > Princípios da Ação Penal,29,True,5469,False,False
+5474,5466,Processo Penal,2,Queixa Crime,Processo Penal > Ação Penal > Queixa Crime,29,True,5474,False,False
+5476,5465,Processo Penal,1,Ações Autônomas de Impugnação,Processo Penal > Ações Autônomas de Impugnação,39,True,5476,False,False
+5477,5476,Processo Penal,2,Habeas Corpus,Processo Penal > Ações Autônomas de Impugnação > Habeas Corpus,0,True,5477,False,False
+5479,5476,Processo Penal,2,Mandado de Segurança,Processo Penal > Ações Autônomas de Impugnação > Mandado de Segurança,0,True,5479,False,False
+5478,5476,Processo Penal,2,Revisão Criminal,Processo Penal > Ações Autônomas de Impugnação > Revisão Criminal,23,True,5478,False,False
+5480,5465,Processo Penal,1,Competência,Processo Penal > Competência,0,True,5480,False,False
+6732,5465,Processo Penal,1,Competência (Parte 1),Processo Penal > Competência (Parte 1),0,False,5480,True,False
+6733,5465,Processo Penal,1,Competência (Parte 2),Processo Penal > Competência (Parte 2),0,False,5480,True,False
+5483,5480,Processo Penal,2,Comeptência Territorial,Processo Penal > Competência > Comeptência Territorial,82,True,5483,False,False
+5485,5480,Processo Penal,2,Competência de Juízo,Processo Penal > Competência > Competência de Juízo,9,True,5485,False,False
+5482,5480,Processo Penal,2,Competência em Razão da Matéria,Processo Penal > Competência > Competência em Razão da Matéria,79,True,5482,False,False
+5484,5480,Processo Penal,2,Competência por Prerrogativa de Função,Processo Penal > Competência > Competência por Prerrogativa de Função,35,True,5484,False,False
+5481,5480,Processo Penal,2,Espécies e Fixação de Competência Criminal,Processo Penal > Competência > Espécies e Fixação de Competência Criminal,97,True,5481,False,False
+5486,5480,Processo Penal,2,"Prorrogação, Perpetuação e Modificação de Competência","Processo Penal > Competência > Prorrogação, Perpetuação e Modificação de Competência",9,True,5486,False,False
+5487,5465,Processo Penal,1,Comunicação dos Atos Processuais,Processo Penal > Comunicação dos Atos Processuais,0,True,5487,False,False
+5488,5487,Processo Penal,2,Citação e Contagem dos Prazos,Processo Penal > Comunicação dos Atos Processuais > Citação e Contagem dos Prazos,52,True,5488,False,False
+5489,5487,Processo Penal,2,Intimação e Contagem dos Prazos,Processo Penal > Comunicação dos Atos Processuais > Intimação e Contagem dos Prazos,47,True,5489,False,False
+5490,5465,Processo Penal,1,Das Questões e Processos Incidentes,Processo Penal > Das Questões e Processos Incidentes,149,True,5490,False,False
+5493,5490,Processo Penal,2,Exceção de Incompetência e de Ilegitimidade,Processo Penal > Das Questões e Processos Incidentes > Exceção de Incompetência e de Ilegitimidade,2,True,5493,False,False
+5494,5490,Processo Penal,2,Exceção de Litispendência e de Coisa Julgada,Processo Penal > Das Questões e Processos Incidentes > Exceção de Litispendência e de Coisa Julgada,1,True,5494,False,False
+5492,5490,Processo Penal,2,"Exceção de Suspeição, de Impedimento ou de Incompatibilidade","Processo Penal > Das Questões e Processos Incidentes > Exceção de Suspeição, de Impedimento ou de Incompatibilidade",20,True,5492,False,False
+5497,5490,Processo Penal,2,Incidente de Falsidade e de Insanidade Mental,Processo Penal > Das Questões e Processos Incidentes > Incidente de Falsidade e de Insanidade Mental,16,True,5497,False,False
+5496,5490,Processo Penal,2,"Medidas Assecuratórias: Sequestro, Hipoteca Legal e Arresto","Processo Penal > Das Questões e Processos Incidentes > Medidas Assecuratórias: Sequestro, Hipoteca Legal e Arresto",35,True,5496,False,False
+5491,5490,Processo Penal,2,Questões Prejudiciais e Preliminares,Processo Penal > Das Questões e Processos Incidentes > Questões Prejudiciais e Preliminares,67,True,5491,False,False
+5495,5490,Processo Penal,2,Restituição de Coisas Apreendidas,Processo Penal > Das Questões e Processos Incidentes > Restituição de Coisas Apreendidas,8,True,5495,False,False
+5498,5465,Processo Penal,1,Inquérito Policial,Processo Penal > Inquérito Policial,337,True,5498,False,True
+5502,5498,Processo Penal,2,Acordo de Não Persecução Penal,Processo Penal > Inquérito Policial > Acordo de Não Persecução Penal,4,True,5502,False,False
+5499,5498,Processo Penal,2,"Conceito, Finalidade e Caractéristas do Inquérito Policial","Processo Penal > Inquérito Policial > Conceito, Finalidade e Caractéristas do Inquérito Policial",164,True,5499,False,False
+5501,5498,Processo Penal,2,Conclusão e Arquivamento do Inquérito Policial,Processo Penal > Inquérito Policial > Conclusão e Arquivamento do Inquérito Policial,26,True,5501,False,False
+5504,5498,Processo Penal,2,Inquérito Civil,Processo Penal > Inquérito Policial > Inquérito Civil,35,True,5504,False,False
+5503,5498,Processo Penal,2,Juiz das Garantias,Processo Penal > Inquérito Policial > Juiz das Garantias,6,True,5503,False,False
+5500,5498,Processo Penal,2,Procedimento do Inquérito Policial,Processo Penal > Inquérito Policial > Procedimento do Inquérito Policial,102,True,5500,False,False
+5505,5465,Processo Penal,1,Lei Processual no Tempo e no Espaço,Processo Penal > Lei Processual no Tempo e no Espaço,99,True,5505,False,False
+5508,5505,Processo Penal,2,Interpretação da Lei processual Penal,Processo Penal > Lei Processual no Tempo e no Espaço > Interpretação da Lei processual Penal,7,True,5508,False,False
+5506,5505,Processo Penal,2,Lei Processual no Espaço,Processo Penal > Lei Processual no Tempo e no Espaço > Lei Processual no Espaço,12,True,5506,False,False
+5507,5505,Processo Penal,2,Lei processual no Tempo,Processo Penal > Lei Processual no Tempo e no Espaço > Lei processual no Tempo,80,True,5507,False,False
+6734,5465,Processo Penal,1,Lei de Execução Penal,Processo Penal > Lei de Execução Penal,0,False,4703,True,False
+5509,5465,Processo Penal,1,Nulidades,Processo Penal > Nulidades,135,True,5509,False,False
+5510,5509,Processo Penal,2,Nulidade Absoluta e Relativa,Processo Penal > Nulidades > Nulidade Absoluta e Relativa,104,True,5510,False,False
+5511,5509,Processo Penal,2,Nulidades em Espécie,Processo Penal > Nulidades > Nulidades em Espécie,31,True,5511,False,False
+5512,5465,Processo Penal,1,Parte Geral dos Recursos,Processo Penal > Parte Geral dos Recursos,0,True,5512,False,False
+5516,5512,Processo Penal,2,Classificação dos Recursos,Processo Penal > Parte Geral dos Recursos > Classificação dos Recursos,3,True,5516,False,False
+5515,5512,Processo Penal,2,Efeito dos Recursos,Processo Penal > Parte Geral dos Recursos > Efeito dos Recursos,10,True,5515,False,False
+5514,5512,Processo Penal,2,Pressupostos Objetivos e Subjetivos de Admissibilidade Recursal,Processo Penal > Parte Geral dos Recursos > Pressupostos Objetivos e Subjetivos de Admissibilidade Recursal,68,True,5514,False,False
+5513,5512,Processo Penal,2,Princípios Recursais no Processo Penal,Processo Penal > Parte Geral dos Recursos > Princípios Recursais no Processo Penal,51,True,5513,False,False
+5517,5465,Processo Penal,1,Prisões em Espécie,Processo Penal > Prisões em Espécie,21,True,5517,False,False
+5523,5517,Processo Penal,2,Liberdade Provisória,Processo Penal > Prisões em Espécie > Liberdade Provisória,1,True,5523,False,False
+5522,5517,Processo Penal,2,Medidas Cautelares Diversas da Prisão,Processo Penal > Prisões em Espécie > Medidas Cautelares Diversas da Prisão,0,True,5522,False,False
+5521,5517,Processo Penal,2,Prisão Domiciliar,Processo Penal > Prisões em Espécie > Prisão Domiciliar,4,True,5521,False,False
+5519,5517,Processo Penal,2,Prisão Preventiva,Processo Penal > Prisões em Espécie > Prisão Preventiva,4,True,5519,False,False
+5520,5517,Processo Penal,2,Prisão Temporária,Processo Penal > Prisões em Espécie > Prisão Temporária,5,True,5520,False,False
+5518,5517,Processo Penal,2,Prisão em Flagrante,Processo Penal > Prisões em Espécie > Prisão em Flagrante,7,True,5518,False,False
+5530,5465,Processo Penal,1,Procedimento Ordinário,Processo Penal > Procedimento Ordinário,0,True,5530,False,False
+5531,5530,Processo Penal,2,"2 Oferecimento, Rejeição e Recebimento da Peça Acusatória","Processo Penal > Procedimento Ordinário > 2 Oferecimento, Rejeição e Recebimento da Peça Acusatória",6,True,5531,False,False
+5534,5530,Processo Penal,2,Absolvição Sumária,Processo Penal > Procedimento Ordinário > Absolvição Sumária,8,True,5534,False,False
+5536,5530,Processo Penal,2,Alegações Orais,Processo Penal > Procedimento Ordinário > Alegações Orais,1,True,5536,False,False
+5535,5530,Processo Penal,2,Audiência de Instrução e Julgamento,Processo Penal > Procedimento Ordinário > Audiência de Instrução e Julgamento,0,True,5535,False,False
+5532,5530,Processo Penal,2,Classificação dos Procedimentos,Processo Penal > Procedimento Ordinário > Classificação dos Procedimentos,27,True,5532,False,False
+5533,5530,Processo Penal,2,Defesa Preliminar,Processo Penal > Procedimento Ordinário > Defesa Preliminar,4,True,5533,False,False
+5537,5530,Processo Penal,2,Sentença,Processo Penal > Procedimento Ordinário > Sentença,0,True,5537,False,False
+5539,5465,Processo Penal,1,Procedimento Sumaríssimo,Processo Penal > Procedimento Sumaríssimo,94,True,5539,False,False
+5540,5539,Processo Penal,2,Competência dos Juizados Especiais Criminais,Processo Penal > Procedimento Sumaríssimo > Competência dos Juizados Especiais Criminais,74,True,5540,False,False
+5542,5539,Processo Penal,2,Suspensão Condicional do Processo,Processo Penal > Procedimento Sumaríssimo > Suspensão Condicional do Processo,7,True,5542,False,False
+5541,5539,Processo Penal,2,Transação Penal,Processo Penal > Procedimento Sumaríssimo > Transação Penal,13,True,5541,False,False
+5538,5465,Processo Penal,1,Procedimento Sumário,Processo Penal > Procedimento Sumário,18,True,5538,False,False
+5524,5465,Processo Penal,1,Procedimento do Tribunal do Júri,Processo Penal > Procedimento do Tribunal do Júri,253,True,5524,False,True
+5527,5524,Processo Penal,2,"Impronúncia, Desclassificação, Absolvição Sumária e Pronúncia","Processo Penal > Procedimento do Tribunal do Júri > Impronúncia, Desclassificação, Absolvição Sumária e Pronúncia",42,True,5527,False,False
+5528,5524,Processo Penal,2,Organização do Júri e Sessão de Julgamento,Processo Penal > Procedimento do Tribunal do Júri > Organização do Júri e Sessão de Julgamento,23,True,5528,False,False
+5525,5524,Processo Penal,2,Princípios Constitucionais do Júri,Processo Penal > Procedimento do Tribunal do Júri > Princípios Constitucionais do Júri,41,True,5525,False,False
+5526,5524,Processo Penal,2,Procedimento Bifásico do Tribunal do Júri,Processo Penal > Procedimento do Tribunal do Júri > Procedimento Bifásico do Tribunal do Júri,143,True,5526,False,False
+5529,5524,Processo Penal,2,Sentença do Júri,Processo Penal > Procedimento do Tribunal do Júri > Sentença do Júri,4,True,5529,False,False
+6735,5465,Processo Penal,1,Provas em Espécie,Processo Penal > Provas em Espécie,0,False,5543,True,False
+5543,5465,Processo Penal,1,Provas em Espécies,Processo Penal > Provas em Espécies,158,True,5543,False,False
+5552,5543,Processo Penal,2,Acareação,Processo Penal > Provas em Espécies > Acareação,3,True,5552,False,False
+5558,5543,Processo Penal,2,Ação Controlada,Processo Penal > Provas em Espécies > Ação Controlada,0,True,5558,False,False
+5554,5543,Processo Penal,2,Busca e Apreensão,Processo Penal > Provas em Espécies > Busca e Apreensão,6,True,5554,False,False
+5544,5543,Processo Penal,2,Cadeia de Custódia,Processo Penal > Provas em Espécies > Cadeia de Custódia,7,True,5544,False,False
+5556,5543,Processo Penal,2,Captação Ambiental,Processo Penal > Provas em Espécies > Captação Ambiental,4,True,5556,False,False
+5557,5543,Processo Penal,2,Colaboração Premiada,Processo Penal > Provas em Espécies > Colaboração Premiada,1,True,5557,False,False
+5548,5543,Processo Penal,2,Confissão,Processo Penal > Provas em Espécies > Confissão,0,True,5548,False,False
+5549,5543,Processo Penal,2,Declaração do Ofendido,Processo Penal > Provas em Espécies > Declaração do Ofendido,0,True,5549,False,False
+5545,5543,Processo Penal,2,Exame de Corpo de Delito,Processo Penal > Provas em Espécies > Exame de Corpo de Delito,23,True,5545,False,False
+5559,5543,Processo Penal,2,Infiltração de Agentes,Processo Penal > Provas em Espécies > Infiltração de Agentes,2,True,5559,False,False
+5555,5543,Processo Penal,2,Interceptação Telefônica e Quebra do Sigilo de Dados Telefônicos,Processo Penal > Provas em Espécies > Interceptação Telefônica e Quebra do Sigilo de Dados Telefônicos,63,True,5555,False,False
+5547,5543,Processo Penal,2,Interrogatório Judicial,Processo Penal > Provas em Espécies > Interrogatório Judicial,4,True,5547,False,False
+5546,5543,Processo Penal,2,Perícia,Processo Penal > Provas em Espécies > Perícia,20,True,5546,False,False
+5553,5543,Processo Penal,2,Prova Documental,Processo Penal > Provas em Espécies > Prova Documental,0,True,5553,False,False
+5550,5543,Processo Penal,2,Prova Testemunhal,Processo Penal > Provas em Espécies > Prova Testemunhal,0,True,5550,False,False
+5551,5543,Processo Penal,2,Reconhecimento de Pessoas e Coisas,Processo Penal > Provas em Espécies > Reconhecimento de Pessoas e Coisas,6,True,5551,False,False
+6736,5465,Processo Penal,1,Recursos (Parte 03) - Espécies,Processo Penal > Recursos (Parte 03) - Espécies,0,False,5560,True,False
+5560,5465,Processo Penal,1,Recursos em Espécies,Processo Penal > Recursos em Espécies,0,True,5560,False,False
+5566,5560,Processo Penal,2,Agravo em Execução,Processo Penal > Recursos em Espécies > Agravo em Execução,10,True,5566,False,False
+5562,5560,Processo Penal,2,Apelação,Processo Penal > Recursos em Espécies > Apelação,0,True,5562,False,False
+5567,5560,Processo Penal,2,Carta Testemunhavel,Processo Penal > Recursos em Espécies > Carta Testemunhavel,1,True,5567,False,False
+5568,5560,Processo Penal,2,Correição Parcial,Processo Penal > Recursos em Espécies > Correição Parcial,6,True,5568,False,False
+5564,5560,Processo Penal,2,Embargos Infringentes,Processo Penal > Recursos em Espécies > Embargos Infringentes,9,True,5564,False,False
+5565,5560,Processo Penal,2,Embargos de Declaração,Processo Penal > Recursos em Espécies > Embargos de Declaração,0,True,5565,False,False
+5563,5560,Processo Penal,2,Protesto por novo Júri,Processo Penal > Recursos em Espécies > Protesto por novo Júri,2,True,5563,False,False
+5571,5560,Processo Penal,2,Recurso Especial,Processo Penal > Recursos em Espécies > Recurso Especial,0,True,5571,False,False
+5570,5560,Processo Penal,2,Recurso Extraordinário,Processo Penal > Recursos em Espécies > Recurso Extraordinário,0,True,5570,False,False
+5561,5560,Processo Penal,2,Recurso em sentido estrito (RESE),Processo Penal > Recursos em Espécies > Recurso em sentido estrito (RESE),55,True,5561,False,False
+5569,5560,Processo Penal,2,Recursos no Âmbito dos Juizados Especiais,Processo Penal > Recursos em Espécies > Recursos no Âmbito dos Juizados Especiais,11,True,5569,False,False
+5572,5465,Processo Penal,1,Sentença Penal,Processo Penal > Sentença Penal,156,True,5572,False,False
+6737,5465,Processo Penal,1,Sentença Penal (Parte 1),Processo Penal > Sentença Penal (Parte 1),0,False,5572,True,False
+6738,5465,Processo Penal,1,Sentença Penal (Parte 2),Processo Penal > Sentença Penal (Parte 2),0,False,5572,True,False
+5573,5572,Processo Penal,2,Classificação dos Provimentos Judiciais,Processo Penal > Sentença Penal > Classificação dos Provimentos Judiciais,9,True,5573,False,False
+5577,5572,Processo Penal,2,Efeitos Decorrentes da Sentença Penal Condenatória,Processo Penal > Sentença Penal > Efeitos Decorrentes da Sentença Penal Condenatória,30,True,5577,False,False
+5579,5572,Processo Penal,2,Emendatio Libelli e Mutatio Libelli,Processo Penal > Sentença Penal > Emendatio Libelli e Mutatio Libelli,16,True,5579,False,False
+5576,5572,Processo Penal,2,Fixação da Pena e do Regime Penitenciário,Processo Penal > Sentença Penal > Fixação da Pena e do Regime Penitenciário,7,True,5576,False,False
+5578,5572,Processo Penal,2,Princípio da Correlação entre Acusação e Sentença,Processo Penal > Sentença Penal > Princípio da Correlação entre Acusação e Sentença,26,True,5578,False,False
+5574,5572,Processo Penal,2,Sentença Absolutória,Processo Penal > Sentença Penal > Sentença Absolutória,50,True,5574,False,False
+5575,5572,Processo Penal,2,Sentença Condenatória,Processo Penal > Sentença Penal > Sentença Condenatória,18,True,5575,False,False
+5580,5465,Processo Penal,1,Sistemas e Princípios Processuais Penais,Processo Penal > Sistemas e Princípios Processuais Penais,538,True,5580,False,True
+5582,5580,Processo Penal,2,Princípios do Processo Penal,Processo Penal > Sistemas e Princípios Processuais Penais > Princípios do Processo Penal,253,True,5582,False,False
+5581,5580,Processo Penal,2,Sistemas Processuais Penais,Processo Penal > Sistemas e Princípios Processuais Penais > Sistemas Processuais Penais,285,True,5581,False,False
+5583,5465,Processo Penal,1,Sujeitos do Processo,Processo Penal > Sujeitos do Processo,146,True,5583,False,False
+5584,5465,Processo Penal,1,Teoria Geral das Prisões,Processo Penal > Teoria Geral das Prisões,359,True,5584,False,True
+5589,5584,Processo Penal,2,Audiência de Custódia,Processo Penal > Teoria Geral das Prisões > Audiência de Custódia,17,True,5589,False,False
+5585,5584,Processo Penal,2,Conceitos e Espécies de Prisão,Processo Penal > Teoria Geral das Prisões > Conceitos e Espécies de Prisão,209,True,5585,False,False
+5587,5584,Processo Penal,2,Direitos e Garantias sobre a Prisão,Processo Penal > Teoria Geral das Prisões > Direitos e Garantias sobre a Prisão,113,True,5587,False,False
+5586,5584,Processo Penal,2,Imunidades Prisionais e Prisões Especiais,Processo Penal > Teoria Geral das Prisões > Imunidades Prisionais e Prisões Especiais,7,True,5586,False,False
+5588,5584,Processo Penal,2,Relaxamento da Prisão,Processo Penal > Teoria Geral das Prisões > Relaxamento da Prisão,13,True,5588,False,False
+5590,5465,Processo Penal,1,Teoria Geral das Provas,Processo Penal > Teoria Geral das Provas,237,True,5590,False,False
+5591,5590,Processo Penal,2,"Finalidade, Sujeitos e Ônus da Prova","Processo Penal > Teoria Geral das Provas > Finalidade, Sujeitos e Ônus da Prova",97,True,5591,False,False
+5595,5590,Processo Penal,2,Princípios Relativos à Prova Penal,Processo Penal > Teoria Geral das Provas > Princípios Relativos à Prova Penal,79,True,5595,False,False
+5593,5590,Processo Penal,2,Prova Emprestada,Processo Penal > Teoria Geral das Provas > Prova Emprestada,10,True,5593,False,False
+5594,5590,Processo Penal,2,Prova Ilegal e Prova Ilícita,Processo Penal > Teoria Geral das Provas > Prova Ilegal e Prova Ilícita,36,True,5594,False,False
+5592,5590,Processo Penal,2,Sistemas de Avaliação da Prova,Processo Penal > Teoria Geral das Provas > Sistemas de Avaliação da Prova,15,True,5592,False,False
