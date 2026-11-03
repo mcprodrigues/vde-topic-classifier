@@ -37,6 +37,8 @@ b = 0.75
 min_similarity = 0.92
 
 [aggregate]
+# How a channel score enters the logit: "linear" (score itself) or "log" (log of the score).
+transform = "log"
 l2 = 0.01
 max_weight = 20.0
 correctness_c = 0.3

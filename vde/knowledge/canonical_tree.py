@@ -20,6 +20,7 @@ from vde.knowledge.base import artifact_path, write_provenance
 from vde.paths import ANNEX_DIR, ARTIFACT_DIR
 
 FILE = "canonical_tree.csv"
+TWINS_FILE = "branch_twins.csv"
 MANUAL_DECISIONS = "manual_decisions.csv"
 BIN_MIN_SOURCE_COUNT = 250
 SHADOW_MATCH_RATIO = 0.86
@@ -28,59 +29,67 @@ SHADOW_MATCH_RATIO = 0.86
 @dataclass
 class Tree:
     nodes: pd.DataFrame
+    twins: dict[int, int] = field(default_factory=dict)
     _children: dict[int, list[int]] = field(default_factory=dict, repr=False)
 
     def __post_init__(self) -> None:
         self.nodes = self.nodes.set_index("tema_id", drop=False)
-        for tid, parent in zip(self.nodes.tema_id, self.nodes.parent_id):
-            if pd.notna(parent):
-                self._children.setdefault(int(parent), []).append(int(tid))
+        records = self.nodes.to_dict("index")
+        # Plain dicts: these lookups run millions of times during cross validation.
+        self._parent = {t: (None if pd.isna(r["parent_id"]) else int(r["parent_id"])) for t, r in records.items()}
+        self._level = {t: int(r["level"]) for t, r in records.items()}
+        self._title = {t: str(r["title"]) for t, r in records.items()}
+        self._path = {t: str(r["path"]) for t, r in records.items()}
+        self._discipline = {t: str(r["discipline"]) for t, r in records.items()}
+        self._canonical = {t: int(r["canonical_id"]) for t, r in records.items()}
+        self._shadow = {t: bool(r["is_shadow"]) for t, r in records.items()}
+        self._bin = {t: bool(r["is_bin"]) for t, r in records.items()}
+        self._count = {t: int(r["source_count"]) for t, r in records.items()}
+        for tid, parent in self._parent.items():
+            if parent is not None:
+                self._children.setdefault(parent, []).append(tid)
+        self._level1 = {t: self._compute_level1(t) for t in records if self._level[t] >= 1}
 
     def __contains__(self, tid: int) -> bool:
-        return tid in self.nodes.index
+        return tid in self._level
 
     def parent(self, tid: int) -> int | None:
-        value = self.nodes.at[tid, "parent_id"]
-        return None if pd.isna(value) else int(value)
+        return self._parent[tid]
 
     def children(self, tid: int) -> list[int]:
         return list(self._children.get(tid, []))
 
     def level(self, tid: int) -> int:
-        return int(self.nodes.at[tid, "level"])
+        return self._level[tid]
 
     def title(self, tid: int) -> str:
-        return str(self.nodes.at[tid, "title"])
+        return self._title[tid]
 
     def path(self, tid: int) -> str:
-        return str(self.nodes.at[tid, "path"])
+        return self._path[tid]
 
     def discipline(self, tid: int) -> str:
-        return str(self.nodes.at[tid, "discipline"])
+        return self._discipline[tid]
 
     def canonical(self, tid: int) -> int:
-        return int(self.nodes.at[tid, "canonical_id"])
+        return self._canonical[tid]
 
     def is_shadow(self, tid: int) -> bool:
-        return bool(self.nodes.at[tid, "is_shadow"])
+        return self._shadow[tid]
 
     def is_bin(self, tid: int) -> bool:
-        return bool(self.nodes.at[tid, "is_bin"])
+        return self._bin[tid]
 
     def source_count(self, tid: int) -> int:
-        return int(self.nodes.at[tid, "source_count"])
+        return self._count[tid]
 
     def level1_of(self, tid: int) -> int:
         """Canonical level 1 ancestor of a node (the node itself when it is level 1)."""
-        node = self.canonical(tid)
-        while self.level(node) > 1:
-            node = self.canonical(self.parent(node))
-        return node
+        return self._level1[tid]
 
     def candidates(self) -> list[int]:
         """Nodes we may publish in: canonical, active, level 1 or 2. Never level 0, never a shadow."""
-        mask = (self.nodes.level >= 1) & (~self.nodes.is_shadow)
-        return [int(t) for t in self.nodes.index[mask]]
+        return [t for t, lvl in self._level.items() if lvl >= 1 and not self._shadow[t]]
 
     def level1_nodes(self) -> list[int]:
         return [t for t in self.candidates() if self.level(t) == 1]
@@ -97,6 +106,20 @@ class Tree:
                 hits.add(parent)
             hits.update(self.children(gold))
         return hits
+
+    def branch_of(self, tid: int) -> int:
+        """Publishable level 1 branch of a node: level1_of followed by the twin rule."""
+        return self.twin_branch(self._level1[tid])
+
+    def twin_branch(self, branch: int) -> int:
+        """Level 1 branch the team actually uses when two disciplines hold the same subject (ADR-5)."""
+        return self.twins.get(branch, branch)
+
+    def _compute_level1(self, tid: int) -> int:
+        node = self._canonical[tid]
+        while self._level[node] > 1:
+            node = self._canonical[self._parent[node]]
+        return node
 
 
 def build(annex_dir: Path = ANNEX_DIR) -> Path:
@@ -133,7 +156,7 @@ def load() -> Tree:
     nodes["is_shadow"] = nodes["is_shadow"].astype(bool)
     nodes["is_bin"] = nodes["is_bin"].astype(bool)
     nodes["has_description"] = nodes["has_description"].astype(bool)
-    return Tree(nodes)
+    return Tree(nodes, _load_twins())
 
 
 def _detect_shadows(nodes: pd.DataFrame, has_children: set[int]) -> dict[int, int]:
@@ -171,3 +194,11 @@ def _manual_overrides() -> dict[int, int]:
         if row.decision.startswith("canonical="):
             out[int(row.subject)] = int(row.decision.split("=", 1)[1])
     return out
+
+
+def _load_twins() -> dict[int, int]:
+    path = ARTIFACT_DIR / TWINS_FILE
+    if not path.exists():
+        return {}
+    df = pd.read_csv(path)
+    return {int(a): int(b) for a, b in zip(df.from_branch, df.to_branch)}

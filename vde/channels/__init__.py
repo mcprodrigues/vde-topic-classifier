@@ -9,12 +9,13 @@ from vde.channels.knn import KnnChannel
 from vde.channels.law_article import CodeArticleChannel, LawArticleChannel, SpecialLawChannel
 from vde.channels.lexical import LexicalChannel, TitleLexicalChannel
 from vde.channels.prototypes import PrototypeChannel
+from vde.channels.segmented import SegmentChannel
 from vde.channels.subject import SubjectChannel
 
 REGISTRY: dict[str, type[Channel]] = {
     cls.name: cls
     for cls in (LawArticleChannel, SpecialLawChannel, CodeArticleChannel, LexicalChannel, TitleLexicalChannel,
-                PrototypeChannel, KnnChannel, SubjectChannel, DuplicateChannel, BinPriorChannel)
+                PrototypeChannel, KnnChannel, SubjectChannel, DuplicateChannel, BinPriorChannel, SegmentChannel)
 }
 
 
