@@ -1,0 +1,10 @@
+{
+  "artifact": "model.json",
+  "sha256": "81b29438454dce6945e1f5b062ac7df5d7a31fc199360d1f807f50fd33e9537e",
+  "written_at": "2026-11-03T19:26:17+00:00",
+  "code_commit": "db33080",
+  "produced_by": "vde build model: repeated CV on dev plus a final fit on 100 labels",
+  "llm_used": false,
+  "repeats": 20,
+  "folds": 10
+}
