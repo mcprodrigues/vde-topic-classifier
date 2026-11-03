@@ -53,7 +53,8 @@ class LawArticleChannel(Channel):
 
     def in_scope_branches(self, qid: str) -> set[int]:
         tree = self.res.tree
-        return {tree.level1_of(a.tema_id) for a in self.anchors(qid) if a.in_scope and a.tema_id in tree}
+        return {tree.branch_of(a.tema_id) for a in self.anchors(qid)
+                if a.in_scope and a.tema_id in tree and self._kind(a) in self.anchor_kinds}
 
     def out_reasons(self, qid: str) -> list[str]:
         return sorted({a.law_key + (f" art. {a.article}" if a.article else "")

@@ -11,7 +11,7 @@ from vde.data.loader import Question
 ROMAN = ("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X")
 MIN_SEGMENT_CHARS = 25
 
-_SEPARATORS = r"[\)\.\-:–—]"
+_SEPARATORS = r"[\)\.\-:\u2013\u2014]"  # \u2013 and \u2014 are dash escapes understood by re
 _LINE_ASSERTION = re.compile(r"^\(?(" + "|".join(ROMAN[::-1]) + r")\s*" + _SEPARATORS + r"\s*(\S.*)$")
 _INLINE_ASSERTION = re.compile(r"(?:^|\s)\(?(" + "|".join(ROMAN[::-1]) + r")\s*" + _SEPARATORS + r"\s+")
 _NEGATED = re.compile(r"\b(incorret|errad|exceto|nao e corret|falsa|nao se aplica|nao configura)")
