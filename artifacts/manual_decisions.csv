@@ -1,0 +1,14 @@
+id,artifact,subject,decision,reason,date
+MD01,law_index,all rows,proposed by an LLM in an authoring session,No API key in the build environment; rows were proposed from law numbers and the topic tree without reading questions; human review still pending,2026-11-03
+MD02,code_atlas,all rows,proposed by an LLM in an authoring session,Article ranges follow the official structure of the CP and CPP; human review still pending,2026-11-03
+MD03,topic_cards,all rows,proposed by an LLM in an authoring session,Key terms per topic path; the proposer never saw exam questions; no pseudo questions were generated; human review still pending,2026-11-03
+MD04,canonical_tree,shadow nodes,map the 20 undescribed childless level 1 nodes to their canonical twin,Detected automatically by title similarity; the gold sheet uses the canonical node in 4 of 5 Lei de Execucao Penal cases and never uses a Parte N node,2026-11-03
+MD05,law_index,LEI_9099,map the Juizados law to Legislacao Especial > Juizado Especial Criminal (4701),The gold sheet uses 4701 as central and the procedure subtopics as extras,2026-11-03
+MD06,law_index,LEI_9296,map the interception law to Legislacao Especial > Interceptacao Telefonica (4700),No gold example; Legislacao Especial is the branch the team uses for special laws,2026-11-03
+MD07,code_atlas,CPP 513 to 518,mark the procedure for crimes of public officials as out of the tree,Q0017 in the gold sheet is out of the taxonomy and no topic covers this special procedure,2026-11-03
+MD08,code_atlas,LEI_8137 4 to 7 and LEI_8176,mark crimes against the economic order as out of the tree,The topic Direito penal economico is inactive and Q0039 in the gold sheet is out of the taxonomy,2026-11-03
+MD09,law_index,CPM and CPPM,mark military penal law and procedure as out of the tree,No node covers military law; 10 questions of the new import come from military disciplines,2026-11-03
+MD10,config,decision.rho,publish at level 2 only when the subtopic holds 85 percent of the branch mass,Chosen a priori for student usefulness and never tuned on the gold sheet,2026-11-03
+MD11,config,decision.posterior_level,operate at 80 percent posterior probability that precision is at least 95 percent,With 100 labels a 95 percent Clopper Pearson bound needs 59 published hits and zero errors,2026-11-03
+MD12,evaluation,lockbox,hold out 20 gold questions until the final run,Protects against overfitting caused by reading the errors of the other 80,2026-11-03
+MD13,decide,level 0,never publish at a discipline root,It would count as correct for any level 1 label and recreate the largest possible bin for the student,2026-11-03

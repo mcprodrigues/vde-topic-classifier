@@ -1,0 +1,352 @@
+tema_id,keywords
+4366,classificação das vítimas; vítima ideal; vítima provocadora; Mendelsohn; Von Hentig; vítima culpada; vítima inocente; vítima simuladora
+4367,classificação dos criminosos; Lombroso; criminoso nato; Ferri; Garofalo; criminoso ocasional; criminoso habitual; criminoso passional; delinquente louco
+4368,criminologia no estado democrático de direito; reação social ao delito; prevenção do delito; controle social formal; controle social informal
+4370,modelos de reação ao delito; modelo dissuasório; modelo ressocializador; modelo restaurativo; justiça restaurativa; modelo clássico; modelo integrador
+4369,prevenção primária; prevenção secundária; prevenção terciária; sistemas de prevenção do delito; prevenção situacional
+4371,escolas criminológicas; evolução histórica da criminologia; escola clássica; escola positiva; Beccaria; Lombroso
+4373,escola clássica; escola positiva; escola de Chicago; terza scuola; escola correcionalista; escola de Lyon; escola sociológica; Lombroso; Ferri; Garofalo; Beccaria
+4372,criminologia na antiguidade; idade média; idade moderna; período pré-científico; fisionomia; frenologia; Gall; Lavater
+4374,política criminal; abolicionismo; minimalismo; garantismo; lei e ordem; tolerância zero; defesa social; nova defesa social
+4375,correntes da política criminal; abolicionismo penal; direito penal mínimo; garantismo penal; Ferrajoli; movimento lei e ordem; tolerância zero; janelas quebradas; nova defesa social; justicialismo; securitarismo
+4376,direito penal do inimigo; Jakobs; inimigo; cidadão; velocidades do direito penal; Silva Sánchez; terceira velocidade
+4377,processos de criminalização; criminalização primária; criminalização secundária; cifra oculta; cifras criminais; seletividade penal
+4379,cifra negra; cifra oculta; cifra dourada; cifra cinza; cifra amarela; cifra verde; subnotificação
+4378,criminalização primária; criminalização secundária; criminalização terciária; seletividade penal; agências de controle; Zaffaroni; etiquetamento; clientela do sistema penal
+4380,teoria geral da criminologia; ciência empírica; interdisciplinar; objeto da criminologia; delito; delinquente; vítima; controle social
+4381,conceito de criminologia; objeto da criminologia; delito delinquente vítima e controle social; ciência empírica e interdisciplinar
+4382,métodos da criminologia; método empírico; método indutivo; funções da criminologia; estatísticas criminais; pesquisa de vitimização
+4384,teorias legitimadoras da pena; teorias absolutas; retribuição; teorias relativas; prevenção geral; prevenção especial; prevenção geral positiva; teorias mistas; teoria agnóstica da pena
+4385,teorias sociológicas da criminalidade; teorias do consenso; teorias do conflito; anomia; associação diferencial; subcultura delinquente; labelling approach; criminologia crítica
+4388,escola de Chicago; teoria ecológica; associação diferencial; Sutherland; anomia; Durkheim; Merton; subcultura delinquente; Cohen; labelling approach; etiquetamento; criminologia crítica; criminologia radical; crimes de colarinho branco
+4386,teorias de nível individual; teorias biológicas; teorias psicológicas; psicanálise; personalidade; aprendizagem; fatores individuais
+4387,teorias de nível sociológico; teorias macrossociológicas; consenso; conflito; estrutural funcionalismo; controle social; Hirschi; teoria do controle
+4383,síndrome de Estocolmo; síndrome de Londres; síndrome da mulher de Potifar; síndrome de Lima; teorias com enfoque nas vítimas; vitimodogmática
+4389,vitimologia; vítima; vitimização; Mendelsohn; Von Hentig; vitimodogmática; papel da vítima
+4390,vitimização primária; vitimização secundária; vitimização terciária; sobrevitimização; revitimização; processo de vitimização
+4684,abuso de autoridade; Lei 13.869; agente público; finalidade específica; prejudicar outrem; beneficiar a si mesmo; mero capricho; satisfação pessoal
+4685,biossegurança; Lei 11.105; organismos geneticamente modificados; OGM; células-tronco embrionárias; clonagem; engenharia genética
+4686,contravenções penais; Decreto-Lei 3.688; contravenção; jogo do bicho; vias de fato; perturbação do sossego; porte de arma branca
+4692,crimes eleitorais; Código Eleitoral; Lei 4.737; Justiça Eleitoral; propaganda eleitoral; boca de urna; corrupção eleitoral; compra de votos
+4693,crimes hediondos; Lei 8.072; hediondo; equiparados a hediondos; progressão de regime; insuscetíveis de anistia graça e indulto; fiança; latrocínio; rol taxativo
+4695,crimes tributários; Lei 8.137; sonegação fiscal; supressão ou redução de tributo; lançamento definitivo; Súmula Vinculante 24; parcelamento; pagamento extingue a punibilidade
+4687,crimes contra a economia popular; Lei 1.521; usura; agiotagem; pirâmide financeira
+4689,crimes contra o sistema financeiro nacional; Lei 7.492; colarinho branco; gestão fraudulenta; gestão temerária; evasão de divisas; instituição financeira
+4688,crimes ambientais; Lei 9.605; meio ambiente; fauna; flora; poluição; responsabilidade penal da pessoa jurídica; dupla imputação
+4690,racismo; Lei 7.716; preconceito de raça cor etnia religião ou procedência nacional; injúria racial; imprescritível; inafiançável; homofobia; transfobia
+4691,crimes de trânsito; Código de Trânsito Brasileiro; CTB; Lei 9.503; embriaguez ao volante; homicídio culposo na direção de veículo automotor; racha; lesão corporal culposa na direção; habilitação
+4694,crimes contra as relações de consumo; Código de Defesa do Consumidor; CDC; Lei 8.078; fornecedor; consumidor; publicidade enganosa
+4696,estatuto do idoso; estatuto da pessoa idosa; Lei 10.741; idoso; pessoa idosa; maior de sessenta anos; abandono de idoso
+4697,estatuto do desarmamento; Lei 10.826; arma de fogo; porte ilegal; posse irregular; uso permitido; uso restrito; munição; disparo de arma de fogo; comércio ilegal de arma
+4698,genocídio; Lei 2.889; grupo nacional étnico racial ou religioso; intenção de destruir
+4699,identificação criminal; Lei 12.037; civilmente identificado; identificação datiloscópica; identificação fotográfica; perfil genético; banco de DNA
+4700,interceptação telefônica; Lei 9.296; interceptação das comunicações telefônicas; ordem judicial; prazo de quinze dias; renovável; segredo de justiça; escuta telefônica; gravação clandestina
+4701,juizado especial criminal; Lei 9.099; infração de menor potencial ofensivo; termo circunstanciado; composição civil dos danos; transação penal; suspensão condicional do processo; procedimento sumaríssimo; turma recursal; audiência preliminar
+4702,lavagem de dinheiro; Lei 9.613; ocultação; dissimulação; bens direitos ou valores; infração penal antecedente; COAF; branqueamento de capitais
+4704,Lei Maria da Penha; Lei 11.340; violência doméstica e familiar contra a mulher; medidas protetivas de urgência; juizado de violência doméstica; descumprimento de medida protetiva; Súmula 536; Súmula 589
+4703,Lei de Execução Penal; LEP; Lei 7.210; execução penal; progressão de regime; remição; falta grave; regressão; saída temporária; trabalho do preso; regime disciplinar diferenciado; RDD; juiz da execução; exame criminológico; monitoração eletrônica; permissão de saída
+4705,organizações criminosas; Lei 12.850; organização criminosa; quatro ou mais pessoas; colaboração premiada; infiltração de agentes; ação controlada; delação
+4706,terrorismo; Lei 13.260; atos de terrorismo; xenofobia; terror social ou generalizado; atos preparatórios de terrorismo
+4707,tortura; Lei 9.455; constranger com violência ou grave ameaça; sofrimento físico ou mental; tortura castigo; tortura prova; omissão perante a tortura
+4708,tráfico de drogas; Lei 11.343; Lei de Drogas; drogas; entorpecentes; porte para consumo pessoal; usuário; tráfico privilegiado; associação para o tráfico; Sisnad; art. 33; art. 28
+4709,violência contra criança e adolescente; ECA; Estatuto da Criança e do Adolescente; Lei 8.069; Lei 13.431; Lei Henry Borel; Lei 14.344; pornografia infantil; depoimento especial; escuta especializada
+5063,ação penal no Código Penal; ação penal pública; ação penal privada; representação; requisição do Ministro da Justiça; queixa; titularidade da ação
+5065,ação penal privada; queixa-crime; ofendido; ação penal privada subsidiária da pública; ação personalíssima; ação exclusivamente privada
+5064,ação penal pública incondicionada; ação penal pública condicionada à representação; requisição; Ministério Público
+5066,concurso de crimes; concurso material; concurso formal; crime continuado; exasperação; cúmulo material; aberratio ictus; erro na execução; aberratio criminis; limite de cumprimento
+5068,concurso formal; uma só ação ou omissão; concurso formal próprio; concurso formal impróprio; desígnios autônomos; exasperação
+5067,concurso material; cúmulo material; mais de uma ação ou omissão; penas somadas
+5069,crime continuado; continuidade delitiva; mesmas condições de tempo lugar e maneira de execução; crime continuado específico; ficção jurídica
+5070,pena de multa no concurso de crimes; multas aplicadas distinta e integralmente
+5071,concurso de pessoas; coautoria; participação; teoria monista; liame subjetivo; pluralidade de agentes
+5072,autor; partícipe; teoria do domínio do fato; teoria restritiva; teoria extensiva; autoria
+5073,autoria mediata; autoria colateral; coautoria; autoria incerta; homem de trás; executor
+5076,comunicabilidade das circunstâncias; condições de caráter pessoal; elementares do crime; incomunicabilidade
+5075,cooperação dolosamente distinta; participação dolosamente distinta; quis participar de crime menos grave; resultado mais grave previsível
+5074,participação; partícipe; instigação; induzimento; auxílio material; participação de menor importância; acessoriedade limitada
+5077,lesão corporal; lesão corporal leve; lesão grave; lesão gravíssima; lesão seguida de morte; ofender a integridade corporal ou a saúde
+5079,crimes contra a administração da justiça; reingresso de estrangeiro expulso; denunciação caluniosa; falso testemunho; coação no curso do processo; favorecimento; fraude processual
+5080,denunciação caluniosa; comunicação falsa de crime ou contravenção; autoacusação falsa; dar causa à instauração de investigação
+5082,exercício arbitrário das próprias razões; fazer justiça pelas próprias mãos; pretensão legítima
+5085,exercício arbitrário ou abuso de poder; ordenar ou executar medida privativa de liberdade sem as formalidades legais
+5081,falso testemunho; falsa perícia; corrupção ativa de testemunha ou perito; tradutor; intérprete; retratação antes da sentença
+5084,favorecimento pessoal; favorecimento real; auxiliar a subtrair-se à ação de autoridade; tornar seguro o proveito do crime; ingresso de celular em presídio
+5083,fraude processual; inovar artificiosamente; estado de lugar coisa ou pessoa; induzir a erro o juiz ou o perito
+5086,coação no curso do processo; fuga de pessoa presa; evasão mediante violência; arrebatamento de preso; motim de presos; patrocínio infiel; sonegação de papel; desobediência a decisão judicial
+5087,crimes contra a administração pública; funcionário público; crimes funcionais; peculato; concussão; corrupção passiva; prevaricação; corrupção ativa; descaminho; contrabando; crimes praticados por particular contra a administração
+5097,advocacia administrativa; patrocinar interesse privado perante a administração; valendo-se da qualidade de funcionário
+5091,concussão; exigir vantagem indevida; excesso de exação; tributo ou contribuição social indevido
+5096,condescendência criminosa; deixar de responsabilizar subordinado; indulgência
+5094,contrabando; descaminho; mercadoria proibida; iludir o pagamento de direito ou imposto; insignificância no descaminho
+5093,corrupção ativa; oferecer ou prometer vantagem indevida a funcionário público; ato de ofício
+5092,corrupção passiva; solicitar ou receber vantagem indevida; aceitar promessa de vantagem; corrupção passiva privilegiada
+5090,emprego irregular de verbas ou rendas públicas; aplicação diversa da estabelecida em lei; extravio sonegação ou inutilização de livro ou documento
+5088,conceito de funcionário público para fins penais; funcionário público por equiparação; crimes funcionais próprios e impróprios; art. 327
+5089,peculato; peculato apropriação; peculato desvio; peculato furto; peculato culposo; peculato mediante erro de outrem; reparação do dano no peculato culposo; inserção de dados falsos em sistema
+5095,prevaricação; retardar ou deixar de praticar ato de ofício; satisfazer interesse ou sentimento pessoal; prevaricação imprópria; aparelho celular em presídio
+5100,resistência; desobediência; desacato; oposição à execução de ato legal; ordem legal de funcionário público; ofender funcionário no exercício da função
+5101,tráfico de influência; solicitar vantagem a pretexto de influir em ato praticado por funcionário público
+5099,usurpação de função pública; usurpar o exercício de função pública
+5098,violência arbitrária; praticar violência no exercício de função ou a pretexto de exercê-la
+5102,crimes contra a dignidade sexual; liberdade sexual; estupro; estupro de vulnerável; ação penal pública incondicionada nos crimes sexuais
+5106,assédio sexual; superior hierárquico; ascendência inerente ao exercício de emprego cargo ou função
+5108,corrupção de menores; induzir menor de catorze anos a satisfazer a lascívia de outrem
+5110,disposições gerais dos crimes contra a dignidade sexual; causas de aumento de pena; segredo de justiça; ação penal nos crimes sexuais; art. 225; art. 226
+5103,estupro; estupro de vulnerável; conjunção carnal; ato libidinoso; violência ou grave ameaça; menor de catorze anos; vulnerável; Súmula 593
+5105,importunação sexual; ato libidinoso sem anuência; satisfazer a própria lascívia; art. 215-A
+5109,favorecimento da prostituição; exploração sexual; casa de prostituição; rufianismo; divulgação de cena de estupro; satisfação de lascívia mediante presença de criança; ato obsceno; escrito obsceno
+5107,registro não autorizado da intimidade sexual; produzir fotografar filmar ou registrar cena de nudez; art. 216-B
+5104,violação sexual mediante fraude; estelionato sexual; impedir ou dificultar a livre manifestação de vontade da vítima; art. 215
+5116,crimes contra a fé pública; moeda falsa; falsificação de documento público; falsidade ideológica; uso de documento falso; falsa identidade
+5118,falsificação de documento público; falsificação de documento particular; falsidade ideológica; uso de documento falso; falso reconhecimento de firma; certidão ou atestado falso; supressão de documento
+5119,falsa identidade; uso de documento de identidade alheio; adulteração de sinal identificador de veículo automotor; fraudes em certames de interesse público; falsificação de selo ou sinal público
+5117,moeda falsa; crimes assimilados ao de moeda falsa; petrechos para falsificação de moeda; emissão de título ao portador sem permissão legal; falsificação de papéis públicos
+5120,crimes contra a honra; calúnia; difamação; injúria; exceção da verdade; retratação; honra objetiva; honra subjetiva
+5122,calúnia; imputar falsamente fato definido como crime; exceção da verdade; calúnia contra os mortos
+5123,difamação; imputar fato ofensivo à reputação; honra objetiva; exceção da verdade contra funcionário público
+5124,injúria; ofender a dignidade ou o decoro; honra subjetiva; injúria real; injúria qualificada; perdão judicial na injúria; retorsão imediata
+5121,disposições comuns aos crimes contra a honra; causas de aumento; exclusão do crime; retratação do querelado; pedido de explicações em juízo; ação penal nos crimes contra a honra
+5125,crimes contra a incolumidade pública; perigo comum; incêndio; explosão; inundação; atentado contra a segurança de transporte
+5127,atentado contra a segurança de serviço de utilidade pública; transporte marítimo fluvial ou aéreo; arremesso de projétil; interrupção de serviço telefônico; desastre ferroviário
+5126,crimes de perigo comum; incêndio; explosão; uso de gás tóxico ou asfixiante; inundação; desabamento; difusão de doença ou praga
+5128,crimes contra a liberdade individual; constrangimento ilegal; ameaça; perseguição; sequestro; cárcere privado; redução à condição análoga à de escravo; violação de domicílio
+5130,ameaça; perseguição; stalking; ameaçar alguém de causar mal injusto e grave; art. 147; art. 147-A
+5133,violação de domicílio; violação de correspondência; divulgação de segredo; violação do segredo profissional; invasão de dispositivo informático; art. 150; art. 154-A
+5129,intimidação sistemática; bullying; cyberbullying; art. 146-A
+5132,sequestro e cárcere privado; redução a condição análoga à de escravo; trabalho escravo; jornada exaustiva; condições degradantes; tráfico de pessoas; art. 148; art. 149; art. 149-A
+5131,violência psicológica contra a mulher; dano emocional à mulher; art. 147-B
+5138,periclitação da vida e da saúde; crimes de perigo individual; perigo de contágio; omissão de socorro; maus-tratos; rixa
+5141,abandono de incapaz; exposição ou abandono de recém-nascido; ocultar desonra própria
+5143,maus-tratos; expor a perigo pessoa sob autoridade guarda ou vigilância; abuso de meios de correção ou disciplina
+5142,omissão de socorro; deixar de prestar assistência; condicionamento de atendimento médico-hospitalar emergencial
+5139,perigo de contágio venéreo; perigo de contágio de moléstia grave; relações sexuais
+5140,perigo para a vida ou saúde de outrem; expor a perigo direto e iminente; art. 132
+5144,crimes contra a saúde pública; crimes contra a paz pública; epidemia; envenenamento de água potável; associação criminosa; milícia privada; incitação ao crime; apologia de crime
+5146,associação criminosa; três ou mais pessoas; constituição de milícia privada; incitação ao crime; apologia de crime ou criminoso; art. 288
+5145,crimes contra a saúde pública; epidemia; infração de medida sanitária preventiva; envenenamento de água potável; falsificação de medicamento; exercício ilegal da medicina; charlatanismo; curandeirismo
+5149,crimes contra a vida; homicídio; feminicídio; infanticídio; aborto; induzimento ao suicídio; crimes dolosos contra a vida
+5154,aborto; autoaborto; aborto consentido; aborto provocado por terceiro; aborto necessário; aborto sentimental; anencefalia; ADPF 54
+5151,feminicídio; razões da condição do sexo feminino; violência doméstica e familiar; menosprezo ou discriminação à condição de mulher; art. 121-A; Lei 14.994; Lei 13.104
+5150,homicídio; homicídio simples; homicídio qualificado; homicídio privilegiado; motivo torpe; motivo fútil; meio cruel; recurso que dificulte a defesa da vítima; homicídio culposo; art. 121
+5152,induzimento instigação ou auxílio ao suicídio ou à automutilação; art. 122
+5153,infanticídio; estado puerperal; durante o parto ou logo após; próprio filho; art. 123
+5157,crimes contra o patrimônio; furto; roubo; extorsão; dano; apropriação indébita; estelionato; receptação; imunidades patrimoniais
+5158,disposições gerais dos crimes contra o patrimônio; escusas absolutórias; imunidade absoluta; imunidade relativa; cônjuge ascendente ou descendente; art. 181; art. 182; art. 183
+5167,abuso de incapazes; induzimento à especulação; fraude contra incapaz
+5165,apropriação indébita; apropriação indébita previdenciária; apropriação de coisa havida por erro; apropriação de coisa achada; posse ou detenção; art. 168
+5164,dano; dano qualificado; destruir inutilizar ou deteriorar coisa alheia; introdução ou abandono de animais em propriedade alheia; dano ao patrimônio público
+5162,esbulho possessório; invadir terreno ou edifício alheio; violência a pessoa ou grave ameaça
+5166,estelionato; obter vantagem ilícita mediante artifício ardil ou meio fraudulento; fraude eletrônica; representação no estelionato; cheque sem fundos; Súmula 554; duplicata simulada; fraude no comércio; art. 171
+5161,extorsão; extorsão mediante sequestro; sequestro relâmpago; constranger mediante violência para obter vantagem econômica; Súmula 96; art. 158; art. 159
+5168,fraude à execução; alienar desviar destruir ou danificar bens para fraudar execução
+5159,furto; furto qualificado; furto privilegiado; repouso noturno; rompimento de obstáculo; escalada; destreza; chave falsa; furto de coisa comum; furto de uso; princípio da insignificância no furto; art. 155
+5169,receptação; receptação qualificada; receptação culposa; adquirir ou receber coisa que sabe ser produto de crime; atividade comercial; art. 180
+5160,roubo; roubo próprio; roubo impróprio; latrocínio; emprego de arma; concurso de agentes; restrição da liberdade da vítima; Súmula 610; art. 157
+5163,usurpação; alteração de limites; usurpação de águas; supressão ou alteração de marca em animais
+5111,crimes contra a família; bigamia; abandono material; abandono intelectual; registro de filho alheio; subtração de incapazes
+5114,abandono material; abandono intelectual; entrega de filho menor a pessoa inidônea; abandono moral; pensão alimentícia
+5112,bigamia; induzimento a erro essencial; ocultação de impedimento; conhecimento prévio de impedimento; simulação de casamento
+5113,registro de nascimento inexistente; parto suposto; registro de filho alheio como próprio; adoção à brasileira; sonegação de estado de filiação
+5115,induzimento a fuga; entrega arbitrária; sonegação de incapazes; subtração de incapazes
+5134,crimes contra a organização do trabalho; propriedade imaterial; sentimento religioso; respeito aos mortos
+5135,atentado contra a liberdade de trabalho; frustração de direito assegurado por lei trabalhista; aliciamento de trabalhadores; paralisação de trabalho
+5137,ultraje a culto; impedimento ou perturbação de cerimônia funerária; violação de sepultura; destruição subtração ou ocultação de cadáver; vilipêndio a cadáver
+5136,violação de direito autoral; propriedade imaterial; pirataria; art. 184
+5147,crimes contra as finanças públicas; contratação de operação de crédito; inscrição de despesas não empenhadas em restos a pagar; assunção de obrigação no último ano do mandato; art. 359-A
+5148,crimes contra as instituições democráticas; golpe de Estado; abolição violenta do Estado Democrático de Direito
+5155,crimes contra o Estado Democrático de Direito; Lei 14.197; atentado à soberania; abolição violenta do Estado Democrático de Direito; golpe de Estado; interrupção do processo eleitoral; sabotagem
+5156,crimes contra o funcionamento dos serviços essenciais; sabotagem; interrupção de serviços essenciais
+5170,introdução ao direito penal; conceito de direito penal; fontes do direito penal; princípios penais; interpretação da lei penal; classificação dos crimes; direito penal objetivo e subjetivo; funções do direito penal; bem jurídico
+5174,classificação dos crimes; crime comum; crime próprio; crime de mão própria; crime material formal e de mera conduta; crime permanente; crime instantâneo; crime habitual; crime de dano e de perigo; crime vago; crime plurissubsistente
+5171,conceito de direito penal; fontes do direito penal; fonte material; fonte formal; costume; lei penal; normas penais em branco; tratados internacionais
+5173,interpretação da norma penal; interpretação autêntica; interpretação doutrinária; interpretação judicial; interpretação analógica; interpretação extensiva; analogia in bonam partem; analogia in malam partem
+5172,princípios do direito penal; princípio da legalidade; reserva legal; anterioridade; insignificância; intervenção mínima; fragmentariedade; subsidiariedade; lesividade; ofensividade; culpabilidade; individualização da pena; humanidade; proporcionalidade; adequação social; ne bis in idem
+5175,iter criminis; cogitação; preparação; execução; consumação; exaurimento; tentativa; desistência voluntária
+5177,crime consumado; tentativa; conatus; tentativa branca; tentativa cruenta; tentativa perfeita; tentativa imperfeita; redução de um a dois terços; art. 14
+5179,crime impossível; ineficácia absoluta do meio; absoluta impropriedade do objeto; flagrante preparado; Súmula 145; art. 17
+5178,desistência voluntária; arrependimento eficaz; arrependimento posterior; ponte de ouro; ponte de prata; reparação do dano até o recebimento da denúncia; art. 15; art. 16
+5176,fases do iter criminis; cogitação; atos preparatórios; atos executórios; consumação; exaurimento
+5180,lei penal no tempo e no espaço; aplicação da lei penal; contagem de prazo penal; frações não computáveis da pena; legislação especial; tempo do crime; lugar do crime
+5183,conflito aparente de normas; princípio da especialidade; subsidiariedade; consunção; alternatividade; crime progressivo; progressão criminosa; antefato e pós-fato impuníveis
+5182,lei penal no espaço; territorialidade; extraterritorialidade incondicionada; extraterritorialidade condicionada; lugar do crime; teoria da ubiquidade; embarcações e aeronaves; sentença estrangeira; pena cumprida no estrangeiro
+5181,lei penal no tempo; irretroatividade; retroatividade da lei mais benéfica; abolitio criminis; novatio legis in pejus; novatio legis in mellius; lei excepcional; lei temporária; tempo do crime; teoria da atividade; combinação de leis; Súmula 711
+5184,medida de segurança; inimputável; semi-imputável; internação; tratamento ambulatorial; periculosidade; prazo mínimo; desinternação; Súmula 527
+5185,prescrição; extinção da punibilidade pelo decurso do tempo; prescrição da pretensão punitiva; prescrição da pretensão executória; prazos prescricionais; art. 109
+5186,conceito de prescrição; fundamentos da prescrição; imprescritibilidade; redução dos prazos para menor de 21 anos ou maior de 70 anos; prescrição das penas restritivas; art. 115
+5187,termo inicial da prescrição; causas suspensivas da prescrição; causas interruptivas da prescrição; recebimento da denúncia; pronúncia; acórdão condenatório; art. 111; art. 116; art. 117
+5190,outras prescrições; prescrição da multa; prescrição virtual; prescrição em perspectiva; Súmula 438; prescrição de medida socioeducativa
+5189,prescrição da pretensão executória; trânsito em julgado para a acusação; pena aplicada; reincidência aumenta um terço; evasão do condenado; revogação do livramento
+5188,prescrição da pretensão punitiva; prescrição em abstrato; prescrição retroativa; prescrição superveniente; prescrição intercorrente; pena máxima cominada
+5191,punibilidade; extinção da punibilidade; causas extintivas da punibilidade; condições objetivas de punibilidade; art. 107
+5194,abolitio criminis; lei posterior que deixa de considerar o fato como crime; efeitos penais cessam; efeitos civis permanecem
+5193,anistia; graça; indulto; indulto coletivo; comutação de pena; Presidente da República
+5198,decadência; prazo de seis meses; direito de queixa ou de representação; conhecimento da autoria
+5192,morte do agente; certidão de óbito; mors omnia solvit; certidão de óbito falsa
+5197,perdão judicial; homicídio culposo; consequências da infração atingem o próprio agente; Súmula 18 do STJ; art. 120
+5195,perempção; ação penal privada; deixar de promover o andamento do processo por trinta dias; não comparecimento do querelante
+5196,renúncia ao direito de queixa; perdão do ofendido; retratação do agente; aceitação do perdão
+5199,teoria da pena; penas privativas de liberdade; penas restritivas de direitos; multa; dosimetria; aplicação da pena; regime inicial; sursis; livramento condicional; efeitos da condenação; reabilitação
+5209,efeitos da condenação; efeitos penais; efeitos extrapenais; perda do cargo ou função pública; perda de bens; confisco alargado; obrigação de reparar o dano; incapacidade para o poder familiar; art. 91; art. 92
+5208,livramento condicional; cumprimento de mais de um terço da pena; reincidente em crime doloso; mais da metade; dois terços nos crimes hediondos; revogação do livramento; período de prova; art. 83
+5206,pena de multa; dias-multa; sistema de dias-multa; valor do dia-multa; dívida de valor; execução da multa; art. 49; art. 51
+5201,penas privativas de liberdade; reclusão; detenção; prisão simples; regime fechado; regime semiaberto; regime aberto; progressão de regime; detração; regras do regime; limite de quarenta anos; Súmula 440; Súmula 718; Súmula 719; art. 33
+5205,penas restritivas de direitos; substituição da pena; prestação de serviços à comunidade; prestação pecuniária; perda de bens e valores; interdição temporária de direitos; limitação de fim de semana; conversão em privativa; art. 44
+5202,primeira fase da dosimetria; circunstâncias judiciais; pena-base; culpabilidade; antecedentes; conduta social; personalidade do agente; motivos; circunstâncias e consequências do crime; comportamento da vítima; art. 59; Súmula 444
+5210,reabilitação criminal; dois anos após a extinção da pena; sigilo dos registros; bom comportamento; ressarcimento do dano; art. 93
+5200,sanção penal; conceito de pena; finalidades da pena; espécies de pena; penas proibidas pela Constituição; princípios da pena; art. 32
+5203,segunda fase da dosimetria; agravantes; atenuantes; reincidência; confissão espontânea; menoridade relativa; circunstâncias preponderantes; Súmula 231; Súmula 545; art. 61; art. 65
+5207,suspensão condicional da pena; sursis; sursis simples; sursis especial; sursis etário; sursis humanitário; período de prova; pena não superior a dois anos; art. 77
+5204,terceira fase da dosimetria; causas de aumento de pena; causas de diminuição de pena; majorantes; minorantes; frações; art. 68
+5211,culpabilidade; imputabilidade; potencial consciência da ilicitude; exigibilidade de conduta diversa; excludentes de culpabilidade; dirimentes
+5217,causas supralegais de exclusão da culpabilidade; inexigibilidade de conduta diversa; cláusula de consciência; desobediência civil
+5215,coação moral irresistível; coação física irresistível; coator; art. 22
+5212,conceito de culpabilidade; elementos da culpabilidade; teoria psicológica; teoria psicológico-normativa; teoria normativa pura; teoria limitada da culpabilidade; coculpabilidade
+5214,erro de proibição; erro sobre a ilicitude do fato; erro inevitável; erro evitável; erro de proibição direto; erro de proibição indireto; descriminantes putativas; art. 21
+5213,inimputabilidade; doença mental; desenvolvimento mental incompleto ou retardado; menoridade penal; embriaguez completa; caso fortuito ou força maior; actio libera in causa; semi-imputabilidade; critério biopsicológico; art. 26; art. 27; art. 28
+5216,obediência hierárquica; ordem não manifestamente ilegal; superior hierárquico; art. 22
+5218,fato típico; conduta; resultado; nexo causal; tipicidade; dolo; culpa; erro de tipo; crimes omissivos
+5219,conceito de crime; conceito analítico de crime; teoria tripartida; teoria bipartida; sujeito ativo; sujeito passivo; objeto material; objeto jurídico
+5221,conduta; teoria causalista; teoria finalista; teoria social da ação; ausência de conduta; atos reflexos; coação física irresistível; ação e omissão
+5222,crime doloso; crime culposo; dolo direto; dolo eventual; culpa consciente; culpa inconsciente; imprudência; negligência; imperícia; preterdolo; crime preterdoloso; art. 18; art. 19
+5223,crimes omissivos próprios; crimes omissivos impróprios; crimes comissivos por omissão; dever de agir; garantidor; relevância da omissão
+5224,erro de tipo; erro de tipo essencial; erro de tipo acidental; erro sobre a pessoa; erro na execução; resultado diverso do pretendido; erro determinado por terceiro; descriminantes putativas; art. 20
+5220,fato típico; elementos do fato típico; conduta resultado nexo causal e tipicidade
+5226,nexo causal; relação de causalidade; teoria da equivalência dos antecedentes; conditio sine qua non; concausas; causa superveniente relativamente independente; imputação objetiva; risco permitido; art. 13
+5225,resultado; resultado naturalístico; resultado jurídico ou normativo; crimes materiais formais e de mera conduta
+5227,tipicidade; tipicidade formal; tipicidade material; tipicidade conglobante; adequação típica imediata; adequação típica mediata; elementos objetivos normativos e subjetivos do tipo
+5228,ilicitude; antijuridicidade; excludentes de ilicitude; estado de necessidade; legítima defesa; estrito cumprimento do dever legal; exercício regular de direito; excesso punível
+5233,causas supralegais de exclusão da ilicitude; consentimento do ofendido; exercício regular de direito; ofendículos
+5229,conceito de ilicitude; antijuridicidade formal e material; causas excludentes; excesso doloso ou culposo; art. 23
+5230,estado de necessidade; perigo atual; perigo não provocado por sua vontade; direito próprio ou alheio; estado de necessidade justificante; estado de necessidade exculpante; art. 24
+5232,estrito cumprimento do dever legal; agente público; dever imposto por lei
+5231,legítima defesa; agressão injusta atual ou iminente; uso moderado dos meios necessários; legítima defesa putativa; legítima defesa sucessiva; agente de segurança pública e refém; art. 25
+5466,ação penal no processo penal; condições da ação penal; ação penal pública; ação penal privada; denúncia; queixa; representação; Ministério Público
+5475,ação civil ex delicto; reparação do dano; sentença penal condenatória como título executivo; valor mínimo da indenização; art. 63
+5471,ação penal pública condicionada; representação do ofendido; requisição do Ministro da Justiça; retratação da representação até o oferecimento da denúncia; art. 24; art. 25
+5470,ação penal pública incondicionada; Ministério Público; princípio da obrigatoriedade; indisponibilidade da ação
+5472,ação penal de iniciativa privada; queixa; renúncia; perdão do ofendido; perempção; ação penal privada subsidiária da pública; inércia do Ministério Público; art. 29; art. 30
+5467,condições da ação penal; legitimidade de parte; interesse de agir; possibilidade jurídica do pedido; justa causa; condições de procedibilidade
+5468,classificação da ação penal; ação pública incondicionada; ação pública condicionada; ação privada exclusiva; ação privada personalíssima; ação privada subsidiária
+5473,denúncia; requisitos da denúncia; exposição do fato criminoso com todas as suas circunstâncias; classificação do crime; rol de testemunhas; prazo de cinco dias réu preso e quinze dias réu solto; rejeição da denúncia; art. 41; art. 46
+5469,princípios da ação penal; obrigatoriedade; indisponibilidade; oficialidade; divisibilidade; indivisibilidade; oportunidade; intranscendência
+5474,queixa-crime; querelante; querelado; procuração com poderes especiais; prazo decadencial; art. 44
+5476,ações autônomas de impugnação; habeas corpus; mandado de segurança; revisão criminal
+5477,habeas corpus; constrangimento ilegal; liberdade de locomoção; habeas corpus preventivo; habeas corpus liberatório; paciente; impetrante; autoridade coatora; liminar; art. 647; art. 648
+5479,mandado de segurança em matéria criminal; direito líquido e certo; efeito suspensivo a recurso
+5478,revisão criminal; sentença condenatória transitada em julgado; novas provas de inocência; a qualquer tempo; justificação criminal; art. 621
+5480,competência; jurisdição; competência territorial; competência em razão da matéria; prerrogativa de função; conexão; continência; conflito de competência
+5483,competência territorial; lugar da infração; teoria do resultado; domicílio ou residência do réu; art. 70; art. 72
+5485,competência de juízo; distribuição; prevenção; art. 75; art. 83
+5482,competência em razão da matéria; justiça federal; justiça estadual; justiça eleitoral; justiça militar; competência do tribunal do júri; art. 109 da Constituição
+5484,foro por prerrogativa de função; foro privilegiado; STF; STJ; tribunal de justiça; deputado; prefeito; Súmula 702; Súmula 704
+5481,fixação de competência; espécies de competência; critérios de determinação da competência; art. 69
+5486,conexão; continência; prorrogação de competência; perpetuatio jurisdictionis; separação de processos; foro prevalente; art. 76; art. 77; art. 78
+5487,comunicação dos atos processuais; citação; intimação; notificação; prazos processuais
+5488,citação; citação pessoal; citação por edital; citação por hora certa; revelia; réu preso; suspensão do processo e da prescrição; art. 366; carta precatória; contagem dos prazos
+5489,intimação; notificação; intimação do defensor; publicação; contagem de prazos; Súmula 710
+5490,questões e processos incidentes; questões prejudiciais; exceções; restituição de coisas apreendidas; medidas assecuratórias; incidente de falsidade; incidente de insanidade mental
+5493,exceção de incompetência; exceção de ilegitimidade de parte
+5494,exceção de litispendência; exceção de coisa julgada
+5492,exceção de suspeição; impedimento; incompatibilidade; juiz suspeito; art. 252; art. 254
+5497,incidente de falsidade documental; incidente de insanidade mental do acusado; exame médico-legal; curador
+5496,medidas assecuratórias; sequestro de bens; hipoteca legal; arresto; bens imóveis; especialização; alienação antecipada; art. 125
+5491,questões prejudiciais; questões preliminares; prejudicial obrigatória; prejudicial facultativa; suspensão do processo; estado civil das pessoas; art. 92; art. 93
+5495,restituição de coisas apreendidas; terceiro de boa-fé; perdimento; art. 118
+5498,inquérito policial; delegado de polícia; autoridade policial; procedimento administrativo inquisitivo; notitia criminis; indiciamento; arquivamento; prazo do inquérito
+5502,acordo de não persecução penal; ANPP; confissão formal e circunstanciada; pena mínima inferior a quatro anos; infração sem violência ou grave ameaça; art. 28-A
+5499,conceito do inquérito policial; características do inquérito; inquisitivo; sigiloso; escrito; dispensável; oficiosidade; indisponibilidade; valor probatório do inquérito
+5501,conclusão do inquérito; relatório da autoridade policial; arquivamento; desarquivamento; novas provas; prazo de dez dias preso e trinta dias solto; art. 10; art. 17; art. 18; art. 28; Súmula 524
+5504,inquérito civil; inquéritos extrapoliciais; investigação pelo Ministério Público; comissão parlamentar de inquérito; procedimento investigatório criminal
+5503,juiz das garantias; controle da legalidade da investigação criminal; ADI 6298; art. 3-B; art. 3-C; art. 3-D
+5500,procedimento do inquérito policial; instauração de ofício; requisição do juiz ou do Ministério Público; requerimento do ofendido; diligências; indiciamento; incomunicabilidade; reprodução simulada dos fatos; art. 5; art. 6; art. 7
+5505,lei processual penal no tempo e no espaço; aplicação imediata; tempus regit actum; territorialidade; interpretação extensiva; analogia
+5508,interpretação da lei processual penal; interpretação extensiva; aplicação analógica; princípios gerais de direito; art. 3
+5506,lei processual penal no espaço; princípio da territorialidade; locus regit actum; tratados e convenções; art. 1
+5507,lei processual penal no tempo; aplicação imediata; tempus regit actum; normas processuais mistas; normas híbridas; validade dos atos realizados; art. 2
+5509,nulidades; nulidade absoluta; nulidade relativa; prejuízo; pas de nullité sans grief; preclusão; convalidação; art. 563; art. 564
+5510,nulidade absoluta; nulidade relativa; princípio do prejuízo; princípio do interesse; princípio da causalidade; Súmula 523; Súmula 160
+5511,nulidades em espécie; incompetência; suspeição; ilegitimidade de parte; falta de citação; falta de defesa; art. 564
+5512,teoria geral dos recursos; pressupostos recursais; efeitos dos recursos; princípios recursais; reformatio in pejus; fungibilidade; voluntariedade
+5516,classificação dos recursos; recurso ordinário; recurso extraordinário; recurso voluntário; recurso de ofício; reexame necessário; recurso total; recurso parcial
+5515,efeitos dos recursos; efeito devolutivo; efeito suspensivo; efeito extensivo; efeito regressivo; efeito iterativo; efeito translativo; art. 580
+5514,pressupostos de admissibilidade recursal; cabimento; adequação; tempestividade; regularidade formal; interesse recursal; legitimidade; prazo recursal
+5513,princípios recursais; duplo grau de jurisdição; taxatividade; unirrecorribilidade; fungibilidade; voluntariedade; proibição da reformatio in pejus; reformatio in pejus indireta
+5517,prisões em espécie; prisão em flagrante; prisão preventiva; prisão temporária; prisão domiciliar; liberdade provisória; medidas cautelares
+5523,liberdade provisória; fiança; liberdade provisória sem fiança; quebramento da fiança; crimes inafiançáveis; art. 321; art. 322; art. 323
+5522,medidas cautelares diversas da prisão; monitoração eletrônica; recolhimento domiciliar noturno; comparecimento periódico em juízo; proibição de ausentar-se da comarca; suspensão do exercício de função pública; art. 319
+5521,prisão domiciliar; substituição da prisão preventiva; gestante; mãe de criança de até doze anos; maior de oitenta anos; extremamente debilitado por doença grave; art. 317; art. 318
+5519,prisão preventiva; garantia da ordem pública; garantia da ordem econômica; conveniência da instrução criminal; assegurar a aplicação da lei penal; fumus comissi delicti; periculum libertatis; revisão a cada noventa dias; vedação de decretação de ofício; art. 312; art. 313
+5520,prisão temporária; Lei 7.960; cinco dias prorrogáveis; trinta dias nos crimes hediondos; imprescindível para as investigações do inquérito policial
+5518,prisão em flagrante; flagrante próprio; flagrante impróprio; flagrante presumido; flagrante preparado; flagrante esperado; flagrante forjado; flagrante diferido; auto de prisão em flagrante; nota de culpa; art. 302
+5530,procedimento comum ordinário; pena máxima igual ou superior a quatro anos; resposta à acusação; absolvição sumária; audiência de instrução e julgamento; art. 394
+5531,oferecimento da denúncia; rejeição da denúncia ou queixa; recebimento da peça acusatória; inépcia; falta de justa causa; art. 395; art. 396
+5534,absolvição sumária no procedimento comum; existência manifesta de causa excludente da ilicitude ou da culpabilidade; fato não constitui crime; extinta a punibilidade; art. 397
+5536,alegações finais orais; memoriais; vinte minutos prorrogáveis por mais dez; art. 403
+5535,audiência de instrução e julgamento; declarações do ofendido; inquirição das testemunhas de acusação e de defesa; interrogatório ao final; prazo de sessenta dias; identidade física do juiz; art. 400
+5532,classificação dos procedimentos; procedimento comum; procedimento ordinário; procedimento sumário; procedimento sumaríssimo; procedimentos especiais; art. 394
+5533,defesa preliminar; resposta à acusação; prazo de dez dias; defesa prévia; art. 396-A
+5537,sentença no procedimento ordinário; prazo de dez dias para sentença; art. 403
+5539,procedimento sumaríssimo; juizados especiais criminais; Lei 9.099; infração de menor potencial ofensivo; termo circunstanciado; audiência preliminar; composição dos danos civis; transação penal
+5540,competência dos juizados especiais criminais; infrações de menor potencial ofensivo; pena máxima não superior a dois anos; conexão com o juízo comum; art. 60; art. 61
+5542,suspensão condicional do processo; sursis processual; pena mínima igual ou inferior a um ano; período de prova de dois a quatro anos; art. 89; Súmula 696; Súmula 243
+5541,transação penal; proposta de aplicação imediata de pena restritiva de direitos ou multa; Ministério Público; art. 76; Súmula Vinculante 35
+5538,procedimento comum sumário; pena máxima inferior a quatro anos; audiência em trinta dias; art. 531
+5524,tribunal do júri; crimes dolosos contra a vida; plenitude de defesa; sigilo das votações; soberania dos veredictos; procedimento bifásico; pronúncia; jurados; quesitos
+5527,pronúncia; impronúncia; desclassificação; absolvição sumária no júri; in dubio pro societate; indícios suficientes de autoria; art. 413; art. 414; art. 415; art. 419
+5528,organização do júri; alistamento dos jurados; sorteio dos jurados; conselho de sentença; sessão de julgamento em plenário; debates; quesitação; recusas peremptórias; desaforamento; art. 427; art. 447; art. 483
+5525,princípios constitucionais do júri; plenitude de defesa; sigilo das votações; soberania dos veredictos; competência para os crimes dolosos contra a vida
+5526,procedimento bifásico do júri; judicium accusationis; judicium causae; sumário da culpa; instrução preliminar; preparação do processo para julgamento em plenário; art. 406; art. 422
+5529,sentença do júri; juiz presidente; fixação da pena pelo juiz presidente; desclassificação em plenário; execução provisória da pena no júri; art. 492
+5543,provas em espécie; exame de corpo de delito; perícia; interrogatório; confissão; testemunhas; reconhecimento de pessoas; acareação; documentos; indícios; busca e apreensão
+5552,acareação; divergência entre declarações; art. 229
+5558,ação controlada; retardamento da intervenção policial; flagrante diferido; art. 8 da Lei 12.850
+5554,busca e apreensão; busca domiciliar; busca pessoal; mandado de busca; fundada suspeita; inviolabilidade do domicílio; art. 240; art. 244
+5544,cadeia de custódia; vestígios; rastreabilidade; quebra da cadeia de custódia; art. 158-A; art. 158-B
+5556,captação ambiental; sinais eletromagnéticos ópticos ou acústicos; art. 8-A da Lei 9.296
+5557,colaboração premiada; delação premiada; acordo de colaboração; homologação do acordo; benefícios ao colaborador; art. 4 da Lei 12.850
+5548,confissão; confissão divisível e retratável; valor probatório da confissão; confissão extrajudicial; art. 197; art. 200
+5549,declarações do ofendido; vítima; ofendido; art. 201
+5545,exame de corpo de delito; exame direto; exame indireto; infrações que deixam vestígios; prova testemunhal supletiva; art. 158; art. 167
+5559,infiltração de agentes; agente infiltrado; infiltração virtual; autorização judicial; art. 10 da Lei 12.850
+5555,interceptação telefônica como prova; quebra do sigilo de dados telefônicos; dados cadastrais; encontro fortuito de provas; serendipidade
+5547,interrogatório judicial; direito ao silêncio; presença do defensor; videoconferência; interrogatório do réu preso; art. 185; art. 186
+5546,perícia; perito oficial; peritos não oficiais; assistente técnico; quesitos; laudo pericial; exame necroscópico; art. 159
+5553,prova documental; documentos; cartas particulares; documento em língua estrangeira; art. 231; art. 232
+5550,prova testemunhal; testemunha; compromisso de dizer a verdade; contradita; testemunhas numerárias; informantes; pessoas proibidas de depor; depoimento sem dano; art. 202; art. 206; art. 207; art. 212
+5551,reconhecimento de pessoas e coisas; reconhecimento fotográfico; procedimento do reconhecimento; art. 226; art. 228
+5560,recursos em espécie; recurso em sentido estrito; apelação; embargos; protesto por novo júri; carta testemunhável; agravo em execução; correição parcial; recurso especial; recurso extraordinário
+5566,agravo em execução; decisões do juiz da execução; prazo de cinco dias; art. 197 da LEP; Súmula 700
+5562,apelação; prazo de cinco dias; razões em oito dias; apelação no júri; decisão manifestamente contrária à prova dos autos; efeito devolutivo; art. 593; art. 600
+5567,carta testemunhável; denegação de recurso; obstar o seguimento do recurso; art. 639
+5568,correição parcial; erro ou abuso que importe inversão tumultuária dos atos; reclamação
+5564,embargos infringentes; embargos de nulidade; decisão não unânime de segunda instância desfavorável ao réu; prazo de dez dias; art. 609
+5565,embargos de declaração; ambiguidade obscuridade contradição ou omissão; prazo de dois dias; embarguinhos; art. 382; art. 619
+5563,protesto por novo júri; recurso revogado; Lei 11.689; pena igual ou superior a vinte anos
+5571,recurso especial; Superior Tribunal de Justiça; contrariedade a lei federal; divergência jurisprudencial; prequestionamento; Súmula 7
+5570,recurso extraordinário; Supremo Tribunal Federal; repercussão geral; questão constitucional; prequestionamento
+5561,recurso em sentido estrito; RESE; decisão que não receber a denúncia; decisão de pronúncia; decisão sobre fiança; juízo de retratação; prazo de cinco dias; art. 581
+5569,recursos nos juizados especiais; turma recursal; apelação em dez dias; embargos de declaração nos juizados; art. 82; art. 83 da Lei 9.099
+5572,sentença penal; sentença absolutória; sentença condenatória; emendatio libelli; mutatio libelli; correlação; requisitos da sentença; publicação da sentença; art. 381; art. 386; art. 387
+5573,classificação dos provimentos judiciais; despachos de mero expediente; decisões interlocutórias simples; decisões interlocutórias mistas; decisões terminativas; decisões não terminativas; sentenças definitivas
+5577,efeitos da sentença penal condenatória; valor mínimo para reparação dos danos; prisão preventiva na sentença; art. 387 inciso IV
+5579,emendatio libelli; mutatio libelli; nova definição jurídica do fato; aditamento da denúncia; Súmula 453; art. 383; art. 384
+5576,fixação da pena na sentença; regime inicial de cumprimento; detração na sentença; art. 387 parágrafo 2
+5578,princípio da correlação entre acusação e sentença; congruência; sentença ultra petita; sentença extra petita; sentença citra petita
+5574,sentença absolutória; absolvição própria; absolvição imprópria; medida de segurança na sentença; fundamentos do art. 386; in dubio pro reo; art. 386
+5575,sentença condenatória; requisitos da sentença; fundamentação; relatório fundamentação e dispositivo; art. 387
+5580,sistemas e princípios processuais penais; sistema acusatório; sistema inquisitivo; sistema misto; devido processo legal; contraditório; ampla defesa
+5582,princípios do processo penal; devido processo legal; contraditório; ampla defesa; presunção de inocência; estado de inocência; in dubio pro reo; juiz natural; promotor natural; nemo tenetur se detegere; publicidade; duração razoável do processo; verdade real; favor rei; duplo grau de jurisdição
+5581,sistemas processuais penais; sistema acusatório; sistema inquisitivo; sistema misto; estrutura acusatória do processo penal; art. 3-A; vedação da iniciativa do juiz na fase de investigação
+5583,sujeitos do processo; juiz; Ministério Público; acusado; defensor; assistente de acusação; auxiliares da justiça; peritos e intérpretes; art. 251; art. 268
+5584,teoria geral das prisões; prisão pena; prisão processual; prisão cautelar; mandado de prisão; uso de algemas; Súmula Vinculante 11; emprego de força; art. 282; art. 283
+5589,audiência de custódia; vinte e quatro horas; apresentação do preso ao juiz; relaxamento da prisão ilegal; conversão em preventiva; concessão de liberdade provisória; art. 310
+5585,conceitos e espécies de prisão; prisão penal; prisão processual; prisão civil; prisão administrativa; prisão extrapenal; mandado de prisão; art. 283; art. 299
+5587,direitos e garantias do preso; comunicação ao juiz e à família; nota de culpa; assistência de advogado; direito ao silêncio; separação dos presos provisórios; art. 289-A; art. 300
+5586,imunidades prisionais; prisão especial; sala de Estado-Maior; imunidade parlamentar; Presidente da República; diplomatas; advogados; art. 295
+5588,relaxamento da prisão; prisão ilegal será imediatamente relaxada pela autoridade judiciária
+5590,teoria geral da prova; ônus da prova; sistemas de avaliação da prova; livre convencimento motivado; prova ilícita; prova emprestada; princípios da prova; meios de prova
+5591,objeto da prova; finalidade da prova; sujeitos da prova; ônus da prova; fatos notórios; produção de provas de ofício pelo juiz; art. 156
+5595,princípios da prova penal; comunhão da prova; audiência contraditória; autorresponsabilidade das partes; oralidade; liberdade probatória
+5593,prova emprestada; contraditório na prova emprestada; mesmas partes; Súmula 591
+5594,prova ilícita; prova ilegítima; frutos da árvore envenenada; fonte independente; descoberta inevitável; desentranhamento da prova ilícita; art. 157
+5592,sistemas de avaliação da prova; livre convencimento motivado; persuasão racional; íntima convicção; prova tarifada; sistema da prova legal; art. 155

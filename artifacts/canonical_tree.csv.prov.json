@@ -1,0 +1,10 @@
+{
+  "artifact": "canonical_tree.csv",
+  "sha256": "c935793a8ab723dac773936796f2abb36e1b24d6367ad4f45dd6a23a3c979acd",
+  "written_at": "2026-11-03T19:07:42+00:00",
+  "code_commit": "a5d9e11",
+  "produced_by": "deterministic rules over temas.csv plus manual_decisions.csv",
+  "llm_used": false,
+  "shadows": 20,
+  "inactive_dropped": 2
+}
