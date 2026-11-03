@@ -1,0 +1,54 @@
+# Every tunable number of the system lives here, so that no decision is hidden in code.
+
+[decision]
+# Share of the branch mass a subtopic must hold before we publish at level 2 instead of level 1.
+# Fixed a priori for student usefulness, never tuned on the gold sheet.
+rho = 0.85
+# The case rule: precision on published questions must be at least this value.
+target_precision = 0.95
+# Posterior probability that precision >= target required at the operating threshold.
+posterior_level = 0.80
+# Extra safety margin: the point estimate of precision at the threshold must reach this value.
+min_point_precision = 0.97
+# A different level 1 branch becomes an extra when it holds at least this probability mass.
+extras_min_mass = 0.20
+# Use one threshold per group (with or without a legal anchor) only if each group is large enough.
+group_thresholds = false
+min_group_size = 15
+
+[channels]
+enabled = ["law_article", "lexical", "prototypes", "knn", "subject", "duplicates"]
+
+[knn]
+k = 7
+temperature = 0.05
+extra_weight = 0.5
+
+[prototypes]
+temperature = 0.05
+top_k = 40
+
+[lexical]
+top_k = 40
+k1 = 1.2
+b = 0.75
+
+[duplicates]
+min_similarity = 0.92
+
+[aggregate]
+l2 = 0.01
+max_weight = 20.0
+correctness_c = 0.3
+
+[evaluation]
+folds = 10
+repeats = 20
+ablation_repeats = 3
+seed = 20261103
+lockbox_size = 20
+
+[embeddings]
+backend = "lsa"
+dimensions = 256
+seed = 0
