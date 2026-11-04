@@ -8,8 +8,11 @@ mean, and its calibration was measured out of fold (ECE).
 
 Uncertainty, per source, from two declared parts:
   * calibration shift: every published confidence of a source moves by the same delta ~ Normal(0, sigma).
-    sigma is the CV expected calibration error for the bank; for the new import it is divided by
-    sqrt(new_import_n_scale), because none of the 100 labels comes from it.
+    For the bank, sigma is the larger of two numbers: the CV expected calibration error (measured over the
+    whole confidence range) and the posterior standard deviation of the hit rate of the labeled questions
+    the rule publishes (the only labels inside the published range, about ten effective questions). The
+    global ECE alone would claim a calibration that was never checked where the rule publishes. For the
+    new import, sigma is divided by sqrt(new_import_n_scale), because none of the 100 labels comes from it.
   * binomial noise: each published question is then right with probability conf + delta.
 The interval is a 90% simulation interval.
 
@@ -38,9 +41,11 @@ def forecast(decisions, res, rows: pd.DataFrame, tau: float, weights: dict[str, 
     published = {g: [d for d in ds if d.decision == "publicar"] for g, ds in groups.items()}
     total_pub = sum(len(v) for v in published.values())
     coverage = total_pub / len(evaluated) if evaluated else 0.0
-    sigma = {"bank": ece, "new_import": ece / np.sqrt(n_scale)}
     evidence = labeled_evidence(rows, tau)
     labeled = {"bank": effective_beta(evidence, None, 1.0), "new_import": effective_beta(evidence, weights, n_scale)}
+    region_sd = beta_sd(labeled["bank"])
+    bank_sigma = max(ece, region_sd)
+    sigma = {"bank": bank_sigma, "new_import": bank_sigma / np.sqrt(n_scale)}
     rng = np.random.default_rng(seed)
     lo, hi = (1 - INTERVAL) / 2, 1 - (1 - INTERVAL) / 2
     simulated = np.zeros(SIMULATIONS)
@@ -74,6 +79,7 @@ def forecast(decisions, res, rows: pd.DataFrame, tau: float, weights: dict[str, 
         "precision_interval": (float(np.quantile(precision, lo)), float(np.quantile(precision, hi))),
         "probability_precision_below_target": float(np.mean(precision < target)),
         "precision_from_calibrated_confidence": calibrated,
+        "calibration_sigma_sources": {"global_ece": float(ece), "published_range_sd": float(region_sd)},
         "by_source": by_source,
         "labeled_evidence": {"questions": int(len(evidence)), "published_per_repeat": float(evidence.freq.sum()),
                              "errors_per_repeat": float((evidence.freq * (1 - evidence.hit)).sum())},
@@ -114,6 +120,12 @@ def effective_beta(evidence: pd.DataFrame, weights: dict[str, float] | None, n_s
     n_eff = float(v.sum() ** 2 / (v ** 2).sum()) * n_scale
     rate = float((v * hit).sum() / v.sum())
     return {"a": JEFFREYS + rate * n_eff, "b": JEFFREYS + (1 - rate) * n_eff, "effective_n": n_eff, "rate": rate}
+
+
+def beta_sd(st: dict) -> float:
+    """Standard deviation of a Beta(a, b) posterior."""
+    a, b = st["a"], st["b"]
+    return float(np.sqrt(a * b / ((a + b) ** 2 * (a + b + 1))))
 
 
 def render(fc: dict, extra_lines: list[str]) -> str:

@@ -10,11 +10,10 @@ import pandas as pd
 from vde import shift
 from vde.calibrate import min_run_to_certify
 from vde.config import load_config
-from vde.engine import Engine
 from vde.evaluate import calibration_comparison, run_ablations, save_json, summarize, with_slice
 from vde.forecast import forecast, render
 from vde.paths import ARTIFACT_DIR, OUTPUT_DIR
-from vde.pipeline import MODEL_FILE, dev_arrays, load_oof, publish
+from vde.pipeline import MODEL_FILE, dev_arrays, load_engine, load_oof, publish
 from vde.resources import Resources
 
 
@@ -26,10 +25,10 @@ def evaluate(ablations: bool = False) -> dict:
     summary = summarize(cv, config)
     calib = calibration_comparison(cv)
     _, _, per_q = dev_arrays(cv)
-    weights, shift_info = _shift(res, model, per_q)
+    weights, shift_info = _shift(res, model, per_q, config)
     tau = model["threshold"]
     decisions = publish(config=config)
-    rows = with_slice(cv.rows, config["decision"].get("slice", "none"))
+    rows = with_slice(cv.rows, config["decision"].get("slice", "none"), config["decision"]["min_branch_mass"])
     fc = forecast(decisions, res, rows, tau, weights, config["forecast"]["new_import_n_scale"],
                   ece=summary["ece"], target=config["decision"]["target_precision"])
     report = {"cv": summary, "calibration": calib, "shift": shift_info, "forecast": fc,
@@ -48,12 +47,11 @@ def evaluate(ablations: bool = False) -> dict:
     return report
 
 
-def _shift(res: Resources, model: dict, per_q: pd.DataFrame):
+def _shift(res: Resources, model: dict, per_q: pd.DataFrame, config: dict):
     new_ids = [q for q in res.question_ids if res.parsed[q].is_new_import]
     old_ids = [q for q in res.question_ids if not res.parsed[q].is_new_import]
     # The final model, loaded exactly as publish loads it, so the numbers match publicacao.csv.
-    engine = Engine(res, model["state"]["scorer"]["channels"], model["state"]["node_mode"])
-    engine.load_state(model["state"], model["labeled_ids"])
+    engine = load_engine(res, model, config)
     new_feats = pd.DataFrame([p.features | {"conf": p.confidence} for p in engine.predict(new_ids)])
     old_unlabeled = [q for q in old_ids if q not in res.gold]
     old_feats = pd.DataFrame([p.features | {"conf": p.confidence} for p in engine.predict(old_unlabeled)])
@@ -136,6 +134,7 @@ def _explanation(report: dict, model: dict) -> list[str]:
     search = cv["threshold_cv_by_rule"]["search"]
     bank, new = fc["by_source"]["bank"], fc["by_source"]["new_import"]
     ev = fc["labeled_evidence"]
+    sig = fc["calibration_sigma_sources"]
     pac = cv["precision_at_coverage"]
     run80 = min_run_to_certify(dec["target_precision"], 0.80)
     top_errors = report.get("top_errors", [])
@@ -151,8 +150,10 @@ def _explanation(report: dict, model: dict) -> list[str]:
         f"fora da folha-verdade: {bank['published']} do banco e {new['published']} da importação nova). Não é "
         "estimativa, por isso o intervalo é degenerado.",
         f"2. Regra de publicação, fixada antes de olhar a curva: publicar quando a confiança calibrada for >= "
-        f"{dec['target_precision']:.2f}, no nível 1 da árvore (tema, não subtema). A confiança é uma logística "
-        f"treinada fora da amostra; ECE {cv['ece']:.3f} nas linhas da CV.",
+        f"{dec['target_precision']:.2f}, no nível 1 da árvore (tema, não subtema), e só com evidência de texto e "
+        f"massa do ramo >= {dec['min_branch_mass']:.2f}. A confiança é uma logística treinada fora da amostra; "
+        f"ECE {cv['ece']:.3f} nas linhas da CV. Uma recalibração de Platt sobre essas linhas foi testada e "
+        "descartada: não melhora o ECE e corta a cobertura pela metade.",
         f"3. Evidência: {cv['questions']} questões rotuladas, CV de 10 folds x {cfg['evaluation']['repeats']} "
         f"repetições. Em cada repetição (um modelo implantável), a regra publica em média "
         f"{ev['published_per_repeat']:.1f} rotuladas, com {ev['errors_per_repeat']:.2f} erros. São "
@@ -164,9 +165,12 @@ def _explanation(report: dict, model: dict) -> list[str]:
         "e por isso a regra é fixa.",
         f"5. Precisão prevista: a confiança calibrada de cada publicada é a sua chance de estar certa, então a "
         f"precisão esperada é a confiança média das publicadas ({_fmt(fc['precision_from_calibrated_confidence'])}). "
-        f"A incerteza tem duas partes declaradas: um desvio de calibração comum a cada fonte, normal com desvio "
-        f"igual ao ECE da CV, e o ruído binomial de cada questão. Como a chance de acerto não passa de 1, o desvio "
-        f"para cima é cortado e a média simulada fica um pouco abaixo da confiança média. Banco: {bank['published']} publicadas, confiança "
+        f"A incerteza tem duas partes declaradas: um desvio de calibração comum a cada fonte, normal, e o ruído "
+        f"binomial de cada questão. O desvio é o maior entre o ECE da CV ({sig['global_ece']:.3f}, medido em toda a "
+        f"faixa de confiança) e o desvio-padrão da taxa de acerto das rotuladas que a regra publica "
+        f"({sig['published_range_sd']:.3f}): são os únicos rótulos dentro da faixa publicada. Como a chance de "
+        f"acerto não passa de 1, o desvio para cima é cortado e a média simulada fica abaixo da confiança média. "
+        f"Banco: {bank['published']} publicadas, confiança "
         f"média {_fmt(bank['mean_confidence_of_published'])}, desvio {bank['calibration_sigma']:.3f}: "
         f"{bank['precision']:.2f} ({iv(bank['precision_interval'])}).",
         f"6. Importação nova: nenhum dos 100 rótulos vem dela ({sh['labeled_from_new_import']} de "

@@ -20,6 +20,9 @@ class Channel(ABC):
     label_dependent: bool = False
     # Prior channels score every topic, so they must not add candidates to the softmax.
     proposes_candidates: bool = True
+    # Embedding channels always return candidates, even for an empty text, so they never count as evidence
+    # on their own: the evidence gate (decide.evidence_gate) asks for at least one text based channel.
+    embedding_based: bool = False
 
     def __init__(self, res: Resources):
         self.res = res

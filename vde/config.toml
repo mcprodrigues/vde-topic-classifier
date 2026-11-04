@@ -21,6 +21,9 @@ threshold_rule = "calibrated"
 slice = "none"
 # A different level 1 branch becomes an extra when it holds at least this probability mass.
 extras_min_mass = 0.20
+# Evidence gate (decide.evidence_gate): never publish when the chosen branch holds less than this mass,
+# whatever the confidence. Set below the lowest mass among the v0.2 publications (0.41), as a safety net.
+min_branch_mass = 0.30
 
 [channels]
 enabled = ["special_law", "code_article", "lexical", "prototypes", "knn", "subject", "duplicates"]
@@ -48,6 +51,11 @@ transform = "log"
 l2 = 0.01
 max_weight = 20.0
 correctness_c = 0.3
+# Recalibration of the deployed confidence: "platt" (fitted on the outer CV rows, cross fitted for the metrics)
+# or "none" (the correctness model output as is). Platt was tested and discarded: same row ECE (0.049 against
+# 0.046), worse per question ECE, and it pulls down the top of the queue, where the labels are 18 of 18 right,
+# so coverage halves (37 against 75 published).
+recalibration = "none"
 
 [evaluation]
 folds = 10

@@ -9,6 +9,8 @@ What is train, calibration and test among the 100 labels (ADR-1, revised in v0.2
     confidence averaged over repeats, which no deployed model produces.
   * The threshold is chosen on the out of fold rows; its honest precision comes from a nested split
     over questions (choose on 4/5 of the questions, measure on the other 1/5, repeated).
+  * The recalibration of the deployed model is fitted on these outer rows; the rows themselves carry a
+    cross fitted version of it (fitted on the other questions), so no metric sees its own calibration.
 """
 
 from __future__ import annotations
@@ -25,12 +27,13 @@ from vde.aggregate import FEATURES
 from vde.calibrate import (Platt, brier, choose_threshold_per_repeat, clopper_pearson_lower,
                            expected_calibration_error, ltt_threshold, reliability_table, threshold_stats)
 from vde.config import load_config
-from vde.decide import SLICES, eligible
+from vde.decide import SLICES, eligible, evidence_gate
 from vde.engine import Engine
 from vde.resources import Resources
 
 THRESHOLD_CV_FOLDS = 5
 THRESHOLD_CV_SPLITS = 10
+RECALIBRATION_FOLDS = 5
 
 
 @dataclass
@@ -71,13 +74,16 @@ def cross_validate(res: Resources, ids: list[str], folds: int, repeats: int, see
                              "node": pred.choice.node if pred.choice else None,
                              "level": res.tree.level(pred.choice.node) if pred.choice else None,
                              "is_out": gold.is_out, "is_new_import": res.parsed[pred.qid].is_new_import,
+                             "text_evidence": pred.text_evidence,
+                             "branch_mass": pred.choice.branch_mass if pred.choice else 0.0,
                              **pred.features})
     return CvResult(pd.DataFrame(rows), time.time() - start)
 
 
 def summarize(cv: CvResult, config: dict) -> dict:
     dec = config["decision"]
-    rows = with_slice(cv.rows, dec.get("slice", "none"))
+    gate = dec.get("min_branch_mass", 0.0)
+    rows = with_slice(cv.rows, dec.get("slice", "none"), gate)
     q = cv.per_question()
     curve = per_repeat_curve(rows)
     choice = select_threshold(rows, dec)
@@ -97,7 +103,7 @@ def summarize(cv: CvResult, config: dict) -> dict:
         "threshold_cv": threshold_cv(rows, dec),
         "threshold_cv_by_rule": {r: threshold_cv(rows, dec, r) for r in ("calibrated", "search")},
         "slice": dec.get("slice", "none"),
-        "threshold_cv_by_slice": {n: threshold_cv(with_slice(cv.rows, n), dec) for n in SLICES},
+        "threshold_cv_by_slice": {n: threshold_cv(with_slice(cv.rows, n, gate), dec) for n in SLICES},
         "ece": expected_calibration_error(rows.conf.to_numpy(), rows.hit.to_numpy()),
         "brier": brier(rows.conf.to_numpy(), rows.hit.to_numpy()),
         "ece_mean_over_repeats": expected_calibration_error(q.conf.to_numpy(), q.hit.to_numpy().astype(float)),
@@ -106,9 +112,32 @@ def summarize(cv: CvResult, config: dict) -> dict:
     }
 
 
-def with_slice(rows: pd.DataFrame, slice_name: str) -> pd.DataFrame:
-    """Add the `eligible` column from the feature columns that cross_validate already stores."""
-    return rows.assign(eligible=[eligible(r, slice_name) for r in rows[FEATURES].to_dict("records")])
+def with_slice(rows: pd.DataFrame, slice_name: str, min_branch_mass: float = 0.0) -> pd.DataFrame:
+    """Add the `eligible` column: the publication slice and the evidence gate, as decide applies them."""
+    in_slice = [eligible(r, slice_name) for r in rows[FEATURES].to_dict("records")]
+    gate_ok = [not evidence_gate(bool(t), float(m), min_branch_mass)
+               for t, m in zip(rows.text_evidence, rows.branch_mass)]
+    return rows.assign(eligible=np.logical_and(in_slice, gate_ok))
+
+
+def crossfit_recalibration(rows: pd.DataFrame, seed: int = 0) -> pd.DataFrame:
+    """Platt recalibration of the out of fold confidence, cross fitted over questions.
+
+    Each question's rows get a recalibration fitted on the other questions only (all repeats of a question
+    stay in the same part), so the metrics computed afterwards never see their own calibration. The raw
+    confidence is kept in `conf_raw`.
+    """
+    rng = np.random.default_rng(seed)
+    qids = rng.permutation(np.array(sorted(rows.qid.unique())))
+    conf_raw = rows.conf.to_numpy(dtype=float)
+    hit = rows.hit.to_numpy(dtype=float)
+    out = conf_raw.copy()
+    for k in range(RECALIBRATION_FOLDS):
+        test = rows.qid.isin(set(qids[k::RECALIBRATION_FOLDS])).to_numpy()
+        if hit[~test].min() == hit[~test].max():
+            continue
+        out[test] = Platt().fit(conf_raw[~test], hit[~test]).predict(conf_raw[test])
+    return rows.assign(conf_raw=conf_raw, conf=out)
 
 
 def per_repeat_curve(rows: pd.DataFrame, coverages=(0.1, 0.2, 0.3, 0.5)) -> dict:
