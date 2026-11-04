@@ -71,17 +71,17 @@ as decisões de configuração usaram 20 repetições):
 
 | Experimento | Acerto | AUC | AURC | Veredito |
 |---|---|---|---|---|
-| E0: BM25 só com título e caminho | 0,487 | 0,757 | 0,304 | Linha de base |
-| E1: BM25 com cartões + kNN | 0,647 | 0,747 | 0,197 | Cartões ~+14 p.p., kNN ~+2 p.p. (sem kNN: 0,653) |
-| E1 + protótipos | 0,670 | 0,748 | 0,167 | Entra; sem protótipos o acerto cai para 0,647 |
-| Sistema completo (nível 1) | 0,673 | 0,792 | 0,142 | Referência |
-| Sem lei especial / sem artigo | 0,673 / 0,680 | 0,782 / 0,764 | 0,146 / 0,149 | Ficam: não mudam o acerto, mas melhoram a ordenação |
-| + prior de lixeira | 0,673 | 0,792 | 0,142 | **Descartado**: peso aprendido = 0 |
-| + canal de segmentos | 0,653 | 0,810 | 0,144 | Ordena melhor, acerta menos; virou feature, não canal |
-| + matriz de confusão do `assunto_origem` | 0,707 | 0,732 | 0,143 | **Descartado**: AUC pior, e o formato muda na importação nova |
-| Escala linear dos canais | 0,690 | 0,738 | 0,155 | **Descartado**: AUC pior |
-| Folha top-1, sem raciocínio de ramo | 0,643 | 0,778 | 0,179 | **Descartado** |
-| Descer ao subtema (ρ = 0,85) | 0,663 | 0,754 | 0,165 | **Descartado** na v0.2 (era o padrão da v0.1) |
+| E0: BM25 só com título e caminho | 0,487 | 0,760 | 0,302 | Linha de base |
+| E1: BM25 com cartões + kNN | 0,647 | 0,745 | 0,199 | Cartões ~+14 p.p., kNN ~+2 p.p. (sem kNN: 0,653) |
+| E1 + protótipos | 0,670 | 0,748 | 0,166 | Entra; sem protótipos o acerto cai para 0,647 |
+| Sistema completo (nível 1) | 0,673 | 0,791 | 0,143 | Referência |
+| Sem lei especial / sem artigo | 0,673 / 0,680 | 0,781 / 0,764 | 0,146 / 0,149 | Ficam: não mudam o acerto, mas melhoram a ordenação |
+| + prior de lixeira | 0,673 | 0,791 | 0,143 | **Descartado**: peso aprendido = 0 |
+| + canal de segmentos | 0,653 | 0,809 | 0,144 | Ordena melhor, acerta menos; virou feature, não canal |
+| + matriz de confusão do `assunto_origem` | 0,707 | 0,735 | 0,143 | **Descartado**: AUC pior, e o formato muda na importação nova |
+| Escala linear dos canais | 0,690 | 0,737 | 0,155 | **Descartado**: AUC pior |
+| Folha top-1, sem raciocínio de ramo | 0,643 | 0,781 | 0,178 | **Descartado** |
+| Descer ao subtema (ρ = 0,85) | 0,663 | 0,755 | 0,164 | **Descartado** na v0.2 (era o padrão da v0.1) |
 | Fatias de publicação `clean` / `anchored` | | | | **Descartadas**: precisão aninhada igual (1,00), cobertura cai pela metade |
 | Embeddings neurais E5 small / base / large (20 rep.) | 0,679 / 0,688 / 0,679 | 0,722 / 0,728 / 0,743 | 0,184 / 0,182 / 0,167 | **Descartados**: o acerto não muda e a ordenação piora; precisão aninhada 0,89 / 0,88 / 0,95 contra 1,00 (`outputs/embeddings_neural.csv`) |
 
