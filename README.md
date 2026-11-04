@@ -130,6 +130,7 @@ manuais estão em [`artifacts/manual_decisions.csv`](artifacts/manual_decisions.
 
 ## Fluxo de desenvolvimento
 
-`feature/* -> develop -> main`, sempre com merge `--no-ff`. A v0.2 está em `develop`: `feature/forecast-format`,
+`feature/* -> develop -> main`, sempre com merge `--no-ff`. O release `v0.2.0` está em `main`: `feature/forecast-format`,
 `feature/nested-cv`, `feature/publish-slice`, `feature/shift-forecast`, `feature/production-hardening`,
-`feature/docs-v0.2`. O release `v0.1.0` continua em `main`.
+`feature/docs-v0.2`, `feature/forecast-calibrated`, `feature/neural-embeddings`, `feature/review-fixes` e
+`feature/ablations-refresh`. O release `v0.1.0` continua marcado pela tag de mesmo nome.
