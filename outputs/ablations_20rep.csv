@@ -1,0 +1,5 @@
+experiment,channels,hit_rate,branch_hit_rate,auc,aurc,prec_at_10,prec_at_20,nested_precision,nested_published,level2_share,seconds
+full,special_law+code_article+lexical+prototypes+knn+subject+duplicates,0.666,0.676,0.7640473557389725,0.161601314516341,0.97,0.9275,0.9922480620155039,6.45,0.172,288.0
+full_minus_prototypes,special_law+code_article+lexical+knn+subject+duplicates,0.632,0.642,0.7914101197028068,0.17417168044399917,0.945,0.9324999999999999,0.9787234042553191,7.05,0.15,282.0
+E3_always_level1,special_law+code_article+lexical+prototypes+knn+subject+duplicates,0.676,0.676,0.7919314778289138,0.1422851749216079,0.985,0.9574999999999999,1.0,8.0,0.0,289.3
+level1_minus_prototypes,special_law+code_article+lexical+knn+subject+duplicates,0.642,0.642,0.8158186707043282,0.15336569778375478,0.9800000000000001,0.95,0.9873417721518988,7.9,0.0,254.3

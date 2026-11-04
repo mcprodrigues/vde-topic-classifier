@@ -12,6 +12,7 @@ from vde.engine import Prediction
 from vde.resources import Resources
 
 OUT_OF_SCOPE_DISCIPLINES = frozenset({"Direito Penal Militar", "Direito Processual Penal Militar"})
+SLICES = ("none", "clean", "anchored")
 
 
 @dataclass(frozen=True)
@@ -33,10 +34,32 @@ def decide(pred: Prediction, res: Resources, threshold: float) -> Decision:
     if pred.choice is None:
         return Decision(pred.qid, "revisar", None, (), 0.0, "nenhum canal trouxe evidência")
     extras = tuple(e for e in pred.extras if e != pred.choice.node)
+    slice_name = res.config["decision"].get("slice", "none")
+    if pred.confidence >= threshold and not eligible(pred.features, slice_name):
+        return Decision(pred.qid, "revisar", pred.choice.node, extras, round(pred.confidence, 4),
+                        f"fora da faixa de publicação ({slice_name}): " + review_reason(pred, res))
     if pred.confidence >= threshold:
         return Decision(pred.qid, "publicar", pred.choice.node, extras, round(pred.confidence, 4), "")
     return Decision(pred.qid, "revisar", pred.choice.node, extras, round(pred.confidence, 4),
                     review_reason(pred, res))
+
+
+def eligible(features: dict, slice_name: str = "none") -> bool:
+    """Pre declared publication slices, evaluated out of fold on the same feature rows (ADR-11).
+
+    none: every question may publish. clean: no labeled out neighbour, no law pointing elsewhere and
+    alternatives that stay on one subject. anchored: clean plus a legal anchor or channel agreement.
+    """
+    if slice_name not in SLICES:
+        raise ValueError(f"unknown slice {slice_name!r}")
+    if slice_name == "none":
+        return True
+    clean = (features["knn_out_share"] == 0 and features["anchor_conflict"] == 0
+             and features["segment_dispersion"] < 0.5)
+    if slice_name == "clean":
+        return bool(clean)
+    anchored = features["special_law_hit"] or features["code_article_hit"] or features["agreement"] >= 0.8
+    return bool(clean and anchored)
 
 
 def out_rule(pred: Prediction, res: Resources) -> str:

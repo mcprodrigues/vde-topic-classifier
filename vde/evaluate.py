@@ -25,6 +25,7 @@ from vde.aggregate import FEATURES
 from vde.calibrate import (Platt, brier, choose_threshold_per_repeat, clopper_pearson_lower,
                            expected_calibration_error, ltt_threshold, reliability_table, threshold_stats)
 from vde.config import load_config
+from vde.decide import SLICES, eligible
 from vde.engine import Engine
 from vde.resources import Resources
 
@@ -51,7 +52,7 @@ class CvResult:
 
 
 def cross_validate(res: Resources, ids: list[str], folds: int, repeats: int, seed: int,
-                   channel_names: list[str] | None = None, node_mode: str = "branch") -> CvResult:
+                   channel_names: list[str] | None = None, node_mode: str | None = None) -> CvResult:
     engine = Engine(res, channel_names, node_mode)
     rng = np.random.default_rng(seed)
     rows = []
@@ -75,8 +76,8 @@ def cross_validate(res: Resources, ids: list[str], folds: int, repeats: int, see
 
 
 def summarize(cv: CvResult, config: dict) -> dict:
-    rows = cv.rows
     dec = config["decision"]
+    rows = with_slice(cv.rows, dec.get("slice", "none"))
     q = cv.per_question()
     curve = per_repeat_curve(rows)
     choice = select_threshold(rows, dec)
@@ -95,12 +96,19 @@ def summarize(cv: CvResult, config: dict) -> dict:
         "threshold_rule": dec["threshold_rule"],
         "threshold_cv": threshold_cv(rows, dec),
         "threshold_cv_by_rule": {r: threshold_cv(rows, dec, r) for r in ("calibrated", "search")},
+        "slice": dec.get("slice", "none"),
+        "threshold_cv_by_slice": {n: threshold_cv(with_slice(cv.rows, n), dec) for n in SLICES},
         "ece": expected_calibration_error(rows.conf.to_numpy(), rows.hit.to_numpy()),
         "brier": brier(rows.conf.to_numpy(), rows.hit.to_numpy()),
         "ece_mean_over_repeats": expected_calibration_error(q.conf.to_numpy(), q.hit.to_numpy().astype(float)),
         "level2_share": float((rows.level == 2).mean()),
         "seconds": round(cv.seconds, 1),
     }
+
+
+def with_slice(rows: pd.DataFrame, slice_name: str) -> pd.DataFrame:
+    """Add the `eligible` column from the feature columns that cross_validate already stores."""
+    return rows.assign(eligible=[eligible(r, slice_name) for r in rows[FEATURES].to_dict("records")])
 
 
 def per_repeat_curve(rows: pd.DataFrame, coverages=(0.1, 0.2, 0.3, 0.5)) -> dict:
@@ -224,6 +232,8 @@ ABLATIONS = {
     "full_plus_subject_confusion": {"config": {"subject": {"learn_confusion": True}}},
     "E3_leaf_top1": {"node_mode": "leaf"},
     "E3_always_level1": {"node_mode": "level1"},
+    "E3_branch_rho": {"node_mode": "branch"},
+    "level1_minus_prototypes": {"drop": ["prototypes"], "node_mode": "level1"},
     "linear_transform": {"config": {"aggregate": {"transform": "linear"}}},
 }
 
@@ -240,7 +250,7 @@ def run_ablations(base_config: dict, ids: list[str], names: list[str] | None = N
         channels = spec.get("channels") or [c for c in config["channels"]["enabled"] if c not in spec.get("drop", [])]
         channels = channels + [c for c in spec.get("add", []) if c not in channels]
         cv = cross_validate(res, ids, ev["folds"], repeats or ev["ablation_repeats"], ev["seed"], channels,
-                            spec.get("node_mode", "branch"))
+                            spec.get("node_mode"))
         s = summarize(cv, config)
         out.append({"experiment": name, "channels": "+".join(channels), "hit_rate": s["hit_rate"],
                     "branch_hit_rate": s["branch_hit_rate"], "auc": s["auc"], "aurc": s["aurc"],

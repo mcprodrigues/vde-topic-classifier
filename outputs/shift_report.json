@@ -1,10 +1,10 @@
 {
-  "domain_auc": 0.5618000000000001,
-  "effective_n_after_weighting": 74.22524579258167,
+  "domain_auc": 0.5532333333333334,
+  "effective_n_after_weighting": 74.45600537801693,
   "mean_confidence": {
-    "dev_oof": 0.6702941348383592,
-    "bank_unlabeled": 0.6417301560648361,
-    "new_import": 0.6839830647500554
+    "dev_oof": 0.6792311848558925,
+    "bank_unlabeled": 0.6433741219067783,
+    "new_import": 0.7015527009012004
   },
   "feature_means": {
     "dev_oof": {
