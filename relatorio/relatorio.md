@@ -77,6 +77,7 @@ as decisões de configuração usaram 20 repetições):
 | Folha top-1, sem raciocínio de ramo | 0,643 | 0,778 | 0,179 | **Descartado** |
 | Descer ao subtema (ρ = 0,85) | 0,663 | 0,754 | 0,165 | **Descartado** na v0.2 (era o padrão da v0.1) |
 | Fatias de publicação `clean` / `anchored` | | | | **Descartadas**: precisão aninhada igual (1,00), cobertura cai pela metade |
+| Embeddings neurais E5 small / base / large (20 rep.) | 0,679 / 0,688 / 0,679 | 0,722 / 0,728 / 0,743 | 0,184 / 0,182 / 0,167 | **Descartados**: o acerto não muda e a ordenação piora; precisão aninhada 0,89 / 0,88 / 0,95 contra 1,00 (`outputs/embeddings_neural.csv`) |
 
 ## b) Os 100 rótulos
 
@@ -118,8 +119,9 @@ pena; Q0291, prazo do inquérito na Lei de Drogas) eram os erros do topo na v0.1
 é a regra que a equipe usa para `fora` (memo).
 
 **O que o sistema ainda erra e o que resolveria.** (1) Questões de caso em que a narrativa esconde o tema
-doutrinário: resolveria um segundo nível de cartões com termos de teoria geral, ou embeddings neurais
-(`vde build embeddings --backend st`). (2) Colchas de assertivas que cobrem vários temas: vão para revisão por
+doutrinário: resolveria um segundo nível de cartões com termos de teoria geral. Embeddings
+neurais não resolvem: testados com três tamanhos do E5 multilíngue, deixaram o acerto igual e a confiança pior,
+porque o BM25 nos cartões, e não a similaridade vetorial, é o que carrega o sistema. (2) Colchas de assertivas que cobrem vários temas: vão para revisão por
 dispersão. (3) Gêmeos entre disciplinas (Ação Penal em Penal e em Processo Penal): faltam rótulos.
 
 ## d) Produção: 50 mil questões por semana

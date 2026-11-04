@@ -1,8 +1,9 @@
 """Vector representations of questions, question segments and topic cards, cached as one .npz file.
 
 Default backend: LSA (TF-IDF plus truncated SVD), fully local and deterministic. A neural backend
-(sentence-transformers) is supported when the model can be downloaded; the build environment of this
-repository could not reach the model hub, see ADR-7 in the README.
+(sentence-transformers, `backend = "st"` and `model` in config) was tested with multilingual E5 small,
+base and large over 20 CV repeats and discarded: same hit rate, worse AUC and nested precision
+(outputs/embeddings_neural.csv). Publishing with it would also need the encoder at decision time.
 
 The LSA model itself (vocabulary, idf, SVD components) is stored next to the vectors as plain arrays,
 so a question that is not in the cache is projected into the same space with transform(), instead of
@@ -109,7 +110,7 @@ def build(backend: str = "lsa", dimensions: int = 256, seed: int = 0, model: str
     if backend == "lsa":
         vectors, info, extra = _lsa(texts, dimensions, seed)
     elif backend == "st":
-        vectors, info = _sentence_transformers(texts, model)
+        vectors, info = _sentence_transformers(keys, texts, model)
     else:
         raise ValueError(f"unknown embedding backend {backend!r}")
     target = artifact_path(FILE)
@@ -150,9 +151,11 @@ def _lsa(texts: list[str], dimensions: int, seed: int) -> tuple[np.ndarray, dict
     return vectors, info, model
 
 
-def _sentence_transformers(texts: list[str], model: str) -> tuple[np.ndarray, dict]:
+def _sentence_transformers(keys: list[str], texts: list[str], model: str) -> tuple[np.ndarray, dict]:
     from sentence_transformers import SentenceTransformer  # optional dependency, offline step only
 
     encoder = SentenceTransformer(model, device="cpu")
-    vectors = encoder.encode([f"query: {t}" for t in texts], batch_size=32, normalize_embeddings=True)
-    return np.asarray(vectors), {"backend": "st", "model": model}
+    # E5 models are trained asymmetric: topic cards are the passages, questions and segments the queries.
+    prefixed = [("passage: " if k.startswith("card:") else "query: ") + t for k, t in zip(keys, texts)]
+    vectors = encoder.encode(prefixed, batch_size=32, normalize_embeddings=True)
+    return np.asarray(vectors), {"backend": "st", "model": model, "dimensions": int(vectors.shape[1])}
