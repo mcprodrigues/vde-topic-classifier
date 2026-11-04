@@ -1,15 +1,16 @@
-precisao_prevista: 0.89
-precisao_intervalo: 0.72-0.99
+precisao_prevista: 0.93
+precisao_intervalo: 0.77-1.00
 cobertura_prevista: 0.13
 cobertura_intervalo: 0.13-0.13
 
 Como chegamos nestes números
 
-1. Cobertura: lida direto do publicacao.csv (75 publicadas de 559 questões fora da folha-verdade). Não é estimativa, por isso o intervalo é degenerado.
-2. Limiar: escolhido na validação cruzada repetida (100 questões rotuladas, 10 folds x 20 repetições) como o menor valor em que a precisão fora da amostra, medida repetição a repetição, chega a 0,97 com pelo menos 5 publicadas por repetição. Limiar = 0.950; nesse ponto cada repetição publica em média 8.0 rotuladas, com precisão 1.00.
-3. Precisão: posterior Beta por fonte (banco sem peso; importação nova com pesos de importância de um classificador de domínio, AUC 0.55), mais o ruído binomial do conjunto publicado real. Intervalo de 90%.
-4. Desempenho geral fora da amostra: acerto do nó 0.68, acerto do ramo 0.68, AUC da confiança 0.79, precisão nos 20% mais confiantes 0.96.
-5. Validação aninhada do limiar (escolhido em 4/5 das questões, medido em 1/5, 10 vezes): cobertura 0.08, precisão 1.00 (10% das repetições abaixo de 1.00).
-8. Topo da fila: os 10% mais confiantes acertam 0.98 e os 20% acertam 0.96. Erros entre os 20 mais confiantes: nenhum. Certificar 95% só com acertos seguidos exige 31 acertos sem erro a 80% de confiança e 44 a 90%.
-9. O que amplia a publicação: o professor confirmar o topo da fila, ordenada por confiança. Cerca de 31 confirmações seguidas sem erro certificam o limiar a 80%.
-10. Mudança de distribuição: o classificador de domínio separa banco e importação nova com AUC 0.55, quase o acaso. A mudança está nos metadados: a disciplina de origem só entra nas regras de fora e o assunto de origem entra apenas como canal fraco, com peso aprendido.
+1. Cobertura: lida direto do publicacao.csv (75 publicadas de 559 questões fora da folha-verdade: 27 do banco e 48 da importação nova). Não é estimativa, por isso o intervalo é degenerado.
+2. Regra de publicação, fixada antes de olhar a curva: publicar quando a confiança calibrada for >= 0.95, no nível 1 da árvore (tema, não subtema). A confiança é uma logística treinada fora da amostra; ECE 0.046 nas linhas da CV.
+3. Evidência: 100 questões rotuladas, CV de 10 folds x 20 repetições. Em cada repetição (um modelo implantável), a regra publica em média 8.0 rotuladas, com 0.00 erros. São 18 questões distintas; cada uma conta uma vez, ponderada pela fração de repetições em que publica (tamanho efetivo de Kish), nunca como 20 linhas independentes.
+4. Validação aninhada (regra aplicada em 1/5 das questões, 10 vezes): precisão 1.00, limite inferior de 90% (Clopper-Pearson) 0.75. Para comparação, escolher o limiar olhando a curva daria 0.94: é o otimismo da seleção, e por isso a regra é fixa.
+5. Precisão prevista, banco: posterior Beta com prior de Jeffreys sobre n efetivo 10.9, mais o ruído binomial das 27 publicadas: 0.96 (0.81-1.00).
+6. Precisão prevista, importação nova: nenhum dos 100 rótulos vem dela (0 de 100). Usamos os mesmos rótulos com pesos de importância de um classificador de domínio (AUC 0.55) e cortamos o n efetivo pela metade (n = 4.8): 0.91 (0.67-1.00). Ela publica mais (16% contra 10% no banco) sem rótulo para conferir: é a maior fonte de risco.
+7. Combinado: 0.93 (0.77-1.00, 90%). Probabilidade de ficar abaixo de 0,95: 49%. Checagem cruzada: a confiança média das publicadas é 0.97.
+8. Topo da fila, por repetição: os 10% mais confiantes acertam 0.98 e os 20% acertam 0.96. Erros entre os 20 mais confiantes (confiança média entre repetições): nenhum.
+9. O que amplia a publicação: o professor confirmar o topo da fila de revisão. Cerca de 31 confirmações seguidas sem erro certificam 95% com 80% de confiança só com acertos; rótulos da importação nova estreitam o intervalo do item 6.

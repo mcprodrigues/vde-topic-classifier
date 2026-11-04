@@ -223,12 +223,17 @@
     "domain_auc": 0.5532333333333334,
     "effective_n_after_weighting": 74.45600537801693,
     "mean_confidence": {
-      "dev_oof": 0.6792311848558925,
+      "labeled_oof": 0.6792311848558925,
       "bank_unlabeled": 0.6433741219067783,
       "new_import": 0.7015527009012004
     },
+    "share_conf_at_least_095": {
+      "bank_unlabeled": 0.10424710424710425,
+      "new_import": 0.16
+    },
+    "labeled_from_new_import": 0,
     "feature_means": {
-      "dev_oof": {
+      "labeled_oof": {
         "agreement": 0.6245,
         "top_cosine": 0.4731756716966629,
         "segment_dispersion": 0.4196666666666667
@@ -289,23 +294,47 @@
       0.13416815742397137,
       0.13416815742397137
     ],
-    "precision": 0.8852126666666666,
+    "precision": 0.9297606666666667,
     "precision_interval": [
-      0.72,
-      0.9866666666666667
+      0.7733333333333333,
+      1.0
     ],
+    "probability_precision_below_target": 0.4902,
     "precision_from_calibrated_confidence": 0.9706333333333331,
-    "dev_published_at_tau": 7,
-    "dev_hits_at_tau": 7.0,
-    "effective_counts": {
+    "by_source": {
       "bank": {
-        "hits": 7.0,
-        "n": 7.0
+        "published": 27,
+        "coverage": 0.10424710424710425,
+        "precision": 0.957937037037037,
+        "precision_interval": [
+          0.8148148148148148,
+          1.0
+        ],
+        "mean_confidence_of_published": 0.9720925925925926,
+        "a": 11.430828351836036,
+        "b": 0.5,
+        "effective_n": 10.930828351836036,
+        "rate": 1.0
       },
       "new_import": {
-        "hits": 6.500846121176433,
-        "n": 6.500846121176433
+        "published": 48,
+        "coverage": 0.16,
+        "precision": 0.9139114583333332,
+        "precision_interval": [
+          0.6666666666666666,
+          1.0
+        ],
+        "mean_confidence_of_published": 0.9698125000000001,
+        "a": 5.280765409676888,
+        "b": 0.5,
+        "effective_n": 4.780765409676888,
+        "rate": 1.0
       }
+    },
+    "labeled_evidence": {
+      "questions": 18,
+      "published_per_repeat": 7.999999999999999,
+      "errors_per_repeat": 0.0
     }
   },
   "threshold": 0.95,

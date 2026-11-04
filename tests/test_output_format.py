@@ -66,3 +66,15 @@ def test_published_rows_meet_the_model_threshold(publication):
     evaluated = publication[~publication.motivo.str.startswith("folha-verdade")]
     published = evaluated[evaluated.decisao == "publicar"]
     assert (published.confianca.astype(float) >= round(tau, 4) - 1e-4).all()
+
+
+def test_forecast_reports_each_source_and_stays_inside_its_interval():
+    import json
+
+    report = json.loads((OUTPUT_DIR / "evaluation.json").read_text(encoding="utf-8"))
+    fc = report["forecast"]
+    assert set(fc["by_source"]) == {"bank", "new_import"}
+    for block in [fc] + list(fc["by_source"].values()):
+        low, high = block["precision_interval"]
+        assert low <= block["precision"] <= high
+    assert report["shift"]["labeled_from_new_import"] == 0

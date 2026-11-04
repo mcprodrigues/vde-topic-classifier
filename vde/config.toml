@@ -57,6 +57,10 @@ seed = 20261103
 # 0 since v0.2: the v0.1 lockbox was inspected during error analysis and was merged back.
 lockbox_size = 0
 
+[forecast]
+# None of the 100 labels comes from the new import, so its importance weighted effective size is halved.
+new_import_n_scale = 0.5
+
 [embeddings]
 backend = "lsa"
 dimensions = 256
