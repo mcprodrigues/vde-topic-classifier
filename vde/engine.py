@@ -41,10 +41,10 @@ class Prediction:
 
 
 class Engine:
-    def __init__(self, res: Resources, channel_names: list[str] | None = None, node_mode: str = "branch"):
+    def __init__(self, res: Resources, channel_names: list[str] | None = None, node_mode: str | None = None):
         self.res = res
         self.config = res.config
-        self.node_mode = node_mode
+        self.node_mode = node_mode or self.config["decision"].get("node_mode", "branch")
         self.rho = float(self.config["decision"]["rho"])
         names = channel_names or list(self.config["channels"]["enabled"])
         self.channels = build_channels(res, names)

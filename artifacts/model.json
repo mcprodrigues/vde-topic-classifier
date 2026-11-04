@@ -57,7 +57,7 @@
         0.06,
         6.599445126540446,
         0.4731756716966629,
-        0.17,
+        0.0,
         0.37,
         0.0
       ],
@@ -76,43 +76,43 @@
         0.23748684174075807,
         0.5609658698710158,
         0.1682003813265137,
-        0.3756327994198591,
+        1.0,
         0.4828043081829326,
         1.0
       ],
       "coef": [
-        -0.05317839054832096,
-        0.17219587888322427,
-        0.4222703740501841,
-        -0.2268611525486727,
-        -0.21168276657762325,
-        -0.11776983487934341,
-        -0.32156528670924356,
-        0.37504630570339265,
-        -0.20380893588655985,
-        -0.6849163329104038,
-        0.018497137113693832,
-        0.4518638004099733,
-        -0.20024568995859612,
-        0.4016077538072622,
-        -0.12517987988900742,
-        -0.02076633465741766,
+        0.12933624038972602,
+        0.1283181607153015,
+        0.39626022601541216,
+        -0.24234432790009058,
+        -0.04958962623633553,
+        -0.11550149464318965,
+        -0.3218580490358757,
+        0.26592683777284387,
+        -0.23232369131336253,
+        -0.7078026397160612,
+        0.008894062833689527,
+        0.476832090995055,
+        -0.2897078010274036,
+        0.4339879627992028,
+        0.0,
+        0.017874834324665568,
         0.0
       ],
-      "intercept": 1.0054431062962195
+      "intercept": 1.0824980952562075
     },
-    "node_mode": "branch",
+    "node_mode": "level1",
     "rho": 0.85
   },
   "threshold": 0.95,
   "threshold_detail": {
     "tau": 0.95,
-    "published": 6,
-    "hits": 6.4,
-    "point_precision": 0.9922480620155039,
-    "posterior": 0.2938299749268916,
-    "coverage": 0.0645,
-    "effective_n": 6.45
+    "published": 8,
+    "hits": 8.0,
+    "point_precision": 1.0,
+    "posterior": 0.36975059027539087,
+    "coverage": 0.08,
+    "effective_n": 8.0
   },
   "labeled_ids": [
     "Q0002",
@@ -324,32 +324,32 @@
   "cv_summary": {
     "questions": 100,
     "repeats": 20,
-    "hit_rate": 0.666,
+    "hit_rate": 0.676,
     "branch_hit_rate": 0.676,
-    "auc": 0.7640473557389725,
-    "aurc": 0.161601314516341,
+    "auc": 0.7919314778289138,
+    "aurc": 0.1422851749216079,
     "precision_at_coverage": {
-      "0.10": 0.97,
-      "0.20": 0.9275,
-      "0.30": 0.8983333333333332,
-      "0.50": 0.851
+      "0.10": 0.985,
+      "0.20": 0.9574999999999999,
+      "0.30": 0.9283333333333331,
+      "0.50": 0.8700000000000001
     },
     "precision_at_coverage_q10": {
       "0.10": 0.9,
-      "0.20": 0.895,
-      "0.30": 0.8666666666666667,
-      "0.50": 0.82
+      "0.20": 0.9,
+      "0.30": 0.9,
+      "0.50": 0.84
     },
     "ltt_threshold": 1.01,
     "threshold_rule": "calibrated",
     "threshold_cv": {
-      "published_per_repeat": 6.45,
-      "hits_per_repeat": 6.4,
-      "coverage": 0.0645,
-      "precision": 0.9922480620155039,
+      "published_per_repeat": 8.0,
+      "hits_per_repeat": 8.0,
+      "coverage": 0.08,
+      "precision": 1.0,
       "precision_q10_over_repeats": 1.0,
-      "precision_min_over_repeats": 0.8888888888888888,
-      "cp_lower_90": 0.6812920690579612,
+      "precision_min_over_repeats": 1.0,
+      "cp_lower_90": 0.7498942093324558,
       "tau_spread": [
         0.95,
         0.95,
@@ -358,13 +358,13 @@
     },
     "threshold_cv_by_rule": {
       "calibrated": {
-        "published_per_repeat": 6.45,
-        "hits_per_repeat": 6.4,
-        "coverage": 0.0645,
-        "precision": 0.9922480620155039,
+        "published_per_repeat": 8.0,
+        "hits_per_repeat": 8.0,
+        "coverage": 0.08,
+        "precision": 1.0,
         "precision_q10_over_repeats": 1.0,
-        "precision_min_over_repeats": 0.8888888888888888,
-        "cp_lower_90": 0.6812920690579612,
+        "precision_min_over_repeats": 1.0,
+        "cp_lower_90": 0.7498942093324558,
         "tau_spread": [
           0.95,
           0.95,
@@ -372,30 +372,75 @@
         ]
       },
       "search": {
-        "published_per_repeat": 11.915000000000001,
-        "hits_per_repeat": 11.18,
-        "coverage": 0.11915,
-        "precision": 0.9383130507763323,
-        "precision_q10_over_repeats": 0.9034491568727645,
-        "precision_min_over_repeats": 0.8829787234042553,
-        "cp_lower_90": 0.7125021949908067,
+        "published_per_repeat": 16.915,
+        "hits_per_repeat": 15.844999999999999,
+        "coverage": 0.16915,
+        "precision": 0.936742536210464,
+        "precision_q10_over_repeats": 0.8931154841427454,
+        "precision_min_over_repeats": 0.8387096774193549,
+        "cp_lower_90": 0.7897890097756224,
         "tau_spread": [
-          0.8917460776749474,
-          0.9302288738395714,
-          0.9363593930246303
+          0.8795886906711635,
+          0.9203403543396194,
+          0.9373268838023967
         ]
       }
     },
-    "ece": 0.053799023093103346,
-    "brier": 0.18663586634956106,
-    "ece_mean_over_repeats": 0.04253836638708707,
-    "level2_share": 0.172,
-    "seconds": 291.3
+    "slice": "none",
+    "threshold_cv_by_slice": {
+      "none": {
+        "published_per_repeat": 8.0,
+        "hits_per_repeat": 8.0,
+        "coverage": 0.08,
+        "precision": 1.0,
+        "precision_q10_over_repeats": 1.0,
+        "precision_min_over_repeats": 1.0,
+        "cp_lower_90": 0.7498942093324558,
+        "tau_spread": [
+          0.95,
+          0.95,
+          0.95
+        ]
+      },
+      "clean": {
+        "published_per_repeat": 4.25,
+        "hits_per_repeat": 4.25,
+        "coverage": 0.0425,
+        "precision": 1.0,
+        "precision_q10_over_repeats": 1.0,
+        "precision_min_over_repeats": 1.0,
+        "cp_lower_90": 0.5623413251903491,
+        "tau_spread": [
+          0.95,
+          0.95,
+          0.95
+        ]
+      },
+      "anchored": {
+        "published_per_repeat": 2.95,
+        "hits_per_repeat": 2.95,
+        "coverage": 0.0295,
+        "precision": 1.0,
+        "precision_q10_over_repeats": 1.0,
+        "precision_min_over_repeats": 1.0,
+        "cp_lower_90": 0.46415888336127786,
+        "tau_spread": [
+          0.95,
+          0.95,
+          0.95
+        ]
+      }
+    },
+    "ece": 0.04579683518700287,
+    "brier": 0.17274996270260887,
+    "ece_mean_over_repeats": 0.038913266242787056,
+    "level2_share": 0.0,
+    "seconds": 307.5
   },
   "fit_info": {
     "usable": 92,
     "unreachable": 0,
     "loss": 103.0787790365476,
-    "inner_hit_rate": 0.68
+    "inner_hit_rate": 0.69
   }
 }

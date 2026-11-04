@@ -55,3 +55,14 @@ def test_forecast_coverage_matches_publication(publication):
     coverage = float(lines[2].split(":")[1])
     evaluated = publication[~publication.motivo.str.startswith("folha-verdade")]
     assert abs(coverage - (evaluated.decisao == "publicar").mean()) < 0.005
+
+
+def test_published_rows_meet_the_model_threshold(publication):
+    import json
+
+    from vde.paths import ARTIFACT_DIR
+
+    tau = json.loads((ARTIFACT_DIR / "model.json").read_text(encoding="utf-8"))["threshold"]
+    evaluated = publication[~publication.motivo.str.startswith("folha-verdade")]
+    published = evaluated[evaluated.decisao == "publicar"]
+    assert (published.confianca.astype(float) >= round(tau, 4) - 1e-4).all()
