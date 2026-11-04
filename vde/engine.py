@@ -20,6 +20,7 @@ from vde.channels.lexical import LexicalChannel
 from vde.channels.prototypes import PrototypeChannel
 from vde.channels.segmented import SegmentAnalyzer
 from vde.data.loader import GoldLabel
+from vde.knowledge.canonical_tree import learn_twins
 from vde.resources import Resources
 from vde.tree import NodeChoice, choose_node, pick_extras
 
@@ -106,7 +107,9 @@ class Engine:
         """Restore trained weights. Label dependent channels are re-indexed from the gold sheet."""
         self.scorer = CandidateScorer.from_dict(state["scorer"])
         self.correctness = CorrectnessModel.from_dict(state["correctness"])
-        self._fit_channels({q: self.res.gold[q] for q in labeled_ids})
+        labeled = {q: self.res.gold[q] for q in labeled_ids}
+        self.res.tree.twins = learn_twins(self.res.tree, labeled)
+        self._fit_channels(labeled)
 
     def _shared(self, cls):
         for channel in self.channels.values():
@@ -122,6 +125,8 @@ class Engine:
                 seen.add(id(channel))
 
     def _fit_scorer(self, labeled: dict[str, GoldLabel]) -> dict:
+        # The twin rule is learned from labels, so it is refitted on every training part (no fold leakage).
+        self.res.tree.twins = learn_twins(self.res.tree, labeled)
         self._fit_channels(labeled)
         designs = []
         for qid, gold in labeled.items():

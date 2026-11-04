@@ -1,8 +1,8 @@
 {
   "artifact": "model.json",
-  "sha256": "2f60991bce0d96a659db8598c12b22e004679a3935d8d7eaeea7661681bd307d",
-  "written_at": "2026-11-04T12:24:21+00:00",
-  "code_commit": "5710475",
+  "sha256": "f824ed172cfbb57314cb003af2827f77711323df797a34d57619256e5381cba2",
+  "written_at": "2026-11-04T12:32:32+00:00",
+  "code_commit": "2c4603e",
   "produced_by": "vde build model: repeated CV on dev plus a final fit on 100 labels",
   "llm_used": false,
   "repeats": 20,

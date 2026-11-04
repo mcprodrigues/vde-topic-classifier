@@ -1,0 +1,11 @@
+{
+  "artifact": "branch_twins.csv",
+  "sha256": "bd5a7a5d0953ad60133f7c8a02148a6f11d45dffedafc46b464f394fade159ee",
+  "written_at": "2026-11-04T12:28:02+00:00",
+  "code_commit": "2c4603e",
+  "produced_by": "learn_twins over the gold sheet; refitted inside every CV fold",
+  "llm_used": false,
+  "used_labels": true,
+  "min_extra": 2,
+  "twins": 1
+}

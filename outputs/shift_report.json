@@ -2,13 +2,13 @@
   "domain_auc": 0.5532333333333334,
   "effective_n_after_weighting": 74.45600537801693,
   "mean_confidence": {
-    "labeled_oof": 0.6792311848558925,
-    "bank_unlabeled": 0.6433741219067783,
-    "new_import": 0.7015527009012004
+    "labeled_oof": 0.6796148058176809,
+    "bank_unlabeled": 0.6453367235386919,
+    "new_import": 0.7024002057557651
   },
   "share_conf_at_least_095": {
     "bank_unlabeled": 0.10424710424710425,
-    "new_import": 0.16
+    "new_import": 0.16333333333333333
   },
   "labeled_from_new_import": 0,
   "feature_means": {

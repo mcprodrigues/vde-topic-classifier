@@ -9,13 +9,14 @@ from __future__ import annotations
 
 import difflib
 import re
+from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import pandas as pd
 
 from vde.data.cleaning import fold
-from vde.data.loader import load_topics
+from vde.data.loader import load_gold, load_topics
 from vde.knowledge.base import artifact_path, write_provenance
 from vde.paths import ANNEX_DIR, ARTIFACT_DIR
 
@@ -24,6 +25,7 @@ TWINS_FILE = "branch_twins.csv"
 MANUAL_DECISIONS = "manual_decisions.csv"
 BIN_MIN_SOURCE_COUNT = 250
 SHADOW_MATCH_RATIO = 0.86
+TWIN_MIN_EXTRA = 2
 
 
 @dataclass
@@ -147,6 +149,45 @@ def build(annex_dir: Path = ANNEX_DIR) -> Path:
     write_provenance(target, produced_by="deterministic rules over temas.csv plus manual_decisions.csv",
                      llm_used=False, shadows=int(nodes.is_shadow.sum()),
                      inactive_dropped=int((topics.status != "active").sum()))
+    return target
+
+
+def learn_twins(tree: Tree, labeled: dict, min_extra: int = TWIN_MIN_EXTRA) -> dict[int, int]:
+    """Twin rule (ADR-5) learned from labels: branch A goes to branch B of another discipline when A shows
+    up as an extra next to a B central at least `min_extra` times and is never central itself."""
+    central: Counter = Counter()
+    pairs: Counter = Counter()
+    for gold in labeled.values():
+        if gold.is_out or gold.central is None or gold.central not in tree:
+            continue
+        b = tree.level1_of(gold.central)
+        central[b] += 1
+        for extra in gold.extras:
+            if extra in tree:
+                a = tree.level1_of(extra)
+                if a != b and tree.discipline(a) != tree.discipline(b):
+                    pairs[(a, b)] += 1
+    twins: dict[int, int] = {}
+    for (a, b), n in pairs.most_common():
+        if n >= min_extra and central[a] == 0 and a not in twins:
+            twins[a] = b
+    return twins
+
+
+def build_twins(annex_dir: Path = ANNEX_DIR) -> Path:
+    """Write branch_twins.csv from the gold sheet, as a readable record of what learn_twins finds."""
+    tree = load()
+    tree.twins = {}
+    labeled = load_gold(annex_dir)
+    twins = learn_twins(tree, labeled)
+    rows = []
+    for a, b in sorted(twins.items()):
+        rows.append({"from_branch": a, "to_branch": b, "from_path": tree.path(a), "to_path": tree.path(b),
+                     "reason": f"{tree.path(a)} appears only as an extra next to a {tree.path(b)} central"})
+    target = artifact_path(TWINS_FILE)
+    pd.DataFrame(rows, columns=["from_branch", "to_branch", "from_path", "to_path", "reason"]).to_csv(target, index=False)
+    write_provenance(target, produced_by="learn_twins over the gold sheet; refitted inside every CV fold",
+                     llm_used=False, used_labels=True, min_extra=TWIN_MIN_EXTRA, twins=len(rows))
     return target
 
 

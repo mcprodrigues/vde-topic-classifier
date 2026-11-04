@@ -1,8 +1,8 @@
 {
   "artifact": "embeddings.npz",
-  "sha256": "09a2439b155a87d6dbfa87d99a2938fe34224bf321a2009941f5aa4a25c11b5e",
-  "written_at": "2026-11-03T19:07:48+00:00",
-  "code_commit": "a5d9e11",
+  "sha256": "7949d49448c38ee50cb572f63ffe68185bb2031eaa2490676771e54827edd36d",
+  "written_at": "2026-11-04T12:28:10+00:00",
+  "code_commit": "2c4603e",
   "produced_by": "embedding backend lsa",
   "llm_used": false,
   "texts": 3891,
