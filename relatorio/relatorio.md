@@ -2,136 +2,132 @@
 
 **Resumo.** O sistema organiza o conhecimento em quatro artefatos revisáveis (árvore canônica, índice de leis,
 atlas de artigos do CP e do CPP, cartões de tema) e transforma a evidência de sete canais determinísticos numa
-probabilidade de acerto calibrada. Fora da amostra, acerta o nó publicado em 65,5% das questões de desenvolvimento
-e em 80% do cofre. Os 10% mais confiantes acertam 100%. Ainda assim, **com 100 rótulos nenhum limiar certifica
-95% de precisão**, e a entrega publica zero questões, mandando 548 para revisão ordenadas por confiança. A seção
-(c) mostra que o teto vem sobretudo da convenção de `fora` da equipe, e não só do classificador.
+probabilidade de acerto calibrada. A regra de publicação, fixada antes de olhar a curva, é: publicar no tema de
+nível 1 quando P(acerto) >= 0,95. Nas 559 questões avaliadas, ela publica **76 (13,6%)**, manda 472 para revisão
+e 11 para `fora`. Na validação aninhada sobre os 100 rótulos, a regra não errou nenhuma (7,8 publicadas por
+repetição; limite inferior de 90%: 0,75). A previsão para a entrega é **0,93 (0,78 a 1,00)**, com 49% de chance
+de ficar abaixo de 0,95: o risco está na importação nova, que publica mais e não tem nenhum rótulo.
+
+**O que mudou da v0.1 para a v0.2.** A v0.1 não publicava nada: exigia uma certificação impossível com 80 rótulos e
+media o topo da fila sobre a confiança média de 20 repetições, que nenhum modelo implantado produz. Além disso, o
+cofre de 20 questões tinha sido lido na análise de erro. A v0.2 junta o cofre aos rótulos, mede tudo uma repetição
+por vez, troca a busca do limiar por uma regra fixa e prevê a precisão separadamente por fonte.
 
 ## a) O sistema, peça por peça
 
 **1. Leitura da questão.** O HTML é limpo de forma determinística e a questão é separada em enunciado, comando,
-assertivas (I, II, III...) e alternativas. São 2.881 segmentos, e cada um recebe seu próprio vetor. O tipo da
-questão (certo/errado, assertivas, múltipla escolha) e a negação ("INCORRETA", "exceto") viram features.
+assertivas (I, II, III...) e alternativas, cada uma com seu próprio vetor. O tipo da questão (certo/errado,
+assertivas, múltipla escolha) e a negação ("INCORRETA", "exceto") viram features.
 
 **2. Árvore canônica.** Dos 375 temas ativos, 20 são "nós-sombra" de nível 1, sem descrição e sem filhos: as
-versões "(Parte 1/2)" das lixeiras e cópias em Penal ou Processo Penal de temas de Legislação Especial. São 8
-títulos duplicados, não 3. A detecção é automática (similaridade de título) e todo o score é somado no gêmeo
-canônico, que é o que a folha usa. Sobram 351 temas publicáveis, 89 deles de nível 1. Uma regra de ramos gêmeos,
-aprendida da folha, manda o Procedimento Sumaríssimo de Processo Penal para Legislação Especial > Juizado Especial
-Criminal.
+versões "(Parte 1/2)" das lixeiras e as cópias em Penal ou Processo Penal de temas de Legislação Especial. A
+detecção é automática (similaridade de título) e todo o score é somado no gêmeo canônico. Sobram 351 temas
+publicáveis. A **regra de ramos gêmeos** também é aprendida dos rótulos: um ramo que só aparece como extra ao lado
+do central de outra disciplina (o Procedimento Sumaríssimo ao lado do Juizado Especial Criminal, 4 vezes) é somado
+a ela. A regra é reajustada dentro de cada fold, então não vaza rótulo na CV.
 
-**3. Conhecimento proposto por LLM e versionado como dado.** Um LLM propôs, offline e vendo só a árvore:
-(i) o **índice de leis**, com 60 entradas, apelidos ("Lei Maria da Penha", "LEP", "ECA") e escopo `in`/`out`;
-(ii) o **atlas dos códigos**, com 261 faixas de artigos, por exemplo CP 155 a 156 = Furto e CPP 28-A = ANPP.
-O CP e o CPP já são uma árvore alinhada à da plataforma, e faixas generalizam para artigos que a folha nunca
-viu; (iii) os **cartões de tema**, com termos-chave, artigos e súmulas para cada um dos 351 temas, que formam o
-caminho zero-shot para os 290 temas sem exemplo rotulado. Não gerei pseudo-enunciados: os termos já levaram o
-acerto de 47,5% para 65%, e enunciados sintéticos aumentariam o risco de vazamento de estilo. A revisão humana
-dos três arquivos está pendente e registrada.
+**3. Conhecimento proposto por LLM e versionado como dado.** Um LLM propôs, offline: (i) o **índice de leis**, com
+60 entradas, apelidos e escopo `in`/`out`; (ii) o **atlas dos códigos**, com 261 faixas de artigos (CP 155 a 156 =
+Furto); (iii) os **cartões de tema**, com termos-chave para os 351 temas, que são o caminho zero-shot para os temas
+sem exemplo rotulado. O pedido não incluía as questões, mas a sessão de autoria tinha acesso ao repositório, então
+isso não é verificável e a proveniência registra assim. A revisão humana dos três arquivos está pendente.
 
-**4. Canais de evidência**, todos com a mesma interface (`score(qid) -> {tema: score}`), o que permite ligar e
-desligar cada um: lei especial citada, artigo de código citado, BM25 sobre os cartões, similaridade de
-embedding com os cartões (protótipos), kNN nos rotulados (reajustado por fold, sem votar em si mesmo),
-`assunto_origem` como evidência fraca e quase duplicatas pelo texto completo.
+**4. Canais de evidência**, todos com a interface `score(qid) -> {tema: score}`: lei especial citada, artigo de
+código citado, BM25 sobre os cartões, similaridade com os cartões (protótipos), kNN nos rotulados (reajustado por
+fold), `assunto_origem` como evidência fraca e quase duplicatas.
 
-**5. Agregação.** Uma logit condicional aprende **um peso por canal** maximizando a massa de probabilidade nos
-nós que contam como acerto pela regra do ramo. Os rótulos ensinam em que evidência confiar, não quais temas
-existem, e por isso o modelo generaliza para temas sem exemplo. Pesos finais: BM25 0,57, protótipos 0,44,
-assunto 0,38, kNN 0,36, lei especial 0,28, artigo 0,17, duplicatas 0 (não há duplicatas no dev).
+**5. Agregação.** Uma logit condicional aprende **um peso por canal**, maximizando a massa de probabilidade nos
+nós que contam como acerto. Os rótulos ensinam em que evidência confiar, não quais temas existem. Pesos finais:
+BM25 0,57, protótipos 0,44, assunto 0,38, kNN 0,36, lei especial 0,28, artigo 0,17, duplicatas 0.
 
-**6. Escolha do nó.** Pela regra de acerto, P(acerto | tema T) = p(T) + Σ p(filhos de T), que nunca é menor
-que P(acerto | subtema). Publico no melhor ramo de nível 1 e desço ao subtema só se ele tiver ρ = 0,85 da massa
-do ramo (valor fixado a priori, pela utilidade para o aluno). O nível 0 é proibido: contaria como acerto para
-qualquer rótulo de nível 1 e recriaria a maior lixeira possível.
+**6. Escolha do nó.** Pela regra de acerto, publicar no tema de nível 1 acerta sempre que o rótulo é o tema ou um
+dos seus subtemas. Na comparação de 20 repetições (`outputs/ablations_20rep.csv`), publicar sempre no nível 1
+venceu descer ao subtema com ρ = 0,85: precisão nos 10% mais confiantes 0,985 contra 0,970, AURC 0,142 contra
+0,162. O custo: o aluno vê a questão no tema, não no subtema, e **30 das 76 publicadas caem em temas marcados
+como lixeira** (Crimes contra a Administração Pública, 16; Teoria do Crime: Fato Típico, 6). São questões que o
+sistema põe no tema certo com confiança >= 0,95, não questões alheias ao tema, mas o professor deve saber disso.
+O nível 0 continua proibido.
 
-**7. Confiança e limiar.** Uma logística com 17 features agnósticas à classe (concordância entre canais, massa do
-ramo, suporte dos segmentos, vizinhos `fora`, tipo de questão...) é treinada em features fora da amostra de
-folds internos. O limiar é o menor valor com P(precisão >= 0,95) >= 0,80 sob posterior Beta e precisão pontual
->= 0,97. Também calculo Learn-then-Test, que dá o mesmo resultado: nenhum limiar certificável.
+**7. Confiança e regra de publicação.** Uma logística com 17 features agnósticas à classe (concordância entre
+canais, massa do ramo, suporte dos segmentos, vizinhos `fora`, tipo de questão...) é treinada em features fora da
+amostra de folds internos. A calibração é boa: ECE 0,049 nas linhas da CV (Platt 0,033 e isotônica 0,090 não
+compensam). A regra publica quando a confiança >= 0,95. Testei também escolher o limiar olhando a curva fora da
+amostra: na validação aninhada, isso dá precisão 0,94, porque a busca acha pontos de sorte com poucos rótulos.
+Uma regra fixa não tem esse otimismo.
 
 **8. Decisão.** `fora` só sai de regra explícita: quase duplicata de um `fora` rotulado, norma sem tema ativo
 (CPP 513 a 518, crimes contra a ordem econômica) ou disciplina militar sem âncora no escopo. Tudo que apenas
-"parece fora" vai para revisão. Cada `revisar` traz a sugestão e o motivo (dúvida entre dois ramos, alternativas
-espalhadas, lei que aponta para outro ramo, vizinhos `fora`).
+"parece fora" vai para revisão, com a sugestão e o motivo.
 
-**O que testei e descartei** (`outputs/ablations.csv`, 3 repetições cada; o desvio entre repetições é de 0,9 p.p.,
-então diferenças abaixo de 2 p.p. são ruído):
+**O que testei e descartei** (`outputs/ablations.csv`, 3 repetições cada, desvio de ~1 p.p. entre repetições;
+as decisões de configuração usaram 20 repetições):
 
-| Experimento | Acerto | AURC | Veredito |
-|---|---|---|---|
-| E0: BM25 só com título e caminho | 0,475 | 0,328 | Linha de base |
-| E1: BM25 com cartões + kNN | 0,612 | 0,232 | Os cartões são o maior ganho (+14 p.p.) |
-| E1 + protótipos | 0,646 | 0,201 | Entra |
-| Sistema completo | 0,654 | 0,196 | Referência |
-| Sem lei especial / sem artigo de código | 0,650 / 0,650 | 0,196 / 0,190 | Empate; ficam como features legíveis |
-| + prior de lixeira | 0,654 | 0,196 | **Descartado**: peso aprendido = 0 |
-| + canal de segmentos | 0,650 | 0,174 | Melhora o ranking, mas não o acerto; virou feature, não canal |
-| + matriz de confusão do `assunto_origem` | 0,667 | 0,201 | **Descartado**: AUC pior, e o formato muda na importação nova |
-| E3: folha top-1, sem raciocínio de ramo | 0,621 | 0,222 | **Descartado**: -3,3 p.p. |
-| E3: sempre nível 1 | 0,667 | 0,169 | Melhor na métrica; mantive ρ = 0,85 pelo aluno (custa ~1,3 p.p.) |
-| Calibração isotônica | ECE 0,171 | | **Descartada** (bruta 0,072; Platt 0,049 com Brier pior) |
-| Quase duplicatas | sem efeito | | Mantida só como regra de `fora` (Q0553 herda o `fora` de Q0017) |
+| Experimento | Acerto | AUC | AURC | Veredito |
+|---|---|---|---|---|
+| E0: BM25 só com título e caminho | 0,487 | 0,757 | 0,304 | Linha de base |
+| E1: BM25 com cartões + kNN | 0,647 | 0,747 | 0,197 | Cartões ~+14 p.p., kNN ~+2 p.p. (sem kNN: 0,653) |
+| E1 + protótipos | 0,670 | 0,748 | 0,167 | Entra; sem protótipos o acerto cai para 0,647 |
+| Sistema completo (nível 1) | 0,673 | 0,792 | 0,142 | Referência |
+| Sem lei especial / sem artigo | 0,673 / 0,680 | 0,782 / 0,764 | 0,146 / 0,149 | Ficam: não mudam o acerto, mas melhoram a ordenação |
+| + prior de lixeira | 0,673 | 0,792 | 0,142 | **Descartado**: peso aprendido = 0 |
+| + canal de segmentos | 0,653 | 0,810 | 0,144 | Ordena melhor, acerta menos; virou feature, não canal |
+| + matriz de confusão do `assunto_origem` | 0,707 | 0,732 | 0,143 | **Descartado**: AUC pior, e o formato muda na importação nova |
+| Escala linear dos canais | 0,690 | 0,738 | 0,155 | **Descartado**: AUC pior |
+| Folha top-1, sem raciocínio de ramo | 0,643 | 0,778 | 0,179 | **Descartado** |
+| Descer ao subtema (ρ = 0,85) | 0,663 | 0,754 | 0,165 | **Descartado** na v0.2 (era o padrão da v0.1) |
+| Fatias de publicação `clean` / `anchored` | | | | **Descartadas**: precisão aninhada igual (1,00), cobertura cai pela metade |
 
 ## b) Os 100 rótulos
 
-**Uso.** 20 questões estratificadas formam um **cofre**, aberto uma única vez no fim. As 80 restantes passam por
-CV de 10 folds repetida 20 vezes. Dentro de cada fold, o kNN, as duplicatas e os pesos são ajustados só no treino,
-e o modelo de acerto é treinado em features fora da amostra de 5 folds internos. O limiar é escolhido nas
-confianças fora da amostra, e sua precisão honesta vem de uma segunda CV sobre as questões (escolho em 4/5, meço
-em 1/5). Toda a análise de erro foi feita nas 80; o cofre deu 80% de acerto contra 65,5% na CV, sem sinal de
-overfitting das minhas decisões.
+**Uso.** Os 100 rótulos passam por CV de 10 folds repetida 20 vezes. Dentro de cada fold, o kNN, as duplicatas, a
+regra de gêmeos e os pesos são ajustados só no treino, e o modelo de acerto é treinado em features fora da amostra
+de 5 folds internos. Cada repetição é um modelo implantável, então as métricas são calculadas uma repetição por
+vez. A regra de publicação passa ainda por uma validação aninhada (aplicada em 1/5 das questões, 10 vezes).
 
-**O que mostraram sobre o sistema.** A confiança é razoavelmente calibrada (ECE 0,07; figura em
-`outputs/confiabilidade.png`), com AUC de 0,73. A concordância entre canais é a feature mais informativa
-(AUC 0,77 sozinha). Âncoras de lei ajudam pouco: artigos citados na narrativa de um caso descrevem os fatos, não
-o tema. A Q0208 cita o art. 121 do CP e é sobre concurso de pessoas.
+**Por que não há mais cofre.** A v0.1 separou 20 questões, mas duas delas (Q0252 e Q0303) foram lidas na análise
+de erro e citadas no memo. Um cofre lido não é cego, então as 20 voltaram para a CV. Dois sinais pedem cautela:
+juntar o cofre subiu a AUC de 0,73 para 0,76, e as questões do cofre casam mais termos raros dos cartões de tema do
+que as do banco (2,3 contra 1,6 por questão). Não há prova de vazamento, mas os cartões foram escritos numa sessão
+com acesso às questões.
 
-**O que mostraram sobre a convenção da equipe.** (1) O nível 1 é suficiente: publicar no ancestral de nível 1 do
-rótulo acerta 92 de 92. (2) Para leis especiais, a equipe usa o ramo de Legislação Especial (LEP 4 de 5 casos,
-Juizado 3 de 3), e as sombras quase nunca. (3) Os 8 `fora` têm três origens: tema inativo (Q0039, cartel),
-lacuna da árvore (Q0017, procedimento dos crimes funcionais; Q0002, criminologia crítica) e questões que parecem
-classificáveis (Q0043, Q0087, Q0252, Q0291, Q0303).
+**O que mostraram sobre o sistema.** O acerto do nó publicado é 0,676 (desvio de 0,010 entre repetições), a AUC
+da confiança é 0,79, e os 10% / 20% mais confiantes acertam 0,985 / 0,965. Em 10% das repetições, porém, esses
+números caem para 0,90. A regra de publicação escolhe em média 7,8 rotuladas por repetição, todas certas. São 18
+questões distintas; como as mesmas questões se repetem entre repetições, o tamanho efetivo é 10,9, não 156.
+
+**O que mostraram sobre a convenção da equipe.** (1) Para leis especiais, a equipe usa o ramo de Legislação
+Especial, e as sombras quase nunca. (2) O Procedimento Sumaríssimo só aparece como extra. (3) Os 8 `fora` têm três
+origens: tema inativo (Q0039), lacuna da árvore (Q0017, Q0002) e questões que parecem classificáveis (Q0043, Q0087,
+Q0252, Q0291, Q0303). Nenhuma das 8 chega a 0,95 de confiança na v0.2; a mais alta é Q0043, com 0,89.
 
 ## c) Diagnóstico
 
-**O teto vem dos `fora` disfarçados.** Entre as 20 questões mais confiantes do dev, os dois únicos erros são Q0043
-(fixação da pena) e Q0291 (prazo do inquérito na Lei de Drogas), ambas `fora` na folha. O sistema as coloca com
-alta confiança em Teoria da Pena e Tráfico de Drogas, porque é isso que o texto diz. Se cerca de 5% da população
-for desse tipo e indistinguível pelo texto, a precisão máxima de qualquer publicação gira em torno de 95%: o
-orçamento de erro inteiro. A solução não é um modelo melhor, é a regra que a equipe usa para `fora` (memo).
+**A importação nova é o maior risco.** Os 100 rótulos vêm todos do banco (Q0002 a Q0356); nenhum vem de Q0360 a
+Q0659, que são 300 das 559 avaliadas. O classificador de domínio quase não separa as fontes pelas features do
+modelo (AUC 0,55), mas a importação nova tem confiança média maior (0,70 contra 0,65) e mais questões acima de 0,95
+(16% contra 10%). Por isso ela publica 49 das 76 questões. A previsão trata essa fonte à parte: mesmos rótulos,
+pesos de importância e tamanho efetivo cortado pela metade, o que dá 0,91 (0,67 a 1,00) contra 0,96 (0,81 a 1,00)
+no banco.
 
-**Por que zero publicadas.** Com 80 rótulos, certificar 95% com 80% de confiança exige 32 acertos seguidos sem
-erro no topo da fila; com 90% de confiança, 45. A curva fora da amostra cai abaixo de 95% depois de 8 questões.
-Operar no ponto (topo de 10%) daria cobertura de ~10% com intervalo de precisão de ~70% a 100%. Preferimos não
-publicar a publicar sem garantia.
-
-**Mudança de distribuição.** A importação nova vem de outra fonte de metadados: zero questões rotuladas como
-Legislação Especial (contra 32 no banco), 10 militares, assunto em formato de edital e enunciado mediano mais
-curto (662 contra 830 caracteres). Mas o classificador de domínio, usando as features que o modelo vê, separa as
-duas fontes com AUC de 0,56, quase o acaso. A confiança média é parecida (0,63 nas novas, 0,58 no restante do
-banco). Por isso `disciplina_origem` só entra nas regras de `fora`.
+**`fora` disfarçados.** Questões que a equipe marca como `fora` mas que o texto põe num tema (Q0043, fixação da
+pena; Q0291, prazo do inquérito na Lei de Drogas) eram os erros do topo na v0.1. A solução não é um modelo melhor,
+é a regra que a equipe usa para `fora` (memo).
 
 **O que o sistema ainda erra e o que resolveria.** (1) Questões de caso em que a narrativa esconde o tema
-doutrinário (erro de tipo num caso de crime sexual): resolveria um segundo nível de cartões com termos de teoria
-geral, ou embeddings neurais. O ambiente de construção não alcançou o hub de modelos, então o LSA local é o
-backend atual, e `vde build embeddings --backend st` troca o modelo sem mudar mais nada. (2) Colchas de assertivas
-que cobrem quatro temas: hoje vão para revisão por dispersão, e a equipe precisa dizer se são `fora` ou se ganham
-extras. (3) Gêmeos entre disciplinas (Ação Penal em Penal e em Processo Penal): faltam rótulos para decidir.
+doutrinário: resolveria um segundo nível de cartões com termos de teoria geral, ou embeddings neurais
+(`vde build embeddings --backend st`). (2) Colchas de assertivas que cobrem vários temas: vão para revisão por
+dispersão. (3) Gêmeos entre disciplinas (Ação Penal em Penal e em Processo Penal): faltam rótulos.
 
 ## d) Produção: 50 mil questões por semana
 
-**Custo e tempo.** Sem GPU: o LSA vetoriza 3.891 textos em 4 s, e 50 mil questões (~250 mil segmentos) levam
-~5 min de CPU. Os canais e a decisão rodam a ~8 ms por questão, cerca de 7 min por semana. Custo de LLM na
-decisão: zero. Com um embedding neural pequeno em CPU, seriam ~1,5 h por semana; via API em cache, alguns dólares.
-O LLM só entra quando um tema novo pede um cartão (centavos por tema).
+**Custo e tempo.** Sem GPU. O modelo LSA (vocabulário, idf e componentes) fica salvo junto dos vetores, e uma
+questão nova é projetada no mesmo espaço sem reajuste. Os canais e a decisão rodam a ~8 ms por questão: 50 mil
+questões levam ~7 min de CPU por semana. Custo de LLM na decisão: zero. O LLM só entra quando um tema novo pede um
+cartão, e o cartão é revisado antes de entrar.
 
 **Como a correção do professor vira dado.** Cada `revisar` confirmado ou corrigido entra num CSV de rótulos com
 data e versão do modelo. Toda semana: (1) reajustar pesos e o modelo de acerto (`vde build model`, minutos);
-(2) recertificar o limiar com os rótulos acumulados; (3) monitorar a AUC do classificador de domínio, a fração
-de `fora` por regra e a distribuição de confiança, com alerta se a AUC passar de 0,7. Os cartões são revistos
-quando um tema acumula erros. A publicação destrava quando o topo da fila acumular confirmações suficientes:
-com ~30 acertos seguidos, o limiar certifica no nível de 80%.
-
-**Fila do professor.** As 548 questões em revisão saem ordenadas por confiança; 115 têm confiança >= 0,90 e são
-confirmações rápidas. Confirmá-las primeiro é ao mesmo tempo o trabalho mais barato e o que mais rápido libera a
-publicação automática.
+(2) refazer a CV aninhada e a previsão; (3) monitorar a AUC do classificador de domínio, a fração publicada por
+fonte e a distribuição de confiança, com alerta se a AUC passar de 0,7 ou se a fração publicada de uma fonte
+dobrar. O primeiro uso do tempo do professor deve ser rotular uma amostra das publicadas da importação nova: é a
+fonte sem rótulo e a que mais pesa no intervalo.
