@@ -1,11 +1,11 @@
 {
   "artifact": "law_index.csv",
   "sha256": "a619d2ac19ea500a875ad3fd50680d46d94e4372e83b023ff963fb4bbc7be6e3",
-  "written_at": "2026-11-03T19:43:20+00:00",
-  "code_commit": "db33080",
+  "written_at": "2026-11-04T21:04:34+00:00",
+  "code_commit": "6c802f5",
   "produced_by": "proposed by an LLM from the topic tree, reviewed as data",
   "llm_used": true,
   "proposer": "claude-opus-5-5 (authoring session)",
-  "llm_saw_questions": false,
-  "human_review": "pending: see manual_decisions.csv"
+  "llm_saw_questions": "not verifiable: the authoring session had read access to the repository, questions included",
+  "human_review": "done 2026-11-04: reviewed by the author, no row changed"
 }

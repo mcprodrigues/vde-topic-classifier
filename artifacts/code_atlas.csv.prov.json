@@ -1,11 +1,11 @@
 {
   "artifact": "code_atlas.csv",
   "sha256": "565f08d0ebac44e63d02ff2fd31d5ac124f73617ee623693ec22d2c07977cc8a",
-  "written_at": "2026-11-03T19:07:42+00:00",
-  "code_commit": "a5d9e11",
+  "written_at": "2026-11-04T21:04:35+00:00",
+  "code_commit": "6c802f5",
   "produced_by": "proposed by an LLM from the codes structure and the topic tree",
   "llm_used": true,
   "proposer": "claude-opus-5-5 (authoring session)",
-  "llm_saw_questions": false,
-  "human_review": "pending: see manual_decisions.csv"
+  "llm_saw_questions": "not verifiable: the authoring session had read access to the repository, questions included",
+  "human_review": "done 2026-11-04: reviewed by the author, no row changed"
 }
