@@ -54,7 +54,7 @@ def build(source: str = "session") -> str:
     _validate(pd.read_csv(target, dtype={"tema_id": int}).fillna(""))
     write_provenance(target, produced_by="key terms proposed by an LLM per topic path, reviewed as data",
                      llm_used=True, proposer="claude-opus-5-5 (authoring session)", llm_saw_questions="not verifiable: the authoring session had read access to the repository, questions included",
-                     pseudo_questions=False, human_review="pending: see manual_decisions.csv")
+                     pseudo_questions=False, human_review="done 2026-11-04: reviewed by the author, no row changed")
     return str(target)
 
 

@@ -31,7 +31,7 @@ a ela. A regra é reajustada dentro de cada fold, então não vaza rótulo na CV
 60 entradas, apelidos e escopo `in`/`out`; (ii) o **atlas dos códigos**, com 261 faixas de artigos (CP 155 a 156 =
 Furto); (iii) os **cartões de tema**, com termos-chave para os 351 temas, que são o caminho zero-shot para os temas
 sem exemplo rotulado. O pedido não incluía as questões, mas a sessão de autoria tinha acesso ao repositório, então
-isso não é verificável e a proveniência registra assim. A revisão humana dos três arquivos está pendente.
+isso não é verificável e a proveniência registra assim. Os três arquivos foram revisados pela autora, sem nenhuma linha alterada.
 
 **4. Canais de evidência**, todos com a interface `score(qid) -> {tema: score}`: lei especial citada, artigo de
 código citado, BM25 sobre os cartões, similaridade com os cartões (protótipos), kNN nos rotulados (reajustado por

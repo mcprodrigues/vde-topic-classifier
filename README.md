@@ -213,9 +213,9 @@ importação nova ──> vde publish --allow-annex-change ──> publicar (alu
 |---|---|---|---|
 | Árvore canônica: 20 nós-sombra mapeados, lixeiras marcadas | `vde/knowledge/canonical_tree.py` | `canonical_tree.csv` | Não |
 | Regra de ramos gêmeos, aprendida dos rótulos e reajustada em cada fold | `vde/knowledge/canonical_tree.py` (`learn_twins`) | `branch_twins.csv` (registro) | Não |
-| Índice de leis (60 leis e códigos, com apelidos) | `vde/knowledge/law_index.py` | `law_index.csv` | Proposto por LLM, revisão humana pendente |
-| Atlas dos códigos: faixas de artigos do CP e do CPP para temas | `vde/knowledge/code_atlas.py` | `code_atlas.csv` | Proposto por LLM, revisão humana pendente |
-| Cartões de tema para os 351 temas publicáveis | `vde/knowledge/topic_cards.py` | `topic_cards.csv` | Proposto por LLM, revisão humana pendente |
+| Índice de leis (60 leis e códigos, com apelidos) | `vde/knowledge/law_index.py` | `law_index.csv` | Proposto por LLM, revisado pela autora |
+| Atlas dos códigos: faixas de artigos do CP e do CPP para temas | `vde/knowledge/code_atlas.py` | `code_atlas.csv` | Proposto por LLM, revisado pela autora |
+| Cartões de tema para os 351 temas publicáveis | `vde/knowledge/topic_cards.py` | `topic_cards.csv` | Proposto por LLM, revisado pela autora |
 | Mapa do `assunto_origem` (evidência fraca) | `vde/knowledge/subject_map.py` | `subject_map.csv` | Não |
 | Embeddings (LSA local, vetores e modelo em cache) | `vde/knowledge/embeddings.py` | `embeddings.npz` | Não |
 | Canais: lei especial, artigo de código, BM25, protótipos, kNN, assunto, duplicatas | `vde/channels/` | (nenhum) | Não |
@@ -230,7 +230,7 @@ manuais estão em [`artifacts/manual_decisions.csv`](artifacts/manual_decisions.
 * **MD01 a MD03:** índice de leis, atlas e cartões foram propostos por um LLM numa sessão de autoria. O pedido
   incluía só a árvore de temas e o conhecimento das leis, mas a sessão tinha acesso ao repositório, questões
   incluídas: **não dá para verificar que o LLM nunca viu as questões**, e a proveniência diz isso.
-  **A revisão humana desses três arquivos ainda está pendente.**
+  Os três arquivos foram revisados pela autora em 04/11/2026, sem nenhuma linha alterada.
 * **MD04:** os 20 nós sem descrição e sem filhos ("Teoria da Pena (Parte 1)", "Penal > Lei Maria da Penha"...) são
   mapeados para o gêmeo canônico, detectado automaticamente por similaridade de título.
 * **MD05:** Lei 9.099 vai para Legislação Especial > Juizado Especial Criminal. O Procedimento Sumaríssimo de
