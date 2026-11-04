@@ -45,7 +45,9 @@ class KnnChannel(Channel):
         sims = self.similarity[self.row[qid], self.labeled_rows].copy()
         own = [i for i, lid in enumerate(self.labeled_ids) if lid == qid]
         sims[own] = -np.inf
-        order = np.argsort(-sims)[: self.k]
+        order = [i for i in np.argsort(-sims)[: self.k] if np.isfinite(sims[i])]
+        if not order:
+            return {}, 0.0
         best = sims[order[0]]
         votes: Scores = {}
         out_mass = 0.0

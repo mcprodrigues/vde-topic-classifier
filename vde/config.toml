@@ -12,9 +12,6 @@ posterior_level = 0.80
 min_point_precision = 0.97
 # A different level 1 branch becomes an extra when it holds at least this probability mass.
 extras_min_mass = 0.20
-# Use one threshold per group (with or without a legal anchor) only if each group is large enough.
-group_thresholds = false
-min_group_size = 15
 
 [channels]
 enabled = ["special_law", "code_article", "lexical", "prototypes", "knn", "subject", "duplicates"]

@@ -34,6 +34,17 @@ def posterior_at_least(hits: float, n: float, target: float) -> float:
     return float(beta.sf(target, 1 + hits, 1 + n - hits))
 
 
+def min_run_to_certify(target: float = 0.95, level: float = 0.80) -> int:
+    """Smallest run of hits with no error that gives P(precision >= target) >= level under a uniform prior.
+
+    The posterior after n hits and 0 errors is Beta(1 + n, 1), so P(p >= target) = 1 - target ** (n + 1).
+    """
+    n = 0
+    while 1 - target ** (n + 1) < level:
+        n += 1
+    return n
+
+
 def effective_counts(correct: np.ndarray, weights: np.ndarray | None) -> tuple[float, float]:
     """Importance weighted (hits, n), rescaled to the effective sample size (Kish)."""
     if weights is None:

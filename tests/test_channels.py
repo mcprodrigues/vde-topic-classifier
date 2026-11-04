@@ -31,3 +31,10 @@ def test_scores_are_canonical_and_normalized(res):
             if scores:
                 assert abs(max(scores.values()) - 1.0) < 1e-9
                 assert all(not res.tree.is_shadow(t) and res.tree.level(t) > 0 for t in scores)
+
+
+def test_min_run_to_certify():
+    from vde.calibrate import min_run_to_certify
+
+    assert min_run_to_certify(0.95, 0.80) == 31
+    assert min_run_to_certify(0.95, 0.90) == 44

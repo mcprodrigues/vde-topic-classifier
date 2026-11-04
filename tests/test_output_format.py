@@ -1,3 +1,5 @@
+import re
+
 import pandas as pd
 import pytest
 
@@ -32,3 +34,24 @@ def test_published_topics_are_valid_and_never_a_root(publication):
     for value in publication[publication.decisao == "publicar"].tema_central_id:
         tid = int(value)
         assert tid in tree and tree.level(tid) >= 1
+
+
+HEADER = [
+    ("precisao_prevista", r"\d\.\d{2}"),
+    ("precisao_intervalo", r"\d\.\d{2}-\d\.\d{2}"),
+    ("cobertura_prevista", r"\d\.\d{2}"),
+    ("cobertura_intervalo", r"\d\.\d{2}-\d\.\d{2}"),
+]
+
+
+def test_forecast_header_is_numeric():
+    lines = (OUTPUT_DIR / "previsao.txt").read_text(encoding="utf-8").splitlines()
+    for line, (key, pattern) in zip(lines, HEADER):
+        assert re.fullmatch(rf"{key}: {pattern}", line.strip()), line
+
+
+def test_forecast_coverage_matches_publication(publication):
+    lines = (OUTPUT_DIR / "previsao.txt").read_text(encoding="utf-8").splitlines()
+    coverage = float(lines[2].split(":")[1])
+    evaluated = publication[~publication.motivo.str.startswith("folha-verdade")]
+    assert abs(coverage - (evaluated.decisao == "publicar").mean()) < 0.005

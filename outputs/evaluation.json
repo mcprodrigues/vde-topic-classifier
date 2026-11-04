@@ -28,14 +28,14 @@
       "precision": null,
       "cp_lower_90": 0.0
     },
-    "ece": 0.07171514520966446,
+    "ece": 0.07171514520966443,
     "brier": 0.1879769095562697,
     "level2_share": 0.14875,
     "seconds": 0.0
   },
   "calibration": {
     "raw": {
-      "ece": 0.07171514520966446,
+      "ece": 0.07171514520966443,
       "brier": 0.1879769095562697,
       "reliability": [
         {
@@ -60,23 +60,23 @@
         },
         {
           "n": 16,
-          "mean_conf": 0.9264594689315213,
+          "mean_conf": 0.9264594689315214,
           "hit_rate": 0.9375
         }
       ]
     },
     "platt": {
-      "ece": 0.04894489940880135,
+      "ece": 0.04894489940880138,
       "brier": 0.1952117741638257,
       "reliability": [
         {
           "n": 16,
-          "mean_conf": 0.3425920248366931,
+          "mean_conf": 0.34259202483669304,
           "hit_rate": 0.375
         },
         {
           "n": 16,
-          "mean_conf": 0.5548095461016742,
+          "mean_conf": 0.5548095461016741,
           "hit_rate": 0.5625
         },
         {
@@ -130,11 +130,11 @@
   },
   "shift": {
     "domain_auc": 0.5574583333333334,
-    "effective_n_after_weighting": 53.355613291055874,
+    "effective_n_after_weighting": 53.35561492291196,
     "mean_confidence": {
       "dev_oof": 0.6655041731632099,
-      "bank_unlabeled": 0.5820826171526139,
-      "new_import": 0.6313823844520013
+      "bank_unlabeled": 0.5820826166758624,
+      "new_import": 0.6313823874289245
     },
     "feature_means": {
       "dev_oof": {
@@ -227,154 +227,6 @@
     "coverage": 0.0,
     "effective_n": 0.0
   },
-  "lockbox": {
-    "n": 20,
-    "hit_rate": 0.8,
-    "published": 0,
-    "published_hits": 0,
-    "rows": [
-      {
-        "qid": "Q0034",
-        "conf": 0.35338545782807707,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0057",
-        "conf": 0.9645832251723172,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0058",
-        "conf": 0.3017183060303553,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0067",
-        "conf": 0.9038280651672507,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0079",
-        "conf": 0.9278741384360062,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0138",
-        "conf": 0.93402416496575,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0139",
-        "conf": 0.7747340180832545,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0179",
-        "conf": 0.810714848065211,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0201",
-        "conf": 0.8238444813721914,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0230",
-        "conf": 0.5113478866659852,
-        "hit": false,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0246",
-        "conf": 0.6736832223804536,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0252",
-        "conf": 0.7093818807750392,
-        "hit": false,
-        "published": false,
-        "is_out": true
-      },
-      {
-        "qid": "Q0275",
-        "conf": 0.6894329827196635,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0290",
-        "conf": 0.8380377277383092,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0303",
-        "conf": 0.5406849616259042,
-        "hit": false,
-        "published": false,
-        "is_out": true
-      },
-      {
-        "qid": "Q0311",
-        "conf": 0.7131584561884097,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0313",
-        "conf": 0.6105866297227278,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0315",
-        "conf": 0.4929715877437412,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0338",
-        "conf": 0.8662115101052268,
-        "hit": false,
-        "published": false,
-        "is_out": false
-      },
-      {
-        "qid": "Q0345",
-        "conf": 0.3596113691012031,
-        "hit": true,
-        "published": false,
-        "is_out": false
-      }
-    ]
-  },
   "ablations": [
     {
       "experiment": "E0_titles_only",
@@ -382,7 +234,7 @@
       "hit_rate": 0.475,
       "branch_hit_rate": 0.475,
       "auc": 0.7365636313004733,
-      "aurc": 0.3278970553700512,
+      "aurc": 0.32789705537005126,
       "prec_at_20": 0.8125,
       "coverage_at_tau": 0.0,
       "level2_share": 0.0875,
@@ -394,10 +246,10 @@
       "hit_rate": 0.6125,
       "branch_hit_rate": 0.625,
       "auc": 0.7025089605734768,
-      "aurc": 0.2320203946224575,
+      "aurc": 0.23202039462245758,
       "prec_at_20": 0.8125,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1083333333333333,
+      "level2_share": 0.10833333333333334,
       "seconds": 15.1
     },
     {
@@ -406,7 +258,7 @@
       "hit_rate": 0.6458333333333334,
       "branch_hit_rate": 0.6583333333333333,
       "auc": 0.716888045540797,
-      "aurc": 0.2013308759303282,
+      "aurc": 0.20133087593032828,
       "prec_at_20": 0.8125,
       "coverage_at_tau": 0.0,
       "level2_share": 0.1625,
@@ -418,7 +270,7 @@
       "hit_rate": 0.6541666666666667,
       "branch_hit_rate": 0.6666666666666666,
       "auc": 0.7179802010590132,
-      "aurc": 0.1957237855690977,
+      "aurc": 0.19572378556909775,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
       "level2_share": 0.1375,
@@ -430,10 +282,10 @@
       "hit_rate": 0.65,
       "branch_hit_rate": 0.6625,
       "auc": 0.7293956043956044,
-      "aurc": 0.1957901527166769,
+      "aurc": 0.19579015271667696,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1458333333333333,
+      "level2_share": 0.14583333333333334,
       "seconds": 28.0
     },
     {
@@ -442,10 +294,10 @@
       "hit_rate": 0.65,
       "branch_hit_rate": 0.6625,
       "auc": 0.728937728937729,
-      "aurc": 0.1898121462123945,
+      "aurc": 0.18981214621239453,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1416666666666666,
+      "level2_share": 0.14166666666666666,
       "seconds": 28.3
     },
     {
@@ -457,7 +309,7 @@
       "aurc": 0.1982847361373431,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1791666666666666,
+      "level2_share": 0.17916666666666667,
       "seconds": 28.3
     },
     {
@@ -466,10 +318,10 @@
       "hit_rate": 0.6458333333333334,
       "branch_hit_rate": 0.6583333333333333,
       "auc": 0.7243263757115751,
-      "aurc": 0.1965700356041906,
+      "aurc": 0.19657003560419065,
       "prec_at_20": 0.8125,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1583333333333333,
+      "level2_share": 0.15833333333333333,
       "seconds": 27.1
     },
     {
@@ -478,10 +330,10 @@
       "hit_rate": 0.6583333333333333,
       "branch_hit_rate": 0.6708333333333333,
       "auc": 0.7447514665020067,
-      "aurc": 0.1760975875046546,
+      "aurc": 0.17609758750465462,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1208333333333333,
+      "level2_share": 0.12083333333333333,
       "seconds": 26.7
     },
     {
@@ -502,7 +354,7 @@
       "hit_rate": 0.6541666666666667,
       "branch_hit_rate": 0.6666666666666666,
       "auc": 0.7179802010590132,
-      "aurc": 0.1957237855690977,
+      "aurc": 0.19572378556909775,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
       "level2_share": 0.1375,
@@ -514,10 +366,10 @@
       "hit_rate": 0.65,
       "branch_hit_rate": 0.6625,
       "auc": 0.7472527472527473,
-      "aurc": 0.1740744834292384,
+      "aurc": 0.17407448342923848,
       "prec_at_20": 1.0,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.1291666666666666,
+      "level2_share": 0.12916666666666668,
       "seconds": 34.2
     },
     {
@@ -526,7 +378,7 @@
       "hit_rate": 0.6541666666666667,
       "branch_hit_rate": 0.6666666666666666,
       "auc": 0.7179802010590132,
-      "aurc": 0.1957237855690977,
+      "aurc": 0.19572378556909775,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
       "level2_share": 0.1375,
@@ -538,7 +390,7 @@
       "hit_rate": 0.6666666666666666,
       "branch_hit_rate": 0.6791666666666667,
       "auc": 0.7038281249999999,
-      "aurc": 0.2013982552279714,
+      "aurc": 0.20139825522797145,
       "prec_at_20": 0.875,
       "coverage_at_tau": 0.0,
       "level2_share": 0.125,
@@ -550,10 +402,10 @@
       "hit_rate": 0.6208333333333333,
       "branch_hit_rate": 0.65,
       "auc": 0.7207021166752711,
-      "aurc": 0.222238537303494,
+      "aurc": 0.22223853730349408,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
-      "level2_share": 0.4291666666666666,
+      "level2_share": 0.42916666666666664,
       "seconds": 30.1
     },
     {
@@ -562,7 +414,7 @@
       "hit_rate": 0.6666666666666666,
       "branch_hit_rate": 0.6666666666666666,
       "auc": 0.7522656249999999,
-      "aurc": 0.169343952711023,
+      "aurc": 0.16934395271102304,
       "prec_at_20": 0.9375,
       "coverage_at_tau": 0.0,
       "level2_share": 0.0,
@@ -585,5 +437,17 @@
     "repeats": 20,
     "mean": 0.655,
     "std": 0.00942421293656315
-  }
+  },
+  "top_errors": [
+    {
+      "qid": "Q0043",
+      "conf": 0.9269965869241655,
+      "is_out": true
+    },
+    {
+      "qid": "Q0291",
+      "conf": 0.8569565626735216,
+      "is_out": true
+    }
+  ]
 }
