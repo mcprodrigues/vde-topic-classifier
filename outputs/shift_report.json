@@ -1,19 +1,19 @@
 {
-  "domain_auc": 0.5574583333333334,
-  "effective_n_after_weighting": 53.35561492291196,
+  "domain_auc": 0.5618000000000001,
+  "effective_n_after_weighting": 74.22524579258167,
   "mean_confidence": {
-    "dev_oof": 0.6655041731632099,
-    "bank_unlabeled": 0.5820826166758624,
-    "new_import": 0.6313823874289245
+    "dev_oof": 0.6702941348383592,
+    "bank_unlabeled": 0.6417301560648361,
+    "new_import": 0.6839830647500554
   },
   "feature_means": {
     "dev_oof": {
-      "agreement": 0.6216354166666667,
-      "top_cosine": 0.4609359666705132,
-      "segment_dispersion": 0.44020833333333337
+      "agreement": 0.6245,
+      "top_cosine": 0.4731756716966629,
+      "segment_dispersion": 0.4196666666666667
     },
     "new_import": {
-      "agreement": 0.616111111111111,
+      "agreement": 0.628,
       "top_cosine": 0.4759286833057801,
       "segment_dispersion": 0.37161111111111117
     }

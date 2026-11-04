@@ -11,16 +11,16 @@ Q0009,revisar,5157,,0.8407,confiança 0.84 abaixo do limiar; alternativas espalh
 Q0010,revisar,4688,,0.7391,confiança 0.74 abaixo do limiar
 Q0011,revisar,4702,,0.3532,confiança 0.35 abaixo do limiar
 Q0012,publicar,5562,4701;5569,1.0000,folha-verdade
-Q0013,revisar,5503,,0.9666,confiança 0.97 abaixo do limiar; alternativas espalhadas por vários temas
-Q0014,revisar,5477,,0.9505,confiança 0.95 abaixo do limiar
+Q0013,publicar,5503,,0.9666,
+Q0014,publicar,5477,,0.9505,
 Q0015,revisar,5498,,0.3667,confiança 0.37 abaixo do limiar; alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0016,revisar,5584,5517,0.1533,confiança 0.15 abaixo do limiar; dúvida entre 5584 (Teoria Geral das Prisões) e 5517 (Prisões em Espécie); alternativas espalhadas por vários temas
 Q0017,fora,,,1.0000,folha-verdade: fora da taxonomia
 Q0018,publicar,4701,5540,1.0000,folha-verdade
-Q0019,revisar,5475,,0.9784,confiança 0.98 abaixo do limiar
+Q0019,publicar,5475,,0.9784,
 Q0020,revisar,5203,,0.3509,confiança 0.35 abaixo do limiar; dúvida entre 5199 (Teoria da Pena) e 4709 (Violência contra Criança e Adolescente); alternativas espalhadas por vários temas; lei citada aponta para outro ramo; vizinhas rotuladas como fora
 Q0021,revisar,5503,,0.4082,confiança 0.41 abaixo do limiar
-Q0022,revisar,5087,,0.9608,confiança 0.96 abaixo do limiar
+Q0022,publicar,5087,,0.9608,
 Q0023,publicar,5524,,1.0000,folha-verdade
 Q0024,revisar,4388,,0.9118,confiança 0.91 abaixo do limiar
 Q0025,revisar,5093,,0.7181,confiança 0.72 abaixo do limiar
@@ -54,7 +54,7 @@ Q0052,publicar,4703,,1.0000,folha-verdade
 Q0053,revisar,4701,,0.6992,confiança 0.70 abaixo do limiar
 Q0054,revisar,5157,5077,0.6437,confiança 0.64 abaixo do limiar; alternativas espalhadas por vários temas
 Q0055,revisar,5535,,0.6307,confiança 0.63 abaixo do limiar; lei citada aponta para outro ramo
-Q0056,revisar,5066,,0.9686,confiança 0.97 abaixo do limiar
+Q0056,publicar,5066,,0.9686,
 Q0057,publicar,5175,,1.0000,folha-verdade
 Q0058,publicar,4389,4377,1.0000,folha-verdade
 Q0059,revisar,4384,5128,0.3610,confiança 0.36 abaixo do limiar; dúvida entre 4384 (Teorias Legitimidoras da Pena) e 4368 (Criminologia no Estado Democrático de Direito); alternativas espalhadas por vários temas
@@ -73,13 +73,13 @@ Q0071,revisar,4688,,0.2978,confiança 0.30 abaixo do limiar
 Q0072,revisar,5498,,0.4996,confiança 0.50 abaixo do limiar
 Q0073,revisar,5087,,0.7840,confiança 0.78 abaixo do limiar; alternativas espalhadas por vários temas
 Q0074,revisar,5199,,0.3055,confiança 0.31 abaixo do limiar
-Q0075,revisar,5191,,0.9872,confiança 0.99 abaixo do limiar
+Q0075,publicar,5191,,0.9872,
 Q0076,revisar,4367,4371,0.7681,confiança 0.77 abaixo do limiar; dúvida entre 4367 (Classificação dos Criminosos) e 4371 (Etapas Evolutivas e Escolas Criminológicas)
 Q0077,publicar,5183,,1.0000,folha-verdade
 Q0078,revisar,4697,,0.8084,confiança 0.81 abaixo do limiar; lei citada aponta para outro ramo
 Q0079,publicar,5580,,1.0000,folha-verdade
 Q0080,publicar,4368,,1.0000,folha-verdade
-Q0081,revisar,4371,,0.9952,confiança 1.00 abaixo do limiar
+Q0081,publicar,4371,,0.9952,
 Q0082,revisar,5091,,0.6766,confiança 0.68 abaixo do limiar
 Q0083,revisar,5150,,0.9300,confiança 0.93 abaixo do limiar
 Q0084,revisar,4704,5149,0.4247,confiança 0.42 abaixo do limiar
@@ -143,10 +143,10 @@ Q0141,revisar,4385,,0.8272,confiança 0.83 abaixo do limiar; alternativas espalh
 Q0142,revisar,5111,5560,0.1754,confiança 0.18 abaixo do limiar; alternativas espalhadas por vários temas
 Q0143,revisar,5580,5505,0.7093,confiança 0.71 abaixo do limiar; dúvida entre 5580 (Sistemas e Princípios Processuais Penais) e 5505 (Lei Processual no Tempo e no Espaço)
 Q0144,publicar,5524,5529;5562,1.0000,folha-verdade
-Q0145,revisar,5066,4702,0.9607,confiança 0.96 abaixo do limiar; dúvida entre 5066 (Concurso de Crimes) e 4702 (Lavagem de Dinheiro)
+Q0145,publicar,5066,4702,0.9607,
 Q0146,revisar,5554,,0.6094,confiança 0.61 abaixo do limiar; vizinhas rotuladas como fora
 Q0147,publicar,5498,,1.0000,folha-verdade
-Q0148,revisar,5199,,0.9597,confiança 0.96 abaixo do limiar
+Q0148,publicar,5199,,0.9597,
 Q0149,revisar,5498,,0.7301,confiança 0.73 abaixo do limiar; alternativas espalhadas por vários temas
 Q0150,publicar,4708,,1.0000,folha-verdade
 Q0151,revisar,5517,,0.8109,confiança 0.81 abaixo do limiar; vizinhas rotuladas como fora
@@ -175,7 +175,7 @@ Q0173,revisar,4703,,0.6799,confiança 0.68 abaixo do limiar
 Q0174,revisar,5166,,0.1942,confiança 0.19 abaixo do limiar; dúvida entre 5157 (Dos Crimes Contra o Patrimônio) e 5128 (Dos Crimes Contra a Liberdade Pessoal); alternativas espalhadas por vários temas; lei citada aponta para outro ramo
 Q0175,revisar,5087,,0.7503,confiança 0.75 abaixo do limiar; alternativas espalhadas por vários temas; lei citada aponta para outro ramo
 Q0176,revisar,5079,,0.9089,confiança 0.91 abaixo do limiar; dúvida entre 5079 (Dos Crimes Contra a Administração Judicial) e 5543 (Provas em Espécies)
-Q0177,revisar,5543,,0.9887,confiança 0.99 abaixo do limiar
+Q0177,publicar,5543,,0.9887,
 Q0178,revisar,4697,,0.3804,confiança 0.38 abaixo do limiar
 Q0179,publicar,4368,,1.0000,folha-verdade
 Q0180,revisar,5554,,0.7436,confiança 0.74 abaixo do limiar; alternativas espalhadas por vários temas
@@ -190,13 +190,13 @@ Q0188,publicar,5228,5233,1.0000,folha-verdade
 Q0189,revisar,5063,5466;5476,0.4774,confiança 0.48 abaixo do limiar; dúvida entre 5063 (Ação Penal) e 5466 (Ação Penal)
 Q0190,revisar,4701,,0.8518,confiança 0.85 abaixo do limiar; dúvida entre 4701 (Juizado Especial Criminal) e 5199 (Teoria da Pena); lei citada aponta para outro ramo
 Q0191,publicar,5560,,1.0000,folha-verdade
-Q0192,revisar,5087,,0.9814,confiança 0.98 abaixo do limiar; alternativas espalhadas por vários temas
+Q0192,publicar,5087,,0.9814,
 Q0193,revisar,5498,5543,0.8810,confiança 0.88 abaixo do limiar
 Q0194,publicar,5087,5076,1.0000,folha-verdade
 Q0195,revisar,4371,,0.8160,confiança 0.82 abaixo do limiar; alternativas espalhadas por vários temas
 Q0196,revisar,4385,,0.7629,confiança 0.76 abaixo do limiar
 Q0197,revisar,5498,,0.5565,confiança 0.56 abaixo do limiar
-Q0198,revisar,5073,,0.9511,confiança 0.95 abaixo do limiar; alternativas espalhadas por vários temas
+Q0198,publicar,5073,,0.9511,
 Q0199,revisar,5218,,0.7713,confiança 0.77 abaixo do limiar; alternativas espalhadas por vários temas
 Q0200,revisar,4705,5087,0.7783,confiança 0.78 abaixo do limiar; dúvida entre 4705 (Organizações Criminosas) e 5087 (Dos Crimes Contra a Administração Pública)
 Q0201,publicar,5102,5103,1.0000,folha-verdade
@@ -227,7 +227,7 @@ Q0225,revisar,5478,,0.1387,confiança 0.14 abaixo do limiar; dúvida entre 5476 
 Q0226,publicar,5544,,1.0000,folha-verdade
 Q0227,revisar,5103,,0.6590,confiança 0.66 abaixo do limiar; lei citada aponta para outro ramo
 Q0228,revisar,5476,5560;5524,0.5383,confiança 0.54 abaixo do limiar; dúvida entre 5476 (Ações Autônomas de Impugnação) e 5560 (Recursos em Espécies); alternativas espalhadas por vários temas
-Q0229,revisar,5517,,0.9619,confiança 0.96 abaixo do limiar; dúvida entre 5517 (Prisões em Espécie) e 5498 (Inquérito Policial); alternativas espalhadas por vários temas
+Q0229,publicar,5517,,0.9619,
 Q0230,publicar,5211,5214,1.0000,folha-verdade
 Q0231,publicar,5224,,1.0000,folha-verdade
 Q0232,revisar,5079,,0.8059,confiança 0.81 abaixo do limiar
@@ -241,7 +241,7 @@ Q0239,revisar,5199,,0.3769,confiança 0.38 abaixo do limiar; alternativas espalh
 Q0240,publicar,5498,5473,1.0000,folha-verdade
 Q0241,revisar,5224,,0.9038,confiança 0.90 abaixo do limiar; alternativas espalhadas por vários temas
 Q0242,revisar,5560,5512,0.8375,confiança 0.84 abaixo do limiar; alternativas espalhadas por vários temas
-Q0243,revisar,5178,,0.9685,confiança 0.97 abaixo do limiar; alternativas espalhadas por vários temas
+Q0243,publicar,5178,,0.9685,
 Q0244,publicar,5087,,1.0000,folha-verdade
 Q0245,publicar,5185,,1.0000,folha-verdade
 Q0246,publicar,5527,,1.0000,folha-verdade
@@ -253,7 +253,7 @@ Q0251,publicar,5191,5185;5193,1.0000,folha-verdade
 Q0252,fora,,,1.0000,folha-verdade: fora da taxonomia
 Q0253,publicar,4371,4372,1.0000,folha-verdade
 Q0254,revisar,4704,,0.9448,confiança 0.94 abaixo do limiar
-Q0255,revisar,5213,,0.9703,confiança 0.97 abaixo do limiar
+Q0255,publicar,5213,,0.9703,
 Q0256,revisar,5218,5199,0.4967,confiança 0.50 abaixo do limiar; dúvida entre 5218 (Teoria do Crime: Fato Típico) e 5199 (Teoria da Pena)
 Q0257,revisar,5218,5170,0.5321,confiança 0.53 abaixo do limiar
 Q0258,revisar,5543,,0.7787,confiança 0.78 abaixo do limiar; alternativas espalhadas por vários temas
@@ -278,7 +278,7 @@ Q0276,publicar,5554,5543,1.0000,folha-verdade
 Q0277,publicar,4696,,1.0000,folha-verdade
 Q0278,revisar,4701,,0.5996,confiança 0.60 abaixo do limiar; dúvida entre 4701 (Juizado Especial Criminal) e 5199 (Teoria da Pena)
 Q0279,publicar,5185,5178,1.0000,folha-verdade
-Q0280,revisar,5120,5466,0.9583,confiança 0.96 abaixo do limiar
+Q0280,publicar,5120,5466,0.9583,
 Q0281,revisar,5555,,0.4036,confiança 0.40 abaixo do limiar; alternativas espalhadas por vários temas
 Q0282,revisar,4697,4704,0.4626,confiança 0.46 abaixo do limiar; dúvida entre 4697 (Estatuto do Desarmamento) e 4704 (Lei Maria da Penha); alternativas espalhadas por vários temas
 Q0283,revisar,5572,5490,0.3979,confiança 0.40 abaixo do limiar; dúvida entre 5572 (Sentença Penal) e 5476 (Ações Autônomas de Impugnação); alternativas espalhadas por vários temas
@@ -292,7 +292,7 @@ Q0290,publicar,4701,,1.0000,folha-verdade
 Q0291,fora,,,1.0000,folha-verdade: fora da taxonomia
 Q0292,revisar,4374,,0.8985,confiança 0.90 abaixo do limiar
 Q0293,revisar,5185,5199,0.8648,confiança 0.86 abaixo do limiar; dúvida entre 5185 (Prescrição) e 5199 (Teoria da Pena)
-Q0294,revisar,5211,,0.9537,confiança 0.95 abaixo do limiar
+Q0294,publicar,5211,,0.9537,
 Q0295,revisar,5487,,0.8937,confiança 0.89 abaixo do limiar
 Q0296,revisar,5466,5063,0.4577,confiança 0.46 abaixo do limiar; dúvida entre 5466 (Ação Penal) e 5063 (Ação Penal)
 Q0297,revisar,4695,4689,0.0710,confiança 0.07 abaixo do limiar; dúvida entre 4695 (Crimes Tributários) e 4689 (Crimes contra o Sistema Financeiro); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
@@ -329,13 +329,13 @@ Q0327,revisar,5203,,0.9481,confiança 0.95 abaixo do limiar
 Q0328,revisar,4374,,0.7335,confiança 0.73 abaixo do limiar
 Q0329,revisar,5166,,0.5592,confiança 0.56 abaixo do limiar; alternativas espalhadas por vários temas
 Q0330,revisar,5498,,0.8147,confiança 0.81 abaixo do limiar; alternativas espalhadas por vários temas
-Q0331,revisar,5477,,0.9914,confiança 0.99 abaixo do limiar
+Q0331,publicar,5477,,0.9914,
 Q0332,revisar,4701,,0.9111,confiança 0.91 abaixo do limiar
 Q0333,revisar,5175,4371,0.6823,confiança 0.68 abaixo do limiar; dúvida entre 5175 (Iter Criminis) e 4371 (Etapas Evolutivas e Escolas Criminológicas); alternativas espalhadas por vários temas
 Q0334,revisar,4380,4389,0.8832,confiança 0.88 abaixo do limiar; dúvida entre 4380 (Teoria Geral da Criminologia) e 4389 (Vitimologia); alternativas espalhadas por vários temas
 Q0335,revisar,5175,5218,0.6410,confiança 0.64 abaixo do limiar; alternativas espalhadas por vários temas
 Q0336,publicar,5159,5177,1.0000,folha-verdade
-Q0337,revisar,4684,,0.9855,confiança 0.99 abaixo do limiar
+Q0337,publicar,4684,,0.9855,
 Q0338,publicar,5590,,1.0000,folha-verdade
 Q0339,publicar,5572,,1.0000,folha-verdade
 Q0340,revisar,5071,,0.9028,confiança 0.90 abaixo do limiar
@@ -349,38 +349,38 @@ Q0347,revisar,5069,5228;5199,0.1836,confiança 0.18 abaixo do limiar; dúvida en
 Q0348,revisar,5093,,0.9396,confiança 0.94 abaixo do limiar
 Q0349,revisar,4703,5066,0.2556,confiança 0.26 abaixo do limiar; dúvida entre 4703 (Lei de Execução Penal) e 5066 (Concurso de Crimes)
 Q0350,revisar,4702,5199,0.8212,confiança 0.82 abaixo do limiar; dúvida entre 4702 (Lavagem de Dinheiro) e 5199 (Teoria da Pena); alternativas espalhadas por vários temas
-Q0351,revisar,5116,,0.9712,confiança 0.97 abaixo do limiar
+Q0351,publicar,5116,,0.9712,
 Q0352,revisar,5560,5512,0.5917,confiança 0.59 abaixo do limiar; dúvida entre 5560 (Recursos em Espécies) e 5512 (Parte Geral dos Recursos)
 Q0353,revisar,5185,,0.7312,confiança 0.73 abaixo do limiar; alternativas espalhadas por vários temas
-Q0354,revisar,5218,,0.9680,confiança 0.97 abaixo do limiar; alternativas espalhadas por vários temas
+Q0354,publicar,5218,,0.9680,
 Q0355,revisar,4708,,0.1358,confiança 0.14 abaixo do limiar; alternativas espalhadas por vários temas
 Q0356,publicar,5066,5070,1.0000,folha-verdade
 Q0357,revisar,5157,4707,0.4733,confiança 0.47 abaixo do limiar; dúvida entre 5157 (Dos Crimes Contra o Patrimônio) e 4707 (Tortura); alternativas espalhadas por vários temas
 Q0358,revisar,5184,,0.3837,confiança 0.38 abaixo do limiar; dúvida entre 5184 (Medida de Segurança) e 5128 (Dos Crimes Contra a Liberdade Pessoal)
 Q0359,revisar,4701,,0.3164,confiança 0.32 abaixo do limiar
 Q0360,revisar,4389,4366,0.5886,confiança 0.59 abaixo do limiar; alternativas espalhadas por vários temas
-Q0361,revisar,5213,,0.9706,confiança 0.97 abaixo do limiar
+Q0361,publicar,5213,,0.9706,
 Q0362,revisar,4705,5543,0.6548,confiança 0.65 abaixo do limiar
-Q0363,revisar,5087,,0.9886,confiança 0.99 abaixo do limiar
+Q0363,publicar,5087,,0.9886,
 Q0364,revisar,5211,5218,0.4512,confiança 0.45 abaixo do limiar; dúvida entre 5211 (Teoria do Crime: Culpabilidade) e 5199 (Teoria da Pena); alternativas espalhadas por vários temas
 Q0365,revisar,5191,,0.6115,confiança 0.61 abaixo do limiar
 Q0366,revisar,5199,,0.5053,confiança 0.51 abaixo do limiar; alternativas espalhadas por vários temas
 Q0367,revisar,5530,,0.8061,confiança 0.81 abaixo do limiar; alternativas espalhadas por vários temas
-Q0368,revisar,5498,,0.9595,confiança 0.96 abaixo do limiar; alternativas espalhadas por vários temas
+Q0368,publicar,5498,,0.9595,
 Q0369,revisar,4702,,0.5167,confiança 0.52 abaixo do limiar; dúvida entre 4702 (Lavagem de Dinheiro) e 4689 (Crimes contra o Sistema Financeiro)
-Q0370,revisar,5523,,0.9576,confiança 0.96 abaixo do limiar; vizinhas rotuladas como fora
-Q0371,revisar,5466,,0.9537,confiança 0.95 abaixo do limiar
+Q0370,publicar,5523,,0.9576,
+Q0371,publicar,5466,,0.9537,
 Q0372,revisar,5555,,0.9423,confiança 0.94 abaixo do limiar
 Q0373,revisar,5180,,0.7767,confiança 0.78 abaixo do limiar; alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0374,revisar,5147,,0.7753,confiança 0.78 abaixo do limiar; alternativas espalhadas por vários temas; vizinhas rotuladas como fora
-Q0375,revisar,5224,,0.9577,confiança 0.96 abaixo do limiar
+Q0375,publicar,5224,,0.9577,
 Q0376,revisar,5218,5175,0.8264,confiança 0.83 abaixo do limiar; dúvida entre 5218 (Teoria do Crime: Fato Típico) e 5175 (Iter Criminis)
 Q0377,revisar,5477,,0.7261,confiança 0.73 abaixo do limiar; alternativas espalhadas por vários temas
-Q0378,revisar,5117,,0.9733,confiança 0.97 abaixo do limiar
-Q0379,revisar,4704,,0.9686,confiança 0.97 abaixo do limiar
+Q0378,publicar,5117,,0.9733,
+Q0379,publicar,4704,,0.9686,
 Q0380,revisar,5573,5487,0.4737,confiança 0.47 abaixo do limiar; dúvida entre 5572 (Sentença Penal) e 5487 (Comunicação dos Atos Processuais)
 Q0381,revisar,5502,,0.5373,confiança 0.54 abaixo do limiar; alternativas espalhadas por vários temas
-Q0382,revisar,5218,,0.9562,confiança 0.96 abaixo do limiar
+Q0382,publicar,5218,,0.9562,
 Q0383,revisar,4702,,0.5182,confiança 0.52 abaixo do limiar; alternativas espalhadas por vários temas
 Q0384,revisar,5560,,0.9370,confiança 0.94 abaixo do limiar; alternativas espalhadas por vários temas
 Q0385,revisar,4705,5543,0.5286,confiança 0.53 abaixo do limiar
@@ -390,7 +390,7 @@ Q0388,revisar,4701,5530,0.6059,confiança 0.61 abaixo do limiar; dúvida entre 4
 Q0389,revisar,5218,,0.8375,confiança 0.84 abaixo do limiar; dúvida entre 5218 (Teoria do Crime: Fato Típico) e 5175 (Iter Criminis)
 Q0390,revisar,4374,4385,0.4816,confiança 0.48 abaixo do limiar; dúvida entre 4374 (Política Criminal) e 4385 (Teorias Sociológicas Explicativas da Criminalidade); alternativas espalhadas por vários temas
 Q0391,revisar,5502,5466,0.9456,confiança 0.95 abaixo do limiar; alternativas espalhadas por vários temas
-Q0392,revisar,5208,,0.9543,confiança 0.95 abaixo do limiar; alternativas espalhadas por vários temas
+Q0392,publicar,5208,,0.9543,
 Q0393,fora,,,0.3656,disciplina de origem sem tema na árvore (Direito Penal Militar)
 Q0394,revisar,5524,4701;5480,0.4532,confiança 0.45 abaixo do limiar; dúvida entre 5524 (Procedimento do Tribunal do Júri) e 4701 (Juizado Especial Criminal); alternativas espalhadas por vários temas
 Q0395,revisar,5478,,0.6612,confiança 0.66 abaixo do limiar
@@ -400,18 +400,18 @@ Q0398,revisar,5178,,0.5792,confiança 0.58 abaixo do limiar; dúvida entre 5175 
 Q0399,revisar,5095,,0.9121,confiança 0.91 abaixo do limiar
 Q0400,revisar,5213,,0.5900,confiança 0.59 abaixo do limiar; alternativas espalhadas por vários temas
 Q0401,revisar,5209,5191,0.3402,confiança 0.34 abaixo do limiar; dúvida entre 5199 (Teoria da Pena) e 5191 (Punibilidade); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
-Q0402,revisar,4684,,0.9817,confiança 0.98 abaixo do limiar
+Q0402,publicar,4684,,0.9817,
 Q0403,revisar,5180,,0.2908,confiança 0.29 abaixo do limiar; alternativas espalhadas por vários temas
-Q0404,revisar,5119,,0.9540,confiança 0.95 abaixo do limiar
+Q0404,publicar,5119,,0.9540,
 Q0405,revisar,5560,,0.4172,confiança 0.42 abaixo do limiar
-Q0406,revisar,5087,,0.9650,confiança 0.97 abaixo do limiar
+Q0406,publicar,5087,,0.9650,
 Q0407,revisar,5572,5530,0.5850,confiança 0.58 abaixo do limiar; dúvida entre 5572 (Sentença Penal) e 5530 (Procedimento Ordinário); alternativas espalhadas por vários temas
 Q0408,revisar,5495,,0.7969,confiança 0.80 abaixo do limiar
-Q0409,revisar,5211,5228,0.9756,confiança 0.98 abaixo do limiar; dúvida entre 5211 (Teoria do Crime: Culpabilidade) e 5228 (Teoria do Crime: Ilicitude)
+Q0409,publicar,5211,5228,0.9756,
 Q0410,revisar,5213,,0.8689,confiança 0.87 abaixo do limiar
 Q0411,revisar,5087,,0.8814,confiança 0.88 abaixo do limiar; alternativas espalhadas por vários temas
-Q0412,revisar,5087,,0.9528,confiança 0.95 abaixo do limiar
-Q0413,revisar,5087,,0.9547,confiança 0.95 abaixo do limiar
+Q0412,publicar,5087,,0.9528,
+Q0413,publicar,5087,,0.9547,
 Q0414,revisar,4695,,0.6513,confiança 0.65 abaixo do limiar; dúvida entre 4695 (Crimes Tributários) e 5191 (Punibilidade)
 Q0415,revisar,4695,,0.8506,confiança 0.85 abaixo do limiar
 Q0416,fora,,,0.2598,disciplina de origem sem tema na árvore (Direito Penal Militar)
@@ -456,7 +456,7 @@ Q0454,revisar,5180,,0.9316,confiança 0.93 abaixo do limiar; alternativas espalh
 Q0455,revisar,5530,5466,0.5626,confiança 0.56 abaixo do limiar; dúvida entre 5530 (Procedimento Ordinário) e 5466 (Ação Penal); alternativas espalhadas por vários temas
 Q0456,revisar,5180,,0.7088,confiança 0.71 abaixo do limiar; dúvida entre 5180 (Lei Penal no Tempo e no Espaço) e 5170 (Introdução ao Estudo do Direito Penal); alternativas espalhadas por vários temas
 Q0457,revisar,5477,,0.8930,confiança 0.89 abaixo do limiar
-Q0458,revisar,5218,,0.9749,confiança 0.97 abaixo do limiar
+Q0458,publicar,5218,,0.9749,
 Q0459,revisar,4695,,0.6789,confiança 0.68 abaixo do limiar; vizinhas rotuladas como fora
 Q0460,revisar,5144,,0.9297,confiança 0.93 abaixo do limiar; vizinhas rotuladas como fora
 Q0461,revisar,5562,5572,0.2871,confiança 0.29 abaixo do limiar; dúvida entre 5560 (Recursos em Espécies) e 5572 (Sentença Penal); alternativas espalhadas por vários temas
@@ -468,15 +468,15 @@ Q0466,revisar,5218,5228,0.8691,confiança 0.87 abaixo do limiar
 Q0467,fora,,,0.2485,disciplina de origem sem tema na árvore (Direito Processual Penal Militar)
 Q0468,revisar,5184,,0.5262,confiança 0.53 abaixo do limiar; alternativas espalhadas por vários temas; lei citada aponta para outro ramo
 Q0469,revisar,4374,,0.7100,confiança 0.71 abaixo do limiar; lei citada aponta para outro ramo
-Q0470,revisar,4703,,0.9591,confiança 0.96 abaixo do limiar
+Q0470,publicar,4703,,0.9591,
 Q0471,revisar,5191,5087,0.8563,confiança 0.86 abaixo do limiar; dúvida entre 5191 (Punibilidade) e 5087 (Dos Crimes Contra a Administração Pública); alternativas espalhadas por vários temas
-Q0472,revisar,5117,,0.9916,confiança 0.99 abaixo do limiar
+Q0472,publicar,5117,,0.9916,
 Q0473,revisar,5498,,0.7528,confiança 0.75 abaixo do limiar
 Q0474,revisar,4377,,0.6638,confiança 0.66 abaixo do limiar; alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0475,revisar,5177,,0.8669,confiança 0.87 abaixo do limiar
 Q0476,revisar,5524,,0.7284,confiança 0.73 abaixo do limiar
 Q0477,revisar,5475,,0.7636,confiança 0.76 abaixo do limiar; alternativas espalhadas por vários temas
-Q0478,revisar,5480,,0.9596,confiança 0.96 abaixo do limiar
+Q0478,publicar,5480,,0.9596,
 Q0479,fora,,,0.2569,disciplina de origem sem tema na árvore (Direito Processual Penal Militar)
 Q0480,revisar,5199,,0.6130,confiança 0.61 abaixo do limiar; alternativas espalhadas por vários temas
 Q0481,revisar,5170,5218,0.5517,confiança 0.55 abaixo do limiar; dúvida entre 5170 (Introdução ao Estudo do Direito Penal) e 5218 (Teoria do Crime: Fato Típico)
@@ -486,7 +486,7 @@ Q0484,revisar,4702,,0.6125,confiança 0.61 abaixo do limiar; alternativas espalh
 Q0485,revisar,5180,5191,0.6346,confiança 0.63 abaixo do limiar; dúvida entre 5180 (Lei Penal no Tempo e no Espaço) e 5191 (Punibilidade); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0486,revisar,5560,,0.2625,confiança 0.26 abaixo do limiar; dúvida entre 5560 (Recursos em Espécies) e 5572 (Sentença Penal)
 Q0487,revisar,5159,,0.5456,confiança 0.55 abaixo do limiar; alternativas espalhadas por vários temas
-Q0488,revisar,5090,,0.9745,confiança 0.97 abaixo do limiar
+Q0488,publicar,5090,,0.9745,
 Q0489,revisar,5185,,0.5304,confiança 0.53 abaixo do limiar
 Q0490,revisar,5211,,0.9237,confiança 0.92 abaixo do limiar
 Q0491,revisar,5157,,0.9050,confiança 0.90 abaixo do limiar
@@ -497,13 +497,13 @@ Q0495,revisar,5087,,0.7197,confiança 0.72 abaixo do limiar; alternativas espalh
 Q0496,revisar,5191,,0.6017,confiança 0.60 abaixo do limiar; alternativas espalhadas por vários temas
 Q0497,revisar,5560,5476,0.7919,confiança 0.79 abaixo do limiar; dúvida entre 5560 (Recursos em Espécies) e 5476 (Ações Autônomas de Impugnação); alternativas espalhadas por vários temas
 Q0498,revisar,5102,,0.3160,confiança 0.32 abaixo do limiar; dúvida entre 5102 (Dos Crimes Contra a Dignidade Sexual) e 5128 (Dos Crimes Contra a Liberdade Pessoal); alternativas espalhadas por vários temas
-Q0499,revisar,5218,,0.9590,confiança 0.96 abaixo do limiar
+Q0499,publicar,5218,,0.9590,
 Q0500,revisar,4695,,0.1005,confiança 0.10 abaixo do limiar; dúvida entre 4695 (Crimes Tributários) e 5116 (Dos Crimes Contra a Fé Pública e de Falsidade Documental); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
-Q0501,revisar,4704,,0.9737,confiança 0.97 abaixo do limiar
+Q0501,publicar,4704,,0.9737,
 Q0502,revisar,5099,,0.8088,confiança 0.81 abaixo do limiar; alternativas espalhadas por vários temas
 Q0503,revisar,4377,,0.8199,confiança 0.82 abaixo do limiar; alternativas espalhadas por vários temas
 Q0504,revisar,5218,4703;5191,0.4897,confiança 0.49 abaixo do limiar; dúvida entre 5218 (Teoria do Crime: Fato Típico) e 4703 (Lei de Execução Penal); alternativas espalhadas por vários temas
-Q0505,revisar,5087,,0.9650,confiança 0.96 abaixo do limiar
+Q0505,publicar,5087,,0.9650,
 Q0506,revisar,5180,,0.8642,confiança 0.86 abaixo do limiar
 Q0507,revisar,5214,5218,0.6514,confiança 0.65 abaixo do limiar; dúvida entre 5211 (Teoria do Crime: Culpabilidade) e 5218 (Teoria do Crime: Fato Típico)
 Q0508,revisar,4700,,0.7916,confiança 0.79 abaixo do limiar
@@ -519,12 +519,12 @@ Q0517,revisar,5063,5466;5120,0.4920,confiança 0.49 abaixo do limiar; dúvida en
 Q0518,revisar,5087,,0.8583,confiança 0.86 abaixo do limiar
 Q0519,revisar,5590,5498;5228,0.2997,confiança 0.30 abaixo do limiar; dúvida entre 5590 (Teoria Geral das Provas) e 5498 (Inquérito Policial); alternativas espalhadas por vários temas; lei citada aponta para outro ramo
 Q0520,revisar,5087,,0.6290,confiança 0.63 abaixo do limiar
-Q0521,revisar,4384,,0.9522,confiança 0.95 abaixo do limiar; alternativas espalhadas por vários temas
+Q0521,publicar,4384,,0.9522,
 Q0522,revisar,5478,5572,0.7315,confiança 0.73 abaixo do limiar; alternativas espalhadas por vários temas
 Q0523,revisar,5473,,0.6150,confiança 0.61 abaixo do limiar
 Q0524,revisar,5066,5185,0.4759,confiança 0.48 abaixo do limiar; dúvida entre 5066 (Concurso de Crimes) e 5185 (Prescrição)
 Q0525,revisar,4708,5199,0.4812,confiança 0.48 abaixo do limiar; dúvida entre 4708 (Tráfico de Drogas) e 5199 (Teoria da Pena)
-Q0526,revisar,4385,,0.9733,confiança 0.97 abaixo do limiar
+Q0526,publicar,4385,,0.9733,
 Q0527,fora,,,0.5188,disciplina de origem sem tema na árvore (Direito Penal Militar)
 Q0528,revisar,5180,,0.5313,confiança 0.53 abaixo do limiar; alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0529,revisar,5089,5572,0.7578,confiança 0.76 abaixo do limiar; alternativas espalhadas por vários temas
@@ -562,8 +562,8 @@ Q0560,revisar,4697,,0.6201,confiança 0.62 abaixo do limiar; alternativas espalh
 Q0561,revisar,5116,5087,0.9040,confiança 0.90 abaixo do limiar; dúvida entre 5116 (Dos Crimes Contra a Fé Pública e de Falsidade Documental) e 5087 (Dos Crimes Contra a Administração Pública)
 Q0562,revisar,5087,,0.6745,confiança 0.67 abaixo do limiar
 Q0563,revisar,4385,,0.9233,confiança 0.92 abaixo do limiar
-Q0564,revisar,4385,,0.9508,confiança 0.95 abaixo do limiar
-Q0565,revisar,5466,5498,0.9580,confiança 0.96 abaixo do limiar; dúvida entre 5466 (Ação Penal) e 5498 (Inquérito Policial)
+Q0564,publicar,4385,,0.9508,
+Q0565,publicar,5466,5498,0.9580,
 Q0566,revisar,5087,5079,0.6998,confiança 0.70 abaixo do limiar; dúvida entre 5087 (Dos Crimes Contra a Administração Pública) e 5079 (Dos Crimes Contra a Administração Judicial)
 Q0567,revisar,5201,,0.8699,confiança 0.87 abaixo do limiar
 Q0568,revisar,5180,,0.8312,confiança 0.83 abaixo do limiar; vizinhas rotuladas como fora
@@ -575,7 +575,7 @@ Q0573,revisar,5159,,0.9360,confiança 0.94 abaixo do limiar
 Q0574,revisar,5119,5157,0.1962,confiança 0.20 abaixo do limiar; dúvida entre 5116 (Dos Crimes Contra a Fé Pública e de Falsidade Documental) e 5157 (Dos Crimes Contra o Patrimônio); alternativas espalhadas por vários temas; lei citada aponta para outro ramo
 Q0575,revisar,5184,,0.3954,confiança 0.40 abaixo do limiar; alternativas espalhadas por vários temas
 Q0576,revisar,5087,5157,0.2588,confiança 0.26 abaixo do limiar; dúvida entre 5087 (Dos Crimes Contra a Administração Pública) e 5157 (Dos Crimes Contra o Patrimônio); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
-Q0577,revisar,4704,,0.9690,confiança 0.97 abaixo do limiar
+Q0577,publicar,4704,,0.9690,
 Q0578,revisar,4702,,0.7819,confiança 0.78 abaixo do limiar
 Q0579,revisar,5478,,0.5809,confiança 0.58 abaixo do limiar
 Q0580,revisar,4690,5199,0.4838,confiança 0.48 abaixo do limiar; alternativas espalhadas por vários temas
@@ -588,7 +588,7 @@ Q0586,revisar,5517,,0.8923,confiança 0.89 abaixo do limiar; vizinhas rotuladas 
 Q0587,revisar,5185,,0.8175,confiança 0.82 abaixo do limiar; alternativas espalhadas por vários temas
 Q0588,revisar,4388,,0.9249,confiança 0.92 abaixo do limiar
 Q0589,revisar,5209,5087,0.4936,confiança 0.49 abaixo do limiar; dúvida entre 5199 (Teoria da Pena) e 5087 (Dos Crimes Contra a Administração Pública)
-Q0590,revisar,5230,,0.9615,confiança 0.96 abaixo do limiar
+Q0590,publicar,5230,,0.9615,
 Q0591,revisar,5560,,0.8091,confiança 0.81 abaixo do limiar
 Q0592,revisar,5087,,0.8251,confiança 0.83 abaixo do limiar; alternativas espalhadas por vários temas
 Q0593,revisar,5159,,0.6966,confiança 0.70 abaixo do limiar
@@ -601,7 +601,7 @@ Q0599,fora,,,0.4534,disciplina de origem sem tema na árvore (Direito Processual
 Q0600,revisar,5199,5572,0.3721,confiança 0.37 abaixo do limiar; dúvida entre 5199 (Teoria da Pena) e 5572 (Sentença Penal); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0601,revisar,4701,,0.9406,confiança 0.94 abaixo do limiar
 Q0602,revisar,5087,5063,0.3459,confiança 0.35 abaixo do limiar; dúvida entre 5087 (Dos Crimes Contra a Administração Pública) e 5063 (Ação Penal); lei citada aponta para outro ramo
-Q0603,revisar,5092,,0.9519,confiança 0.95 abaixo do limiar
+Q0603,publicar,5092,,0.9519,
 Q0604,revisar,5087,,0.9417,confiança 0.94 abaixo do limiar
 Q0605,revisar,5488,5543;5590,0.2486,confiança 0.25 abaixo do limiar; alternativas espalhadas por vários temas
 Q0606,revisar,5101,5199,0.7648,confiança 0.76 abaixo do limiar; dúvida entre 5087 (Dos Crimes Contra a Administração Pública) e 5199 (Teoria da Pena)
@@ -609,16 +609,16 @@ Q0607,revisar,4368,4374,0.8028,confiança 0.80 abaixo do limiar
 Q0608,revisar,5180,,0.7762,confiança 0.78 abaixo do limiar
 Q0609,revisar,4694,,0.1426,confiança 0.14 abaixo do limiar; dúvida entre 4694 (Crimes previstos no CDC) e 5087 (Dos Crimes Contra a Administração Pública); alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0610,revisar,4700,,0.5483,confiança 0.55 abaixo do limiar
-Q0611,revisar,5116,,0.9698,confiança 0.97 abaixo do limiar
+Q0611,publicar,5116,,0.9698,
 Q0612,revisar,5466,5063,0.8101,confiança 0.81 abaixo do limiar; dúvida entre 5466 (Ação Penal) e 5063 (Ação Penal)
 Q0613,revisar,4689,,0.6652,confiança 0.67 abaixo do limiar; alternativas espalhadas por vários temas
 Q0614,revisar,5157,5116,0.0560,confiança 0.06 abaixo do limiar; dúvida entre 5157 (Dos Crimes Contra o Patrimônio) e 5087 (Dos Crimes Contra a Administração Pública); alternativas espalhadas por vários temas; lei citada aponta para outro ramo; vizinhas rotuladas como fora
 Q0615,revisar,5473,5191,0.4418,confiança 0.44 abaixo do limiar; dúvida entre 5466 (Ação Penal) e 5191 (Punibilidade)
 Q0616,revisar,5194,,0.4640,confiança 0.46 abaixo do limiar; alternativas espalhadas por vários temas; vizinhas rotuladas como fora
 Q0617,revisar,5199,,0.2210,confiança 0.22 abaixo do limiar
-Q0618,revisar,5224,,0.9518,confiança 0.95 abaixo do limiar
+Q0618,publicar,5224,,0.9518,
 Q0619,revisar,4701,,0.7001,confiança 0.70 abaixo do limiar; alternativas espalhadas por vários temas
-Q0620,revisar,5147,,0.9646,confiança 0.96 abaixo do limiar
+Q0620,publicar,5147,,0.9646,
 Q0621,revisar,5199,5543,0.4590,confiança 0.46 abaixo do limiar; dúvida entre 5199 (Teoria da Pena) e 5543 (Provas em Espécies)
 Q0622,revisar,5180,,0.4199,confiança 0.42 abaixo do limiar; vizinhas rotuladas como fora
 Q0623,revisar,5544,,0.8930,confiança 0.89 abaixo do limiar
@@ -630,7 +630,7 @@ Q0628,revisar,5228,5498,0.5223,confiança 0.52 abaixo do limiar; dúvida entre 5
 Q0629,revisar,4371,,0.8429,confiança 0.84 abaixo do limiar; alternativas espalhadas por vários temas
 Q0630,revisar,5084,,0.9424,confiança 0.94 abaixo do limiar
 Q0631,revisar,5087,,0.6385,confiança 0.64 abaixo do limiar; alternativas espalhadas por vários temas; lei citada aponta para outro ramo; vizinhas rotuladas como fora
-Q0632,revisar,5092,,0.9687,confiança 0.97 abaixo do limiar
+Q0632,publicar,5092,,0.9687,
 Q0633,revisar,5166,,0.3842,confiança 0.38 abaixo do limiar; alternativas espalhadas por vários temas
 Q0634,revisar,5488,,0.8944,confiança 0.89 abaixo do limiar
 Q0635,revisar,5213,,0.4175,confiança 0.42 abaixo do limiar
@@ -643,8 +643,8 @@ Q0641,revisar,5087,,0.8610,confiança 0.86 abaixo do limiar
 Q0642,revisar,4704,,0.6702,confiança 0.67 abaixo do limiar
 Q0643,revisar,4374,,0.7259,confiança 0.73 abaixo do limiar; alternativas espalhadas por vários temas
 Q0644,revisar,5087,5180,0.8579,confiança 0.86 abaixo do limiar; dúvida entre 5087 (Dos Crimes Contra a Administração Pública) e 5180 (Lei Penal no Tempo e no Espaço)
-Q0645,revisar,5218,,0.9832,confiança 0.98 abaixo do limiar; dúvida entre 5218 (Teoria do Crime: Fato Típico) e 5211 (Teoria do Crime: Culpabilidade)
-Q0646,revisar,4374,,0.9573,confiança 0.96 abaixo do limiar
+Q0645,publicar,5218,,0.9832,
+Q0646,publicar,4374,,0.9573,
 Q0647,revisar,5488,,0.6921,confiança 0.69 abaixo do limiar
 Q0648,revisar,4705,,0.4415,confiança 0.44 abaixo do limiar; alternativas espalhadas por vários temas
 Q0649,fora,,,0.6097,disciplina de origem sem tema na árvore (Direito Penal Militar)

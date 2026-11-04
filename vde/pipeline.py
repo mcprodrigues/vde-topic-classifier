@@ -42,6 +42,7 @@ def train_model(config: dict | None = None) -> dict:
         "labeled_ids": sorted(res.gold),
         "dev_ids": dev,
         "lockbox_ids": lockbox,
+        "lockbox_note": "merged back in v0.2, see splits.json" if not lockbox else "",
         "splits_sha256": splits.fingerprint(),
         "cv_summary": {k: v for k, v in summary.items() if k != "threshold"},
         "fit_info": fit_info,
