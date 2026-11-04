@@ -24,7 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "evaluate":
         from vde.report import evaluate
 
-        report = evaluate(ablations=args.ablations, open_lockbox=args.open_lockbox)
+        report = evaluate(ablations=args.ablations)
         fc = report["forecast"]
         print(f"cobertura {fc['coverage']:.3f}, precisao prevista {fc['precision']}, limiar {report['threshold']:.3f}")
     elif args.command == "diagnose":
@@ -71,7 +71,6 @@ def _parser() -> argparse.ArgumentParser:
                        help="llm writes a proposal to artifacts/proposals for human review")
     ev = sub.add_parser("evaluate", help="metrics, figures, shift report and previsao.txt")
     ev.add_argument("--ablations", action="store_true")
-    ev.add_argument("--open-lockbox", action="store_true")
     sub.add_parser("diagnose", help="compare the bank with the new import")
     return parser
 

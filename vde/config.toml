@@ -6,10 +6,15 @@
 rho = 0.85
 # The case rule: precision on published questions must be at least this value.
 target_precision = 0.95
-# Posterior probability that precision >= target required at the operating threshold.
+# Reported, not a gate since v0.2: posterior probability that precision >= target at the threshold.
 posterior_level = 0.80
-# Extra safety margin: the point estimate of precision at the threshold must reach this value.
+# The gate: out of fold precision, measured one CV repeat at a time, must reach this value at the threshold.
 min_point_precision = 0.97
+# A threshold must publish at least this many labeled questions per CV repeat, so it is not chosen on a handful.
+min_published = 5
+# How the threshold is set. "calibrated": publish when the calibrated P(hit) >= target_precision, fixed a
+# priori. "search": walk the OOF curve (its nested precision shows the selection optimism, see report).
+threshold_rule = "calibrated"
 # A different level 1 branch becomes an extra when it holds at least this probability mass.
 extras_min_mass = 0.20
 
@@ -45,7 +50,8 @@ folds = 10
 repeats = 20
 ablation_repeats = 3
 seed = 20261103
-lockbox_size = 20
+# 0 since v0.2: the v0.1 lockbox was inspected during error analysis and was merged back.
+lockbox_size = 0
 
 [embeddings]
 backend = "lsa"

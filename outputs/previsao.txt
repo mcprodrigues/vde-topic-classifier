@@ -1,16 +1,15 @@
-precisao_prevista: 0.00
-precisao_intervalo: 0.00-0.00
-cobertura_prevista: 0.00
-cobertura_intervalo: 0.00-0.00
+precisao_prevista: 0.87
+precisao_intervalo: 0.69-0.98
+cobertura_prevista: 0.10
+cobertura_intervalo: 0.10-0.10
 
 Como chegamos nestes números
 
-1. Cobertura: lida direto do publicacao.csv (0 publicadas de 559 questões fora da folha-verdade). Não é estimativa, por isso o intervalo é degenerado.
-2. Limiar: escolhido na validação cruzada repetida (80 questões de desenvolvimento, 10 folds x 20 repetições) como o menor valor com P(precisão >= 0,95) >= 0,80 sob posterior Beta e precisão pontual >= 0,97. Limiar = 1.010; nesse ponto o dev publicou 0 com 0 acertos.
+1. Cobertura: lida direto do publicacao.csv (58 publicadas de 559 questões fora da folha-verdade). Não é estimativa, por isso o intervalo é degenerado.
+2. Limiar: escolhido na validação cruzada repetida (100 questões rotuladas, 10 folds x 20 repetições) como o menor valor em que a precisão fora da amostra, medida repetição a repetição, chega a 0,97 com pelo menos 5 publicadas por repetição. Limiar = 0.950; nesse ponto cada repetição publica em média 6.5 rotuladas, com precisão 0.99.
 3. Precisão: posterior Beta por fonte (banco sem peso; importação nova com pesos de importância de um classificador de domínio, AUC 0.56), mais o ruído binomial do conjunto publicado real. Intervalo de 90%.
-4. Desempenho geral fora da amostra: acerto do nó 0.66, acerto do ramo 0.67, AUC da confiança 0.73, precisão nos 20% mais confiantes 0.94.
-5. Validação do limiar (escolhido em 4/5, medido em 1/5): cobertura 0.00, precisão indefinida.
-6. Nenhuma questão passou no limiar: sem publicadas, a precisão não tem o que medir e o cabeçalho mostra 0.00 só para manter o formato. Tudo vai para revisão com sugestão.
-8. Topo da fila: os 10% mais confiantes acertam 1.00 e os 20% acertam 0.94. Erros entre os 20 mais confiantes: Q0043 (fora na folha), Q0291 (fora na folha). Certificar 95% só com acertos seguidos exige 31 acertos sem erro a 80% de confiança e 44 a 90%.
+4. Desempenho geral fora da amostra: acerto do nó 0.67, acerto do ramo 0.68, AUC da confiança 0.76, precisão nos 20% mais confiantes 0.93.
+5. Validação aninhada do limiar (escolhido em 4/5 das questões, medido em 1/5, 10 vezes): cobertura 0.06, precisão 0.99 (10% das repetições abaixo de 1.00).
+8. Topo da fila: os 10% mais confiantes acertam 0.97 e os 20% acertam 0.93. Erros entre os 20 mais confiantes: Q0259 (tema errado). Certificar 95% só com acertos seguidos exige 31 acertos sem erro a 80% de confiança e 44 a 90%.
 9. O que amplia a publicação: o professor confirmar o topo da fila, ordenada por confiança. Cerca de 31 confirmações seguidas sem erro certificam o limiar a 80%.
 10. Mudança de distribuição: o classificador de domínio separa banco e importação nova com AUC 0.56, quase o acaso. A mudança está nos metadados: a disciplina de origem só entra nas regras de fora e o assunto de origem entra apenas como canal fraco, com peso aprendido.

@@ -1,4 +1,8 @@
-"""Lockbox split of the gold sheet (ADR-1): 20 questions held out until the final run."""
+"""Split of the gold sheet (ADR-1).
+
+v0.1 held out a 20 question lockbox. Two of its questions (Q0252, Q0303) were read during error
+analysis, so it was no longer blind; since v0.2 `lockbox_size = 0` and every label goes to CV.
+"""
 
 from __future__ import annotations
 
@@ -10,6 +14,8 @@ from vde.knowledge.base import sha256_file, write_provenance
 from vde.paths import ARTIFACT_DIR
 
 FILE = "splits.json"
+MERGED_NOTE = ("The v0.1 lockbox (20 questions) was inspected during error analysis (Q0252, Q0303), "
+               "so it was merged back and all labels are used in cross validation.")
 
 
 def load_or_create(res, size: int, seed: int) -> tuple[list[str], list[str]]:
@@ -17,9 +23,13 @@ def load_or_create(res, size: int, seed: int) -> tuple[list[str], list[str]]:
     path = ARTIFACT_DIR / FILE
     if path.exists():
         data = json.loads(path.read_text(encoding="utf-8"))
-        return data["dev"], data["lockbox"]
-    dev, lockbox = _stratified(res, size, seed)
-    path.write_text(json.dumps({"seed": seed, "dev": dev, "lockbox": lockbox}, indent=2) + "\n", encoding="utf-8")
+        if len(data["lockbox"]) == size:
+            return data["dev"], data["lockbox"]
+    dev, lockbox = (sorted(res.gold), []) if size == 0 else _stratified(res, size, seed)
+    record = {"seed": seed, "dev": dev, "lockbox": lockbox}
+    if size == 0:
+        record["note"] = MERGED_NOTE
+    path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
     write_provenance(path, produced_by="stratified random split by gold discipline and out flag", llm_used=False,
                      lockbox_size=len(lockbox))
     return dev, lockbox

@@ -1,4 +1,4 @@
-"""`vde evaluate`: metrics, figures, ablations, lockbox, shift report and previsao.txt."""
+"""`vde evaluate`: metrics, figures, ablations, shift report and previsao.txt."""
 
 from __future__ import annotations
 
@@ -7,18 +7,18 @@ import json
 import numpy as np
 import pandas as pd
 
-from vde import shift, splits
+from vde import shift
 from vde.calibrate import min_run_to_certify
 from vde.config import load_config
 from vde.engine import Engine
-from vde.evaluate import (calibration_comparison, evaluate_lockbox, run_ablations, save_json, summarize)
+from vde.evaluate import calibration_comparison, run_ablations, save_json, summarize
 from vde.forecast import forecast, render
 from vde.paths import ARTIFACT_DIR, OUTPUT_DIR
 from vde.pipeline import MODEL_FILE, dev_arrays, load_oof, publish
 from vde.resources import Resources
 
 
-def evaluate(ablations: bool = False, open_lockbox: bool = False) -> dict:
+def evaluate(ablations: bool = False) -> dict:
     config = load_config()
     res = Resources.load(config)
     model = json.loads((ARTIFACT_DIR / MODEL_FILE).read_text(encoding="utf-8"))
@@ -32,9 +32,6 @@ def evaluate(ablations: bool = False, open_lockbox: bool = False) -> dict:
     fc = forecast(decisions, res, conf, hit, tau, weights)
     report = {"cv": summary, "calibration": calib, "shift": shift_info, "forecast": fc,
               "threshold": tau, "model_threshold_detail": model["threshold_detail"]}
-    if open_lockbox:
-        dev, lockbox = splits.load_or_create(res, config["evaluation"]["lockbox_size"], config["evaluation"]["seed"])
-        report["lockbox"] = evaluate_lockbox(res, dev, lockbox, tau)
     if ablations:
         table = run_ablations(config, model["dev_ids"])
         table.to_csv(OUTPUT_DIR / "ablations.csv", index=False)
@@ -101,21 +98,26 @@ def _figures(cv, calib: dict, out_dir) -> None:
     ax.set_ylabel("taxa de acerto observada")
     ax.set_title("Confiabilidade (OOF, 5 grupos de mesma frequência)")
     ax.legend(fontsize=8)
-    q = cv.per_question()
-    order = np.argsort(-q.conf.to_numpy(), kind="stable")
-    hits = q.hit.to_numpy().astype(float)[order]
-    k = np.arange(1, len(hits) + 1)
     ax = axes[1]
-    ax.plot(k / len(hits), np.cumsum(hits) / k, color="#1f5fa8")
+    for i, (_, rep) in enumerate(cv.rows.groupby("rep")):
+        order = np.argsort(-rep.conf.to_numpy(), kind="stable")
+        hits = rep.hit.to_numpy().astype(float)[order]
+        k = np.arange(1, len(hits) + 1)
+        ax.plot(k / len(hits), np.cumsum(hits) / k, color="#1f5fa8", lw=0.8, alpha=0.35,
+                label="uma repetição da CV" if i == 0 else None)
     ax.axhline(0.95, color="#b22222", lw=1, ls="--", label="régua 95%")
     ax.set_xlabel("cobertura (fração publicada)")
     ax.set_ylabel("precisão nas publicadas")
-    ax.set_title("Precisão × cobertura (OOF, dev)")
+    ax.set_title("Precisão × cobertura (OOF, por repetição)")
     ax.set_ylim(0, 1.02)
     ax.legend(fontsize=8)
     fig.tight_layout()
     fig.savefig(out_dir / "confiabilidade.png", dpi=150)
     plt.close(fig)
+
+
+def _fmt(value) -> str:
+    return "indefinida" if value is None else f"{value:.2f}"
 
 
 def _explanation(report: dict, model: dict) -> list[str]:
@@ -125,26 +127,25 @@ def _explanation(report: dict, model: dict) -> list[str]:
         "",
         f"1. Cobertura: lida direto do publicacao.csv ({fc['published']} publicadas de {fc['evaluated']} "
         "questões fora da folha-verdade). Não é estimativa, por isso o intervalo é degenerado.",
-        f"2. Limiar: escolhido na validação cruzada repetida ({model['cv_summary']['questions']} questões de "
-        f"desenvolvimento, 10 folds x {load_config()['evaluation']['repeats']} repetições) como o menor valor "
-        "com P(precisão >= 0,95) >= 0,80 sob posterior Beta e precisão pontual >= 0,97. "
-        f"Limiar = {model['threshold']:.3f}; nesse ponto o dev publicou {th['published']} com {th['hits']:.0f} acertos.",
+        f"2. Limiar: escolhido na validação cruzada repetida ({model['cv_summary']['questions']} questões "
+        f"rotuladas, 10 folds x {load_config()['evaluation']['repeats']} repetições) como o menor valor em que a "
+        "precisão fora da amostra, medida repetição a repetição, chega a 0,97 com pelo menos "
+        f"{load_config()['decision']['min_published']} publicadas por repetição. Limiar = {model['threshold']:.3f}; "
+        f"nesse ponto cada repetição publica em média {th['effective_n']:.1f} rotuladas, com precisão "
+        f"{th['point_precision']:.2f}.",
         f"3. Precisão: posterior Beta por fonte (banco sem peso; importação nova com pesos de importância de um "
         f"classificador de domínio, AUC {report['shift']['domain_auc']:.2f}), mais o ruído binomial do conjunto "
         "publicado real. Intervalo de 90%.",
         f"4. Desempenho geral fora da amostra: acerto do nó {cv['hit_rate']:.2f}, acerto do ramo "
         f"{cv['branch_hit_rate']:.2f}, AUC da confiança {cv['auc']:.2f}, precisão nos 20% mais confiantes "
         f"{cv['precision_at_coverage']['0.20']:.2f}.",
-        f"5. Validação do limiar (escolhido em 4/5, medido em 1/5): cobertura {cv['threshold_cv']['coverage']:.2f}, "
-        f"precisão {cv['threshold_cv']['precision'] if cv['threshold_cv']['precision'] is not None else 'indefinida'}.",
+        f"5. Validação aninhada do limiar (escolhido em 4/5 das questões, medido em 1/5, 10 vezes): cobertura "
+        f"{cv['threshold_cv']['coverage']:.2f}, precisão {_fmt(cv['threshold_cv']['precision'])} "
+        f"(10% das repetições abaixo de {_fmt(cv['threshold_cv']['precision_q10_over_repeats'])}).",
     ]
     if fc["precision"] is None:
         lines.append("6. Nenhuma questão passou no limiar: sem publicadas, a precisão não tem o que medir e o "
                      "cabeçalho mostra 0.00 só para manter o formato. Tudo vai para revisão com sugestão.")
-    if "lockbox" in report:
-        lb = report["lockbox"]
-        lines.append(f"7. Cofre (20 rótulos nunca vistos): acerto {lb['hit_rate']:.2f}; publicadas "
-                     f"{lb['published']}, acertos {lb['published_hits']}.")
     pac = cv["precision_at_coverage"]
     dec = load_config()["decision"]
     run80 = min_run_to_certify(dec["target_precision"], 0.80)
