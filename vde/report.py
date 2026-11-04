@@ -30,7 +30,8 @@ def evaluate(ablations: bool = False) -> dict:
     tau = model["threshold"]
     decisions = publish(config=config)
     rows = with_slice(cv.rows, config["decision"].get("slice", "none"))
-    fc = forecast(decisions, res, rows, tau, weights, config["forecast"]["new_import_n_scale"])
+    fc = forecast(decisions, res, rows, tau, weights, config["forecast"]["new_import_n_scale"],
+                  ece=summary["ece"], target=config["decision"]["target_precision"])
     report = {"cv": summary, "calibration": calib, "shift": shift_info, "forecast": fc,
               "threshold": tau, "model_threshold_detail": model["threshold_detail"]}
     if ablations:
@@ -161,22 +162,30 @@ def _explanation(report: dict, model: dict) -> list[str]:
         f"{_fmt(nested['precision'])}, limite inferior de 90% (Clopper-Pearson) {nested['cp_lower_90']:.2f}. Para "
         f"comparação, escolher o limiar olhando a curva daria {_fmt(search['precision'])}: é o otimismo da seleção, "
         "e por isso a regra é fixa.",
-        f"5. Precisão prevista, banco: posterior Beta com prior de Jeffreys sobre n efetivo "
-        f"{bank['effective_n']:.1f}, mais o ruído binomial das {bank['published']} publicadas: "
+        f"5. Precisão prevista: a confiança calibrada de cada publicada é a sua chance de estar certa, então a "
+        f"precisão esperada é a confiança média das publicadas ({_fmt(fc['precision_from_calibrated_confidence'])}). "
+        f"A incerteza tem duas partes declaradas: um desvio de calibração comum a cada fonte, normal com desvio "
+        f"igual ao ECE da CV, e o ruído binomial de cada questão. Como a chance de acerto não passa de 1, o desvio "
+        f"para cima é cortado e a média simulada fica um pouco abaixo da confiança média. Banco: {bank['published']} publicadas, confiança "
+        f"média {_fmt(bank['mean_confidence_of_published'])}, desvio {bank['calibration_sigma']:.3f}: "
         f"{bank['precision']:.2f} ({iv(bank['precision_interval'])}).",
-        f"6. Precisão prevista, importação nova: nenhum dos 100 rótulos vem dela "
-        f"({sh['labeled_from_new_import']} de {cv['questions']}). Usamos os mesmos rótulos com pesos de importância "
-        f"de um classificador de domínio (AUC {sh['domain_auc']:.2f}) e cortamos o n efetivo pela metade "
-        f"(n = {new['effective_n']:.1f}): {new['precision']:.2f} ({iv(new['precision_interval'])}). Ela publica "
-        f"mais ({new['coverage']:.0%} contra {bank['coverage']:.0%} no banco) sem rótulo para conferir: é a "
-        "maior fonte de risco.",
-        f"7. Combinado: {fc['precision']:.2f} ({iv(fc['precision_interval'])}, 90%). Probabilidade de ficar "
-        f"abaixo de 0,95: {fc['probability_precision_below_target']:.0%}. Checagem cruzada: a confiança média das "
-        f"publicadas é {_fmt(fc['precision_from_calibrated_confidence'])}.",
+        f"6. Importação nova: nenhum dos 100 rótulos vem dela ({sh['labeled_from_new_import']} de "
+        f"{cv['questions']}), e o classificador de domínio quase não a separa do banco (AUC {sh['domain_auc']:.2f}). "
+        f"O desvio de calibração é multiplicado por raiz de 2 ({new['calibration_sigma']:.3f}). {new['published']} "
+        f"publicadas, confiança média {_fmt(new['mean_confidence_of_published'])}: {new['precision']:.2f} "
+        f"({iv(new['precision_interval'])}). Ela publica mais ({new['coverage']:.0%} contra {bank['coverage']:.0%} "
+        "no banco) sem rótulo para conferir: é a maior fonte de risco.",
+        f"7. Combinado: {fc['precision']:.2f} ({iv(fc['precision_interval'])}, 90%); chance de ficar abaixo de "
+        f"0,95: {fc['probability_precision_below_target']:.0%}. Checagem com os rótulos: as rotuladas que a regra "
+        f"publicaria acertam {_fmt(bank['labeled_check']['rate'])}; com tamanho efetivo {bank['labeled_check']['effective_n']:.1f} "
+        f"e prior de Jeffreys, isso dá {bank['labeled_check']['mean']:.2f} ({iv(bank['labeled_check']['interval'])}). "
+        "É coerente com a previsão, mas largo demais para ser ela: com tão poucas questões, o prior puxa a média "
+        "para baixo mesmo sem nenhum erro.",
         f"8. Topo da fila, por repetição: os 10% mais confiantes acertam {pac['0.10']:.2f} e os 20% acertam "
         f"{pac['0.20']:.2f}. Erros entre os 20 mais confiantes (confiança média entre repetições): "
         f"{errors_text or 'nenhum'}.",
-        f"9. O que amplia a publicação: o professor confirmar o topo da fila de revisão. Cerca de {run80} "
-        "confirmações seguidas sem erro certificam 95% com 80% de confiança só com acertos; rótulos da "
-        "importação nova estreitam o intervalo do item 6.",
+        f"9. Por que o limiar fica em {dec['target_precision']:.2f}: baixar o limiar publica mais, mas a "
+        "confiança média das publicadas encosta em 0,95 por volta de 0,90, e escolher o limiar pelos rótulos deu "
+        f"precisão aninhada {_fmt(search['precision'])}. Na operação, cerca de {run80} confirmações seguidas do "
+        "professor no topo da fila certificam 95% com 80% de confiança.",
     ]

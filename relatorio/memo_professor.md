@@ -7,8 +7,8 @@ Criminologia, e do que precisamos do senhor.
 
 Das 559 questões que a equipe ainda não classificou, o sistema **publica 76 sozinho** (cerca de 14%), sempre no
 tema principal (não no subtema) e só quando tem pelo menos 95% de confiança. Nas 100 questões que a equipe já
-classificou, essa regra não errou nenhuma em testes repetidos. Esperamos que cerca de 93 de cada 100 publicadas
-estejam certas, com uma margem que vai de 78 a 100. As outras 472 vão para a sua fila, ordenadas pela confiança e
+classificou, essa regra não errou nenhuma em testes repetidos. Esperamos que cerca de 96 de cada 100 publicadas
+estejam certas, com uma margem que vai de 88 a 100. As outras 472 vão para a sua fila, ordenadas pela confiança e
 com o tema sugerido.
 
 ## O que encontramos

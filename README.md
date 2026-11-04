@@ -21,8 +21,8 @@ repetição por vez** (cada repetição é um modelo implantável), nunca sobre 
 |---|---|---|
 | Decisão nas 559 avaliadas | <!-- claim:published -->76<!-- /claim --> publicar, 472 revisar, 11 fora | `outputs/publicacao.csv` |
 | Cobertura | <!-- claim:coverage -->0,14<!-- /claim --> (27 de 259 no banco, 49 de 300 na importação nova) | `outputs/publicacao.csv` |
-| Precisão prevista nas publicadas | <!-- claim:precision -->0,93<!-- /claim --> (intervalo de 90%: 0,78 a 1,00) | `outputs/previsao.txt` |
-| Chance de a precisão ficar abaixo de 0,95 | <!-- claim:below -->49%<!-- /claim --> | `evaluation.json`, `forecast` |
+| Precisão prevista nas publicadas | <!-- claim:precision -->0,96<!-- /claim --> (intervalo de 90%: 0,88 a 1,00) | `outputs/previsao.txt` |
+| Chance de a precisão ficar abaixo de 0,95 | <!-- claim:below -->38%<!-- /claim --> | `evaluation.json`, `forecast` |
 | Precisão aninhada da regra de publicação | <!-- claim:nested -->1,00<!-- /claim --> (7,8 publicadas por repetição; limite inferior de 90%: 0,75) | `evaluation.json`, `cv.threshold_cv` |
 | Acerto do nó publicado (todas as questões) | 0,676 (desvio entre repetições 0,010) | `evaluation.json`, `cv` |
 | AUC da confiança / ECE | 0,79 / 0,049 | `evaluation.json`, `cv` |
@@ -30,8 +30,10 @@ repetição por vez** (cada repetição é um modelo implantável), nunca sobre 
 
 **Regra de publicação:** publicar no tema de nível 1 quando a confiança calibrada for >= 0,95. A regra foi fixada
 antes de olhar a curva. Escolher o limiar olhando a curva daria precisão aninhada de 0,94, por causa do otimismo
-da seleção. A previsão (0,93) fica abaixo da precisão aninhada (1,00) porque conta cada questão rotulada uma vez só,
-usa prior de Jeffreys e alarga o intervalo da importação nova, que não tem nenhum rótulo.
+da seleção. A previsão (0,96) é a confiança calibrada média das publicadas (0,97), com um desvio de calibração do tamanho
+do ECE (maior na importação nova, que não tem nenhum rótulo) e ruído binomial. A checagem com os rótulos
+(18 questões distintas, todas certas, tamanho efetivo 10,9) dá 0,96 (0,84 a 1,00) no banco e confirma o número,
+mas é larga demais para ser a previsão.
 
 ## Como rodar
 

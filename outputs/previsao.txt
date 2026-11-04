@@ -1,5 +1,5 @@
-precisao_prevista: 0.93
-precisao_intervalo: 0.78-1.00
+precisao_prevista: 0.96
+precisao_intervalo: 0.88-1.00
 cobertura_prevista: 0.14
 cobertura_intervalo: 0.14-0.14
 
@@ -9,8 +9,8 @@ Como chegamos nestes números
 2. Regra de publicação, fixada antes de olhar a curva: publicar quando a confiança calibrada for >= 0.95, no nível 1 da árvore (tema, não subtema). A confiança é uma logística treinada fora da amostra; ECE 0.049 nas linhas da CV.
 3. Evidência: 100 questões rotuladas, CV de 10 folds x 20 repetições. Em cada repetição (um modelo implantável), a regra publica em média 7.8 rotuladas, com 0.00 erros. São 18 questões distintas; cada uma conta uma vez, ponderada pela fração de repetições em que publica (tamanho efetivo de Kish), nunca como 20 linhas independentes.
 4. Validação aninhada (regra aplicada em 1/5 das questões, 10 vezes): precisão 1.00, limite inferior de 90% (Clopper-Pearson) 0.75. Para comparação, escolher o limiar olhando a curva daria 0.94: é o otimismo da seleção, e por isso a regra é fixa.
-5. Precisão prevista, banco: posterior Beta com prior de Jeffreys sobre n efetivo 10.9, mais o ruído binomial das 27 publicadas: 0.96 (0.81-1.00).
-6. Precisão prevista, importação nova: nenhum dos 100 rótulos vem dela (0 de 100). Usamos os mesmos rótulos com pesos de importância de um classificador de domínio (AUC 0.55) e cortamos o n efetivo pela metade (n = 4.8): 0.91 (0.67-1.00). Ela publica mais (16% contra 10% no banco) sem rótulo para conferir: é a maior fonte de risco.
-7. Combinado: 0.93 (0.78-1.00, 90%). Probabilidade de ficar abaixo de 0,95: 49%. Checagem cruzada: a confiança média das publicadas é 0.97.
+5. Precisão prevista: a confiança calibrada de cada publicada é a sua chance de estar certa, então a precisão esperada é a confiança média das publicadas (0.97). A incerteza tem duas partes declaradas: um desvio de calibração comum a cada fonte, normal com desvio igual ao ECE da CV, e o ruído binomial de cada questão. Como a chance de acerto não passa de 1, o desvio para cima é cortado e a média simulada fica um pouco abaixo da confiança média. Banco: 27 publicadas, confiança média 0.97, desvio 0.049: 0.96 (0.85-1.00).
+6. Importação nova: nenhum dos 100 rótulos vem dela (0 de 100), e o classificador de domínio quase não a separa do banco (AUC 0.55). O desvio de calibração é multiplicado por raiz de 2 (0.070). 49 publicadas, confiança média 0.97: 0.95 (0.84-1.00). Ela publica mais (16% contra 10% no banco) sem rótulo para conferir: é a maior fonte de risco.
+7. Combinado: 0.96 (0.88-1.00, 90%); chance de ficar abaixo de 0,95: 38%. Checagem com os rótulos: as rotuladas que a regra publicaria acertam 1.00; com tamanho efetivo 10.9 e prior de Jeffreys, isso dá 0.96 (0.84-1.00). É coerente com a previsão, mas largo demais para ser ela: com tão poucas questões, o prior puxa a média para baixo mesmo sem nenhum erro.
 8. Topo da fila, por repetição: os 10% mais confiantes acertam 0.98 e os 20% acertam 0.96. Erros entre os 20 mais confiantes (confiança média entre repetições): nenhum.
-9. O que amplia a publicação: o professor confirmar o topo da fila de revisão. Cerca de 31 confirmações seguidas sem erro certificam 95% com 80% de confiança só com acertos; rótulos da importação nova estreitam o intervalo do item 6.
+9. Por que o limiar fica em 0.95: baixar o limiar publica mais, mas a confiança média das publicadas encosta em 0,95 por volta de 0,90, e escolher o limiar pelos rótulos deu precisão aninhada 0.94. Na operação, cerca de 31 confirmações seguidas do professor no topo da fila certificam 95% com 80% de confiança.

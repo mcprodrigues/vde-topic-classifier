@@ -2,16 +2,20 @@
 
 Coverage is not an estimate: it is read from publicacao.csv. The uncertainty is in precision.
 
-Evidence: the labeled out of fold rows that would be published (conf >= tau, eligible). The same
-question appears in many CV repeats, so each labeled question counts once, weighted by the share of
-repeats in which it was published (Kish effective size), never as 20 independent rows.
+Point estimate: the calibrated confidence of each published question is its chance of being right, so the
+expected precision is the mean confidence of the published set. That is what the model was fitted to
+mean, and its calibration was measured out of fold (ECE).
 
-  * bank: Beta posterior with a Jeffreys prior over those effective counts.
-  * new import: the same rows reweighted by the domain classifier (importance weights), and the
-    effective size multiplied by `new_import_n_scale` (0.5), because none of the 100 labels comes
-    from the new import.
+Uncertainty, per source, from two declared parts:
+  * calibration shift: every published confidence of a source moves by the same delta ~ Normal(0, sigma).
+    sigma is the CV expected calibration error for the bank; for the new import it is divided by
+    sqrt(new_import_n_scale), because none of the 100 labels comes from it.
+  * binomial noise: each published question is then right with probability conf + delta.
+The interval is a 90% simulation interval.
 
-The realized published set adds binomial noise. The interval is a 90% simulation interval.
+Cross check: the labeled out of fold rows that would be published (conf >= tau), each labeled question
+counted once (Kish effective size, Jeffreys prior). With about ten effective questions this check is
+wide, so it is reported, not used as the forecast.
 """
 
 from __future__ import annotations
@@ -25,7 +29,7 @@ JEFFREYS = 0.5
 
 
 def forecast(decisions, res, rows: pd.DataFrame, tau: float, weights: dict[str, float] | None,
-             n_scale: float = 0.5, seed: int = 0) -> dict:
+             n_scale: float = 0.5, ece: float = 0.05, target: float = 0.95, seed: int = 0) -> dict:
     evaluated = [d for d in decisions if d.id not in res.gold]
     groups = {
         "bank": [d for d in evaluated if not res.parsed[d.id].is_new_import],
@@ -34,35 +38,33 @@ def forecast(decisions, res, rows: pd.DataFrame, tau: float, weights: dict[str, 
     published = {g: [d for d in ds if d.decision == "publicar"] for g, ds in groups.items()}
     total_pub = sum(len(v) for v in published.values())
     coverage = total_pub / len(evaluated) if evaluated else 0.0
+    sigma = {"bank": ece, "new_import": ece / np.sqrt(n_scale)}
     evidence = labeled_evidence(rows, tau)
-    stats = {
-        "bank": effective_beta(evidence, None, 1.0),
-        "new_import": effective_beta(evidence, weights, n_scale),
-    }
+    labeled = {"bank": effective_beta(evidence, None, 1.0), "new_import": effective_beta(evidence, weights, n_scale)}
     rng = np.random.default_rng(seed)
     lo, hi = (1 - INTERVAL) / 2, 1 - (1 - INTERVAL) / 2
     simulated = np.zeros(SIMULATIONS)
     by_source = {}
-    for group, st in stats.items():
-        k = len(published[group])
-        p = rng.beta(st["a"], st["b"], SIMULATIONS)
-        hits = rng.binomial(k, p) if k else np.zeros(SIMULATIONS)
+    for group in groups:
+        conf = np.array([d.confidence for d in published[group]], dtype=float)
+        hits, prec = simulate_hits(conf, sigma[group], rng)
         simulated += hits
-        prec = hits / k if k else p
         by_source[group] = {
-            "published": k,
-            "coverage": k / len(groups[group]) if groups[group] else 0.0,
+            "published": len(conf),
+            "coverage": len(conf) / len(groups[group]) if groups[group] else 0.0,
             "precision": float(np.mean(prec)),
             "precision_interval": (float(np.quantile(prec, lo)), float(np.quantile(prec, hi))),
-            "mean_confidence_of_published": float(np.mean([d.confidence for d in published[group]])) if k else None,
-            **st,
+            "mean_confidence_of_published": float(conf.mean()) if len(conf) else None,
+            "calibration_sigma": float(sigma[group]),
+            "labeled_check": labeled[group] | _beta_interval(labeled[group], rng, lo, hi),
         }
     if total_pub:
         precision = simulated / total_pub
     else:
-        precision = rng.beta(stats["bank"]["a"], stats["bank"]["b"], SIMULATIONS)
+        precision = rng.beta(labeled["bank"]["a"], labeled["bank"]["b"], SIMULATIONS)
     calibrated = float(np.mean([d.confidence for ds in published.values() for d in ds])) if total_pub else None
     return {
+        "method": "calibrated_confidence",
         "evaluated": len(evaluated),
         "published": total_pub,
         "published_by_source": {g: len(v) for g, v in published.items()},
@@ -70,12 +72,22 @@ def forecast(decisions, res, rows: pd.DataFrame, tau: float, weights: dict[str, 
         "coverage_interval": (coverage, coverage),
         "precision": float(np.mean(precision)),
         "precision_interval": (float(np.quantile(precision, lo)), float(np.quantile(precision, hi))),
-        "probability_precision_below_target": float(np.mean(precision < 0.95)),
+        "probability_precision_below_target": float(np.mean(precision < target)),
         "precision_from_calibrated_confidence": calibrated,
         "by_source": by_source,
         "labeled_evidence": {"questions": int(len(evidence)), "published_per_repeat": float(evidence.freq.sum()),
                              "errors_per_repeat": float((evidence.freq * (1 - evidence.hit)).sum())},
     }
+
+
+def simulate_hits(conf: np.ndarray, sigma: float, rng) -> tuple[np.ndarray, np.ndarray]:
+    """Hits of the published set under a shared calibration shift, and the matching precision."""
+    if not len(conf):
+        return np.zeros(SIMULATIONS), np.full(SIMULATIONS, np.nan)
+    delta = rng.normal(0.0, sigma, SIMULATIONS)
+    p = np.clip(conf[None, :] + delta[:, None], 0.0, 1.0)
+    hits = (rng.random(p.shape) < p).sum(axis=1).astype(float)
+    return hits, hits / len(conf)
 
 
 def labeled_evidence(rows: pd.DataFrame, tau: float) -> pd.DataFrame:
@@ -118,3 +130,8 @@ def render(fc: dict, extra_lines: list[str]) -> str:
         "",
     ]
     return "\n".join(lines + extra_lines) + "\n"
+
+
+def _beta_interval(st: dict, rng, lo: float, hi: float) -> dict:
+    draws = rng.beta(st["a"], st["b"], SIMULATIONS)
+    return {"mean": float(draws.mean()), "interval": (float(np.quantile(draws, lo)), float(np.quantile(draws, hi)))}
