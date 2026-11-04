@@ -1,7 +1,7 @@
 id,artifact,subject,decision,reason,date
-MD01,law_index,all rows,proposed by an LLM in an authoring session,No API key in the build environment; rows were proposed from law numbers and the topic tree without reading questions; human review still pending,2026-11-03
-MD02,code_atlas,all rows,proposed by an LLM in an authoring session,Article ranges follow the official structure of the CP and CPP; human review still pending,2026-11-03
-MD03,topic_cards,all rows,proposed by an LLM in an authoring session,Key terms per topic path; the proposer never saw exam questions; no pseudo questions were generated; human review still pending,2026-11-03
+MD01,law_index,all rows,proposed by an LLM in an authoring session,No API key in the build environment; rows were proposed from law numbers and the topic tree without reading questions; reviewed by the author on 2026-11-04 with no row changed,2026-11-03
+MD02,code_atlas,all rows,proposed by an LLM in an authoring session,Article ranges follow the official structure of the CP and CPP; reviewed by the author on 2026-11-04 with no row changed,2026-11-03
+MD03,topic_cards,all rows,proposed by an LLM in an authoring session,Key terms per topic path; the proposer never saw exam questions; no pseudo questions were generated; reviewed by the author on 2026-11-04 with no row changed,2026-11-03
 MD04,canonical_tree,shadow nodes,map the 20 undescribed childless level 1 nodes to their canonical twin,Detected automatically by title similarity; the gold sheet uses the canonical node in 4 of 5 Lei de Execucao Penal cases and never uses a Parte N node,2026-11-03
 MD05,law_index,LEI_9099,map the Juizados law to Legislacao Especial > Juizado Especial Criminal (4701),The gold sheet uses 4701 as central and the procedure subtopics as extras,2026-11-03
 MD06,law_index,LEI_9296,map the interception law to Legislacao Especial > Interceptacao Telefonica (4700),No gold example; Legislacao Especial is the branch the team uses for special laws,2026-11-03
