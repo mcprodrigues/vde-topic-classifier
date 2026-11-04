@@ -45,17 +45,6 @@ def min_run_to_certify(target: float = 0.95, level: float = 0.80) -> int:
     return n
 
 
-def effective_counts(correct: np.ndarray, weights: np.ndarray | None) -> tuple[float, float]:
-    """Importance weighted (hits, n), rescaled to the effective sample size (Kish)."""
-    if weights is None:
-        return float(correct.sum()), float(len(correct))
-    if weights.sum() <= 0:
-        return 0.0, 0.0
-    n_eff = weights.sum() ** 2 / (weights ** 2).sum()
-    rate = float((weights * correct).sum() / weights.sum())
-    return rate * n_eff, n_eff
-
-
 def choose_threshold_per_repeat(conf: np.ndarray, correct: np.ndarray, reps: np.ndarray,
                                 eligible: np.ndarray | None = None, target: float = 0.95,
                                 min_point: float = 0.97, min_published: float = 5.0) -> ThresholdChoice:

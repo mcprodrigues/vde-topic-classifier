@@ -11,7 +11,7 @@ from vde import shift
 from vde.calibrate import min_run_to_certify
 from vde.config import load_config
 from vde.engine import Engine
-from vde.evaluate import calibration_comparison, run_ablations, save_json, summarize
+from vde.evaluate import calibration_comparison, run_ablations, save_json, summarize, with_slice
 from vde.forecast import forecast, render
 from vde.paths import ARTIFACT_DIR, OUTPUT_DIR
 from vde.pipeline import MODEL_FILE, dev_arrays, load_oof, publish
@@ -25,11 +25,12 @@ def evaluate(ablations: bool = False) -> dict:
     cv = load_oof()
     summary = summarize(cv, config)
     calib = calibration_comparison(cv)
-    conf, hit, per_q = dev_arrays(cv)
+    _, _, per_q = dev_arrays(cv)
     weights, shift_info = _shift(res, model, per_q)
     tau = model["threshold"]
     decisions = publish(config=config)
-    fc = forecast(decisions, res, conf, hit, tau, weights)
+    rows = with_slice(cv.rows, config["decision"].get("slice", "none"))
+    fc = forecast(decisions, res, rows, tau, weights, config["forecast"]["new_import_n_scale"])
     report = {"cv": summary, "calibration": calib, "shift": shift_info, "forecast": fc,
               "threshold": tau, "model_threshold_detail": model["threshold_detail"]}
     if ablations:
@@ -49,8 +50,9 @@ def evaluate(ablations: bool = False) -> dict:
 def _shift(res: Resources, model: dict, per_q: pd.DataFrame):
     new_ids = [q for q in res.question_ids if res.parsed[q].is_new_import]
     old_ids = [q for q in res.question_ids if not res.parsed[q].is_new_import]
+    # The final model, loaded exactly as publish loads it, so the numbers match publicacao.csv.
     engine = Engine(res, model["state"]["scorer"]["channels"], model["state"]["node_mode"])
-    engine.fit(model["dev_ids"], seed=res.config["evaluation"]["seed"])
+    engine.load_state(model["state"], model["labeled_ids"])
     new_feats = pd.DataFrame([p.features | {"conf": p.confidence} for p in engine.predict(new_ids)])
     old_unlabeled = [q for q in old_ids if q not in res.gold]
     old_feats = pd.DataFrame([p.features | {"conf": p.confidence} for p in engine.predict(old_unlabeled)])
@@ -58,14 +60,19 @@ def _shift(res: Resources, model: dict, per_q: pd.DataFrame):
     info = {
         "domain_auc": dom["auc"],
         "effective_n_after_weighting": dom["effective_n"],
-        "mean_confidence": {"dev_oof": float(per_q.conf.mean()), "bank_unlabeled": float(old_feats.conf.mean()),
+        "mean_confidence": {"labeled_oof": float(per_q.conf.mean()),
+                            "bank_unlabeled": float(old_feats.conf.mean()),
                             "new_import": float(new_feats.conf.mean())},
-        "feature_means": {"dev_oof": per_q[["agreement", "top_cosine", "segment_dispersion"]].mean().to_dict(),
+        "share_conf_at_least_095": {"bank_unlabeled": float((old_feats.conf >= 0.95).mean()),
+                                    "new_import": float((new_feats.conf >= 0.95).mean())},
+        "labeled_from_new_import": int(sum(res.parsed[q].is_new_import for q in res.gold)),
+        "feature_means": {"labeled_oof": per_q[["agreement", "top_cosine", "segment_dispersion"]].mean().to_dict(),
                           "new_import": new_feats[["agreement", "top_cosine", "segment_dispersion"]].mean().to_dict()},
         "description": shift.describe(res, old_ids, new_ids),
     }
     save_json(OUTPUT_DIR / "shift_report.json", info)
-    return dom["weights"], info
+    weights = dict(zip(per_q.qid, dom["weights"]))
+    return weights, info
 
 
 def _repeat_spread(cv) -> dict:
@@ -121,45 +128,55 @@ def _fmt(value) -> str:
 
 
 def _explanation(report: dict, model: dict) -> list[str]:
-    cv, fc, th = report["cv"], report["forecast"], report["model_threshold_detail"]
-    lines = [
-        "Como chegamos nestes números",
-        "",
-        f"1. Cobertura: lida direto do publicacao.csv ({fc['published']} publicadas de {fc['evaluated']} "
-        "questões fora da folha-verdade). Não é estimativa, por isso o intervalo é degenerado.",
-        f"2. Limiar: escolhido na validação cruzada repetida ({model['cv_summary']['questions']} questões "
-        f"rotuladas, 10 folds x {load_config()['evaluation']['repeats']} repetições) como o menor valor em que a "
-        "precisão fora da amostra, medida repetição a repetição, chega a 0,97 com pelo menos "
-        f"{load_config()['decision']['min_published']} publicadas por repetição. Limiar = {model['threshold']:.3f}; "
-        f"nesse ponto cada repetição publica em média {th['effective_n']:.1f} rotuladas, com precisão "
-        f"{th['point_precision']:.2f}.",
-        f"3. Precisão: posterior Beta por fonte (banco sem peso; importação nova com pesos de importância de um "
-        f"classificador de domínio, AUC {report['shift']['domain_auc']:.2f}), mais o ruído binomial do conjunto "
-        "publicado real. Intervalo de 90%.",
-        f"4. Desempenho geral fora da amostra: acerto do nó {cv['hit_rate']:.2f}, acerto do ramo "
-        f"{cv['branch_hit_rate']:.2f}, AUC da confiança {cv['auc']:.2f}, precisão nos 20% mais confiantes "
-        f"{cv['precision_at_coverage']['0.20']:.2f}.",
-        f"5. Validação aninhada do limiar (escolhido em 4/5 das questões, medido em 1/5, 10 vezes): cobertura "
-        f"{cv['threshold_cv']['coverage']:.2f}, precisão {_fmt(cv['threshold_cv']['precision'])} "
-        f"(10% das repetições abaixo de {_fmt(cv['threshold_cv']['precision_q10_over_repeats'])}).",
-    ]
-    if fc["precision"] is None:
-        lines.append("6. Nenhuma questão passou no limiar: sem publicadas, a precisão não tem o que medir e o "
-                     "cabeçalho mostra 0.00 só para manter o formato. Tudo vai para revisão com sugestão.")
+    cv, fc, th, sh = report["cv"], report["forecast"], report["model_threshold_detail"], report["shift"]
+    cfg = load_config()
+    dec = cfg["decision"]
+    nested = cv["threshold_cv"]
+    search = cv["threshold_cv_by_rule"]["search"]
+    bank, new = fc["by_source"]["bank"], fc["by_source"]["new_import"]
+    ev = fc["labeled_evidence"]
     pac = cv["precision_at_coverage"]
-    dec = load_config()["decision"]
     run80 = min_run_to_certify(dec["target_precision"], 0.80)
-    run90 = min_run_to_certify(dec["target_precision"], 0.90)
     top_errors = report.get("top_errors", [])
     errors_text = ", ".join(f"{e['qid']} ({'fora na folha' if e['is_out'] else 'tema errado'})" for e in top_errors)
-    lines += [
-        f"8. Topo da fila: os 10% mais confiantes acertam {pac['0.10']:.2f} e os 20% acertam {pac['0.20']:.2f}. "
-        f"Erros entre os 20 mais confiantes: {errors_text or 'nenhum'}. Certificar 95% só com acertos seguidos "
-        f"exige {run80} acertos sem erro a 80% de confiança e {run90} a 90%.",
-        f"9. O que amplia a publicação: o professor confirmar o topo da fila, ordenada por confiança. Cerca de "
-        f"{run80} confirmações seguidas sem erro certificam o limiar a 80%.",
-        f"10. Mudança de distribuição: o classificador de domínio separa banco e importação nova com AUC "
-        f"{report['shift']['domain_auc']:.2f}, quase o acaso. A mudança está nos metadados: a disciplina de origem "
-        "só entra nas regras de fora e o assunto de origem entra apenas como canal fraco, com peso aprendido.",
+
+    def iv(x):
+        return f"{x[0]:.2f}-{x[1]:.2f}"
+
+    return [
+        "Como chegamos nestes números",
+        "",
+        f"1. Cobertura: lida direto do publicacao.csv ({fc['published']} publicadas de {fc['evaluated']} questões "
+        f"fora da folha-verdade: {bank['published']} do banco e {new['published']} da importação nova). Não é "
+        "estimativa, por isso o intervalo é degenerado.",
+        f"2. Regra de publicação, fixada antes de olhar a curva: publicar quando a confiança calibrada for >= "
+        f"{dec['target_precision']:.2f}, no nível 1 da árvore (tema, não subtema). A confiança é uma logística "
+        f"treinada fora da amostra; ECE {cv['ece']:.3f} nas linhas da CV.",
+        f"3. Evidência: {cv['questions']} questões rotuladas, CV de 10 folds x {cfg['evaluation']['repeats']} "
+        f"repetições. Em cada repetição (um modelo implantável), a regra publica em média "
+        f"{ev['published_per_repeat']:.1f} rotuladas, com {ev['errors_per_repeat']:.2f} erros. São "
+        f"{ev['questions']} questões distintas; cada uma conta uma vez, ponderada pela fração de repetições em "
+        "que publica (tamanho efetivo de Kish), nunca como 20 linhas independentes.",
+        f"4. Validação aninhada (regra aplicada em 1/5 das questões, 10 vezes): precisão "
+        f"{_fmt(nested['precision'])}, limite inferior de 90% (Clopper-Pearson) {nested['cp_lower_90']:.2f}. Para "
+        f"comparação, escolher o limiar olhando a curva daria {_fmt(search['precision'])}: é o otimismo da seleção, "
+        "e por isso a regra é fixa.",
+        f"5. Precisão prevista, banco: posterior Beta com prior de Jeffreys sobre n efetivo "
+        f"{bank['effective_n']:.1f}, mais o ruído binomial das {bank['published']} publicadas: "
+        f"{bank['precision']:.2f} ({iv(bank['precision_interval'])}).",
+        f"6. Precisão prevista, importação nova: nenhum dos 100 rótulos vem dela "
+        f"({sh['labeled_from_new_import']} de {cv['questions']}). Usamos os mesmos rótulos com pesos de importância "
+        f"de um classificador de domínio (AUC {sh['domain_auc']:.2f}) e cortamos o n efetivo pela metade "
+        f"(n = {new['effective_n']:.1f}): {new['precision']:.2f} ({iv(new['precision_interval'])}). Ela publica "
+        f"mais ({new['coverage']:.0%} contra {bank['coverage']:.0%} no banco) sem rótulo para conferir: é a "
+        "maior fonte de risco.",
+        f"7. Combinado: {fc['precision']:.2f} ({iv(fc['precision_interval'])}, 90%). Probabilidade de ficar "
+        f"abaixo de 0,95: {fc['probability_precision_below_target']:.0%}. Checagem cruzada: a confiança média das "
+        f"publicadas é {_fmt(fc['precision_from_calibrated_confidence'])}.",
+        f"8. Topo da fila, por repetição: os 10% mais confiantes acertam {pac['0.10']:.2f} e os 20% acertam "
+        f"{pac['0.20']:.2f}. Erros entre os 20 mais confiantes (confiança média entre repetições): "
+        f"{errors_text or 'nenhum'}.",
+        f"9. O que amplia a publicação: o professor confirmar o topo da fila de revisão. Cerca de {run80} "
+        "confirmações seguidas sem erro certificam 95% com 80% de confiança só com acertos; rótulos da "
+        "importação nova estreitam o intervalo do item 6.",
     ]
-    return lines
