@@ -7,7 +7,7 @@ import sys
 import time
 from pathlib import Path
 
-ARTIFACTS = ["canonical_tree", "law_index", "code_atlas", "topic_cards", "subject_map", "embeddings", "model", "all"]
+ARTIFACTS = ["canonical_tree", "branch_twins", "law_index", "code_atlas", "topic_cards", "subject_map", "embeddings", "model", "all"]
 
 
 def main(argv: list[str] | None = None) -> int:

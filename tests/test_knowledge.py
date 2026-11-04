@@ -43,3 +43,40 @@ def test_law_index_and_cards_cover_known_cases():
     assert laws.find_aliases("nos termos da lei maria da penha")[0][1].law_key == "LEI_11340"
     cards = topic_cards.load()
     assert len(cards) == len(canonical_tree.load().candidates())
+
+
+def test_lsa_transform_reproduces_cached_vectors():
+    import numpy as np
+
+    from vde.data.loader import load_questions
+    from vde.data.segments import parse
+    from vde.knowledge import embeddings
+
+    emb = embeddings.load()
+    assert emb.lsa is not None
+    parsed = [parse(q) for q in load_questions()[:5]]
+    keys = [embeddings.question_key(p.id) for p in parsed]
+    again = embeddings.transform([p.full_text for p in parsed], emb.lsa)
+    assert np.abs(again - emb.matrix(keys)).max() < 1e-4
+
+
+def test_twins_learned_from_labels_match_the_versioned_record():
+    import pandas as pd
+
+    from vde.data.loader import load_gold
+    from vde.knowledge import canonical_tree
+    from vde.paths import ARTIFACT_DIR
+
+    tree = canonical_tree.load()
+    learned = canonical_tree.learn_twins(tree, load_gold())
+    record = pd.read_csv(ARTIFACT_DIR / "branch_twins.csv")
+    assert learned == dict(zip(record.from_branch.astype(int), record.to_branch.astype(int)))
+
+
+def test_manifest_covers_the_annexes():
+    import json
+
+    from vde.paths import ARTIFACT_DIR
+
+    manifest = json.loads((ARTIFACT_DIR / "MANIFEST.json").read_text(encoding="utf-8"))
+    assert {"anexos/questoes.jsonl", "anexos/folha_verdade.csv", "anexos/temas.csv"} <= set(manifest)

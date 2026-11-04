@@ -8,7 +8,9 @@ import json
 import subprocess
 from pathlib import Path
 
-from vde.paths import ARTIFACT_DIR, ROOT
+from vde.paths import ANNEX_DIR, ARTIFACT_DIR, ROOT
+
+ANNEX_PREFIX = "anexos/"
 
 MANIFEST_NAME = "MANIFEST.json"
 DEFAULT_LLM_MODEL = "claude-opus-5-5"
@@ -53,19 +55,26 @@ def refresh_manifest() -> dict:
     for path in sorted(ARTIFACT_DIR.glob("*")):
         if path.is_file() and path.name != MANIFEST_NAME and not path.name.endswith(".prov.json"):
             entries[path.name] = sha256_file(path)
+    for path in sorted(ANNEX_DIR.glob("*")):
+        if path.is_file() and path.suffix in {".csv", ".jsonl"}:
+            entries[ANNEX_PREFIX + path.name] = sha256_file(path)
     (ARTIFACT_DIR / MANIFEST_NAME).write_text(json.dumps(entries, indent=2) + "\n", encoding="utf-8")
     return entries
 
 
 def verify_manifest() -> list[str]:
-    """Names of artifacts whose hash differs from the manifest, or that are missing."""
+    """Artifacts or annexes whose hash differs from the manifest, or that are missing.
+
+    An annex that changed means the artifacts were built from other data: publish stops, and
+    `vde publish --skip-manifest` classifies new questions through the stored LSA transform.
+    """
     manifest_file = ARTIFACT_DIR / MANIFEST_NAME
     if not manifest_file.exists():
         return [MANIFEST_NAME]
     expected = json.loads(manifest_file.read_text(encoding="utf-8"))
     problems = []
     for name, digest in expected.items():
-        path = ARTIFACT_DIR / name
+        path = ANNEX_DIR / name[len(ANNEX_PREFIX):] if name.startswith(ANNEX_PREFIX) else ARTIFACT_DIR / name
         if not path.exists() or sha256_file(path) != digest:
             problems.append(name)
     return problems

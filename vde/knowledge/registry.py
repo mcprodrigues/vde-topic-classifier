@@ -6,13 +6,14 @@ from typing import Callable
 
 from vde.knowledge import canonical_tree, code_atlas, embeddings, law_index, subject_map, topic_cards
 
-BUILD_ORDER = ["canonical_tree", "law_index", "code_atlas", "topic_cards", "subject_map", "embeddings"]
+BUILD_ORDER = ["canonical_tree", "branch_twins", "law_index", "code_atlas", "topic_cards", "subject_map", "embeddings"]
 
 
 def builders(config: dict, source: str = "session") -> dict[str, Callable[[], str]]:
     emb = config.get("embeddings", {})
     return {
         "canonical_tree": lambda: str(canonical_tree.build()),
+        "branch_twins": lambda: str(canonical_tree.build_twins()),
         "law_index": lambda: law_index.build(source),
         "code_atlas": lambda: code_atlas.build(source),
         "topic_cards": lambda: topic_cards.build(source),

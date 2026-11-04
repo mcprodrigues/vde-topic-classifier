@@ -1,12 +1,16 @@
 {
-  "branch_twins.csv": "563055ee82746a35390d417c611ca420a838d6662d58a216c691c396d79dbec8",
+  "branch_twins.csv": "bd5a7a5d0953ad60133f7c8a02148a6f11d45dffedafc46b464f394fade159ee",
   "canonical_tree.csv": "c935793a8ab723dac773936796f2abb36e1b24d6367ad4f45dd6a23a3c979acd",
   "code_atlas.csv": "565f08d0ebac44e63d02ff2fd31d5ac124f73617ee623693ec22d2c07977cc8a",
-  "embeddings.npz": "09a2439b155a87d6dbfa87d99a2938fe34224bf321a2009941f5aa4a25c11b5e",
+  "embeddings.npz": "7949d49448c38ee50cb572f63ffe68185bb2031eaa2490676771e54827edd36d",
   "law_index.csv": "a619d2ac19ea500a875ad3fd50680d46d94e4372e83b023ff963fb4bbc7be6e3",
   "manual_decisions.csv": "799b8d161b6fc7113c8f904803a0cc099bb85ea028d556a5ed6dda8741aaf29e",
-  "model.json": "2f60991bce0d96a659db8598c12b22e004679a3935d8d7eaeea7661681bd307d",
+  "model.json": "f824ed172cfbb57314cb003af2827f77711323df797a34d57619256e5381cba2",
   "splits.json": "8e7e18c1276a15a1e20740f36bfddc7d0fa35047934fcbfd10057121a356b661",
   "subject_map.csv": "cae2a4313141532a547497e682c19098bb07f5cb31ac54c2c455edfc09113dc0",
-  "topic_cards.csv": "2b9e02608f1069605923ac8cf2a9ab76a4ee3017c0882330a69d45d188a555b1"
+  "topic_cards.csv": "2b9e02608f1069605923ac8cf2a9ab76a4ee3017c0882330a69d45d188a555b1",
+  "anexos/entrega_modelo.csv": "6778f7ffd32e467321a590829bb05796f967b5e703938c0dc2d4c2a43ac12c76",
+  "anexos/folha_verdade.csv": "c1412ce8d336ae248a2f0e46d8e34cbc07dd33c78af9ce6bbe1337c516ee8e3b",
+  "anexos/questoes.jsonl": "318f1fea970633a4d84eb5a4dd071b2ae76ad3e49288a073ab381f61a09da3f3",
+  "anexos/temas.csv": "9c6e98a6cd568816671c0fa14e2449b152cee10e20cb1327b3b097c1c5ce4cbc"
 }
