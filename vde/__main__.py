@@ -16,7 +16,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "publish":
         from vde.pipeline import publish  # read only path: loaders and the trained model, nothing else
 
-        decisions = publish(Path(args.out) if args.out else None, strict_manifest=not args.skip_manifest)
+        decisions = publish(Path(args.out) if args.out else None, allow_annex_change=args.allow_annex_change)
         counts = {k: sum(d.decision == k for d in decisions) for k in ("publicar", "revisar", "fora")}
         print(f"publicacao.csv: {len(decisions)} linhas {counts}")
     elif args.command == "build":
@@ -64,7 +64,8 @@ def _parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
     pub = sub.add_parser("publish", help="regenerate outputs/publicacao.csv without any LLM")
     pub.add_argument("--out", help="output path (default outputs/publicacao.csv)")
-    pub.add_argument("--skip-manifest", action="store_true", help="do not stop when artifacts differ from the manifest")
+    pub.add_argument("--allow-annex-change", "--skip-manifest", dest="allow_annex_change", action="store_true",
+                     help="classify a new import: annexes may differ from the manifest, artifacts may not")
     build = sub.add_parser("build", help="rebuild a versioned artifact (offline step)")
     build.add_argument("artifact", choices=ARTIFACTS)
     build.add_argument("--source", choices=["session", "llm"], default="session",

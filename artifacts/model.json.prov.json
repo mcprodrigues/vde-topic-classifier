@@ -1,10 +1,17 @@
 {
   "artifact": "model.json",
-  "sha256": "f824ed172cfbb57314cb003af2827f77711323df797a34d57619256e5381cba2",
-  "written_at": "2026-11-04T12:32:32+00:00",
-  "code_commit": "2c4603e",
+  "sha256": "feec9c3f4695c0d4ae04fbef04bf44dcdf56d421490f5f3f38e53b56250ea6a3",
+  "written_at": "2026-11-04T19:18:33+00:00",
+  "code_commit": "86c8e02",
   "produced_by": "vde build model: repeated CV on dev plus a final fit on 100 labels",
   "llm_used": false,
   "repeats": 20,
-  "folds": 10
+  "folds": 10,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1"
+  }
 }

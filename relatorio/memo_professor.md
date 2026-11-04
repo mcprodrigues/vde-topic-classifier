@@ -5,7 +5,7 @@ Criminologia, e do que precisamos do senhor.
 
 ## O que o sistema faz hoje
 
-Das 559 questões que a equipe ainda não classificou, o sistema **publica 76 sozinho** (cerca de 14%), sempre no
+Das 559 questões que a equipe ainda não classificou, o sistema **publica 75 sozinho** (cerca de 13%), sempre no
 tema principal (não no subtema) e só quando tem pelo menos 95% de confiança. Nas 100 questões que a equipe já
 classificou, essa regra não errou nenhuma em testes repetidos. Esperamos que cerca de 96 de cada 100 publicadas
 estejam certas, com uma margem que vai de 88 a 100. As outras 472 vão para a sua fila, ordenadas pela confiança e
@@ -15,7 +15,7 @@ com o tema sugerido.
 
 1. **Temas "lixeira".** Alguns temas genéricos acumularam centenas de questões que não são deles: Sistemas e
    Princípios Processuais Penais (538), Teoria da Pena (453), Introdução ao Estudo do Direito Penal (424) e Crimes
-   contra a Administração Pública (368). Atenção: 30 das 76 questões publicadas vão para temas desse tipo, como
+   contra a Administração Pública (368). Atenção: 30 das 75 questões publicadas vão para temas desse tipo, como
    Crimes contra a Administração Pública. O sistema acha que elas são mesmo desse tema, mas vale conferir.
 2. **20 temas duplicados ("fantasmas").** São temas sem descrição e sem subtemas que repetem outro tema: "Teoria da
    Pena (Parte 1)" e "(Parte 2)", "Competência (Parte 1/2)", "Sentença Penal (Parte 1/2)", "Recursos (Parte 03) -

@@ -34,22 +34,27 @@ class DuplicateChannel(Channel):
         self.ids = res.question_ids
         self.row = {q: i for i, q in enumerate(self.ids)}
         texts = [fold(res.parsed[q].full_text) for q in self.ids]
-        matrix = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), sublinear_tf=True).fit_transform(texts)
-        self.similarity = cosine_similarity(matrix)
-        np.fill_diagonal(self.similarity, 0.0)
+        # Sparse and l2 normalized: a dot product with the labeled rows is the cosine (N x L, never N x N).
+        self.matrix = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), sublinear_tf=True).fit_transform(texts)
         self.labeled: dict[str, GoldLabel] = {}
+        self.labeled_ids: list[str] = []
+        self.labeled_index: dict[str, int] = {}
+        self.labeled_matrix = self.matrix[:0]
 
     def fit(self, labeled: dict[str, GoldLabel]) -> None:
         self.labeled = dict(labeled)
         self.labeled_ids = list(labeled)
-        self.labeled_rows = np.array([self.row[q] for q in self.labeled_ids], dtype=int)
+        self.labeled_index = {q: i for i, q in enumerate(self.labeled_ids)}
+        self.labeled_matrix = self.matrix[[self.row[q] for q in self.labeled_ids]]
 
     def match(self, qid: str) -> DuplicateMatch | None:
         if not self.labeled:
             return None
-        sims = self.similarity[self.row[qid], self.labeled_rows]
+        sims = cosine_similarity(self.matrix[self.row[qid]], self.labeled_matrix).ravel()
+        if qid in self.labeled_index:
+            sims[self.labeled_index[qid]] = 0.0
         best = int(np.argmax(sims))
-        if sims[best] < self.min_similarity or self.labeled_ids[best] == qid:
+        if sims[best] < self.min_similarity:
             return None
         gold = self.labeled[self.labeled_ids[best]]
         return DuplicateMatch(self.labeled_ids[best], float(sims[best]), gold.is_out)

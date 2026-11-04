@@ -34,7 +34,11 @@ class SegmentAnalyzer:
         self.prototypes = prototypes
 
     def votes(self, qid: str) -> tuple[SegmentVote, ...]:
-        return self._votes_cached(qid)
+        """Branch of each segment's best topic. The twin rule is applied here, at read time: it is
+        refitted in every fold, so it must never be frozen inside the cache."""
+        tree = self.res.tree
+        return tuple(SegmentVote(key, kind, tree.branch_of(node), strength)
+                     for key, kind, node, strength in self._best_cached(qid))
 
     def support(self, qid: str, branch: int) -> float:
         """Share of informative segments that point to `branch` (1.0 when there is a single segment)."""
@@ -69,15 +73,15 @@ class SegmentAnalyzer:
         return top_normalized(pooled)
 
     @lru_cache(maxsize=None)
-    def _votes_cached(self, qid: str) -> tuple[SegmentVote, ...]:
-        parsed = self.res.parsed[qid]
+    def _best_cached(self, qid: str) -> tuple[tuple[str, str, int, float], ...]:
+        """(key, kind, best topic, strength) per segment: depends on the text only, never on labels."""
         out = []
-        for seg in parsed.segments():
+        for seg in self.res.parsed[qid].segments():
             scores = self._segment_scores(qid, seg.key, seg.text)
             if not scores:
                 continue
             best = max(scores, key=scores.get)
-            out.append(SegmentVote(seg.key, seg.kind, self.res.tree.branch_of(best), scores[best]))
+            out.append((seg.key, seg.kind, best, scores[best]))
         return tuple(out)
 
     def _segment_scores(self, qid: str, seg_key: str, text: str) -> dict[int, float]:

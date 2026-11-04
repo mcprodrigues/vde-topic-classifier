@@ -1,7 +1,8 @@
 """The classification engine: channels, aggregation, node choice and the correctness model.
 
 fit() learns only from the labeled ids it receives, so cross validation can call it per fold.
-The correctness model is trained on inner out of fold features, never on in sample scores.
+The correctness model is trained on inner out of fold features, never on in sample scores. The deployed
+engine can add a recalibration fitted on the outer out of fold rows (see pipeline.train_model).
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ from dataclasses import dataclass, field
 import numpy as np
 
 from vde.aggregate import FEATURES, CandidateScorer, CorrectnessModel
+from vde.calibrate import Platt
 from vde.channels import build_channels
 from vde.channels.duplicates import DuplicateChannel, DuplicateMatch
 from vde.channels.knn import KnnChannel
@@ -39,6 +41,8 @@ class Prediction:
     out_reasons: list[str]
     duplicate: DuplicateMatch | None
     channel_tops: dict[str, int] = field(default_factory=dict)
+    # True when at least one text based channel (BM25, cited law or article, subject, duplicate) has a score.
+    text_evidence: bool = True
 
 
 class Engine:
@@ -61,6 +65,7 @@ class Engine:
         agg = self.config["aggregate"]
         self.scorer = CandidateScorer(names, agg["l2"], agg["max_weight"], agg.get("transform", "log"))
         self.correctness = CorrectnessModel(agg["correctness_c"])
+        self.recalibration: Platt | None = None
         self.fit_info: dict = {}
 
     def fit(self, labeled_ids: list[str], seed: int = 0) -> dict:
@@ -85,6 +90,8 @@ class Engine:
     def predict(self, qids: list[str]) -> list[Prediction]:
         preds = [self._predict_one(q) for q in qids]
         conf = self.correctness.predict([p.features for p in preds]) if preds else []
+        if self.recalibration is not None and len(conf):
+            conf = self.recalibration.predict(conf)
         for pred, c in zip(preds, conf):
             pred.confidence = float(c) if pred.choice is not None else 0.0
         return preds
@@ -100,13 +107,18 @@ class Engine:
         return pred.choice.branch in self.res.tree.correct_set(gold.central, gold.extras)
 
     def export_state(self) -> dict:
-        return {"scorer": self.scorer.to_dict(), "correctness": self.correctness.to_dict(),
-                "node_mode": self.node_mode, "rho": self.rho}
+        state = {"scorer": self.scorer.to_dict(), "correctness": self.correctness.to_dict(),
+                 "node_mode": self.node_mode, "rho": self.rho}
+        if self.recalibration is not None:
+            state["recalibration"] = self.recalibration.to_dict()
+        return state
 
     def load_state(self, state: dict, labeled_ids: list[str]) -> None:
         """Restore trained weights. Label dependent channels are re-indexed from the gold sheet."""
         self.scorer = CandidateScorer.from_dict(state["scorer"])
         self.correctness = CorrectnessModel.from_dict(state["correctness"])
+        self.rho = float(state.get("rho", self.rho))
+        self.recalibration = Platt.from_dict(state["recalibration"]) if "recalibration" in state else None
         labeled = {q: self.res.gold[q] for q in labeled_ids}
         self.res.tree.twins = learn_twins(self.res.tree, labeled)
         self._fit_channels(labeled)
@@ -147,12 +159,13 @@ class Engine:
         choice = choose_node(p, self.res.tree, self.rho, self.node_mode)
         tops = {n: self.res.tree.branch_of(max(s, key=s.get)) for n, s in table.items()
                 if s and n in self.proposing}
+        text_evidence = any(table[n] for n in self.proposing if not self.channels[n].embedding_based)
         extras = pick_extras(p, choice, self.res.tree, self.config["decision"]["extras_min_mass"],
                              self.segments.branches(qid)) if choice else []
         return Prediction(
             qid=qid, p=p, choice=choice, features=self._features(qid, choice, tops), confidence=0.0,
             extras=extras, anchors=self.law.anchors(qid), out_reasons=self.law.out_reasons(qid),
-            duplicate=self.duplicates.match(qid), channel_tops=tops,
+            duplicate=self.duplicates.match(qid), channel_tops=tops, text_evidence=text_evidence,
         )
 
     def _features(self, qid: str, choice: NodeChoice | None, tops: dict[str, int]) -> dict:

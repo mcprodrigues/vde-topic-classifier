@@ -123,6 +123,10 @@ class Platt:
     def to_dict(self) -> dict:
         return {"a": self.a, "b": self.b}
 
+    @classmethod
+    def from_dict(cls, data: dict) -> "Platt":
+        return cls(float(data["a"]), float(data["b"]))
+
 
 def reliability_table(conf: np.ndarray, y: np.ndarray, bins: int = 5) -> list[dict]:
     """Equal frequency bins: mean confidence against observed hit rate."""

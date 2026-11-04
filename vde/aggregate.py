@@ -55,7 +55,10 @@ class CandidateScorer:
         usable = [d for d in designs if d.target is not None and d.target.any() and len(d.nodes)]
         if not usable:
             return {"usable": 0}
-        result = minimize(self._loss, self.weights, args=(usable,), jac=True, method="L-BFGS-B",
+        # Always start from the same point: a warm start from the previous fit would make every CV fold
+        # depend on the folds fitted before it.
+        start = np.ones(len(self.channel_names))
+        result = minimize(self._loss, start, args=(usable,), jac=True, method="L-BFGS-B",
                           bounds=[(0.0, self.max_weight)] * len(self.weights))
         self.weights = result.x
         return {"usable": len(usable), "unreachable": len(designs) - len(usable), "loss": float(result.fun)}
@@ -106,7 +109,12 @@ class CandidateScorer:
 
 
 class CorrectnessModel:
-    """Standardized logistic regression, stored as plain numbers so publish needs no pickle."""
+    """Standardized logistic regression, stored as plain numbers so publish needs no pickle.
+
+    Features are clipped to the range seen in training before scoring: a linear model extrapolates without
+    bound, and an empty or garbled question (log_length far below any labeled one) would otherwise get a
+    confidence driven by its shape, not by evidence.
+    """
 
     def __init__(self, c: float = 0.3):
         self.c = c
@@ -114,11 +122,14 @@ class CorrectnessModel:
         self.scale = np.ones(len(FEATURES))
         self.coef = np.zeros(len(FEATURES))
         self.intercept = 0.0
+        self.lo = np.full(len(FEATURES), -np.inf)
+        self.hi = np.full(len(FEATURES), np.inf)
 
     def fit(self, rows: list[dict], y: list[bool]) -> None:
         from sklearn.linear_model import LogisticRegression
 
         x = self._matrix(rows)
+        self.lo, self.hi = x.min(axis=0), x.max(axis=0)
         self.mean = x.mean(axis=0)
         self.scale = np.where(x.std(axis=0) > 1e-9, x.std(axis=0), 1.0)
         labels = np.asarray(y, dtype=int)
@@ -132,12 +143,14 @@ class CorrectnessModel:
         self.intercept = float(model.intercept_[0])
 
     def predict(self, rows: list[dict]) -> np.ndarray:
-        z = ((self._matrix(rows) - self.mean) / self.scale) @ self.coef + self.intercept
+        x = np.clip(self._matrix(rows), self.lo, self.hi)
+        z = ((x - self.mean) / self.scale) @ self.coef + self.intercept
         return 1.0 / (1.0 + np.exp(-z))
 
     def to_dict(self) -> dict:
         return {"features": FEATURES, "c": self.c, "mean": self.mean.tolist(), "scale": self.scale.tolist(),
-                "coef": self.coef.tolist(), "intercept": self.intercept}
+                "coef": self.coef.tolist(), "intercept": self.intercept,
+                "lo": self.lo.tolist(), "hi": self.hi.tolist()}
 
     @classmethod
     def from_dict(cls, data: dict) -> "CorrectnessModel":
@@ -148,6 +161,8 @@ class CorrectnessModel:
         model.scale = np.array(data["scale"])
         model.coef = np.array(data["coef"])
         model.intercept = float(data["intercept"])
+        if "lo" in data:
+            model.lo, model.hi = np.array(data["lo"], dtype=float), np.array(data["hi"], dtype=float)
         return model
 
     def _matrix(self, rows: list[dict]) -> np.ndarray:

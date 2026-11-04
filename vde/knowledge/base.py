@@ -65,8 +65,9 @@ def refresh_manifest() -> dict:
 def verify_manifest() -> list[str]:
     """Artifacts or annexes whose hash differs from the manifest, or that are missing.
 
-    An annex that changed means the artifacts were built from other data: publish stops, and
-    `vde publish --skip-manifest` classifies new questions through the stored LSA transform.
+    Names of annexes start with ANNEX_PREFIX. publish always stops on an artifact problem; an annex that
+    changed (a new weekly import) is accepted only with `vde publish --allow-annex-change`, which classifies
+    the new questions through the stored LSA transform and keeps every artifact check.
     """
     manifest_file = ARTIFACT_DIR / MANIFEST_NAME
     if not manifest_file.exists():
@@ -78,6 +79,12 @@ def verify_manifest() -> list[str]:
         if not path.exists() or sha256_file(path) != digest:
             problems.append(name)
     return problems
+
+
+def split_problems(problems: list[str]) -> tuple[list[str], list[str]]:
+    """(artifact problems, annex problems) of a verify_manifest() result."""
+    annex = [p for p in problems if p.startswith(ANNEX_PREFIX)]
+    return [p for p in problems if p not in annex], annex
 
 
 def propose_with_llm(system: str, prompt: str, model: str = DEFAULT_LLM_MODEL, max_tokens: int = 8000) -> str:
