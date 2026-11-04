@@ -19,19 +19,21 @@ repetição por vez** (cada repetição é um modelo implantável), nunca sobre 
 
 | Medida | Valor | De onde vem |
 |---|---|---|
-| Decisão nas 559 avaliadas | <!-- claim:published -->76<!-- /claim --> publicar, 472 revisar, 11 fora | `outputs/publicacao.csv` |
-| Cobertura | <!-- claim:coverage -->0,14<!-- /claim --> (27 de 259 no banco, 49 de 300 na importação nova) | `outputs/publicacao.csv` |
-| Precisão prevista nas publicadas | <!-- claim:precision -->0,96<!-- /claim --> (intervalo de 90%: 0,88 a 1,00) | `outputs/previsao.txt` |
-| Chance de a precisão ficar abaixo de 0,95 | <!-- claim:below -->38%<!-- /claim --> | `evaluation.json`, `forecast` |
-| Precisão aninhada da regra de publicação | <!-- claim:nested -->1,00<!-- /claim --> (7,8 publicadas por repetição; limite inferior de 90%: 0,75) | `evaluation.json`, `cv.threshold_cv` |
+| Decisão nas 559 avaliadas | <!-- claim:published -->75<!-- /claim --> publicar, 473 revisar, 11 fora | `outputs/publicacao.csv` |
+| Cobertura | <!-- claim:coverage -->0,13<!-- /claim --> (27 de 259 no banco, 48 de 300 na importação nova) | `outputs/publicacao.csv` |
+| Precisão prevista nas publicadas | <!-- claim:precision -->0,95<!-- /claim --> (intervalo de 90%: 0,87 a 1,00) | `outputs/previsao.txt` |
+| Chance de a precisão ficar abaixo de 0,95 | <!-- claim:below -->40%<!-- /claim --> | `evaluation.json`, `forecast` |
+| Precisão aninhada da regra de publicação | <!-- claim:nested -->1,00<!-- /claim --> (7,9 publicadas por repetição; limite inferior de 90%: 0,75) | `evaluation.json`, `cv.threshold_cv` |
 | Acerto do nó publicado (todas as questões) | 0,676 (desvio entre repetições 0,010) | `evaluation.json`, `cv` |
-| AUC da confiança / ECE | 0,79 / 0,049 | `evaluation.json`, `cv` |
+| AUC da confiança / ECE | 0,79 / 0,046 | `evaluation.json`, `cv` |
 | Precisão nos 10% / 20% mais confiantes | <!-- claim:p10 -->0,98<!-- /claim --> / 0,96 (10% das repetições abaixo de 0,90 / 0,90) | `evaluation.json`, `cv` |
 
-**Regra de publicação:** publicar no tema de nível 1 quando a confiança calibrada for >= 0,95. A regra foi fixada
-antes de olhar a curva. Escolher o limiar olhando a curva daria precisão aninhada de 0,94, por causa do otimismo
-da seleção. A previsão (0,96) é a confiança calibrada média das publicadas (0,97), com um desvio de calibração do tamanho
-do ECE (maior na importação nova, que não tem nenhum rótulo) e ruído binomial. A checagem com os rótulos
+**Regra de publicação:** publicar no tema de nível 1 quando a confiança calibrada for >= 0,95, e só se houver
+evidência de texto (termo dos cartões, lei, artigo ou assunto reconhecido) e o ramo escolhido tiver massa >= 0,30.
+A regra foi fixada antes de olhar a curva. Escolher o limiar olhando a curva daria precisão aninhada de 0,94, por
+causa do otimismo da seleção. A previsão (0,95) parte da confiança calibrada média das publicadas (0,97), com um
+desvio de calibração igual ao maior entre o ECE da CV (0,046) e a incerteza dos rótulos dentro da faixa publicada
+(0,056), maior na importação nova, que não tem nenhum rótulo, e ruído binomial. A checagem com os rótulos
 (18 questões distintas, todas certas, tamanho efetivo 10,9) dá 0,96 (0,84 a 1,00) no banco e confirma o número,
 mas é larga demais para ser a previsão.
 
@@ -40,7 +42,7 @@ mas é larga demais para ser a previsão.
 Requer Python 3.11 ou superior. Não precisa de GPU nem de chave de API.
 
 ```bash
-pip install -e .            # ou: pip install -e ".[dev]" para rodar os testes
+pip install -r requirements.lock && pip install -e . --no-deps   # versões exatas que geraram os artefatos
 vde publish                 # regenera outputs/publicacao.csv   (também: python -m vde publish)
 vde evaluate                # métricas, figuras, relatório de mudança de distribuição, previsao.txt
 pytest                      # inclui o teste "sem LLM, sem rede, CSV idêntico"
@@ -61,8 +63,10 @@ Tempos medidos numa máquina com 16 núcleos:
 | `vde build <artefato> --source llm` | pede uma **proposta** ao LLM em `artifacts/proposals/` para revisão humana | não medido | Sim, offline |
 
 Questões novas: `vde publish` para se algum anexo mudou desde o último build (o `MANIFEST.json` guarda o hash dos
-anexos). `vde publish --skip-manifest` classifica as questões que não estão no cache projetando-as no espaço LSA
-salvo, sem reajustar nada.
+anexos). `vde publish --allow-annex-change` classifica as questões que não estão no cache projetando-as no espaço LSA
+salvo, sem reajustar nada; os artefatos continuam conferidos contra o manifesto (o antigo `--skip-manifest` é um
+apelido dessa opção). `vde publish` também se recusa a rodar se `vde/config.toml` mudou desde o `vde build model`:
+o `model.json` guarda o hash da configuração com que foi treinado.
 
 ## A garantia "nenhum LLM na decisão"
 
@@ -71,8 +75,10 @@ salvo, sem reajustar nada.
 * `tests/test_no_llm.py` remove as chaves de API, bloqueia `socket.connect`, faz `import anthropic` falhar,
   roda `publish` e compara o SHA-256 do CSV gerado com o versionado. Outro teste confere, por análise
   estática, que nenhum módulo importa um cliente de LLM no topo.
-* `vde publish` confere `artifacts/MANIFEST.json` (artefatos e anexos) antes de rodar.
-* Um clone limpo com `vde build all && vde publish` reproduz `publicacao.csv` byte a byte.
+* `vde publish` confere `artifacts/MANIFEST.json` (artefatos e anexos) e o hash da configuração antes de rodar.
+* `vde publish` com os artefatos versionados reproduz `publicacao.csv` byte a byte. Refazer os artefatos do zero
+  (`vde build all`) só reproduz o CSV com as versões de `requirements.lock`: o SVD aleatorizado do LSA depende da
+  pilha numérica. O `model.json` registra as versões usadas.
 
 ## Arquitetura
 
@@ -113,9 +119,12 @@ manuais estão em [`artifacts/manual_decisions.csv`](artifacts/manual_decisions.
   ordem econômica (tema inativo) e o direito penal e processual militar.
 * **MD10, MD13:** ρ = 0,85 (só vale com `node_mode = "branch"`); nunca publicar no nível 0.
 * **MD14:** publicar no tema de nível 1. Venceu a comparação de 20 repetições (precisão nos 10%: 0,985 contra
-  0,970). O custo é que o aluno vê a questão no tema, não no subtema, e 30 das 76 publicadas caem em temas
+  0,970). O custo é que o aluno vê a questão no tema, não no subtema, e 30 das 75 publicadas caem em temas
   marcados como lixeira (sempre com confiança >= 0,95).
 * **MD15:** regra de limiar calibrada (publicar quando P(acerto) >= 0,95) em vez de buscar na curva.
+* **MD17:** barreira de evidência: nunca publicar sem nenhum canal de texto com score ou com massa do ramo < 0,30.
+  Uma questão vazia chegava a 0,91 de confiança; o corte fica abaixo da menor massa publicada (0,41).
+* **MD18:** recalibração de Platt testada e descartada: ECE igual (0,049 contra 0,046) e cobertura pela metade.
 * **MD16:** o cofre de 20 questões da v0.1 foi inspecionado na análise de erro (Q0252, Q0303) e foi juntado aos
   rótulos. Não há mais teste cego: a garantia vem da CV aninhada.
 
