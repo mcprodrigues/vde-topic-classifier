@@ -60,8 +60,10 @@ def forecast(decisions, res, dev_conf, dev_hit, tau, weights, seed: int = 0) -> 
 
 
 def render(fc: dict, extra_lines: list[str]) -> str:
+    """The four header lines always carry numbers in the 0.00 format of LEIA-ME, never nan."""
+
     def fmt(x):
-        return "nan" if x is None else f"{x:.2f}"
+        return "0.00" if x is None or x != x else f"{x:.2f}"
 
     lines = [
         f"precisao_prevista: {fmt(fc['precision'])}",

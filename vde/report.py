@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 
 from vde import shift, splits
+from vde.calibrate import min_run_to_certify
 from vde.config import load_config
 from vde.engine import Engine
 from vde.evaluate import (calibration_comparison, evaluate_lockbox, run_ablations, save_json, summarize)
@@ -41,6 +42,7 @@ def evaluate(ablations: bool = False, open_lockbox: bool = False) -> dict:
     elif (OUTPUT_DIR / "ablations.csv").exists():
         report["ablations"] = pd.read_csv(OUTPUT_DIR / "ablations.csv").to_dict("records")
     report["repeat_spread"] = _repeat_spread(cv)
+    report["top_errors"] = _top_errors(per_q, 20)
     _figures(cv, calib, OUTPUT_DIR)
     (OUTPUT_DIR / "previsao.txt").write_text(render(fc, _explanation(report, model)), encoding="utf-8")
     save_json(OUTPUT_DIR / "evaluation.json", report)
@@ -73,6 +75,13 @@ def _repeat_spread(cv) -> dict:
     """Standard deviation of the hit rate between CV repeats: the noise floor of the ablation table."""
     per_rep = cv.rows.groupby("rep").hit.mean()
     return {"repeats": int(len(per_rep)), "mean": float(per_rep.mean()), "std": float(per_rep.std(ddof=1))}
+
+
+def _top_errors(per_q: pd.DataFrame, k: int) -> list[dict]:
+    """Misses among the k most confident labeled questions, computed instead of written by hand."""
+    top = per_q.sort_values("conf", ascending=False, kind="stable").head(k)
+    misses = top[~top.hit.astype(bool)]
+    return [{"qid": r.qid, "conf": float(r.conf), "is_out": bool(r.is_out)} for r in misses.itertuples(index=False)]
 
 
 def _figures(cv, calib: dict, out_dir) -> None:
@@ -130,20 +139,24 @@ def _explanation(report: dict, model: dict) -> list[str]:
         f"precisão {cv['threshold_cv']['precision'] if cv['threshold_cv']['precision'] is not None else 'indefinida'}.",
     ]
     if fc["precision"] is None:
-        lines.append("6. Nenhuma questão passou no limiar: a precisão prevista é indefinida (nan). Preferimos não "
-                     "publicar a publicar abaixo da régua; tudo vai para revisão com sugestão.")
+        lines.append("6. Nenhuma questão passou no limiar: sem publicadas, a precisão não tem o que medir e o "
+                     "cabeçalho mostra 0.00 só para manter o formato. Tudo vai para revisão com sugestão.")
     if "lockbox" in report:
         lb = report["lockbox"]
         lines.append(f"7. Cofre (20 rótulos nunca vistos): acerto {lb['hit_rate']:.2f}; publicadas "
                      f"{lb['published']}, acertos {lb['published_hits']}.")
     pac = cv["precision_at_coverage"]
+    dec = load_config()["decision"]
+    run80 = min_run_to_certify(dec["target_precision"], 0.80)
+    run90 = min_run_to_certify(dec["target_precision"], 0.90)
+    top_errors = report.get("top_errors", [])
+    errors_text = ", ".join(f"{e['qid']} ({'fora na folha' if e['is_out'] else 'tema errado'})" for e in top_errors)
     lines += [
-        f"8. Por que zero: no dev, os 10% mais confiantes acertam {pac['0.10']:.2f} e os 20% acertam "
-        f"{pac['0.20']:.2f}; os dois erros do topo são questões que a equipe marcou como fora mas que parecem "
-        "classificáveis (Q0043, Q0291). Com 80 rótulos, certificar 95% com 80% de confiança exige 32 acertos "
-        "seguidos sem erro; com 90%, exige 45. Nenhum limiar chega lá.",
-        "9. O que destrava a publicação: o professor confirmar as questões do topo da fila, ordenada por "
-        "confiança. Cerca de 30 confirmações seguidas sem erro no topo bastam para certificar o limiar a 80%.",
+        f"8. Topo da fila: os 10% mais confiantes acertam {pac['0.10']:.2f} e os 20% acertam {pac['0.20']:.2f}. "
+        f"Erros entre os 20 mais confiantes: {errors_text or 'nenhum'}. Certificar 95% só com acertos seguidos "
+        f"exige {run80} acertos sem erro a 80% de confiança e {run90} a 90%.",
+        f"9. O que amplia a publicação: o professor confirmar o topo da fila, ordenada por confiança. Cerca de "
+        f"{run80} confirmações seguidas sem erro certificam o limiar a 80%.",
         f"10. Mudança de distribuição: o classificador de domínio separa banco e importação nova com AUC "
         f"{report['shift']['domain_auc']:.2f}, quase o acaso. A mudança está nos metadados: a disciplina de origem "
         "só entra nas regras de fora e o assunto de origem entra apenas como canal fraco, com peso aprendido.",

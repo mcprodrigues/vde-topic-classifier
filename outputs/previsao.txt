@@ -1,5 +1,5 @@
-precisao_prevista: nan
-precisao_intervalo: nan-nan
+precisao_prevista: 0.00
+precisao_intervalo: 0.00-0.00
 cobertura_prevista: 0.00
 cobertura_intervalo: 0.00-0.00
 
@@ -10,8 +10,7 @@ Como chegamos nestes números
 3. Precisão: posterior Beta por fonte (banco sem peso; importação nova com pesos de importância de um classificador de domínio, AUC 0.56), mais o ruído binomial do conjunto publicado real. Intervalo de 90%.
 4. Desempenho geral fora da amostra: acerto do nó 0.66, acerto do ramo 0.67, AUC da confiança 0.73, precisão nos 20% mais confiantes 0.94.
 5. Validação do limiar (escolhido em 4/5, medido em 1/5): cobertura 0.00, precisão indefinida.
-6. Nenhuma questão passou no limiar: a precisão prevista é indefinida (nan). Preferimos não publicar a publicar abaixo da régua; tudo vai para revisão com sugestão.
-7. Cofre (20 rótulos nunca vistos): acerto 0.80; publicadas 0, acertos 0.
-8. Por que zero: no dev, os 10% mais confiantes acertam 1.00 e os 20% acertam 0.94; os dois erros do topo são questões que a equipe marcou como fora mas que parecem classificáveis (Q0043, Q0291). Com 80 rótulos, certificar 95% com 80% de confiança exige 32 acertos seguidos sem erro; com 90%, exige 45. Nenhum limiar chega lá.
-9. O que destrava a publicação: o professor confirmar as questões do topo da fila, ordenada por confiança. Cerca de 30 confirmações seguidas sem erro no topo bastam para certificar o limiar a 80%.
+6. Nenhuma questão passou no limiar: sem publicadas, a precisão não tem o que medir e o cabeçalho mostra 0.00 só para manter o formato. Tudo vai para revisão com sugestão.
+8. Topo da fila: os 10% mais confiantes acertam 1.00 e os 20% acertam 0.94. Erros entre os 20 mais confiantes: Q0043 (fora na folha), Q0291 (fora na folha). Certificar 95% só com acertos seguidos exige 31 acertos sem erro a 80% de confiança e 44 a 90%.
+9. O que amplia a publicação: o professor confirmar o topo da fila, ordenada por confiança. Cerca de 31 confirmações seguidas sem erro certificam o limiar a 80%.
 10. Mudança de distribuição: o classificador de domínio separa banco e importação nova com AUC 0.56, quase o acaso. A mudança está nos metadados: a disciplina de origem só entra nas regras de fora e o assunto de origem entra apenas como canal fraco, com peso aprendido.
