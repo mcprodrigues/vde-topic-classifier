@@ -5,8 +5,9 @@ atlas de artigos do CP e do CPP, cartões de tema) e transforma a evidência de 
 probabilidade de acerto calibrada. A regra de publicação, fixada antes de olhar a curva, é: publicar no tema de
 nível 1 quando P(acerto) >= 0,95. Nas 559 questões avaliadas, ela publica **76 (13,6%)**, manda 472 para revisão
 e 11 para `fora`. Na validação aninhada sobre os 100 rótulos, a regra não errou nenhuma (7,8 publicadas por
-repetição; limite inferior de 90%: 0,75). A previsão para a entrega é **0,93 (0,78 a 1,00)**, com 49% de chance
-de ficar abaixo de 0,95: o risco está na importação nova, que publica mais e não tem nenhum rótulo.
+repetição; limite inferior de 90%: 0,75). A previsão para a entrega é **0,96 (0,88 a 1,00)**, a confiança calibrada média das
+publicadas, com 38% de chance de ficar abaixo de 0,95: o risco está na importação nova, que publica mais e não
+tem nenhum rótulo.
 
 **O que mudou da v0.1 para a v0.2.** A v0.1 não publicava nada: exigia uma certificação impossível com 80 rótulos e
 media o topo da fila sobre a confiança média de 20 repetições, que nenhum modelo implantado produz. Além disso, o
@@ -105,9 +106,12 @@ Q0252, Q0291, Q0303). Nenhuma das 8 chega a 0,95 de confiança na v0.2; a mais a
 **A importação nova é o maior risco.** Os 100 rótulos vêm todos do banco (Q0002 a Q0356); nenhum vem de Q0360 a
 Q0659, que são 300 das 559 avaliadas. O classificador de domínio quase não separa as fontes pelas features do
 modelo (AUC 0,55), mas a importação nova tem confiança média maior (0,70 contra 0,65) e mais questões acima de 0,95
-(16% contra 10%). Por isso ela publica 49 das 76 questões. A previsão trata essa fonte à parte: mesmos rótulos,
-pesos de importância e tamanho efetivo cortado pela metade, o que dá 0,91 (0,67 a 1,00) contra 0,96 (0,81 a 1,00)
-no banco.
+(16% contra 10%). Por isso ela publica 49 das 76 questões. A previsão parte da confiança calibrada de cada publicada e soma um
+desvio de calibração comum a cada fonte, com desvio igual ao ECE da CV no banco e √2 vezes maior na importação
+nova: 0,96 (0,85 a 1,00) no banco e 0,95 (0,84 a 1,00) na importação nova. A checagem pelos rótulos (Beta de
+Jeffreys sobre 10,9 questões efetivas, todas certas) dá 0,96 no banco: coerente, mas larga demais para ser a
+previsão. Uma versão anterior usava essa checagem como previsão e, por causa do prior e do corte do n efetivo,
+previa 0,93: abaixo da régua, contradizendo a própria regra de publicação.
 
 **`fora` disfarçados.** Questões que a equipe marca como `fora` mas que o texto põe num tema (Q0043, fixação da
 pena; Q0291, prazo do inquérito na Lei de Drogas) eram os erros do topo na v0.1. A solução não é um modelo melhor,

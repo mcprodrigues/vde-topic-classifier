@@ -78,3 +78,13 @@ def test_forecast_reports_each_source_and_stays_inside_its_interval():
         low, high = block["precision_interval"]
         assert low <= block["precision"] <= high
     assert report["shift"]["labeled_from_new_import"] == 0
+
+
+def test_forecast_is_centered_on_the_calibrated_confidence_of_the_published():
+    import json
+
+    fc = json.loads((OUTPUT_DIR / "evaluation.json").read_text(encoding="utf-8"))["forecast"]
+    assert fc["method"] == "calibrated_confidence"
+    # Clipping at 1 can only pull the simulated mean below the mean confidence, and only a little.
+    assert 0 <= fc["precision_from_calibrated_confidence"] - fc["precision"] < 0.02
+    assert fc["by_source"]["new_import"]["calibration_sigma"] > fc["by_source"]["bank"]["calibration_sigma"]

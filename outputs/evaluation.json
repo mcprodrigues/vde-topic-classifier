@@ -283,6 +283,7 @@
     }
   },
   "forecast": {
+    "method": "calibrated_confidence",
     "evaluated": 559,
     "published": 76,
     "published_by_source": {
@@ -294,41 +295,57 @@
       0.13595706618962433,
       0.13595706618962433
     ],
-    "precision": 0.929775,
+    "precision": 0.9574019736842105,
     "precision_interval": [
-      0.7763157894736842,
+      0.881578947368421,
       1.0
     ],
-    "probability_precision_below_target": 0.49315,
+    "probability_precision_below_target": 0.3787,
     "precision_from_calibrated_confidence": 0.9709907894736842,
     "by_source": {
       "bank": {
         "published": 27,
         "coverage": 0.10424710424710425,
-        "precision": 0.9578425925925927,
+        "precision": 0.963335185185185,
         "precision_interval": [
-          0.8148148148148148,
+          0.8518518518518519,
           1.0
         ],
         "mean_confidence_of_published": 0.9729222222222224,
-        "a": 11.403225806451614,
-        "b": 0.5,
-        "effective_n": 10.903225806451614,
-        "rate": 1.0
+        "calibration_sigma": 0.04924432567482645,
+        "labeled_check": {
+          "a": 11.403225806451614,
+          "b": 0.5,
+          "effective_n": 10.903225806451614,
+          "rate": 1.0,
+          "mean": 0.9577527762709449,
+          "interval": [
+            0.8412267021897356,
+            0.9998371123242515
+          ]
+        }
       },
       "new_import": {
         "published": 49,
         "coverage": 0.16333333333333333,
-        "precision": 0.9143091836734694,
+        "precision": 0.9541326530612245,
         "precision_interval": [
-          0.673469387755102,
+          0.8367346938775511,
           1.0
         ],
         "mean_confidence_of_published": 0.969926530612245,
-        "a": 5.30595268381438,
-        "b": 0.5,
-        "effective_n": 4.80595268381438,
-        "rate": 1.0
+        "calibration_sigma": 0.06964199323925718,
+        "labeled_check": {
+          "a": 5.30595268381438,
+          "b": 0.5,
+          "effective_n": 4.80595268381438,
+          "rate": 1.0,
+          "mean": 0.9131272636067435,
+          "interval": [
+            0.6829584929625075,
+            0.999572247407013
+          ]
+        }
       }
     },
     "labeled_evidence": {
