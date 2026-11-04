@@ -1,19 +1,24 @@
 {
-  "domain_auc": 0.5574583333333334,
-  "effective_n_after_weighting": 53.355613291055874,
+  "domain_auc": 0.5532333333333334,
+  "effective_n_after_weighting": 74.45595187801017,
   "mean_confidence": {
-    "dev_oof": 0.6655041731632099,
-    "bank_unlabeled": 0.5820826171526139,
-    "new_import": 0.6313823844520013
+    "labeled_oof": 0.6810113022322196,
+    "bank_unlabeled": 0.6456327037255695,
+    "new_import": 0.7014007834407243
   },
+  "share_conf_at_least_095": {
+    "bank_unlabeled": 0.10424710424710425,
+    "new_import": 0.16
+  },
+  "labeled_from_new_import": 0,
   "feature_means": {
-    "dev_oof": {
-      "agreement": 0.6216354166666667,
-      "top_cosine": 0.4609359666705132,
-      "segment_dispersion": 0.44020833333333337
+    "labeled_oof": {
+      "agreement": 0.6245,
+      "top_cosine": 0.4731756716966629,
+      "segment_dispersion": 0.4196666666666667
     },
     "new_import": {
-      "agreement": 0.616111111111111,
+      "agreement": 0.628,
       "top_cosine": 0.4759286833057801,
       "segment_dispersion": 0.37161111111111117
     }

@@ -35,13 +35,18 @@ class Resources:
     @classmethod
     def load(cls, config: dict, annex_dir: Path = ANNEX_DIR) -> "Resources":
         """Read only: every loader here calls load(), never build()."""
+        parsed = {q.id: parse(q) for q in load_questions(annex_dir)}
+        vectors = embeddings.load()
+        for question in parsed.values():
+            if not vectors.has(embeddings.question_key(question.id)):
+                vectors.add(*embeddings.question_texts(question))
         return cls(
             config=config,
             tree=canonical_tree.load(),
-            parsed={q.id: parse(q) for q in load_questions(annex_dir)},
+            parsed=parsed,
             gold=load_gold(annex_dir),
             cards=topic_cards.load(),
-            embeddings=embeddings.load(),
+            embeddings=vectors,
             laws=law_index.load(),
             atlas=code_atlas.load(),
             subjects=subject_map.load(),

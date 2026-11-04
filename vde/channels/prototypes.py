@@ -12,6 +12,7 @@ from vde.knowledge.embeddings import card_key, question_key, segment_key
 
 class PrototypeChannel(Channel):
     name = "prototypes"
+    embedding_based = True
 
     def __init__(self, res):
         super().__init__(res)

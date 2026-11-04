@@ -1,9 +1,9 @@
 {
   "artifact": "splits.json",
-  "sha256": "5837462aa3a80561b35de9b57242a8ab94cb53b812bbdfccd41dabd927169be2",
-  "written_at": "2026-11-03T19:17:44+00:00",
-  "code_commit": "db33080",
+  "sha256": "8e7e18c1276a15a1e20740f36bfddc7d0fa35047934fcbfd10057121a356b661",
+  "written_at": "2026-11-04T11:53:32+00:00",
+  "code_commit": "1889e87",
   "produced_by": "stratified random split by gold discipline and out flag",
   "llm_used": false,
-  "lockbox_size": 20
+  "lockbox_size": 0
 }

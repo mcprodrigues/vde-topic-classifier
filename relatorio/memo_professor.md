@@ -3,11 +3,20 @@
 **Assunto:** o que a classificação automática encontrou nos temas de Penal, Processo Penal, Legislação Especial e
 Criminologia, e do que precisamos do senhor.
 
+## O que o sistema faz hoje
+
+Das 559 questões que a equipe ainda não classificou, o sistema **publica 75 sozinho** (cerca de 13%), sempre no
+tema principal (não no subtema) e só quando tem pelo menos 95% de confiança. Nas 100 questões que a equipe já
+classificou, essa regra não errou nenhuma em testes repetidos. Esperamos que cerca de 96 de cada 100 publicadas
+estejam certas, com uma margem que vai de 88 a 100. As outras 472 vão para a sua fila, ordenadas pela confiança e
+com o tema sugerido.
+
 ## O que encontramos
 
 1. **Temas "lixeira".** Alguns temas genéricos acumularam centenas de questões que não são deles: Sistemas e
    Princípios Processuais Penais (538), Teoria da Pena (453), Introdução ao Estudo do Direito Penal (424) e Crimes
-   contra a Administração Pública (368).
+   contra a Administração Pública (368). Atenção: 30 das 75 questões publicadas vão para temas desse tipo, como
+   Crimes contra a Administração Pública. O sistema acha que elas são mesmo desse tema, mas vale conferir.
 2. **20 temas duplicados ("fantasmas").** São temas sem descrição e sem subtemas que repetem outro tema: "Teoria da
    Pena (Parte 1)" e "(Parte 2)", "Competência (Parte 1/2)", "Sentença Penal (Parte 1/2)", "Recursos (Parte 03) -
    Espécies", "Provas em Espécie", e cópias em Penal ou Processo Penal de Lei Maria da Penha, Tráfico de Drogas,
@@ -19,8 +28,7 @@ Criminologia, e do que precisamos do senhor.
 4. **A regra de "fora da taxonomia" não está clara.** Das 8 questões marcadas como fora, 3 se explicam (tema inativo
    ou lacuna). As outras 5 parecem ter tema na árvore: Q0043 (fixação da pena), Q0087 (prisão domiciliar na
    execução, segundo o STJ), Q0252 (benefícios ao condenado idoso), Q0291 (prazo do inquérito na Lei de Drogas) e
-   Q0303 (aplicação da lei penal). Hoje, são essas questões que impedem a publicação automática: o sistema as
-   classifica com segurança e a equipe diz que não têm tema.
+   Q0303 (aplicação da lei penal).
 
 ## O que recomendamos mudar nos temas
 
@@ -33,13 +41,12 @@ Criminologia, e do que precisamos do senhor.
 
 ## Do que precisamos do senhor
 
-1. **Uma regra para "fora".** Olhando as 5 questões acima: "fora" vale quando a questão mistura vários temas? Ou
+1. **Conferir uma amostra das publicadas das questões novas (cerca de 30 minutos).** Todas as 100 questões que a
+   equipe classificou vêm do banco antigo; nenhuma vem dos concursos recentes, que são metade das publicadas.
+   Conferir o tema principal de 30 delas é o que mais reduz a incerteza da entrega.
+2. **Uma regra para "fora".** Olhando as 5 questões acima: "fora" vale quando a questão mistura vários temas? Ou
    quando é jurisprudência sobre uma lei especial? Uma frase basta.
-2. **Confirmar o topo da fila (cerca de 30 minutos).** As questões em revisão chegam ordenadas pela confiança do
-   sistema; 115 estão acima de 90%. Basta confirmar o **tema principal** das primeiras 30 a 45, sem extras. Se o
-   sistema acertar todas, ele passa a publicar sozinho nessa faixa com garantia estatística.
-3. **Revisar duas tabelas curtas** (cerca de 1 hora): a lista de leis com o tema de cada uma (60 linhas) e a
-   correspondência entre faixas de artigos do CP e do CPP e os temas. É a parte mais confiável do sistema, mas
-   foi montada sem um especialista.
+3. **Revisar duas tabelas curtas (cerca de 1 hora):** a lista de leis com o tema de cada uma (60 linhas) e a
+   correspondência entre faixas de artigos do CP e do CPP e os temas. Foram montadas sem um especialista.
 4. **Na rotina:** cada correção feita na fila vira exemplo de treino na semana seguinte. Quanto mais o senhor
-   corrigir no topo da fila, mais cedo o sistema assume a parte fácil do trabalho.
+   corrigir no topo da fila, mais questões o sistema publica sozinho com segurança.

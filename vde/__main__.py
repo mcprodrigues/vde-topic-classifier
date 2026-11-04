@@ -7,7 +7,7 @@ import sys
 import time
 from pathlib import Path
 
-ARTIFACTS = ["canonical_tree", "law_index", "code_atlas", "topic_cards", "subject_map", "embeddings", "model", "all"]
+ARTIFACTS = ["canonical_tree", "branch_twins", "law_index", "code_atlas", "topic_cards", "subject_map", "embeddings", "model", "all"]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -16,7 +16,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "publish":
         from vde.pipeline import publish  # read only path: loaders and the trained model, nothing else
 
-        decisions = publish(Path(args.out) if args.out else None, strict_manifest=not args.skip_manifest)
+        decisions = publish(Path(args.out) if args.out else None, allow_annex_change=args.allow_annex_change)
         counts = {k: sum(d.decision == k for d in decisions) for k in ("publicar", "revisar", "fora")}
         print(f"publicacao.csv: {len(decisions)} linhas {counts}")
     elif args.command == "build":
@@ -24,7 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "evaluate":
         from vde.report import evaluate
 
-        report = evaluate(ablations=args.ablations, open_lockbox=args.open_lockbox)
+        report = evaluate(ablations=args.ablations)
         fc = report["forecast"]
         print(f"cobertura {fc['coverage']:.3f}, precisao prevista {fc['precision']}, limiar {report['threshold']:.3f}")
     elif args.command == "diagnose":
@@ -64,14 +64,14 @@ def _parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
     pub = sub.add_parser("publish", help="regenerate outputs/publicacao.csv without any LLM")
     pub.add_argument("--out", help="output path (default outputs/publicacao.csv)")
-    pub.add_argument("--skip-manifest", action="store_true", help="do not stop when artifacts differ from the manifest")
+    pub.add_argument("--allow-annex-change", "--skip-manifest", dest="allow_annex_change", action="store_true",
+                     help="classify a new import: annexes may differ from the manifest, artifacts may not")
     build = sub.add_parser("build", help="rebuild a versioned artifact (offline step)")
     build.add_argument("artifact", choices=ARTIFACTS)
     build.add_argument("--source", choices=["session", "llm"], default="session",
                        help="llm writes a proposal to artifacts/proposals for human review")
     ev = sub.add_parser("evaluate", help="metrics, figures, shift report and previsao.txt")
     ev.add_argument("--ablations", action="store_true")
-    ev.add_argument("--open-lockbox", action="store_true")
     sub.add_parser("diagnose", help="compare the bank with the new import")
     return parser
 

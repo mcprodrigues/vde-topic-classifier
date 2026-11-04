@@ -1,2 +1,2 @@
-from_branch,to_branch,dev_central_from,dev_central_to,reason
-5539,4701,0,3,The team publishes Juizado Especial Criminal questions in Legislacao Especial and uses the Procedimento Sumarissimo subtopics only as extras
+from_branch,to_branch,from_path,to_path,reason
+5539,4701,Processo Penal > Procedimento Sumaríssimo,Direito Penal - Legislação Especial > Juizado Especial Criminal,Processo Penal > Procedimento Sumaríssimo appears only as an extra next to a Direito Penal - Legislação Especial > Juizado Especial Criminal central

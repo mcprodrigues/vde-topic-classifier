@@ -1,20 +1,29 @@
 # Every tunable number of the system lives here, so that no decision is hidden in code.
 
 [decision]
-# Share of the branch mass a subtopic must hold before we publish at level 2 instead of level 1.
-# Fixed a priori for student usefulness, never tuned on the gold sheet.
+# Node choice (MD14): "level1" publishes at the best level 1 branch; "branch" descends to a subtopic when it
+# holds rho of the branch mass. level1 won the 20 repeat comparison (precision at 10%: 0.985 against 0.970).
+node_mode = "level1"
+# Share of the branch mass a subtopic must hold before we publish at level 2 (node_mode = "branch" only).
 rho = 0.85
 # The case rule: precision on published questions must be at least this value.
 target_precision = 0.95
-# Posterior probability that precision >= target required at the operating threshold.
+# Reported, not a gate since v0.2: posterior probability that precision >= target at the threshold.
 posterior_level = 0.80
-# Extra safety margin: the point estimate of precision at the threshold must reach this value.
+# The gate: out of fold precision, measured one CV repeat at a time, must reach this value at the threshold.
 min_point_precision = 0.97
+# A threshold must publish at least this many labeled questions per CV repeat, so it is not chosen on a handful.
+min_published = 5
+# How the threshold is set. "calibrated": publish when the calibrated P(hit) >= target_precision, fixed a
+# priori. "search": walk the OOF curve (its nested precision shows the selection optimism, see report).
+threshold_rule = "calibrated"
+# Publication slice (ADR-11): none, clean or anchored. Chosen out of fold, the simplest wins a tie below 1 point.
+slice = "none"
 # A different level 1 branch becomes an extra when it holds at least this probability mass.
 extras_min_mass = 0.20
-# Use one threshold per group (with or without a legal anchor) only if each group is large enough.
-group_thresholds = false
-min_group_size = 15
+# Evidence gate (decide.evidence_gate): never publish when the chosen branch holds less than this mass,
+# whatever the confidence. Set below the lowest mass among the v0.2 publications (0.41), as a safety net.
+min_branch_mass = 0.30
 
 [channels]
 enabled = ["special_law", "code_article", "lexical", "prototypes", "knn", "subject", "duplicates"]
@@ -42,13 +51,23 @@ transform = "log"
 l2 = 0.01
 max_weight = 20.0
 correctness_c = 0.3
+# Recalibration of the deployed confidence: "platt" (fitted on the outer CV rows, cross fitted for the metrics)
+# or "none" (the correctness model output as is). Platt was tested and discarded: same row ECE (0.049 against
+# 0.046), worse per question ECE, and it pulls down the top of the queue, where the labels are 18 of 18 right,
+# so coverage halves (37 against 75 published).
+recalibration = "none"
 
 [evaluation]
 folds = 10
 repeats = 20
 ablation_repeats = 3
 seed = 20261103
-lockbox_size = 20
+# 0 since v0.2: the v0.1 lockbox was inspected during error analysis and was merged back.
+lockbox_size = 0
+
+[forecast]
+# None of the 100 labels comes from the new import, so its importance weighted effective size is halved.
+new_import_n_scale = 0.5
 
 [embeddings]
 backend = "lsa"

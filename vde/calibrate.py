@@ -34,33 +34,59 @@ def posterior_at_least(hits: float, n: float, target: float) -> float:
     return float(beta.sf(target, 1 + hits, 1 + n - hits))
 
 
-def effective_counts(correct: np.ndarray, weights: np.ndarray | None) -> tuple[float, float]:
-    """Importance weighted (hits, n), rescaled to the effective sample size (Kish)."""
-    if weights is None:
-        return float(correct.sum()), float(len(correct))
-    if weights.sum() <= 0:
-        return 0.0, 0.0
-    n_eff = weights.sum() ** 2 / (weights ** 2).sum()
-    rate = float((weights * correct).sum() / weights.sum())
-    return rate * n_eff, n_eff
+def min_run_to_certify(target: float = 0.95, level: float = 0.80) -> int:
+    """Smallest run of hits with no error that gives P(precision >= target) >= level under a uniform prior.
+
+    The posterior after n hits and 0 errors is Beta(1 + n, 1), so P(p >= target) = 1 - target ** (n + 1).
+    """
+    n = 0
+    while 1 - target ** (n + 1) < level:
+        n += 1
+    return n
 
 
-def choose_threshold(conf: np.ndarray, correct: np.ndarray, weights: np.ndarray | None = None,
-                     target: float = 0.95, level: float = 0.80, min_point: float = 0.97) -> ThresholdChoice:
-    """Lowest threshold (largest coverage) whose posterior P(precision >= target) reaches `level`."""
-    conf = np.asarray(conf, dtype=float)
-    correct = np.asarray(correct, dtype=float)
-    best = ThresholdChoice(1.01, 0, 0.0, 1.0, 0.0, 0.0, 0.0)
-    for tau in np.unique(conf)[::-1]:
-        mask = conf >= tau
-        w = None if weights is None else np.asarray(weights)[mask]
-        hits, n = effective_counts(correct[mask], w)
-        point = hits / n if n else 1.0
-        post = posterior_at_least(hits, n, target)
-        if post >= level and point >= min_point:
-            best = ThresholdChoice(float(tau), int(mask.sum()), float(correct[mask].sum()), point, post,
-                                   float(mask.mean()), n)
+def choose_threshold_per_repeat(conf: np.ndarray, correct: np.ndarray, reps: np.ndarray,
+                                eligible: np.ndarray | None = None, target: float = 0.95,
+                                min_point: float = 0.97, min_published: float = 5.0) -> ThresholdChoice:
+    """Search rule: walk down from the most confident row and stop at the first violation.
+
+    Every CV repeat is one deployable model, so rows are never averaged across repeats: precision is
+    pooled over repeats and the published count is the mean per repeat. Once at least `min_published`
+    rows per repeat are above the threshold, the walk stops at the first point whose precision falls
+    below `min_point` (fixed sequence, as in Learn then Test), so a lucky point after a dip is never taken.
+    """
+    conf, correct, ok = _prepare(conf, correct, eligible)
+    n_reps = max(len(np.unique(reps)), 1)
+    order = np.argsort(-np.where(ok, conf, -np.inf), kind="stable")
+    sorted_conf = np.where(ok, conf, -np.inf)[order]
+    pub = np.cumsum(ok[order])
+    hits = np.cumsum((correct * ok)[order])
+    best = _empty_choice()
+    for i in range(len(conf)):
+        tau = sorted_conf[i]
+        if not np.isfinite(tau) or (i + 1 < len(conf) and sorted_conf[i + 1] == tau):
+            continue
+        if pub[i] / n_reps < min_published:
+            continue
+        if hits[i] / pub[i] < min_point:
+            break
+        best = threshold_stats(conf, correct, reps, ok, float(tau), target)
     return best
+
+
+def threshold_stats(conf: np.ndarray, correct: np.ndarray, reps: np.ndarray, eligible: np.ndarray | None,
+                    tau: float, target: float = 0.95) -> ThresholdChoice:
+    """Published count per repeat, pooled precision and the Beta posterior at a given threshold."""
+    conf, correct, ok = _prepare(conf, correct, eligible)
+    n_reps = max(len(np.unique(reps)), 1)
+    mask = ok & (conf >= tau)
+    per_rep = mask.sum() / n_reps
+    if per_rep == 0:
+        return ThresholdChoice(float(tau), 0, 0.0, 1.0, 0.0, 0.0, 0.0)
+    precision = float(correct[mask].sum() / mask.sum())
+    return ThresholdChoice(float(tau), int(round(per_rep)), precision * per_rep, precision,
+                           posterior_at_least(precision * per_rep, per_rep, target),
+                           float(per_rep / (len(conf) / n_reps)), float(per_rep))
 
 
 def ltt_threshold(conf: np.ndarray, correct: np.ndarray, alpha: float = 0.05, delta: float = 0.10) -> float:
@@ -97,6 +123,10 @@ class Platt:
     def to_dict(self) -> dict:
         return {"a": self.a, "b": self.b}
 
+    @classmethod
+    def from_dict(cls, data: dict) -> "Platt":
+        return cls(float(data["a"]), float(data["b"]))
+
 
 def reliability_table(conf: np.ndarray, y: np.ndarray, bins: int = 5) -> list[dict]:
     """Equal frequency bins: mean confidence against observed hit rate."""
@@ -117,6 +147,17 @@ def expected_calibration_error(conf: np.ndarray, y: np.ndarray, bins: int = 5) -
 
 def brier(conf: np.ndarray, y: np.ndarray) -> float:
     return float(np.mean((np.asarray(conf) - np.asarray(y, dtype=float)) ** 2))
+
+
+def _prepare(conf, correct, eligible):
+    conf = np.asarray(conf, dtype=float)
+    correct = np.asarray(correct, dtype=float)
+    ok = np.ones(len(conf), dtype=bool) if eligible is None else np.asarray(eligible, dtype=bool)
+    return conf, correct, ok
+
+
+def _empty_choice() -> ThresholdChoice:
+    return ThresholdChoice(1.01, 0, 0.0, 1.0, 0.0, 0.0, 0.0)
 
 
 def _logit(p: np.ndarray) -> np.ndarray:

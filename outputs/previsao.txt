@@ -1,17 +1,16 @@
-precisao_prevista: nan
-precisao_intervalo: nan-nan
-cobertura_prevista: 0.00
-cobertura_intervalo: 0.00-0.00
+precisao_prevista: 0.95
+precisao_intervalo: 0.87-1.00
+cobertura_prevista: 0.13
+cobertura_intervalo: 0.13-0.13
 
 Como chegamos nestes números
 
-1. Cobertura: lida direto do publicacao.csv (0 publicadas de 559 questões fora da folha-verdade). Não é estimativa, por isso o intervalo é degenerado.
-2. Limiar: escolhido na validação cruzada repetida (80 questões de desenvolvimento, 10 folds x 20 repetições) como o menor valor com P(precisão >= 0,95) >= 0,80 sob posterior Beta e precisão pontual >= 0,97. Limiar = 1.010; nesse ponto o dev publicou 0 com 0 acertos.
-3. Precisão: posterior Beta por fonte (banco sem peso; importação nova com pesos de importância de um classificador de domínio, AUC 0.56), mais o ruído binomial do conjunto publicado real. Intervalo de 90%.
-4. Desempenho geral fora da amostra: acerto do nó 0.66, acerto do ramo 0.67, AUC da confiança 0.73, precisão nos 20% mais confiantes 0.94.
-5. Validação do limiar (escolhido em 4/5, medido em 1/5): cobertura 0.00, precisão indefinida.
-6. Nenhuma questão passou no limiar: a precisão prevista é indefinida (nan). Preferimos não publicar a publicar abaixo da régua; tudo vai para revisão com sugestão.
-7. Cofre (20 rótulos nunca vistos): acerto 0.80; publicadas 0, acertos 0.
-8. Por que zero: no dev, os 10% mais confiantes acertam 1.00 e os 20% acertam 0.94; os dois erros do topo são questões que a equipe marcou como fora mas que parecem classificáveis (Q0043, Q0291). Com 80 rótulos, certificar 95% com 80% de confiança exige 32 acertos seguidos sem erro; com 90%, exige 45. Nenhum limiar chega lá.
-9. O que destrava a publicação: o professor confirmar as questões do topo da fila, ordenada por confiança. Cerca de 30 confirmações seguidas sem erro no topo bastam para certificar o limiar a 80%.
-10. Mudança de distribuição: o classificador de domínio separa banco e importação nova com AUC 0.56, quase o acaso. A mudança está nos metadados: a disciplina de origem só entra nas regras de fora e o assunto de origem entra apenas como canal fraco, com peso aprendido.
+1. Cobertura: lida direto do publicacao.csv (75 publicadas de 559 questões fora da folha-verdade: 27 do banco e 48 da importação nova). Não é estimativa, por isso o intervalo é degenerado.
+2. Regra de publicação, fixada antes de olhar a curva: publicar quando a confiança calibrada for >= 0.95, no nível 1 da árvore (tema, não subtema), e só com evidência de texto e massa do ramo >= 0.30. A confiança é uma logística treinada fora da amostra; ECE 0.046 nas linhas da CV. Uma recalibração de Platt sobre essas linhas foi testada e descartada: não melhora o ECE e corta a cobertura pela metade.
+3. Evidência: 100 questões rotuladas, CV de 10 folds x 20 repetições. Em cada repetição (um modelo implantável), a regra publica em média 7.9 rotuladas, com 0.00 erros. São 18 questões distintas; cada uma conta uma vez, ponderada pela fração de repetições em que publica (tamanho efetivo de Kish), nunca como 20 linhas independentes.
+4. Validação aninhada (regra aplicada em 1/5 das questões, 10 vezes): precisão 1.00, limite inferior de 90% (Clopper-Pearson) 0.75. Para comparação, escolher o limiar olhando a curva daria 0.94: é o otimismo da seleção, e por isso a regra é fixa.
+5. Precisão prevista: a confiança calibrada de cada publicada é a sua chance de estar certa, então a precisão esperada é a confiança média das publicadas (0.97). A incerteza tem duas partes declaradas: um desvio de calibração comum a cada fonte, normal, e o ruído binomial de cada questão. O desvio é o maior entre o ECE da CV (0.046, medido em toda a faixa de confiança) e o desvio-padrão da taxa de acerto das rotuladas que a regra publica (0.056): são os únicos rótulos dentro da faixa publicada. Como a chance de acerto não passa de 1, o desvio para cima é cortado e a média simulada fica abaixo da confiança média. Banco: 27 publicadas, confiança média 0.97, desvio 0.056: 0.96 (0.85-1.00).
+6. Importação nova: nenhum dos 100 rótulos vem dela (0 de 100), e o classificador de domínio quase não a separa do banco (AUC 0.55). O desvio de calibração é multiplicado por raiz de 2 (0.079). 48 publicadas, confiança média 0.97: 0.95 (0.81-1.00). Ela publica mais (16% contra 10% no banco) sem rótulo para conferir: é a maior fonte de risco.
+7. Combinado: 0.95 (0.87-1.00, 90%); chance de ficar abaixo de 0,95: 40%. Checagem com os rótulos: as rotuladas que a regra publicaria acertam 1.00; com tamanho efetivo 10.9 e prior de Jeffreys, isso dá 0.96 (0.84-1.00). É coerente com a previsão, mas largo demais para ser ela: com tão poucas questões, o prior puxa a média para baixo mesmo sem nenhum erro.
+8. Topo da fila, por repetição: os 10% mais confiantes acertam 0.98 e os 20% acertam 0.96. Erros entre os 20 mais confiantes (confiança média entre repetições): nenhum.
+9. Por que o limiar fica em 0.95: baixar o limiar publica mais, mas a confiança média das publicadas encosta em 0,95 por volta de 0,90, e escolher o limiar pelos rótulos deu precisão aninhada 0.94. Na operação, cerca de 31 confirmações seguidas do professor no topo da fila certificam 95% com 80% de confiança.
