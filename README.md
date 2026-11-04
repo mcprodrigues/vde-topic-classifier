@@ -39,34 +39,161 @@ mas é larga demais para ser a previsão.
 
 ## Como rodar
 
-Requer Python 3.11 ou superior. Não precisa de GPU nem de chave de API.
+### 1. Requisitos
+
+Python 3.11 ou superior, `git` e cerca de 500 MB de disco para o ambiente virtual. Não precisa de GPU, de rede
+(depois da instalação) nem de chave de API.
+
+### 2. Instalar
 
 ```bash
-pip install -r requirements.lock && pip install -e . --no-deps   # versões exatas que geraram os artefatos
-vde publish                 # regenera outputs/publicacao.csv   (também: python -m vde publish)
-vde evaluate                # métricas, figuras, relatório de mudança de distribuição, previsao.txt
-pytest                      # inclui o teste "sem LLM, sem rede, CSV idêntico"
+git clone <url-do-repositório> vde-topic-classifier
+cd vde-topic-classifier
+python3 -m venv .venv
+source .venv/bin/activate                          # Windows: .venv\Scripts\activate
+pip install -r requirements.lock                   # versões exatas que geraram os artefatos
+pip install -e . --no-deps                         # instala o comando `vde`
 ```
 
-Tempos medidos numa máquina com 16 núcleos:
+`requirements.lock` fixa as versões usadas no treino (as mesmas que o `model.json` registra em `versions`).
+`pip install -e ".[dev]"` também funciona, mas resolve versões novas das bibliotecas.
+
+### 3. Regenerar a entrega
+
+```bash
+vde publish                    # escreve outputs/publicacao.csv   (também: python -m vde publish)
+git status outputs/            # nada muda: o CSV gerado é idêntico ao versionado
+```
+
+`vde publish` lê só os anexos (`anexos/`) e os artefatos versionados (`artifacts/`), não chama nenhum modelo de
+linguagem e termina com um resumo das decisões:
+
+```
+publicacao.csv: 659 linhas {'publicar': 167, 'revisar': 473, 'fora': 19}
+```
+
+As 100 questões da folha-verdade saem com o rótulo da equipe (92 `publicar`, 8 `fora`) e não entram na
+avaliação. Nas 559 restantes ficam 75 `publicar`, 473 `revisar` e 11 `fora`. Para escrever em outro lugar:
+`vde publish --out caminho/publicacao.csv`.
+
+### 4. Avaliar e testar
+
+```bash
+vde evaluate                   # métricas, figura, mudança de distribuição e outputs/previsao.txt
+pytest                         # 37 testes, inclusive "sem LLM, sem rede, CSV idêntico"
+```
+
+`vde evaluate` parte da OOF salva em `outputs/cv_oof.csv` (não refaz a CV) e reescreve `evaluation.json`,
+`shift_report.json`, `confiabilidade.png` e `previsao.txt`.
+
+### 5. Classificar uma importação nova
+
+Substitua `anexos/questoes.jsonl` pelo arquivo novo, no mesmo formato, e rode:
+
+```bash
+vde publish --allow-annex-change
+```
+
+Sem a opção, `vde publish` para, porque o hash do anexo não bate com o `MANIFEST.json`. Com ela, as questões que
+não estão no cache são projetadas no espaço LSA salvo, sem reajustar nada. Os artefatos e a configuração
+continuam conferidos. `--skip-manifest` é um apelido antigo da mesma opção.
+
+### 6. Retreinar ou refazer os artefatos
+
+```bash
+vde build model                # depois de mudar vde/config.toml ou a folha-verdade
+vde build all                  # todos os artefatos do zero, na ordem de dependência, e depois o modelo
+vde evaluate                   # atualiza métricas e previsão com o modelo novo
+```
+
+`vde publish` se recusa a rodar se `vde/config.toml` mudou desde o último `vde build model`: o `model.json`
+guarda o hash da configuração com que foi treinado. Refazer os artefatos do zero só reproduz o CSV byte a byte
+com as versões de `requirements.lock`, porque o SVD aleatorizado do LSA depende da pilha numérica.
+
+### 7. Erros comuns
+
+| Mensagem | Causa | O que fazer |
+|---|---|---|
+| `artifacts differ from MANIFEST.json` | um arquivo de `artifacts/` foi editado ou falta | `git checkout artifacts/`, ou refazer com `vde build <artefato>` |
+| `annexes differ from MANIFEST.json` | um anexo mudou (importação nova) | `vde publish --allow-annex-change`, ou `vde build all` |
+| `vde/config.toml differs from the configuration model.json was trained with` | a configuração mudou depois do treino | desfazer a mudança ou rodar `vde build model` |
+| `vde: command not found` | o ambiente virtual não está ativo | `source .venv/bin/activate` ou `python -m vde ...` |
+
+### 8. Comandos e tempos
+
+Medidos num Intel Core i5-14400 (16 núcleos), a partir de um clone limpo:
 
 | Comando | O que faz | Tempo | Usa LLM? |
 |---|---|---|---|
-| `vde publish` | lê artefatos e escreve `publicacao.csv` | 5 s | Não |
-| `vde evaluate` | métricas a partir do OOF salvo, mudança de distribuição, previsão | 10 s | Não |
-| `vde evaluate --ablations` | as 19 ablações (3 repetições cada) | ~15 min | Não |
-| `vde build model` | CV repetida 20x nos 100 rótulos e ajuste final | 4,5 min | Não |
-| `vde build all` | todos os artefatos do zero, na ordem de dependência | ~5 min | Não |
+| instalação (passo 2) | ambiente virtual e dependências | ~30 s | Não |
+| `vde publish` | lê artefatos e escreve `publicacao.csv` | 5 a 11 s | Não |
+| `vde evaluate` | métricas a partir da OOF salva, mudança de distribuição, previsão | 10 a 20 s | Não |
+| `pytest` | 37 testes | ~40 s | Não |
+| `vde build model` | CV de 10 folds x 20 repetições nos 100 rótulos e ajuste final | ~10 min | Não |
+| `vde build all` | todos os artefatos do zero e o modelo | ~10 min | Não |
+| `vde evaluate --ablations` | as 19 ablações (3 repetições cada) | ~25 min | Não |
 | `vde build canonical_tree`, `branch_twins`, `subject_map` | regras determinísticas | < 1 s cada | Não |
 | `vde build embeddings` | LSA local sobre 3.891 textos (guarda vetores e o modelo LSA) | 8 s | Não |
 | `vde build law_index`, `code_atlas`, `topic_cards` | valida o CSV revisado e grava a proveniência | < 1 s cada | Não |
+| `vde diagnose` | compara o banco com a importação nova | ~1 s | Não |
 | `vde build <artefato> --source llm` | pede uma **proposta** ao LLM em `artifacts/proposals/` para revisão humana | não medido | Sim, offline |
 
-Questões novas: `vde publish` para se algum anexo mudou desde o último build (o `MANIFEST.json` guarda o hash dos
-anexos). `vde publish --allow-annex-change` classifica as questões que não estão no cache projetando-as no espaço LSA
-salvo, sem reajustar nada; os artefatos continuam conferidos contra o manifesto (o antigo `--skip-manifest` é um
-apelido dessa opção). `vde publish` também se recusa a rodar se `vde/config.toml` mudou desde o `vde build model`:
-o `model.json` guarda o hash da configuração com que foi treinado.
+## Fluxo do sistema
+
+O sistema tem três momentos: construir o conhecimento (offline, uma vez), treinar o modelo (offline, a cada
+rodada de rótulos) e publicar (a cada importação, sem LLM). Só o último roda na entrega.
+
+```
+ OFFLINE: CONHECIMENTO (vde build <artefato>)            OFFLINE: TREINO (vde build model)
+ temas.csv ──> árvore canônica, nós-sombra, lixeiras     folha_verdade.csv (100 rótulos)
+           ──> índice de leis, atlas de artigos,               │  CV 10 folds x 20 repetições
+               cartões de tema (LLM propõe, vira dado)          │  pesos dos canais + modelo de acerto
+ questoes.jsonl + cartões ──> embeddings LSA                    ▼
+                                    │                      model.json (pesos, limiar 0,95,
+                                    ▼                      hash da config, versões)
+                               artifacts/ + MANIFEST.json ◄─────┘
+                                    │
+ PUBLICAÇÃO (vde publish, sem LLM)  ▼
+ questão ──> 1 leitura ──> 2 canais ──> 3 agregação ──> 4 nó ──> 5 confiança ──> 6 decisão ──> publicacao.csv
+```
+
+Para cada questão, a publicação faz:
+
+1. **Leitura** (`vde/data/`): limpa o HTML, separa enunciado, comando, assertivas (I, II, III...) e
+   alternativas, e marca o tipo da questão (certo/errado, assertivas, múltipla escolha) e a negação.
+2. **Canais de evidência** (`vde/channels/`): sete canais dão um score por tema, todos no tema canônico. São a lei
+   especial citada, o artigo do CP ou do CPP citado (pelo atlas), o BM25 sobre os cartões de tema, a
+   similaridade com os cartões (protótipos), os vizinhos rotulados (kNN), o `assunto_origem` e as quase
+   duplicatas de questões rotuladas.
+3. **Agregação** (`vde/aggregate.py`): um peso aprendido por canal combina os scores numa probabilidade sobre os
+   temas candidatos.
+4. **Escolha do nó** (`vde/tree.py`): soma a probabilidade por tema de nível 1 (com a regra de ramos gêmeos) e
+   escolhe o maior. Outros ramos com massa >= 0,20 viram extras. O nível 0 nunca é publicado.
+5. **Confiança** (`vde/engine.py`): uma logística sobre 17 features da questão (concordância entre canais, massa
+   do ramo, suporte dos segmentos, vizinhos `fora`, tipo de questão...) dá P(acerto) do nó escolhido. As
+   features ficam limitadas à faixa vista no treino.
+6. **Decisão** (`vde/decide.py`), nesta ordem:
+   * questão da folha-verdade: sai com o rótulo da equipe;
+   * regra explícita de `fora` (quase duplicata de um `fora` rotulado, norma sem tema ativo, disciplina militar
+     sem âncora): `fora`, com o motivo;
+   * barreira de evidência (nenhum canal de texto com score, ou massa do ramo < 0,30): `revisar`, com a sugestão;
+   * confiança >= 0,95: `publicar`;
+   * caso contrário: `revisar`, com a sugestão e o motivo (dúvida entre ramos, alternativas espalhadas, lei que
+     aponta para outro ramo...).
+7. **Escrita** (`vde/pipeline.py`): grava o CSV no formato do LEIA-ME e se recusa a gravar uma linha que o quebre
+   (`publicar` ou `revisar` sem tema, `revisar` ou `fora` sem motivo).
+
+**Avaliação** (`vde evaluate`): parte das previsões fora da amostra da CV e calcula precisão, cobertura,
+calibração, a validação aninhada da regra de publicação e a previsão (`previsao.txt`), separada por fonte
+(banco e importação nova).
+
+**Operação semanal**, como descrita no relatório (seção d):
+
+```
+importação nova ──> vde publish --allow-annex-change ──> publicar (aluno) / revisar (fila do professor) / fora
+                                                               │
+       vde build model + vde evaluate  ◄── correções do professor viram rótulos na folha-verdade
+```
 
 ## A garantia "nenhum LLM na decisão"
 
@@ -80,13 +207,7 @@ o `model.json` guarda o hash da configuração com que foi treinado.
   (`vde build all`) só reproduz o CSV com as versões de `requirements.lock`: o SVD aleatorizado do LSA depende da
   pilha numérica. O `model.json` registra as versões usadas.
 
-## Arquitetura
-
-```
-anexos/ -> data/ (limpeza HTML, segmentos) -> knowledge/ (artefatos) -> channels/ (evidências)
-        -> aggregate.py (pesos por canal + modelo de acerto) -> tree.py (escolha do nó)
-        -> calibrate.py (regra de limiar) -> decide.py (publicar / revisar / fora + motivo)
-```
+## Peças e artefatos
 
 | Peça | Arquivo | Artefato | LLM offline? |
 |---|---|---|---|
@@ -128,7 +249,7 @@ manuais estão em [`artifacts/manual_decisions.csv`](artifacts/manual_decisions.
 * **MD16:** o cofre de 20 questões da v0.1 foi inspecionado na análise de erro (Q0252, Q0303) e foi juntado aos
   rótulos. Não há mais teste cego: a garantia vem da CV aninhada.
 
-## Fluxo de desenvolvimento
+## Fluxo de desenvolvimento (git)
 
 `feature/* -> develop -> main`, sempre com merge `--no-ff`. O release `v0.2.0` está em `main`: `feature/forecast-format`,
 `feature/nested-cv`, `feature/publish-slice`, `feature/shift-forecast`, `feature/production-hardening`,
