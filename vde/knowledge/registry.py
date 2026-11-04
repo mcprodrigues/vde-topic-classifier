@@ -19,5 +19,5 @@ def builders(config: dict, source: str = "session") -> dict[str, Callable[[], st
         "topic_cards": lambda: topic_cards.build(source),
         "subject_map": lambda: subject_map.build(),
         "embeddings": lambda: embeddings.build(emb.get("backend", "lsa"), emb.get("dimensions", 256),
-                                               emb.get("seed", 0)),
+                                               emb.get("seed", 0), emb.get("model", embeddings.DEFAULT_ST_MODEL)),
     }

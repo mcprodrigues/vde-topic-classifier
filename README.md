@@ -10,7 +10,7 @@ Nenhum modelo de linguagem participa da decisão: o comando de publicação lê 
 | `previsao.txt` | [`outputs/previsao.txt`](outputs/previsao.txt) |
 | Relatório (até 4 páginas) | [`relatorio/relatorio.md`](relatorio/relatorio.md) |
 | Memo para o professor | [`relatorio/memo_professor.md`](relatorio/memo_professor.md) |
-| Figuras e métricas | [`outputs/confiabilidade.png`](outputs/confiabilidade.png), [`outputs/evaluation.json`](outputs/evaluation.json), [`outputs/ablations.csv`](outputs/ablations.csv), [`outputs/ablations_20rep.csv`](outputs/ablations_20rep.csv) |
+| Figuras e métricas | [`outputs/confiabilidade.png`](outputs/confiabilidade.png), [`outputs/evaluation.json`](outputs/evaluation.json), [`outputs/ablations.csv`](outputs/ablations.csv), [`outputs/ablations_20rep.csv`](outputs/ablations_20rep.csv), [`outputs/embeddings_neural.csv`](outputs/embeddings_neural.csv) |
 
 ## Resultado em uma tabela
 
