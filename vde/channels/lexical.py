@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import math
 from collections import Counter
-from functools import lru_cache
 
-from vde.channels.interfaces import Channel, Scores, top_normalized
+from vde.channels.interfaces import Channel, Scores, cached_by_qid, top_normalized
 from vde.data.cleaning import tokenize
 
 
@@ -34,7 +33,7 @@ class LexicalChannel(Channel):
     def score_text(self, text: str) -> Scores:
         return top_normalized(self._bm25(terms(text)), self.top_k)
 
-    @lru_cache(maxsize=None)
+    @cached_by_qid
     def _score_cached(self, qid: str) -> Scores:
         return self.score_text(self.res.parsed[qid].full_text)
 

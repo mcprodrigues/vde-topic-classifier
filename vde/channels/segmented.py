@@ -7,9 +7,8 @@ how dispersed they are (a patchwork question touches many topics), and candidate
 from __future__ import annotations
 
 from dataclasses import dataclass
-from functools import lru_cache
 
-from vde.channels.interfaces import Channel, Scores, top_normalized
+from vde.channels.interfaces import Channel, Scores, cached_by_qid, top_normalized
 from vde.channels.lexical import LexicalChannel
 from vde.channels.prototypes import PrototypeChannel
 from vde.resources import Resources
@@ -72,7 +71,7 @@ class SegmentAnalyzer:
                 pooled[tid] = pooled.get(tid, 0.0) + weights[seg.key] * value
         return top_normalized(pooled)
 
-    @lru_cache(maxsize=None)
+    @cached_by_qid
     def _best_cached(self, qid: str) -> tuple[tuple[str, str, int, float], ...]:
         """(key, kind, best topic, strength) per segment: depends on the text only, never on labels."""
         out = []
@@ -104,6 +103,6 @@ class SegmentChannel(Channel):
     def score(self, qid: str) -> Scores:
         return self._score_cached(qid)
 
-    @lru_cache(maxsize=None)
+    @cached_by_qid
     def _score_cached(self, qid: str) -> Scores:
         return self.analyzer.pooled_scores(qid)

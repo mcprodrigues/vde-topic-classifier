@@ -9,9 +9,8 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from functools import lru_cache
 
-from vde.channels.interfaces import Channel, Scores, pool_canonical, top_normalized
+from vde.channels.interfaces import Channel, Scores, cached_by_qid, pool_canonical, top_normalized
 from vde.data.cleaning import fold
 
 CODE_KEYS = frozenset({"CP", "CPP"})
@@ -63,7 +62,7 @@ class LawArticleChannel(Channel):
     def _kind(self, anchor: Anchor) -> str:
         return "code" if anchor.law_key in CODE_KEYS else "law"
 
-    @lru_cache(maxsize=None)
+    @cached_by_qid
     def _anchors_cached(self, qid: str) -> tuple[Anchor, ...]:
         text = fold(self.res.parsed[qid].full_text)
         mentions = self._mentions(text)
