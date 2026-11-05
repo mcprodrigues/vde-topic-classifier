@@ -146,3 +146,23 @@ data e versão do modelo. Toda semana: (1) reajustar pesos e o modelo de acerto 
 fonte e a distribuição de confiança, com alerta se a AUC passar de 0,7 ou se a fração publicada de uma fonte
 dobrar. O primeiro uso do tempo do professor deve ser rotular uma amostra das publicadas da importação nova: é a
 fonte sem rótulo e a que mais pesa no intervalo.
+
+## O que eu faria com mais tempo
+
+1. **Rotular a importação nova.** 48 das 75 publicadas vêm dela, e nenhum dos 100 rótulos. Uns 50 rótulos de
+   Q0360 a Q0659, a começar pelas publicadas, trocariam o desvio de calibração suposto (√2 vezes o do banco) por
+   um medido.
+2. **Mais rótulos no topo da fila.** A faixa de confiança >= 0,95 se apoia em 18 questões distintas, e por isso o
+   limite inferior da precisão aninhada é só 0,75. Cerca de 31 confirmações seguidas do professor nessa faixa
+   certificam 95% com 80% de confiança; com elas daria para testar limiares abaixo de 0,95 sem o otimismo da busca.
+3. **Um teste cego novo.** O cofre da v0.1 foi lido e voltou para a CV. Separaria 20 rótulos novos, sem olhar,
+   só para conferir a previsão no fim.
+4. **Refazer duas comparações com o código atual.** A de 20 repetições que escolheu o nível 1
+   (`ablations_20rep.csv`) e a dos embeddings neurais (`embeddings_neural.csv`) são da versão anterior. As
+   ablações de 3 repetições, refeitas, mudaram no máximo 0,003 de AUC, então não espero outra conclusão, mas os
+   números deveriam ser os do código entregue.
+5. **Descer ao subtema.** Publicar no nível 1 custa que 30 das 75 publicadas caiam em temas-lixeira. Com mais
+   rótulos de nível 2, voltaria a testar a descida ao subtema só nessas lixeiras.
+6. **Acabamento do código.** Tirar código morto, trocar os caches em métodos por caches por instância, dar à
+   confiança das linhas `fora` um sentido próprio (hoje é a do tema que não vai para a saída) e canonizar o
+   nó-sombra que duas linhas da folha-verdade (Q0138, Q0324) copiam para a saída.
