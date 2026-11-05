@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vde-topic-classifier"
-version = "0.2.0"
+version = "0.2.1"
 description = "Calibrated topic classifier for exam questions, with no language model in the decision path."
 readme = "README.md"
 requires-python = ">=3.11"
