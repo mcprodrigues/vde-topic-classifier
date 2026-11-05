@@ -42,13 +42,6 @@ def write_provenance(artifact_file: Path, **fields) -> Path:
     return target
 
 
-def read_provenance(artifact_file: Path) -> dict:
-    target = artifact_file.with_name(artifact_file.name + ".prov.json")
-    if not target.exists():
-        return {}
-    return json.loads(target.read_text(encoding="utf-8"))
-
-
 def refresh_manifest() -> dict:
     """Record the sha256 of every versioned artifact so publish can detect drift."""
     entries = {}
@@ -105,13 +98,6 @@ def proposal_path(name: str) -> Path:
     path = ARTIFACT_DIR / "proposals" / name
     path.parent.mkdir(parents=True, exist_ok=True)
     return path
-
-
-def relative(path: Path) -> str:
-    try:
-        return str(path.resolve().relative_to(ROOT.resolve()))
-    except ValueError:
-        return str(path)
 
 
 def _git_commit() -> str:

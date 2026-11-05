@@ -15,11 +15,12 @@ from vde.knowledge.subject_map import subject_key
 
 class SubjectChannel(Channel):
     name = "subject"
-    label_dependent = True
 
     def __init__(self, res):
         super().__init__(res)
         self.learn_confusion = bool(self.config.get("learn_confusion", False))
+        # The subject map itself never sees a label; only the E8 confusion table does.
+        self.label_dependent = self.learn_confusion
         self.confusion: dict[str, Counter] = {}
         self.labeled: dict[str, GoldLabel] = {}
 
@@ -43,11 +44,6 @@ class SubjectChannel(Channel):
         if self.learn_confusion and key in self.confusion:
             raw = self._add_confusion(qid, key, raw)
         return top_normalized(pool_canonical(self.res, raw))
-
-    def is_bin_subject(self, qid: str) -> bool:
-        tree = self.res.tree
-        key = subject_key(self.res.parsed[qid].origin_subject)
-        return any(tid in tree and tree.is_bin(tree.canonical(tid)) for tid, _ in self.res.subjects.get(key, []))
 
     def _add_confusion(self, qid: str, key: str, raw: Scores) -> Scores:
         """Leave one out: a training question never counts its own label."""

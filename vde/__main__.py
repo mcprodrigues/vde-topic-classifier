@@ -1,4 +1,4 @@
-"""Command line: vde publish | vde evaluate | vde build <artifact> | vde diagnose."""
+"""Command line: vde publish | vde evaluate | vde ablate | vde build <artifact> | vde diagnose."""
 
 from __future__ import annotations
 
@@ -27,6 +27,8 @@ def main(argv: list[str] | None = None) -> int:
         report = evaluate(ablations=args.ablations)
         fc = report["forecast"]
         print(f"cobertura {fc['coverage']:.3f}, precisao prevista {fc['precision']}, limiar {report['threshold']:.3f}")
+    elif args.command == "ablate":
+        _ablate(args.repeats, args.only, Path(args.out))
     elif args.command == "diagnose":
         from vde.config import load_config
         from vde.resources import Resources
@@ -59,6 +61,25 @@ def _build(artifact: str, source: str) -> None:
     refresh_manifest()
 
 
+def _ablate(repeats: int | None, only: str | None, out: Path) -> None:
+    """Run ablations with a chosen number of CV repeats and write one CSV (outputs/ablations_20rep.csv, ...)."""
+    import json
+
+    from vde.config import load_config
+    from vde.evaluate import ABLATIONS, run_ablations
+    from vde.paths import ARTIFACT_DIR
+
+    names = [n.strip() for n in only.split(",")] if only else None
+    unknown = [n for n in names or [] if n not in ABLATIONS]
+    if unknown:
+        raise SystemExit(f"unknown ablations {unknown}; known: {sorted(ABLATIONS)}")
+    dev_ids = json.loads((ARTIFACT_DIR / "model.json").read_text(encoding="utf-8"))["dev_ids"]
+    table = run_ablations(load_config(), dev_ids, names, repeats)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    table.to_csv(out, index=False)
+    print(table[["experiment", "hit_rate", "auc", "aurc", "prec_at_10", "nested_precision"]].to_string(index=False))
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="vde", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -72,6 +93,10 @@ def _parser() -> argparse.ArgumentParser:
                        help="llm writes a proposal to artifacts/proposals for human review")
     ev = sub.add_parser("evaluate", help="metrics, figures, shift report and previsao.txt")
     ev.add_argument("--ablations", action="store_true")
+    ab = sub.add_parser("ablate", help="ablations with a chosen number of CV repeats, written to one CSV")
+    ab.add_argument("--repeats", type=int, help="CV repeats per experiment (default: evaluation.ablation_repeats)")
+    ab.add_argument("--only", help="comma separated experiment names (default: all)")
+    ab.add_argument("--out", default="outputs/ablations_20rep.csv", help="output CSV")
     sub.add_parser("diagnose", help="compare the bank with the new import")
     return parser
 

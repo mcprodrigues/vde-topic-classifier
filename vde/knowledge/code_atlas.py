@@ -48,9 +48,6 @@ class CodeAtlas:
         hits = [r for r in self.ranges.get(code, []) if r.start <= key <= r.end]
         return min(hits, key=lambda r: r.width) if hits else None
 
-    def has_code(self, code: str) -> bool:
-        return code in self.ranges
-
 
 def article_key(article: str) -> float | None:
     """'121' -> 121.0, '121-A' -> 121.01, '359-L' -> 359.12."""

@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from functools import lru_cache
-
 import numpy as np
 
-from vde.channels.interfaces import Channel, Scores
+from vde.channels.interfaces import Channel, Scores, cached_by_qid
 from vde.knowledge.embeddings import card_key, question_key, segment_key
 
 
@@ -39,6 +37,6 @@ class PrototypeChannel(Channel):
     def top_cosine(self, qid: str) -> float:
         return float(np.max(self.card_matrix @ self.res.embeddings.get(question_key(qid))))
 
-    @lru_cache(maxsize=None)
+    @cached_by_qid
     def _score_cached(self, qid: str) -> Scores:
         return self.score_vector(self.res.embeddings.get(question_key(qid)))

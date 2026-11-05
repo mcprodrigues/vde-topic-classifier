@@ -131,7 +131,9 @@ Medidos num Intel Core i5-14400 (16 núcleos), a partir de um clone limpo:
 | `pytest` | 37 testes | ~40 s | Não |
 | `vde build model` | CV de 10 folds x 20 repetições nos 100 rótulos e ajuste final | ~10 min | Não |
 | `vde build all` | todos os artefatos do zero e o modelo | ~10 min | Não |
-| `vde evaluate --ablations` | as 19 ablações (3 repetições cada) | ~25 min | Não |
+| `vde evaluate --ablations` | as ablações de `ABLATIONS` (3 repetições cada), em `outputs/ablations.csv` | ~25 min | Não |
+| `vde ablate --repeats 20 --only E3_always_level1,E3_branch_rho,level1_descend_in_bins,level1_minus_prototypes` | a comparação de 20 repetições da escolha do nó, em `outputs/ablations_20rep.csv` | ~40 min | Não |
+| `python scripts/neural_embeddings.py` | LSA contra E5 small, base e large, em `outputs/embeddings_neural.csv` (requer `pip install -e ".[neural]"`) | ~2 h | Não |
 | `vde build canonical_tree`, `branch_twins`, `subject_map` | regras determinísticas | < 1 s cada | Não |
 | `vde build embeddings` | LSA local sobre 3.891 textos (guarda vetores e o modelo LSA) | 8 s | Não |
 | `vde build law_index`, `code_atlas`, `topic_cards` | valida o CSV revisado e grava a proveniência | < 1 s cada | Não |
@@ -240,7 +242,7 @@ manuais estão em [`artifacts/manual_decisions.csv`](artifacts/manual_decisions.
   ordem econômica (tema inativo) e o direito penal e processual militar.
 * **MD10, MD13:** ρ = 0,85 (só vale com `node_mode = "branch"`); nunca publicar no nível 0.
 * **MD14:** publicar no tema de nível 1. Venceu a comparação de 20 repetições (precisão nos 10%: 0,985 contra
-  0,970). O custo é que o aluno vê a questão no tema, não no subtema, e 30 das 75 publicadas caem em temas
+  0,970 ao descer ao subtema e 0,975 ao descer só nas lixeiras; `vde ablate --repeats 20`). O custo é que o aluno vê a questão no tema, não no subtema, e 30 das 75 publicadas caem em temas
   marcados como lixeira (sempre com confiança >= 0,95).
 * **MD15:** regra de limiar calibrada (publicar quando P(acerto) >= 0,95) em vez de buscar na curva.
 * **MD17:** barreira de evidência: nunca publicar sem nenhum canal de texto com score ou com massa do ramo < 0,30.
