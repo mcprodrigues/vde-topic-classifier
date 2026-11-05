@@ -113,7 +113,15 @@ def review_reason(pred: Prediction, res: Resources) -> str:
 
 
 def _gold_decision(pred: Prediction, res: Resources) -> Decision:
+    """The team's label, moved to the canonical twin: a shadow node never reaches the publication."""
     gold = res.gold[pred.qid]
     if gold.is_out:
         return Decision(pred.qid, "fora", None, (), 1.0, "folha-verdade: fora da taxonomia")
-    return Decision(pred.qid, "publicar", gold.central, gold.extras, 1.0, "folha-verdade")
+    tree = res.tree
+    central = tree.canonical(gold.central) if gold.central in tree else gold.central
+    extras = []
+    for extra in gold.extras:
+        canon = tree.canonical(extra) if extra in tree else extra
+        if canon != central and canon not in extras:
+            extras.append(canon)
+    return Decision(pred.qid, "publicar", central, tuple(extras), 1.0, "folha-verdade")

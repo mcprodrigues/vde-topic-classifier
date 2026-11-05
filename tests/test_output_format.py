@@ -29,11 +29,12 @@ def test_decision_rules(publication):
     assert conf.between(0, 1).all()
 
 
-def test_published_topics_are_valid_and_never_a_root(publication):
+def test_output_topics_are_valid_never_a_root_and_never_a_shadow(publication):
     tree = canonical_tree.load()
-    for value in publication[publication.decisao == "publicar"].tema_central_id:
-        tid = int(value)
-        assert tid in tree and tree.level(tid) >= 1
+    rows = publication[publication.decisao != "fora"]
+    topics = [int(v) for v in rows.tema_central_id] + [int(e) for v in rows.extras_ids for e in v.split(";") if e]
+    for tid in topics:
+        assert tid in tree and tree.level(tid) >= 1 and not tree.is_shadow(tid), tid
 
 
 HEADER = [

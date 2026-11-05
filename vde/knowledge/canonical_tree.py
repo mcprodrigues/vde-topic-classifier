@@ -93,9 +93,6 @@ class Tree:
         """Nodes we may publish in: canonical, active, level 1 or 2. Never level 0, never a shadow."""
         return [t for t, lvl in self._level.items() if lvl >= 1 and not self._shadow[t]]
 
-    def level1_nodes(self) -> list[int]:
-        return [t for t in self.candidates() if self.level(t) == 1]
-
     def correct_set(self, central: int | None, extras: tuple[int, ...] = ()) -> set[int]:
         """Nodes that count as a hit under the case rule: a gold topic, its parent or its children."""
         hits: set[int] = set()

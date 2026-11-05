@@ -136,7 +136,7 @@ Q0134,publicar,5092,,1.0000,folha-verdade
 Q0135,revisar,5157,5218,0.7449,confiança 0.74 abaixo do limiar; dúvida entre 5157 (Dos Crimes Contra o Patrimônio) e 5218 (Teoria do Crime: Fato Típico); alternativas espalhadas por vários temas
 Q0136,revisar,4704,,0.6089,confiança 0.61 abaixo do limiar
 Q0137,publicar,5498,,1.0000,folha-verdade
-Q0138,publicar,6734,5205,1.0000,folha-verdade
+Q0138,publicar,4703,5205,1.0000,folha-verdade
 Q0139,publicar,5211,,1.0000,folha-verdade
 Q0140,revisar,5157,,0.7842,confiança 0.78 abaixo do limiar
 Q0141,revisar,4385,,0.8709,confiança 0.87 abaixo do limiar; alternativas espalhadas por vários temas
@@ -322,7 +322,7 @@ Q0320,publicar,5550,,1.0000,folha-verdade
 Q0321,revisar,5071,,0.9500,confiança 0.95 abaixo do limiar; alternativas espalhadas por vários temas
 Q0322,revisar,5560,,0.9228,confiança 0.92 abaixo do limiar
 Q0323,publicar,5595,,1.0000,folha-verdade
-Q0324,publicar,4703,4686;6734,1.0000,folha-verdade
+Q0324,publicar,4703,4686,1.0000,folha-verdade
 Q0325,publicar,5473,4704;5494;5541,1.0000,folha-verdade
 Q0326,revisar,4708,,0.5152,confiança 0.52 abaixo do limiar
 Q0327,publicar,5199,,0.9598,

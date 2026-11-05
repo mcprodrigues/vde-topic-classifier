@@ -18,7 +18,6 @@ class NodeChoice:
     node: int
     branch: int
     branch_mass: float
-    node_mass: float
     runner_up: int | None
     runner_up_mass: float
     descended: bool
@@ -44,13 +43,13 @@ def choose_node(p: dict[int, float], tree, rho: float, mode: str = "branch") -> 
         return _leaf_choice(p, tree, masses)
     branch, mass = ranked[0]
     if mode == "level1" or (mode == "level1_bins" and not tree.is_bin(branch)):
-        return NodeChoice(branch, branch, mass, mass, runner_up, runner_mass, False)
+        return NodeChoice(branch, branch, mass, runner_up, runner_mass, False)
     children = {n: q for n, q in p.items() if n != branch and tree.level1_of(n) == branch}
     if children and mass > 0:
         child, child_p = max(children.items(), key=lambda kv: kv[1])
         if child_p / mass >= rho:
-            return NodeChoice(child, branch, mass, child_p + p.get(branch, 0.0), runner_up, runner_mass, True)
-    return NodeChoice(branch, branch, mass, mass, runner_up, runner_mass, False)
+            return NodeChoice(child, branch, mass, runner_up, runner_mass, True)
+    return NodeChoice(branch, branch, mass, runner_up, runner_mass, False)
 
 
 def pick_extras(p: dict[int, float], choice: NodeChoice, tree, min_mass: float,
@@ -71,4 +70,4 @@ def _leaf_choice(p: dict[int, float], tree, masses: dict[int, float]) -> NodeCho
         node = branch
     others = sorted(((b, m) for b, m in masses.items() if b != branch), key=lambda kv: -kv[1])
     runner_up, runner_mass = others[0] if others else (None, 0.0)
-    return NodeChoice(node, branch, masses[branch], prob, runner_up, runner_mass, tree.level(node) == 2)
+    return NodeChoice(node, branch, masses[branch], runner_up, runner_mass, tree.level(node) == 2)

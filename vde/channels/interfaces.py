@@ -6,6 +6,7 @@ they only feed the aggregation, which lets evaluate.py switch any of them off an
 
 from __future__ import annotations
 
+import functools
 from abc import ABC, abstractmethod
 
 from vde.data.loader import GoldLabel
@@ -35,6 +36,24 @@ class Channel(ABC):
     @abstractmethod
     def score(self, qid: str) -> Scores:
         """Scores over canonical topic ids. Missing ids mean no evidence."""
+
+
+def cached_by_qid(method):
+    """Cache a method(self, qid) inside the instance, so the cache dies with the object.
+
+    functools.lru_cache on a method keys on self and keeps every instance alive for the life of the process,
+    which matters when cross validation and ablations build many engines.
+    """
+    attr = f"_cache_{method.__name__}"
+
+    @functools.wraps(method)
+    def wrapper(self, qid):
+        cache = self.__dict__.setdefault(attr, {})
+        if qid not in cache:
+            cache[qid] = method(self, qid)
+        return cache[qid]
+
+    return wrapper
 
 
 def top_normalized(scores: Scores, top_k: int | None = None) -> Scores:
