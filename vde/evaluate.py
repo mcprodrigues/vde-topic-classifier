@@ -263,6 +263,7 @@ ABLATIONS = {
     "E3_always_level1": {"node_mode": "level1"},
     "E3_branch_rho": {"node_mode": "branch"},
     "level1_minus_prototypes": {"drop": ["prototypes"], "node_mode": "level1"},
+    "level1_descend_in_bins": {"node_mode": "level1_bins"},
     "linear_transform": {"config": {"aggregate": {"transform": "linear"}}},
 }
 

@@ -9,7 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-MODES = ("branch", "leaf", "level1")
+# level1_bins: level 1 everywhere except in a bin topic, where it descends to a subtopic like "branch".
+MODES = ("branch", "leaf", "level1", "level1_bins")
 
 
 @dataclass(frozen=True)
@@ -42,7 +43,7 @@ def choose_node(p: dict[int, float], tree, rho: float, mode: str = "branch") -> 
     if mode == "leaf":
         return _leaf_choice(p, tree, masses)
     branch, mass = ranked[0]
-    if mode == "level1":
+    if mode == "level1" or (mode == "level1_bins" and not tree.is_bin(branch)):
         return NodeChoice(branch, branch, mass, mass, runner_up, runner_mass, False)
     children = {n: q for n, q in p.items() if n != branch and tree.level1_of(n) == branch}
     if children and mass > 0:
